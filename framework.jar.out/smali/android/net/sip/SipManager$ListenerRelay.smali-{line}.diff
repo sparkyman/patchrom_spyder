@@ -1,0 +1,170 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/sip/SipManager$ListenerRelay.smali	2012-03-23 19:37:02.574822034 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/sip/SipManager$ListenerRelay.smali.original	2012-03-23 19:34:45.512322703 -0500
+***************
+*** 27,38 ****
+--- 27,42 ----
+      .parameter "uri"
+  
+      .prologue
++     .line 575
+      invoke-direct {p0}, Landroid/net/sip/SipSessionAdapter;-><init>()V
+  
++     .line 576
+      iput-object p1, p0, Landroid/net/sip/SipManager$ListenerRelay;->mListener:Landroid/net/sip/SipRegistrationListener;
+  
++     .line 577
+      iput-object p2, p0, Landroid/net/sip/SipManager$ListenerRelay;->mUri:Ljava/lang/String;
+  
++     .line 578
+      return-void
+  .end method
+  
+***************
+*** 41,54 ****
+--- 45,61 ----
+      .parameter "session"
+  
+      .prologue
++     .line 582
+      if-nez p1, :cond_0
+  
+      :try_start_0
+      iget-object v1, p0, Landroid/net/sip/SipManager$ListenerRelay;->mUri:Ljava/lang/String;
+  
++     .line 588
+      :goto_0
+      return-object v1
+  
++     .line 582
+      :cond_0
+      invoke-interface {p1}, Landroid/net/sip/ISipSession;->getLocalProfile()Landroid/net/sip/SipProfile;
+  
+***************
+*** 62,70 ****
+--- 69,79 ----
+  
+      goto :goto_0
+  
++     .line 585
+      :catch_0
+      move-exception v0
+  
++     .line 587
+      .local v0, e:Ljava/lang/Throwable;
+      const-string v1, "SipManager"
+  
+***************
+*** 88,93 ****
+--- 97,103 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 588
+      const/4 v1, 0x0
+  
+      goto :goto_0
+***************
+*** 100,105 ****
+--- 110,116 ----
+      .parameter "session"
+  
+      .prologue
++     .line 594
+      iget-object v0, p0, Landroid/net/sip/SipManager$ListenerRelay;->mListener:Landroid/net/sip/SipRegistrationListener;
+  
+      invoke-direct {p0, p1}, Landroid/net/sip/SipManager$ListenerRelay;->getUri(Landroid/net/sip/ISipSession;)Ljava/lang/String;
+***************
+*** 108,113 ****
+--- 119,125 ----
+  
+      invoke-interface {v0, v1}, Landroid/net/sip/SipRegistrationListener;->onRegistering(Ljava/lang/String;)V
+  
++     .line 595
+      return-void
+  .end method
+  
+***************
+*** 117,124 ****
+--- 129,138 ----
+      .parameter "duration"
+  
+      .prologue
++     .line 599
+      int-to-long v0, p2
+  
++     .line 600
+      .local v0, expiryTime:J
+      if-lez p2, :cond_0
+  
+***************
+*** 128,133 ****
+--- 142,148 ----
+  
+      add-long/2addr v0, v2
+  
++     .line 601
+      :cond_0
+      iget-object v2, p0, Landroid/net/sip/SipManager$ListenerRelay;->mListener:Landroid/net/sip/SipRegistrationListener;
+  
+***************
+*** 137,142 ****
+--- 152,158 ----
+  
+      invoke-interface {v2, v3, v0, v1}, Landroid/net/sip/SipRegistrationListener;->onRegistrationDone(Ljava/lang/String;J)V
+  
++     .line 602
+      return-void
+  .end method
+  
+***************
+*** 147,152 ****
+--- 163,169 ----
+      .parameter "message"
+  
+      .prologue
++     .line 607
+      iget-object v0, p0, Landroid/net/sip/SipManager$ListenerRelay;->mListener:Landroid/net/sip/SipRegistrationListener;
+  
+      invoke-direct {p0, p1}, Landroid/net/sip/SipManager$ListenerRelay;->getUri(Landroid/net/sip/ISipSession;)Ljava/lang/String;
+***************
+*** 155,160 ****
+--- 172,178 ----
+  
+      invoke-interface {v0, v1, p2, p3}, Landroid/net/sip/SipRegistrationListener;->onRegistrationFailed(Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 608
+      return-void
+  .end method
+  
+***************
+*** 163,168 ****
+--- 181,187 ----
+      .parameter "session"
+  
+      .prologue
++     .line 612
+      iget-object v0, p0, Landroid/net/sip/SipManager$ListenerRelay;->mListener:Landroid/net/sip/SipRegistrationListener;
+  
+      invoke-direct {p0, p1}, Landroid/net/sip/SipManager$ListenerRelay;->getUri(Landroid/net/sip/ISipSession;)Ljava/lang/String;
+***************
+*** 171,179 ****
+  
+      const/4 v2, -0x5
+  
+!     const-string v3, "registration timed out"
+  
+      invoke-interface {v0, v1, v2, v3}, Landroid/net/sip/SipRegistrationListener;->onRegistrationFailed(Ljava/lang/String;ILjava/lang/String;)V
+  
+      return-void
+  .end method
+--- 190,199 ----
+  
+      const/4 v2, -0x5
+  
+!     const-string/jumbo v3, "registration timed out"
+  
+      invoke-interface {v0, v1, v2, v3}, Landroid/net/sip/SipRegistrationListener;->onRegistrationFailed(Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 614
+      return-void
+  .end method

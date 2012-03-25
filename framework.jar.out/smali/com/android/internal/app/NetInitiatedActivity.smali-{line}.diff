@@ -1,0 +1,522 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/internal/app/NetInitiatedActivity.smali	2012-03-23 19:37:50.329692842 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/internal/app/NetInitiatedActivity.smali.original	2012-03-23 19:34:46.363338221 -0500
+***************
+*** 41,64 ****
+--- 41,71 ----
+      .prologue
+      const/4 v0, -0x1
+  
++     .line 39
+      invoke-direct {p0}, Lcom/android/internal/app/AlertActivity;-><init>()V
+  
++     .line 51
+      iput v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
++     .line 52
+      iput v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->timeout:I
+  
++     .line 53
+      iput v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response:I
+  
++     .line 54
+      const/4 v0, 0x6
+  
+      iput v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response_timeout:I
+  
++     .line 57
+      new-instance v0, Lcom/android/internal/app/NetInitiatedActivity$1;
+  
+      invoke-direct {v0, p0}, Lcom/android/internal/app/NetInitiatedActivity$1;-><init>(Lcom/android/internal/app/NetInitiatedActivity;)V
+  
+      iput-object v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->mNetInitiatedReceiver:Landroid/content/BroadcastReceiver;
+  
++     .line 67
+      new-instance v0, Lcom/android/internal/app/NetInitiatedActivity$2;
+  
+      invoke-direct {v0, p0}, Lcom/android/internal/app/NetInitiatedActivity$2;-><init>(Lcom/android/internal/app/NetInitiatedActivity;)V
+***************
+*** 74,79 ****
+--- 81,87 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 39
+      invoke-direct {p0, p1}, Lcom/android/internal/app/NetInitiatedActivity;->handleNIVerify(Landroid/content/Intent;)V
+  
+      return-void
+***************
+*** 84,89 ****
+--- 92,98 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 39
+      iget v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
+      return v0
+***************
+*** 94,99 ****
+--- 103,109 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 39
+      iget v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response:I
+  
+      return v0
+***************
+*** 105,110 ****
+--- 115,121 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 39
+      invoke-direct {p0, p1}, Lcom/android/internal/app/NetInitiatedActivity;->sendUserResponse(I)V
+  
+      return-void
+***************
+*** 115,121 ****
+      .parameter "intent"
+  
+      .prologue
+!     const-string v1, "notif_id"
+  
+      const/4 v2, -0x1
+  
+--- 126,133 ----
+      .parameter "intent"
+  
+      .prologue
+!     .line 146
+!     const-string/jumbo v1, "notif_id"
+  
+      const/4 v2, -0x1
+  
+***************
+*** 123,131 ****
+--- 135,145 ----
+  
+      move-result v0
+  
++     .line 147
+      .local v0, notifId:I
+      iput v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
++     .line 149
+      const-string v1, "NetInitiatedActivity"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 152,157 ****
+--- 166,172 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 150
+      return-void
+  .end method
+  
+***************
+*** 160,172 ****
+      .parameter "response"
+  
+      .prologue
+      const-string v1, "NetInitiatedActivity"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v3, "sendUserResponse, response: "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 175,188 ----
+      .parameter "response"
+  
+      .prologue
++     .line 139
+      const-string v1, "NetInitiatedActivity"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v3, "sendUserResponse, response: "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 182,187 ****
+--- 198,204 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 140
+      const-string v1, "location"
+  
+      invoke-virtual {p0, v1}, Lcom/android/internal/app/NetInitiatedActivity;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+***************
+*** 190,200 ****
+--- 207,219 ----
+  
+      check-cast v0, Landroid/location/LocationManager;
+  
++     .line 142
+      .local v0, locationManager:Landroid/location/LocationManager;
+      iget v1, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
+      invoke-virtual {v0, v1, p1}, Landroid/location/LocationManager;->sendNiResponse(II)Z
+  
++     .line 143
+      return-void
+  .end method
+  
+***************
+*** 202,207 ****
+--- 221,227 ----
+      .locals 2
+  
+      .prologue
++     .line 153
+      const-string v0, "NI error"
+  
+      const/4 v1, 0x1
+***************
+*** 212,217 ****
+--- 232,238 ----
+  
+      invoke-virtual {v0}, Landroid/widget/Toast;->show()V
+  
++     .line 155
+      return-void
+  .end method
+  
+***************
+*** 225,250 ****
+--- 246,278 ----
+      .prologue
+      const/4 v1, -0x1
+  
++     .line 125
+      if-ne p2, v1, :cond_0
+  
++     .line 126
+      const/4 v0, 0x1
+  
+      invoke-direct {p0, v0}, Lcom/android/internal/app/NetInitiatedActivity;->sendUserResponse(I)V
+  
++     .line 128
+      :cond_0
+      const/4 v0, -0x2
+  
+      if-ne p2, v0, :cond_1
+  
++     .line 129
+      const/4 v0, 0x2
+  
+      invoke-direct {p0, v0}, Lcom/android/internal/app/NetInitiatedActivity;->sendUserResponse(I)V
+  
++     .line 133
+      :cond_1
+      invoke-virtual {p0}, Lcom/android/internal/app/NetInitiatedActivity;->finish()V
+  
++     .line 134
+      iput v1, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
++     .line 135
+      return-void
+  .end method
+  
+***************
+*** 257,282 ****
+  
+      const/4 v5, 0x0
+  
+      invoke-super {p0, p1}, Lcom/android/internal/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
+  
+      invoke-virtual {p0}, Lcom/android/internal/app/NetInitiatedActivity;->getIntent()Landroid/content/Intent;
+  
+      move-result-object v1
+  
+      .local v1, intent:Landroid/content/Intent;
+      iget-object v2, p0, Lcom/android/internal/app/NetInitiatedActivity;->mAlertParams:Lcom/android/internal/app/AlertController$AlertParams;
+  
+      .local v2, p:Lcom/android/internal/app/AlertController$AlertParams;
+      invoke-virtual {p0}, Lcom/android/internal/app/NetInitiatedActivity;->getApplicationContext()Landroid/content/Context;
+  
+      move-result-object v0
+  
+      .local v0, context:Landroid/content/Context;
+      const v3, 0x10802bf
+  
+      iput v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mIconId:I
+  
+!     const-string v3, "title"
+  
+      invoke-virtual {v1, v3}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+--- 285,316 ----
+  
+      const/4 v5, 0x0
+  
++     .line 84
+      invoke-super {p0, p1}, Lcom/android/internal/app/AlertActivity;->onCreate(Landroid/os/Bundle;)V
+  
++     .line 87
+      invoke-virtual {p0}, Lcom/android/internal/app/NetInitiatedActivity;->getIntent()Landroid/content/Intent;
+  
+      move-result-object v1
+  
++     .line 88
+      .local v1, intent:Landroid/content/Intent;
+      iget-object v2, p0, Lcom/android/internal/app/NetInitiatedActivity;->mAlertParams:Lcom/android/internal/app/AlertController$AlertParams;
+  
++     .line 89
+      .local v2, p:Lcom/android/internal/app/AlertController$AlertParams;
+      invoke-virtual {p0}, Lcom/android/internal/app/NetInitiatedActivity;->getApplicationContext()Landroid/content/Context;
+  
+      move-result-object v0
+  
++     .line 90
+      .local v0, context:Landroid/content/Context;
+      const v3, 0x10802bf
+  
+      iput v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mIconId:I
+  
+!     .line 91
+!     const-string/jumbo v3, "title"
+  
+      invoke-virtual {v1, v3}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+***************
+*** 284,290 ****
+  
+      iput-object v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mTitle:Ljava/lang/CharSequence;
+  
+!     const-string v3, "message"
+  
+      invoke-virtual {v1, v3}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+--- 318,325 ----
+  
+      iput-object v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mTitle:Ljava/lang/CharSequence;
+  
+!     .line 92
+!     const-string/jumbo v3, "message"
+  
+      invoke-virtual {v1, v3}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+***************
+*** 292,297 ****
+--- 327,333 ----
+  
+      iput-object v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mMessage:Ljava/lang/CharSequence;
+  
++     .line 93
+      const v3, 0x1040468
+  
+      invoke-virtual {v0, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
+***************
+*** 306,313 ****
+--- 342,351 ----
+  
+      iput-object v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mPositiveButtonText:Ljava/lang/CharSequence;
+  
++     .line 94
+      iput-object p0, v2, Lcom/android/internal/app/AlertController$AlertParams;->mPositiveButtonListener:Landroid/content/DialogInterface$OnClickListener;
+  
++     .line 95
+      const v3, 0x1040469
+  
+      invoke-virtual {v0, v3}, Landroid/content/Context;->getString(I)Ljava/lang/String;
+***************
+*** 322,330 ****
+  
+      iput-object v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mNegativeButtonText:Ljava/lang/CharSequence;
+  
+      iput-object p0, v2, Lcom/android/internal/app/AlertController$AlertParams;->mNegativeButtonListener:Landroid/content/DialogInterface$OnClickListener;
+  
+!     const-string v3, "notif_id"
+  
+      const/4 v4, -0x1
+  
+--- 360,370 ----
+  
+      iput-object v3, v2, Lcom/android/internal/app/AlertController$AlertParams;->mNegativeButtonText:Ljava/lang/CharSequence;
+  
++     .line 96
+      iput-object p0, v2, Lcom/android/internal/app/AlertController$AlertParams;->mNegativeButtonListener:Landroid/content/DialogInterface$OnClickListener;
+  
+!     .line 98
+!     const-string/jumbo v3, "notif_id"
+  
+      const/4 v4, -0x1
+  
+***************
+*** 334,340 ****
+  
+      iput v3, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
+!     const-string v3, "timeout"
+  
+      iget v4, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response_timeout:I
+  
+--- 374,381 ----
+  
+      iput v3, p0, Lcom/android/internal/app/NetInitiatedActivity;->notificationId:I
+  
+!     .line 99
+!     const-string/jumbo v3, "timeout"
+  
+      iget v4, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response_timeout:I
+  
+***************
+*** 344,349 ****
+--- 385,391 ----
+  
+      iput v3, p0, Lcom/android/internal/app/NetInitiatedActivity;->timeout:I
+  
++     .line 100
+      const-string v3, "default_resp"
+  
+      invoke-virtual {v1, v3, v6}, Landroid/content/Intent;->getIntExtra(Ljava/lang/String;I)I
+***************
+*** 352,364 ****
+  
+      iput v3, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response:I
+  
+      const-string v3, "NetInitiatedActivity"
+  
+      new-instance v4, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v5, "onCreate() : notificationId: "
+  
+      invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 394,407 ----
+  
+      iput v3, p0, Lcom/android/internal/app/NetInitiatedActivity;->default_response:I
+  
++     .line 101
+      const-string v3, "NetInitiatedActivity"
+  
+      new-instance v4, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v4}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v5, "onCreate() : notificationId: "
+  
+      invoke-virtual {v4, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 400,405 ****
+--- 443,449 ----
+  
+      invoke-static {v3, v4}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 103
+      iget-object v3, p0, Lcom/android/internal/app/NetInitiatedActivity;->mHandler:Landroid/os/Handler;
+  
+      iget-object v4, p0, Lcom/android/internal/app/NetInitiatedActivity;->mHandler:Landroid/os/Handler;
+***************
+*** 416,423 ****
+--- 460,469 ----
+  
+      invoke-virtual {v3, v4, v5, v6}, Landroid/os/Handler;->sendMessageDelayed(Landroid/os/Message;J)Z
+  
++     .line 104
+      invoke-virtual {p0}, Lcom/android/internal/app/NetInitiatedActivity;->setupAlert()V
+  
++     .line 105
+      return-void
+  .end method
+  
+***************
+*** 425,442 ****
+      .locals 2
+  
+      .prologue
+      invoke-super {p0}, Lcom/android/internal/app/AlertActivity;->onPause()V
+  
+      const-string v0, "NetInitiatedActivity"
+  
+!     const-string v1, "onPause"
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
+      iget-object v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->mNetInitiatedReceiver:Landroid/content/BroadcastReceiver;
+  
+      invoke-virtual {p0, v0}, Lcom/android/internal/app/NetInitiatedActivity;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+  
+      return-void
+  .end method
+  
+--- 471,492 ----
+      .locals 2
+  
+      .prologue
++     .line 116
+      invoke-super {p0}, Lcom/android/internal/app/AlertActivity;->onPause()V
+  
++     .line 117
+      const-string v0, "NetInitiatedActivity"
+  
+!     const-string/jumbo v1, "onPause"
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 118
+      iget-object v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->mNetInitiatedReceiver:Landroid/content/BroadcastReceiver;
+  
+      invoke-virtual {p0, v0}, Lcom/android/internal/app/NetInitiatedActivity;->unregisterReceiver(Landroid/content/BroadcastReceiver;)V
+  
++     .line 119
+      return-void
+  .end method
+  
+***************
+*** 444,457 ****
+      .locals 3
+  
+      .prologue
+      invoke-super {p0}, Lcom/android/internal/app/AlertActivity;->onResume()V
+  
+      const-string v0, "NetInitiatedActivity"
+  
+!     const-string v1, "onResume"
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
+      iget-object v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->mNetInitiatedReceiver:Landroid/content/BroadcastReceiver;
+  
+      new-instance v1, Landroid/content/IntentFilter;
+--- 494,510 ----
+      .locals 3
+  
+      .prologue
++     .line 109
+      invoke-super {p0}, Lcom/android/internal/app/AlertActivity;->onResume()V
+  
++     .line 110
+      const-string v0, "NetInitiatedActivity"
+  
+!     const-string/jumbo v1, "onResume"
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 111
+      iget-object v0, p0, Lcom/android/internal/app/NetInitiatedActivity;->mNetInitiatedReceiver:Landroid/content/BroadcastReceiver;
+  
+      new-instance v1, Landroid/content/IntentFilter;
+***************
+*** 462,466 ****
+--- 515,520 ----
+  
+      invoke-virtual {p0, v0, v1}, Lcom/android/internal/app/NetInitiatedActivity;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+  
++     .line 112
+      return-void
+  .end method

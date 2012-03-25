@@ -1,0 +1,960 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/webkit/AccessibilityInjector.smali	2012-03-23 19:37:05.543876175 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/webkit/AccessibilityInjector.smali.original	2012-03-23 19:34:45.542323251 -0500
+***************
+*** 68,73 ****
+--- 68,74 ----
+      .locals 1
+  
+      .prologue
++     .line 79
+      new-instance v0, Ljava/util/ArrayList;
+  
+      invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+***************
+*** 82,103 ****
+--- 83,110 ----
+      .parameter "webView"
+  
+      .prologue
++     .line 105
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 86
+      new-instance v0, Ljava/util/Stack;
+  
+      invoke-direct {v0}, Ljava/util/Stack;-><init>()V
+  
+      iput-object v0, p0, Landroid/webkit/AccessibilityInjector;->mScheduledEventStack:Ljava/util/Stack;
+  
++     .line 89
+      const/4 v0, 0x2
+  
+      iput v0, p0, Landroid/webkit/AccessibilityInjector;->mCurrentAxis:I
+  
++     .line 106
+      iput-object p1, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
++     .line 107
+      invoke-direct {p0}, Landroid/webkit/AccessibilityInjector;->ensureWebContentKeyBindings()V
+  
++     .line 108
+      return-void
+  .end method
+  
+***************
+*** 105,110 ****
+--- 112,118 ----
+      .locals 14
+  
+      .prologue
++     .line 338
+      sget-object v11, Landroid/webkit/AccessibilityInjector;->sBindings:Ljava/util/ArrayList;
+  
+      invoke-virtual {v11}, Ljava/util/ArrayList;->size()I
+***************
+*** 113,121 ****
+--- 121,131 ----
+  
+      if-lez v11, :cond_1
+  
++     .line 373
+      :cond_0
+      return-void
+  
++     .line 342
+      :cond_1
+      iget-object v11, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
+***************
+*** 133,138 ****
+--- 143,149 ----
+  
+      move-result-object v10
+  
++     .line 346
+      .local v10, webContentKeyBindingsString:Ljava/lang/String;
+      new-instance v9, Landroid/text/TextUtils$SimpleStringSplitter;
+  
+***************
+*** 140,148 ****
+--- 151,161 ----
+  
+      invoke-direct {v9, v11}, Landroid/text/TextUtils$SimpleStringSplitter;-><init>(C)V
+  
++     .line 347
+      .local v9, semiColonSplitter:Landroid/text/TextUtils$SimpleStringSplitter;
+      invoke-virtual {v9, v10}, Landroid/text/TextUtils$SimpleStringSplitter;->setString(Ljava/lang/String;)V
+  
++     .line 349
+      :goto_0
+      invoke-virtual {v9}, Landroid/text/TextUtils$SimpleStringSplitter;->hasNext()Z
+  
+***************
+*** 150,159 ****
+--- 163,174 ----
+  
+      if-eqz v11, :cond_0
+  
++     .line 350
+      invoke-virtual {v9}, Landroid/text/TextUtils$SimpleStringSplitter;->next()Ljava/lang/String;
+  
+      move-result-object v2
+  
++     .line 351
+      .local v2, bindingString:Ljava/lang/String;
+      invoke-static {v2}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+***************
+*** 161,166 ****
+--- 176,182 ----
+  
+      if-eqz v11, :cond_2
+  
++     .line 352
+      const-string v11, "AccessibilityInjector"
+  
+      new-instance v12, Ljava/lang/StringBuilder;
+***************
+*** 185,190 ****
+--- 201,207 ----
+  
+      goto :goto_0
+  
++     .line 356
+      :cond_2
+      const-string v11, "="
+  
+***************
+*** 192,197 ****
+--- 209,215 ----
+  
+      move-result-object v7
+  
++     .line 357
+      .local v7, keyValueArray:[Ljava/lang/String;
+      array-length v11, v7
+  
+***************
+*** 199,204 ****
+--- 217,223 ----
+  
+      if-eq v11, v12, :cond_3
+  
++     .line 358
+      const-string v11, "AccessibilityInjector"
+  
+      new-instance v12, Ljava/lang/StringBuilder;
+***************
+*** 223,228 ****
+--- 242,248 ----
+  
+      goto :goto_0
+  
++     .line 362
+      :cond_3
+      const/4 v11, 0x0
+  
+***************
+*** 241,246 ****
+--- 261,267 ----
+  
+      move-result-wide v5
+  
++     .line 363
+      .local v5, keyCodeAndModifiers:J
+      const/4 v11, 0x1
+  
+***************
+*** 252,262 ****
+--- 273,285 ----
+  
+      move-result-object v0
+  
++     .line 364
+      .local v0, actionStrings:[Ljava/lang/String;
+      array-length v11, v0
+  
+      new-array v1, v11, [I
+  
++     .line 365
+      .local v1, actions:[I
+      const/4 v4, 0x0
+  
+***************
+*** 267,272 ****
+--- 290,296 ----
+      :goto_1
+      if-ge v4, v3, :cond_4
+  
++     .line 366
+      aget-object v11, v0, v4
+  
+      invoke-virtual {v11}, Ljava/lang/String;->trim()Ljava/lang/String;
+***************
+*** 283,292 ****
+--- 307,318 ----
+  
+      aput v11, v1, v4
+  
++     .line 365
+      add-int/lit8 v4, v4, 0x1
+  
+      goto :goto_1
+  
++     .line 368
+      :cond_4
+      sget-object v11, Landroid/webkit/AccessibilityInjector;->sBindings:Ljava/util/ArrayList;
+  
+***************
+*** 300,305 ****
+--- 326,332 ----
+  
+      goto/16 :goto_0
+  
++     .line 369
+      .end local v0           #actionStrings:[Ljava/lang/String;
+      .end local v1           #actions:[I
+      .end local v3           #count:I
+***************
+*** 308,313 ****
+--- 335,341 ----
+      :catch_0
+      move-exception v8
+  
++     .line 370
+      .local v8, nfe:Ljava/lang/NumberFormatException;
+      const-string v11, "AccessibilityInjector"
+  
+***************
+*** 338,349 ****
+--- 366,379 ----
+      .locals 2
+  
+      .prologue
++     .line 327
+      const/4 v1, 0x4
+  
+      invoke-static {v1}, Landroid/view/accessibility/AccessibilityEvent;->obtain(I)Landroid/view/accessibility/AccessibilityEvent;
+  
+      move-result-object v0
+  
++     .line 328
+      .local v0, event:Landroid/view/accessibility/AccessibilityEvent;
+      iget-object v1, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
+***************
+*** 357,362 ****
+--- 387,393 ----
+  
+      invoke-virtual {v0, v1}, Landroid/view/accessibility/AccessibilityEvent;->setClassName(Ljava/lang/CharSequence;)V
+  
++     .line 329
+      iget-object v1, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
+      invoke-virtual {v1}, Landroid/webkit/WebView;->getContext()Landroid/content/Context;
+***************
+*** 369,374 ****
+--- 400,406 ----
+  
+      invoke-virtual {v0, v1}, Landroid/view/accessibility/AccessibilityEvent;->setPackageName(Ljava/lang/CharSequence;)V
+  
++     .line 330
+      iget-object v1, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
+      invoke-virtual {v1}, Landroid/webkit/WebView;->isEnabled()Z
+***************
+*** 377,382 ****
+--- 409,415 ----
+  
+      invoke-virtual {v0, v1}, Landroid/view/accessibility/AccessibilityEvent;->setEnabled(Z)V
+  
++     .line 331
+      return-object v0
+  .end method
+  
+***************
+*** 385,390 ****
+--- 418,424 ----
+      .parameter "keyCode"
+  
+      .prologue
++     .line 376
+      const/16 v0, 0x17
+  
+      if-eq p1, v0, :cond_0
+***************
+*** 417,428 ****
+--- 451,465 ----
+      .parameter "contentDescription"
+  
+      .prologue
++     .line 234
+      iget v0, p0, Landroid/webkit/AccessibilityInjector;->mCurrentAxis:I
+  
+      if-ne v0, p1, :cond_0
+  
++     .line 235
+      invoke-direct {p0, p2, p3, p4}, Landroid/webkit/AccessibilityInjector;->setCurrentAxis(IZLjava/lang/String;)V
+  
++     .line 237
+      :cond_0
+      return-void
+  .end method
+***************
+*** 432,437 ****
+--- 469,475 ----
+      .parameter "event"
+  
+      .prologue
++     .line 312
+      const-string v1, "AccessibilityInjector"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 454,459 ****
+--- 492,498 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 315
+      iget-object v1, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
+      invoke-virtual {v1}, Landroid/webkit/WebView;->getContext()Landroid/content/Context;
+***************
+*** 464,469 ****
+--- 503,509 ----
+  
+      move-result-object v0
+  
++     .line 317
+      .local v0, accessibilityManager:Landroid/view/accessibility/AccessibilityManager;
+      invoke-virtual {v0}, Landroid/view/accessibility/AccessibilityManager;->isEnabled()Z
+  
+***************
+*** 471,478 ****
+--- 511,520 ----
+  
+      if-eqz v1, :cond_0
+  
++     .line 318
+      invoke-virtual {v0, p1}, Landroid/view/accessibility/AccessibilityManager;->sendAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)V
+  
++     .line 320
+      :cond_0
+      return-void
+  .end method
+***************
+*** 484,497 ****
+--- 526,543 ----
+      .parameter "contentDescription"
+  
+      .prologue
++     .line 215
+      iput p1, p0, Landroid/webkit/AccessibilityInjector;->mCurrentAxis:I
+  
++     .line 216
+      if-eqz p2, :cond_0
+  
++     .line 217
+      invoke-direct {p0}, Landroid/webkit/AccessibilityInjector;->getPartialyPopulatedAccessibilityEvent()Landroid/view/accessibility/AccessibilityEvent;
+  
+      move-result-object v0
+  
++     .line 218
+      .local v0, event:Landroid/view/accessibility/AccessibilityEvent;
+      invoke-virtual {v0}, Landroid/view/accessibility/AccessibilityEvent;->getText()Ljava/util/List;
+  
+***************
+*** 503,512 ****
+--- 549,561 ----
+  
+      invoke-interface {v1, v2}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 219
+      invoke-virtual {v0, p3}, Landroid/view/accessibility/AccessibilityEvent;->setContentDescription(Ljava/lang/CharSequence;)V
+  
++     .line 220
+      invoke-direct {p0, v0}, Landroid/webkit/AccessibilityInjector;->sendAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)V
+  
++     .line 222
+      .end local v0           #event:Landroid/view/accessibility/AccessibilityEvent;
+      :cond_0
+      return-void
+***************
+*** 519,524 ****
+--- 568,574 ----
+      .parameter "contentDescription"
+  
+      .prologue
++     .line 250
+      iget v0, p0, Landroid/webkit/AccessibilityInjector;->mCurrentAxis:I
+  
+      invoke-direct {p0, p1, v0, p2, p3}, Landroid/webkit/AccessibilityInjector;->traverseGivenAxis(IIZLjava/lang/String;)Z
+***************
+*** 538,581 ****
+--- 588,642 ----
+      .prologue
+      const/4 v2, 0x0
+  
++     .line 264
+      iget-object v3, p0, Landroid/webkit/AccessibilityInjector;->mWebView:Landroid/webkit/WebView;
+  
+      invoke-virtual {v3}, Landroid/webkit/WebView;->getWebViewCore()Landroid/webkit/WebViewCore;
+  
+      move-result-object v1
+  
++     .line 265
+      .local v1, webViewCore:Landroid/webkit/WebViewCore;
+      if-nez v1, :cond_1
+  
++     .line 284
+      :cond_0
+      :goto_0
+      return v2
+  
++     .line 269
+      :cond_1
+      const/4 v0, 0x0
+  
++     .line 270
+      .local v0, event:Landroid/view/accessibility/AccessibilityEvent;
+      if-eqz p3, :cond_2
+  
++     .line 271
+      invoke-direct {p0}, Landroid/webkit/AccessibilityInjector;->getPartialyPopulatedAccessibilityEvent()Landroid/view/accessibility/AccessibilityEvent;
+  
+      move-result-object v0
+  
++     .line 273
+      invoke-virtual {v0, p4}, Landroid/view/accessibility/AccessibilityEvent;->setContentDescription(Ljava/lang/CharSequence;)V
+  
++     .line 275
+      :cond_2
+      iget-object v3, p0, Landroid/webkit/AccessibilityInjector;->mScheduledEventStack:Ljava/util/Stack;
+  
+      invoke-virtual {v3, v0}, Ljava/util/Stack;->push(Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 279
+      const/4 v3, 0x7
+  
+      if-eq p2, v3, :cond_0
+  
++     .line 283
+      const/16 v2, 0xbe
+  
+      invoke-virtual {v1, v2, p1, p2}, Landroid/webkit/WebViewCore;->sendMessage(III)V
+  
++     .line 284
+      const/4 v2, 0x1
+  
+      goto :goto_0
+***************
+*** 588,593 ****
+--- 649,655 ----
+      .parameter "event"
+  
+      .prologue
++     .line 117
+      invoke-virtual/range {p1 .. p1}, Landroid/view/KeyEvent;->getKeyCode()I
+  
+      move-result v13
+***************
+*** 600,610 ****
+--- 662,675 ----
+  
+      if-eqz v13, :cond_0
+  
++     .line 118
+      const/4 v13, 0x0
+  
++     .line 203
+      :goto_0
+      return v13
+  
++     .line 121
+      :cond_0
+      invoke-virtual/range {p1 .. p1}, Landroid/view/KeyEvent;->getAction()I
+  
+***************
+*** 614,625 ****
+--- 679,692 ----
+  
+      if-ne v13, v14, :cond_1
+  
++     .line 122
+      move-object/from16 v0, p0
+  
+      iget-boolean v13, v0, Landroid/webkit/AccessibilityInjector;->mLastDownEventHandled:Z
+  
+      goto :goto_0
+  
++     .line 125
+      :cond_1
+      const/4 v13, 0x0
+  
+***************
+*** 627,634 ****
+--- 694,703 ----
+  
+      iput-boolean v13, v0, Landroid/webkit/AccessibilityInjector;->mLastDownEventHandled:Z
+  
++     .line 127
+      const/4 v3, 0x0
+  
++     .line 128
+      .local v3, binding:Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;
+      sget-object v13, Landroid/webkit/AccessibilityInjector;->sBindings:Ljava/util/ArrayList;
+  
+***************
+*** 650,655 ****
+--- 719,725 ----
+  
+      check-cast v4, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;
+  
++     .line 129
+      .local v4, candidate:Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;
+      invoke-virtual/range {p1 .. p1}, Landroid/view/KeyEvent;->getKeyCode()I
+  
+***************
+*** 673,688 ****
+--- 743,762 ----
+  
+      if-eqz v13, :cond_2
+  
++     .line 131
+      move-object v3, v4
+  
++     .line 136
+      .end local v4           #candidate:Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;
+      :cond_3
+      if-nez v3, :cond_4
+  
++     .line 137
+      const/4 v13, 0x0
+  
+      goto :goto_0
+  
++     .line 140
+      :cond_4
+      const/4 v9, 0x0
+  
+***************
+*** 695,704 ****
+--- 769,780 ----
+      :goto_1
+      if-ge v9, v6, :cond_d
+  
++     .line 141
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getActionCode(I)I
+  
+      move-result v1
+  
++     .line 142
+      .local v1, actionCode:I
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getAction(I)I
+  
+***************
+*** 708,716 ****
+--- 784,794 ----
+  
+      move-result-object v5
+  
++     .line 143
+      .local v5, contentDescription:Ljava/lang/String;
+      packed-switch v1, :pswitch_data_0
+  
++     .line 199
+      const-string v13, "AccessibilityInjector"
+  
+      new-instance v14, Ljava/lang/StringBuilder;
+***************
+*** 733,748 ****
+--- 811,829 ----
+  
+      invoke-static {v13, v14}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 140
+      :goto_2
+      add-int/lit8 v9, v9, 0x1
+  
+      goto :goto_1
+  
++     .line 145
+      :pswitch_0
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getFirstArgument(I)I
+  
+      move-result v2
+  
++     .line 146
+      .local v2, axis:I
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getSecondArgument(I)I
+  
+***************
+*** 754,765 ****
+--- 835,848 ----
+  
+      const/4 v11, 0x1
+  
++     .line 147
+      .local v11, sendEvent:Z
+      :goto_3
+      move-object/from16 v0, p0
+  
+      invoke-direct {v0, v2, v11, v5}, Landroid/webkit/AccessibilityInjector;->setCurrentAxis(IZLjava/lang/String;)V
+  
++     .line 148
+      const/4 v13, 0x1
+  
+      move-object/from16 v0, p0
+***************
+*** 768,785 ****
+--- 851,871 ----
+  
+      goto :goto_2
+  
++     .line 146
+      .end local v11           #sendEvent:Z
+      :cond_5
+      const/4 v11, 0x0
+  
+      goto :goto_3
+  
++     .line 151
+      .end local v2           #axis:I
+      :pswitch_1
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getFirstArgument(I)I
+  
+      move-result v7
+  
++     .line 153
+      .local v7, direction:I
+      move-object/from16 v0, p0
+  
+***************
+*** 793,813 ****
+--- 879,903 ----
+  
+      if-eqz v13, :cond_6
+  
++     .line 154
+      const/4 v13, 0x0
+  
+      move-object/from16 v0, p0
+  
+      iput-boolean v13, v0, Landroid/webkit/AccessibilityInjector;->mIsLastSelectionStringNull:Z
+  
++     .line 155
+      const/4 v13, 0x0
+  
+      goto/16 :goto_0
+  
++     .line 157
+      :cond_6
+      move-object/from16 v0, p0
+  
+      iput v7, v0, Landroid/webkit/AccessibilityInjector;->mLastDirection:I
+  
++     .line 158
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getSecondArgument(I)I
+  
+      move-result v13
+***************
+*** 818,823 ****
+--- 908,914 ----
+  
+      const/4 v11, 0x1
+  
++     .line 159
+      .restart local v11       #sendEvent:Z
+      :goto_4
+      move-object/from16 v0, p0
+***************
+*** 832,849 ****
+--- 923,943 ----
+  
+      goto :goto_2
+  
++     .line 158
+      .end local v11           #sendEvent:Z
+      :cond_7
+      const/4 v11, 0x0
+  
+      goto :goto_4
+  
++     .line 163
+      .end local v7           #direction:I
+      :pswitch_2
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getFirstArgument(I)I
+  
+      move-result v7
+  
++     .line 165
+      .restart local v7       #direction:I
+      move-object/from16 v0, p0
+  
+***************
+*** 857,881 ****
+--- 951,980 ----
+  
+      if-eqz v13, :cond_8
+  
++     .line 166
+      const/4 v13, 0x0
+  
+      move-object/from16 v0, p0
+  
+      iput-boolean v13, v0, Landroid/webkit/AccessibilityInjector;->mIsLastSelectionStringNull:Z
+  
++     .line 167
+      const/4 v13, 0x0
+  
+      goto/16 :goto_0
+  
++     .line 169
+      :cond_8
+      move-object/from16 v0, p0
+  
+      iput v7, v0, Landroid/webkit/AccessibilityInjector;->mLastDirection:I
+  
++     .line 170
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getSecondArgument(I)I
+  
+      move-result v2
+  
++     .line 171
+      .restart local v2       #axis:I
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getThirdArgument(I)I
+  
+***************
+*** 887,898 ****
+--- 986,999 ----
+  
+      const/4 v11, 0x1
+  
++     .line 172
+      .restart local v11       #sendEvent:Z
+      :goto_5
+      move-object/from16 v0, p0
+  
+      invoke-direct {v0, v7, v2, v11, v5}, Landroid/webkit/AccessibilityInjector;->traverseGivenAxis(IIZLjava/lang/String;)Z
+  
++     .line 173
+      const/4 v13, 0x1
+  
+      move-object/from16 v0, p0
+***************
+*** 901,912 ****
+--- 1002,1015 ----
+  
+      goto :goto_2
+  
++     .line 171
+      .end local v11           #sendEvent:Z
+      :cond_9
+      const/4 v11, 0x0
+  
+      goto :goto_5
+  
++     .line 176
+      .end local v2           #axis:I
+      .end local v7           #direction:I
+      :pswitch_3
+***************
+*** 914,924 ****
+--- 1017,1029 ----
+  
+      move-result v8
+  
++     .line 177
+      .local v8, fromAxis:I
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getSecondArgument(I)I
+  
+      move-result v12
+  
++     .line 178
+      .local v12, toAxis:I
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getThirdArgument(I)I
+  
+***************
+*** 930,941 ****
+--- 1035,1048 ----
+  
+      const/4 v11, 0x1
+  
++     .line 179
+      .restart local v11       #sendEvent:Z
+      :goto_6
+      move-object/from16 v0, p0
+  
+      invoke-direct {v0, v8, v12, v11, v5}, Landroid/webkit/AccessibilityInjector;->prefromAxisTransition(IIZLjava/lang/String;)V
+  
++     .line 180
+      const/4 v13, 0x1
+  
+      move-object/from16 v0, p0
+***************
+*** 944,955 ****
+--- 1051,1064 ----
+  
+      goto/16 :goto_2
+  
++     .line 178
+      .end local v11           #sendEvent:Z
+      :cond_a
+      const/4 v11, 0x0
+  
+      goto :goto_6
+  
++     .line 186
+      .end local v8           #fromAxis:I
+      .end local v12           #toAxis:I
+      :pswitch_4
+***************
+*** 961,966 ****
+--- 1070,1076 ----
+  
+      if-ne v13, v14, :cond_c
+  
++     .line 189
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getFirstArgument(I)I
+  
+      move-result v13
+***************
+*** 969,974 ****
+--- 1079,1085 ----
+  
+      iput v13, v0, Landroid/webkit/AccessibilityInjector;->mLastDirection:I
+  
++     .line 190
+      invoke-virtual {v3, v9}, Landroid/webkit/AccessibilityInjector$AccessibilityWebContentKeyBinding;->getSecondArgument(I)I
+  
+      move-result v13
+***************
+*** 979,984 ****
+--- 1090,1096 ----
+  
+      const/4 v11, 0x1
+  
++     .line 191
+      .restart local v11       #sendEvent:Z
+      :goto_7
+      move-object/from16 v0, p0
+***************
+*** 991,996 ****
+--- 1103,1109 ----
+  
+      invoke-direct {v0, v13, v14, v11, v5}, Landroid/webkit/AccessibilityInjector;->traverseGivenAxis(IIZLjava/lang/String;)Z
+  
++     .line 193
+      const/4 v13, 0x0
+  
+      move-object/from16 v0, p0
+***************
+*** 999,1010 ****
+--- 1112,1125 ----
+  
+      goto/16 :goto_2
+  
++     .line 190
+      .end local v11           #sendEvent:Z
+      :cond_b
+      const/4 v11, 0x0
+  
+      goto :goto_7
+  
++     .line 195
+      :cond_c
+      const/4 v13, 0x1
+  
+***************
+*** 1014,1019 ****
+--- 1129,1135 ----
+  
+      goto/16 :goto_2
+  
++     .line 203
+      .end local v1           #actionCode:I
+      .end local v5           #contentDescription:Ljava/lang/String;
+      :cond_d
+***************
+*** 1023,1028 ****
+--- 1139,1145 ----
+  
+      goto/16 :goto_0
+  
++     .line 143
+      :pswitch_data_0
+      .packed-switch 0x0
+          :pswitch_0
+***************
+*** 1038,1043 ****
+--- 1155,1161 ----
+      .parameter "selectionString"
+  
+      .prologue
++     .line 292
+      const-string v1, "AccessibilityInjector"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 1060,1065 ****
+--- 1178,1184 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 294
+      if-nez p1, :cond_1
+  
+      const/4 v1, 0x1
+***************
+*** 1067,1072 ****
+--- 1186,1192 ----
+      :goto_0
+      iput-boolean v1, p0, Landroid/webkit/AccessibilityInjector;->mIsLastSelectionStringNull:Z
+  
++     .line 295
+      iget-object v1, p0, Landroid/webkit/AccessibilityInjector;->mScheduledEventStack:Ljava/util/Stack;
+  
+      invoke-virtual {v1}, Ljava/util/Stack;->isEmpty()Z
+***************
+*** 1075,1089 ****
+--- 1195,1212 ----
+  
+      if-eqz v1, :cond_2
+  
++     .line 303
+      :cond_0
+      :goto_1
+      return-void
+  
++     .line 294
+      :cond_1
+      const/4 v1, 0x0
+  
+      goto :goto_0
+  
++     .line 298
+      :cond_2
+      iget-object v1, p0, Landroid/webkit/AccessibilityInjector;->mScheduledEventStack:Ljava/util/Stack;
+  
+***************
+*** 1093,1107 ****
+--- 1216,1233 ----
+  
+      check-cast v0, Landroid/view/accessibility/AccessibilityEvent;
+  
++     .line 299
+      .local v0, event:Landroid/view/accessibility/AccessibilityEvent;
+      if-eqz v0, :cond_0
+  
++     .line 300
+      invoke-virtual {v0}, Landroid/view/accessibility/AccessibilityEvent;->getText()Ljava/util/List;
+  
+      move-result-object v1
+  
+      invoke-interface {v1, p1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 301
+      invoke-direct {p0, v0}, Landroid/webkit/AccessibilityInjector;->sendAccessibilityEvent(Landroid/view/accessibility/AccessibilityEvent;)V
+  
+      goto :goto_1

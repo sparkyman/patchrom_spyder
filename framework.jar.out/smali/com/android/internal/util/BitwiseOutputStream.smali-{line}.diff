@@ -1,0 +1,269 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/internal/util/BitwiseOutputStream.smali	2012-03-23 19:37:30.432330015 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/internal/util/BitwiseOutputStream.smali.original	2012-03-23 19:34:46.033332203 -0500
+***************
+*** 25,44 ****
+--- 25,49 ----
+      .parameter "startingLength"
+  
+      .prologue
++     .line 52
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 53
+      new-array v0, p1, [B
+  
+      iput-object v0, p0, Lcom/android/internal/util/BitwiseOutputStream;->mBuf:[B
+  
++     .line 54
+      shl-int/lit8 v0, p1, 0x3
+  
+      iput v0, p0, Lcom/android/internal/util/BitwiseOutputStream;->mEnd:I
+  
++     .line 55
+      const/4 v0, 0x0
+  
+      iput v0, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
++     .line 56
+      return-void
+  .end method
+  
+***************
+*** 49,54 ****
+--- 54,60 ----
+      .prologue
+      const/4 v3, 0x0
+  
++     .line 76
+      iget v1, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+      add-int/2addr v1, p1
+***************
+*** 57,65 ****
+--- 63,73 ----
+  
+      if-ge v1, v2, :cond_0
+  
++     .line 80
+      :goto_0
+      return-void
+  
++     .line 77
+      :cond_0
+      iget v1, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+***************
+*** 69,74 ****
+--- 77,83 ----
+  
+      new-array v0, v1, [B
+  
++     .line 78
+      .local v0, newBuf:[B
+      iget-object v1, p0, Lcom/android/internal/util/BitwiseOutputStream;->mBuf:[B
+  
+***************
+*** 78,83 ****
+--- 87,93 ----
+  
+      invoke-static {v1, v3, v0, v3, v2}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  
++     .line 79
+      iput-object v0, p0, Lcom/android/internal/util/BitwiseOutputStream;->mBuf:[B
+  
+      goto :goto_0
+***************
+*** 90,103 ****
+--- 100,116 ----
+      .parameter "bits"
+  
+      .prologue
++     .line 126
+      invoke-direct {p0, p1}, Lcom/android/internal/util/BitwiseOutputStream;->possExpand(I)V
+  
++     .line 127
+      iget v0, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+      add-int/2addr v0, p1
+  
+      iput v0, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
++     .line 128
+      return-void
+  .end method
+  
+***************
+*** 107,112 ****
+--- 120,126 ----
+      .prologue
+      const/4 v3, 0x0
+  
++     .line 64
+      iget v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+      ushr-int/lit8 v4, v2, 0x3
+***************
+*** 122,135 ****
+--- 136,152 ----
+      :goto_0
+      add-int v0, v4, v2
+  
++     .line 65
+      .local v0, len:I
+      new-array v1, v0, [B
+  
++     .line 66
+      .local v1, newBuf:[B
+      iget-object v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mBuf:[B
+  
+      invoke-static {v2, v3, v1, v3, v0}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  
++     .line 67
+      return-object v1
+  
+      .end local v0           #len:I
+***************
+*** 137,142 ****
+--- 154,160 ----
+      :cond_0
+      move v2, v3
+  
++     .line 64
+      goto :goto_0
+  .end method
+  
+***************
+*** 153,162 ****
+--- 171,182 ----
+      .prologue
+      const/16 v5, 0x8
+  
++     .line 92
+      if-ltz p1, :cond_0
+  
+      if-le p1, v5, :cond_1
+  
++     .line 93
+      :cond_0
+      new-instance v2, Lcom/android/internal/util/BitwiseOutputStream$AccessException;
+  
+***************
+*** 188,196 ****
+--- 208,218 ----
+  
+      throw v2
+  
++     .line 95
+      :cond_1
+      invoke-direct {p0, p1}, Lcom/android/internal/util/BitwiseOutputStream;->possExpand(I)V
+  
++     .line 96
+      const/4 v2, -0x1
+  
+      rsub-int/lit8 v3, p1, 0x20
+***************
+*** 199,208 ****
+--- 221,232 ----
+  
+      and-int/2addr p2, v2
+  
++     .line 97
+      iget v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+      ushr-int/lit8 v0, v2, 0x3
+  
++     .line 98
+      .local v0, index:I
+      iget v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+***************
+*** 212,226 ****
+--- 236,253 ----
+  
+      sub-int v1, v2, p1
+  
++     .line 99
+      .local v1, offset:I
+      shl-int/2addr p2, v1
+  
++     .line 100
+      iget v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
+      add-int/2addr v2, p1
+  
+      iput v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mPos:I
+  
++     .line 101
+      iget-object v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mBuf:[B
+  
+      aget-byte v3, v2, v0
+***************
+*** 233,238 ****
+--- 260,266 ----
+  
+      aput-byte v3, v2, v0
+  
++     .line 102
+      if-ge v1, v5, :cond_2
+  
+      iget-object v2, p0, Lcom/android/internal/util/BitwiseOutputStream;->mBuf:[B
+***************
+*** 249,254 ****
+--- 277,283 ----
+  
+      aput-byte v4, v2, v3
+  
++     .line 103
+      :cond_2
+      return-void
+  .end method
+***************
+*** 264,269 ****
+--- 293,299 ----
+      .end annotation
+  
+      .prologue
++     .line 112
+      const/4 v0, 0x0
+  
+      .local v0, i:I
+***************
+*** 272,277 ****
+--- 302,308 ----
+  
+      if-ge v0, v2, :cond_1
+  
++     .line 113
+      const/16 v2, 0x8
+  
+      shl-int/lit8 v3, v0, 0x3
+***************
+*** 282,290 ****
+--- 313,323 ----
+  
+      move-result v1
+  
++     .line 114
+      .local v1, increment:I
+      if-lez v1, :cond_0
+  
++     .line 115
+      aget-byte v2, p2, v0
+  
+      rsub-int/lit8 v3, v1, 0x8
+***************
+*** 295,305 ****
+--- 328,340 ----
+  
+      invoke-virtual {p0, v1, v2}, Lcom/android/internal/util/BitwiseOutputStream;->write(II)V
+  
++     .line 112
+      :cond_0
+      add-int/lit8 v0, v0, 0x1
+  
+      goto :goto_0
+  
++     .line 118
+      .end local v1           #increment:I
+      :cond_1
+      return-void

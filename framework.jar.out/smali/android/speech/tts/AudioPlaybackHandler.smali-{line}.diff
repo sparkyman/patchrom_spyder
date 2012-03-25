@@ -1,0 +1,1482 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/speech/tts/AudioPlaybackHandler.smali	2012-03-23 19:36:32.553274592 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/speech/tts/AudioPlaybackHandler.smali.original	2012-03-23 19:34:45.182316685 -0500
+***************
+*** 73,90 ****
+--- 73,95 ----
+      .prologue
+      const/4 v3, 0x0
+  
++     .line 57
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 46
+      new-instance v0, Ljava/util/concurrent/PriorityBlockingQueue;
+  
+      invoke-direct {v0}, Ljava/util/concurrent/PriorityBlockingQueue;-><init>()V
+  
+      iput-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mQueue:Ljava/util/concurrent/PriorityBlockingQueue;
+  
++     .line 50
+      iput-object v3, p0, Landroid/speech/tts/AudioPlaybackHandler;->mCurrentParams:Landroid/speech/tts/MessageParams;
+  
++     .line 52
+      iput-object v3, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 54
+      new-instance v0, Ljava/util/concurrent/atomic/AtomicLong;
+  
+      const-wide/16 v1, 0x0
+***************
+*** 93,98 ****
+--- 98,104 ----
+  
+      iput-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mSequenceIdCtr:Ljava/util/concurrent/atomic/AtomicLong;
+  
++     .line 58
+      new-instance v0, Ljava/lang/Thread;
+  
+      new-instance v1, Landroid/speech/tts/AudioPlaybackHandler$MessageLoop;
+***************
+*** 105,110 ****
+--- 111,117 ----
+  
+      iput-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mHandlerThread:Ljava/lang/Thread;
+  
++     .line 59
+      return-void
+  .end method
+  
+***************
+*** 113,118 ****
+--- 120,126 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 27
+      iget-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mQueue:Ljava/util/concurrent/PriorityBlockingQueue;
+  
+      return-object v0
+***************
+*** 124,129 ****
+--- 132,138 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 27
+      invoke-direct {p0, p1}, Landroid/speech/tts/AudioPlaybackHandler;->setCurrentParams(Landroid/speech/tts/MessageParams;)V
+  
+      return-void
+***************
+*** 135,140 ****
+--- 144,150 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 27
+      invoke-direct {p0, p1}, Landroid/speech/tts/AudioPlaybackHandler;->handleMessage(Landroid/speech/tts/AudioPlaybackHandler$ListEntry;)V
+  
+      return-void
+***************
+*** 145,150 ****
+--- 155,161 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 27
+      iget-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mSequenceIdCtr:Ljava/util/concurrent/atomic/AtomicLong;
+  
+      return-object v0
+***************
+*** 157,164 ****
+--- 168,177 ----
+      .prologue
+      const-wide/16 v4, 0x9c4
+  
++     .line 526
+      iget-object v6, p0, Landroid/speech/tts/SynthesisMessageParams;->mAudioTrack:Landroid/media/AudioTrack;
+  
++     .line 527
+      .local v6, audioTrack:Landroid/media/AudioTrack;
+      iget v2, p0, Landroid/speech/tts/SynthesisMessageParams;->mBytesWritten:I
+  
+***************
+*** 166,180 ****
+--- 179,197 ----
+  
+      div-int v11, v2, v3
+  
++     .line 529
+      .local v11, lengthInFrames:I
+      const/4 v12, -0x1
+  
++     .line 530
+      .local v12, previousPosition:I
+      const/4 v9, 0x0
+  
++     .line 531
+      .local v9, currentPosition:I
+      const-wide/16 v7, 0x0
+  
++     .line 534
+      .local v7, blockedTimeMs:J
+      :goto_0
+      invoke-virtual {v6}, Landroid/media/AudioTrack;->getPlaybackHeadPosition()I
+***************
+*** 191,196 ****
+--- 208,214 ----
+  
+      if-ne v2, v3, :cond_0
+  
++     .line 536
+      sub-int v2, v11, v9
+  
+      mul-int/lit16 v2, v2, 0x3e8
+***************
+*** 203,208 ****
+--- 221,227 ----
+  
+      int-to-long v0, v2
+  
++     .line 538
+      .local v0, estimatedTimeMs:J
+      const-wide/16 v2, 0x14
+  
+***************
+*** 210,244 ****
+--- 229,271 ----
+  
+      move-result-wide v13
+  
++     .line 543
+      .local v13, sleepTimeMs:J
+      if-ne v9, v12, :cond_1
+  
++     .line 546
+      add-long/2addr v7, v13
+  
++     .line 548
+      cmp-long v2, v7, v4
+  
+      if-lez v2, :cond_2
+  
++     .line 549
+      const-string v2, "TTS.AudioPlaybackHandler"
+  
+      const-string v3, "Waited unsuccessfully for 2500ms for AudioTrack to make progress, Aborting"
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 567
+      .end local v0           #estimatedTimeMs:J
+      .end local v13           #sleepTimeMs:J
+      :cond_0
+      :goto_1
+      return-void
+  
++     .line 554
+      .restart local v0       #estimatedTimeMs:J
+      .restart local v13       #sleepTimeMs:J
+      :cond_1
+      const-wide/16 v7, 0x0
+  
++     .line 556
+      :cond_2
+      move v12, v9
+  
++     .line 562
+      :try_start_0
+      invoke-static {v13, v14}, Ljava/lang/Thread;->sleep(J)V
+      :try_end_0
+***************
+*** 246,254 ****
+--- 273,283 ----
+  
+      goto :goto_0
+  
++     .line 563
+      :catch_0
+      move-exception v10
+  
++     .line 564
+      .local v10, ie:Ljava/lang/InterruptedException;
+      goto :goto_1
+  .end method
+***************
+*** 258,263 ****
+--- 287,293 ----
+      .parameter "params"
+  
+      .prologue
++     .line 490
+      iget-object v0, p0, Landroid/speech/tts/SynthesisMessageParams;->mAudioTrack:Landroid/media/AudioTrack;
+  
+      if-eqz v0, :cond_0
+***************
+*** 266,284 ****
+--- 296,318 ----
+  
+      if-gtz v0, :cond_1
+  
++     .line 510
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 494
+      :cond_1
+      iget-boolean v0, p0, Landroid/speech/tts/SynthesisMessageParams;->mIsShortUtterance:Z
+  
+      if-eqz v0, :cond_2
+  
++     .line 506
+      invoke-static {p0}, Landroid/speech/tts/AudioPlaybackHandler;->blockUntilEstimatedCompletion(Landroid/speech/tts/SynthesisMessageParams;)V
+  
+      goto :goto_0
+  
++     .line 508
+      :cond_2
+      invoke-static {p0}, Landroid/speech/tts/AudioPlaybackHandler;->blockUntilCompletion(Landroid/speech/tts/SynthesisMessageParams;)V
+  
+***************
+*** 290,301 ****
+--- 324,337 ----
+      .parameter "params"
+  
+      .prologue
++     .line 513
+      iget v3, p0, Landroid/speech/tts/SynthesisMessageParams;->mBytesWritten:I
+  
+      iget v4, p0, Landroid/speech/tts/SynthesisMessageParams;->mBytesPerFrame:I
+  
+      div-int v2, v3, v4
+  
++     .line 514
+      .local v2, lengthInFrames:I
+      mul-int/lit16 v3, v2, 0x3e8
+  
+***************
+*** 305,319 ****
+--- 341,358 ----
+  
+      int-to-long v0, v3
+  
++     .line 519
+      .local v0, estimatedTimeMs:J
+      :try_start_0
+      invoke-static {v0, v1}, Ljava/lang/Thread;->sleep(J)V
+      :try_end_0
+      .catch Ljava/lang/InterruptedException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 523
+      :goto_0
+      return-void
+  
++     .line 520
+      :catch_0
+      move-exception v3
+  
+***************
+*** 327,332 ****
+--- 366,372 ----
+      .parameter "max"
+  
+      .prologue
++     .line 630
+      cmpl-float v0, p0, p2
+  
+      if-lez v0, :cond_0
+***************
+*** 358,371 ****
+--- 398,414 ----
+      .parameter "max"
+  
+      .prologue
++     .line 570
+      cmp-long v0, p0, p2
+  
+      if-gez v0, :cond_0
+  
++     .line 578
+      .end local p2
+      :goto_0
+      return-wide p2
+  
++     .line 574
+      .restart local p2
+      :cond_0
+      cmp-long v0, p0, p4
+***************
+*** 374,384 ****
+--- 417,429 ----
+  
+      move-wide p2, p4
+  
++     .line 575
+      goto :goto_0
+  
+      :cond_1
+      move-wide p2, p0
+  
++     .line 578
+      goto :goto_0
+  .end method
+  
+***************
+*** 389,411 ****
+--- 434,461 ----
+      .prologue
+      const/4 v6, 0x1
+  
++     .line 582
+      iget v1, p0, Landroid/speech/tts/SynthesisMessageParams;->mChannelCount:I
+  
+      invoke-static {v1}, Landroid/speech/tts/AudioPlaybackHandler;->getChannelConfig(I)I
+  
+      move-result v3
+  
++     .line 583
+      .local v3, channelConfig:I
+      iget v2, p0, Landroid/speech/tts/SynthesisMessageParams;->mSampleRateInHz:I
+  
++     .line 584
+      .local v2, sampleRateInHz:I
+      iget v4, p0, Landroid/speech/tts/SynthesisMessageParams;->mAudioFormat:I
+  
++     .line 586
+      .local v4, audioFormat:I
+      invoke-static {v2, v3, v4}, Landroid/media/AudioTrack;->getMinBufferSize(III)I
+  
+      move-result v7
+  
++     .line 588
+      .local v7, minBufferSizeInBytes:I
+      const/16 v1, 0x2000
+  
+***************
+*** 413,418 ****
+--- 463,469 ----
+  
+      move-result v5
+  
++     .line 590
+      .local v5, bufferSizeInBytes:I
+      new-instance v0, Landroid/media/AudioTrack;
+  
+***************
+*** 420,425 ****
+--- 471,477 ----
+  
+      invoke-direct/range {v0 .. v6}, Landroid/media/AudioTrack;-><init>(IIIIII)V
+  
++     .line 592
+      .local v0, audioTrack:Landroid/media/AudioTrack;
+      invoke-virtual {v0}, Landroid/media/AudioTrack;->getState()I
+  
+***************
+*** 427,450 ****
+--- 479,508 ----
+  
+      if-eq v1, v6, :cond_0
+  
++     .line 593
+      const-string v1, "TTS.AudioPlaybackHandler"
+  
+      const-string v6, "Unable to create audio track."
+  
+      invoke-static {v1, v6}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 594
+      invoke-virtual {v0}, Landroid/media/AudioTrack;->release()V
+  
++     .line 595
+      const/4 v0, 0x0
+  
++     .line 600
+      .end local v0           #audioTrack:Landroid/media/AudioTrack;
+      :goto_0
+      return-object v0
+  
++     .line 597
+      .restart local v0       #audioTrack:Landroid/media/AudioTrack;
+      :cond_0
+      iput v5, p0, Landroid/speech/tts/SynthesisMessageParams;->mAudioBufferSize:I
+  
++     .line 599
+      iget v1, p0, Landroid/speech/tts/SynthesisMessageParams;->mVolume:F
+  
+      iget v6, p0, Landroid/speech/tts/SynthesisMessageParams;->mPan:F
+***************
+*** 459,482 ****
+--- 517,546 ----
+      .parameter "channelCount"
+  
+      .prologue
++     .line 604
+      const/4 v0, 0x1
+  
+      if-ne p0, v0, :cond_0
+  
++     .line 605
+      const/4 v0, 0x4
+  
++     .line 610
+      :goto_0
+      return v0
+  
++     .line 606
+      :cond_0
+      const/4 v0, 0x2
+  
+      if-ne p0, v0, :cond_1
+  
++     .line 607
+      const/16 v0, 0xc
+  
+      goto :goto_0
+  
++     .line 610
+      :cond_1
+      const/4 v0, 0x0
+  
+***************
+*** 487,492 ****
+--- 551,557 ----
+      .locals 1
+  
+      .prologue
++     .line 300
+      iget-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mCurrentParams:Landroid/speech/tts/MessageParams;
+  
+      return-object v0
+***************
+*** 497,506 ****
+--- 562,573 ----
+      .parameter "msg"
+  
+      .prologue
++     .line 340
+      move-object v0, p1
+  
+      check-cast v0, Landroid/speech/tts/AudioMessageParams;
+  
++     .line 341
+      .local v0, params:Landroid/speech/tts/AudioMessageParams;
+      invoke-virtual {v0}, Landroid/speech/tts/AudioMessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+***************
+*** 508,525 ****
+--- 575,595 ----
+  
+      invoke-interface {v1}, Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;->dispatchOnStart()V
+  
++     .line 345
+      invoke-virtual {v0}, Landroid/speech/tts/AudioMessageParams;->getPlayer()Landroid/speech/tts/BlockingMediaPlayer;
+  
+      move-result-object v1
+  
+      invoke-virtual {v1}, Landroid/speech/tts/BlockingMediaPlayer;->startAndWait()Z
+  
++     .line 346
+      invoke-virtual {v0}, Landroid/speech/tts/AudioMessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+      move-result-object v1
+  
+      invoke-interface {v1}, Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;->dispatchOnDone()V
+  
++     .line 348
+      return-void
+  .end method
+  
+***************
+*** 528,535 ****
+--- 598,607 ----
+      .parameter "entry"
+  
+      .prologue
++     .line 309
+      iget-object v0, p1, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mMessage:Landroid/speech/tts/MessageParams;
+  
++     .line 310
+      .local v0, msg:Landroid/speech/tts/MessageParams;
+      iget v1, p1, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mWhat:I
+  
+***************
+*** 537,548 ****
+--- 609,623 ----
+  
+      if-ne v1, v2, :cond_1
+  
++     .line 311
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->handleSynthesisStart(Landroid/speech/tts/MessageParams;)V
+  
++     .line 321
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 312
+      :cond_1
+      iget v1, p1, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mWhat:I
+  
+***************
+*** 550,559 ****
+--- 625,636 ----
+  
+      if-ne v1, v2, :cond_2
+  
++     .line 313
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->handleSynthesisDataAvailable(Landroid/speech/tts/MessageParams;)V
+  
+      goto :goto_0
+  
++     .line 314
+      :cond_2
+      iget v1, p1, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mWhat:I
+  
+***************
+*** 561,570 ****
+--- 638,649 ----
+  
+      if-ne v1, v2, :cond_3
+  
++     .line 315
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->handleSynthesisDone(Landroid/speech/tts/MessageParams;)V
+  
+      goto :goto_0
+  
++     .line 316
+      :cond_3
+      iget v1, p1, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mWhat:I
+  
+***************
+*** 572,581 ****
+--- 651,662 ----
+  
+      if-ne v1, v2, :cond_4
+  
++     .line 317
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->handleAudio(Landroid/speech/tts/MessageParams;)V
+  
+      goto :goto_0
+  
++     .line 318
+      :cond_4
+      iget v1, p1, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mWhat:I
+  
+***************
+*** 583,588 ****
+--- 664,670 ----
+  
+      if-ne v1, v2, :cond_0
+  
++     .line 319
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->handleSilence(Landroid/speech/tts/MessageParams;)V
+  
+      goto :goto_0
+***************
+*** 593,602 ****
+--- 675,686 ----
+      .parameter "msg"
+  
+      .prologue
++     .line 328
+      move-object v0, p1
+  
+      check-cast v0, Landroid/speech/tts/SilenceMessageParams;
+  
++     .line 329
+      .local v0, params:Landroid/speech/tts/SilenceMessageParams;
+      invoke-virtual {v0}, Landroid/speech/tts/SilenceMessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+***************
+*** 604,609 ****
+--- 688,694 ----
+  
+      invoke-interface {v1}, Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;->dispatchOnStart()V
+  
++     .line 330
+      invoke-virtual {v0}, Landroid/speech/tts/SilenceMessageParams;->getSilenceDurationMs()J
+  
+      move-result-wide v1
+***************
+*** 614,619 ****
+--- 699,705 ----
+  
+      if-lez v1, :cond_0
+  
++     .line 331
+      invoke-virtual {v0}, Landroid/speech/tts/SilenceMessageParams;->getConditionVariable()Landroid/os/ConditionVariable;
+  
+      move-result-object v1
+***************
+*** 624,629 ****
+--- 710,716 ----
+  
+      invoke-virtual {v1, v2, v3}, Landroid/os/ConditionVariable;->block(J)Z
+  
++     .line 333
+      :cond_0
+      invoke-virtual {v0}, Landroid/speech/tts/SilenceMessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+***************
+*** 631,636 ****
+--- 718,724 ----
+  
+      invoke-interface {v1}, Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;->dispatchOnDone()V
+  
++     .line 335
+      return-void
+  .end method
+  
+***************
+*** 639,648 ****
+--- 727,738 ----
+      .parameter "msg"
+  
+      .prologue
++     .line 385
+      move-object v3, p1
+  
+      check-cast v3, Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 386
+      .local v3, param:Landroid/speech/tts/SynthesisMessageParams;
+      invoke-virtual {v3}, Landroid/speech/tts/SynthesisMessageParams;->getAudioTrack()Landroid/media/AudioTrack;
+  
+***************
+*** 650,655 ****
+--- 740,746 ----
+  
+      if-nez v6, :cond_0
+  
++     .line 387
+      const-string v6, "TTS.AudioPlaybackHandler"
+  
+      new-instance v7, Ljava/lang/StringBuilder;
+***************
+*** 672,685 ****
+--- 763,779 ----
+  
+      invoke-static {v6, v7}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 421
+      :goto_0
+      return-void
+  
++     .line 391
+      :cond_0
+      iget-object v6, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
+      if-eq v3, v6, :cond_1
+  
++     .line 392
+      const-string v6, "TTS.AudioPlaybackHandler"
+  
+      const-string v7, "Call to dataAvailable without done() / start()"
+***************
+*** 688,706 ****
+--- 782,804 ----
+  
+      goto :goto_0
+  
++     .line 396
+      :cond_1
+      invoke-virtual {v3}, Landroid/speech/tts/SynthesisMessageParams;->getAudioTrack()Landroid/media/AudioTrack;
+  
+      move-result-object v0
+  
++     .line 397
+      .local v0, audioTrack:Landroid/media/AudioTrack;
+      invoke-virtual {v3}, Landroid/speech/tts/SynthesisMessageParams;->getNextBuffer()Landroid/speech/tts/SynthesisMessageParams$ListEntry;
+  
+      move-result-object v1
+  
++     .line 399
+      .local v1, bufferCopy:Landroid/speech/tts/SynthesisMessageParams$ListEntry;
+      if-nez v1, :cond_2
+  
++     .line 400
+      const-string v6, "TTS.AudioPlaybackHandler"
+  
+      const-string v7, "No buffers available to play."
+***************
+*** 709,729 ****
+--- 807,832 ----
+  
+      goto :goto_0
+  
++     .line 404
+      :cond_2
+      invoke-virtual {v0}, Landroid/media/AudioTrack;->getPlayState()I
+  
+      move-result v4
+  
++     .line 405
+      .local v4, playState:I
+      const/4 v6, 0x1
+  
+      if-ne v4, v6, :cond_3
+  
++     .line 407
+      invoke-virtual {v0}, Landroid/media/AudioTrack;->play()V
+  
++     .line 409
+      :cond_3
+      const/4 v2, 0x0
+  
++     .line 410
+      .local v2, count:I
+      :goto_1
+      iget-object v6, v1, Landroid/speech/tts/SynthesisMessageParams$ListEntry;->mBytes:[B
+***************
+*** 732,737 ****
+--- 835,841 ----
+  
+      if-ge v2, v6, :cond_4
+  
++     .line 413
+      iget-object v6, v1, Landroid/speech/tts/SynthesisMessageParams$ListEntry;->mBytes:[B
+  
+      iget-object v7, v1, Landroid/speech/tts/SynthesisMessageParams$ListEntry;->mBytes:[B
+***************
+*** 742,750 ****
+--- 846,856 ----
+  
+      move-result v5
+  
++     .line 414
+      .local v5, written:I
+      if-gtz v5, :cond_5
+  
++     .line 419
+      .end local v5           #written:I
+      :cond_4
+      iget v6, v3, Landroid/speech/tts/SynthesisMessageParams;->mBytesWritten:I
+***************
+*** 753,768 ****
+--- 859,877 ----
+  
+      iput v6, v3, Landroid/speech/tts/SynthesisMessageParams;->mBytesWritten:I
+  
++     .line 420
+      iget-object v6, v3, Landroid/speech/tts/SynthesisMessageParams;->mLogger:Landroid/speech/tts/EventLogger;
+  
+      invoke-virtual {v6}, Landroid/speech/tts/EventLogger;->onPlaybackStart()V
+  
+      goto :goto_0
+  
++     .line 417
+      .restart local v5       #written:I
+      :cond_5
+      add-int/2addr v2, v5
+  
++     .line 418
+      goto :goto_1
+  .end method
+  
+***************
+*** 773,793 ****
+--- 882,907 ----
+      .prologue
+      const/4 v4, 0x0
+  
++     .line 425
+      move-object v1, p1
+  
+      check-cast v1, Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 428
+      .local v1, params:Landroid/speech/tts/SynthesisMessageParams;
+      invoke-virtual {v1}, Landroid/speech/tts/SynthesisMessageParams;->getAudioTrack()Landroid/media/AudioTrack;
+  
+      move-result-object v0
+  
++     .line 430
+      .local v0, audioTrack:Landroid/media/AudioTrack;
+      if-nez v0, :cond_0
+  
++     .line 468
+      :goto_0
+      return-void
+  
++     .line 436
+      :cond_0
+      iget v2, v1, Landroid/speech/tts/SynthesisMessageParams;->mBytesWritten:I
+  
+***************
+*** 795,843 ****
+--- 909,969 ----
+  
+      if-ge v2, v3, :cond_1
+  
++     .line 439
+      const/4 v2, 0x1
+  
+      iput-boolean v2, v1, Landroid/speech/tts/SynthesisMessageParams;->mIsShortUtterance:Z
+  
++     .line 440
+      invoke-virtual {v0}, Landroid/media/AudioTrack;->stop()V
+  
++     .line 445
+      :cond_1
+      invoke-static {v1}, Landroid/speech/tts/AudioPlaybackHandler;->blockUntilDone(Landroid/speech/tts/SynthesisMessageParams;)V
+  
++     .line 452
+      monitor-enter p0
+  
++     .line 458
+      :try_start_0
+      invoke-virtual {v0}, Landroid/media/AudioTrack;->release()V
+  
++     .line 459
+      const/4 v2, 0x0
+  
+      invoke-virtual {v1, v2}, Landroid/speech/tts/SynthesisMessageParams;->setAudioTrack(Landroid/media/AudioTrack;)V
+  
++     .line 460
+      monitor-exit p0
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 461
+      invoke-virtual {v1}, Landroid/speech/tts/SynthesisMessageParams;->isError()Z
+  
+      move-result v2
+  
+      if-eqz v2, :cond_2
+  
++     .line 462
+      invoke-virtual {v1}, Landroid/speech/tts/SynthesisMessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+      move-result-object v2
+  
+      invoke-interface {v2}, Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;->dispatchOnError()V
+  
++     .line 466
+      :goto_1
+      iput-object v4, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 467
+      iget-object v2, v1, Landroid/speech/tts/SynthesisMessageParams;->mLogger:Landroid/speech/tts/EventLogger;
+  
+      invoke-virtual {v2}, Landroid/speech/tts/EventLogger;->onWriteData()V
+  
+      goto :goto_0
+  
++     .line 460
+      :catchall_0
+      move-exception v2
+  
+***************
+*** 848,853 ****
+--- 974,980 ----
+  
+      throw v2
+  
++     .line 464
+      :cond_2
+      invoke-virtual {v1}, Landroid/speech/tts/SynthesisMessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+***************
+*** 863,877 ****
+--- 990,1007 ----
+      .parameter "msg"
+  
+      .prologue
++     .line 361
+      move-object v1, p1
+  
+      check-cast v1, Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 366
+      .local v1, param:Landroid/speech/tts/SynthesisMessageParams;
+      iget-object v2, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
+      if-eqz v2, :cond_0
+  
++     .line 367
+      const-string v2, "TTS.AudioPlaybackHandler"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 896,921 ****
+--- 1026,1057 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 369
+      iget-object v2, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
+      invoke-direct {p0, v2}, Landroid/speech/tts/AudioPlaybackHandler;->handleSynthesisDone(Landroid/speech/tts/MessageParams;)V
+  
++     .line 372
+      :cond_0
+      iput-object v1, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 375
+      invoke-static {v1}, Landroid/speech/tts/AudioPlaybackHandler;->createStreamingAudioTrack(Landroid/speech/tts/SynthesisMessageParams;)Landroid/media/AudioTrack;
+  
+      move-result-object v0
+  
++     .line 379
+      .local v0, audioTrack:Landroid/media/AudioTrack;
+      invoke-virtual {v1, v0}, Landroid/speech/tts/SynthesisMessageParams;->setAudioTrack(Landroid/media/AudioTrack;)V
+  
++     .line 380
+      invoke-virtual {p1}, Landroid/speech/tts/MessageParams;->getDispatcher()Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;
+  
+      move-result-object v2
+  
+      invoke-interface {v2}, Landroid/speech/tts/TextToSpeechService$UtteranceProgressDispatcher;->dispatchOnStart()V
+  
++     .line 381
+      return-void
+  .end method
+  
+***************
+*** 923,928 ****
+--- 1059,1065 ----
+      .locals 1
+  
+      .prologue
++     .line 229
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 932,941 ****
+--- 1069,1080 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 230
+      monitor-exit p0
+  
+      return-void
+  
++     .line 229
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 949,954 ****
+--- 1088,1094 ----
+      .parameter "callingApp"
+  
+      .prologue
++     .line 236
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 958,963 ****
+--- 1098,1104 ----
+  
+      move-result-object v1
+  
++     .line 238
+      .local v1, it:Ljava/util/Iterator;,"Ljava/util/Iterator<Landroid/speech/tts/AudioPlaybackHandler$ListEntry;>;"
+      :cond_0
+      :goto_0
+***************
+*** 967,978 ****
+--- 1108,1121 ----
+  
+      if-eqz v2, :cond_1
+  
++     .line 239
+      invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+  
+      move-result-object v0
+  
+      check-cast v0, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;
+  
++     .line 242
+      .local v0, current:Landroid/speech/tts/AudioPlaybackHandler$ListEntry;
+      iget-object v2, v0, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;->mMessage:Landroid/speech/tts/MessageParams;
+  
+***************
+*** 990,1001 ****
+--- 1133,1146 ----
+  
+      if-eqz v2, :cond_0
+  
++     .line 244
+      invoke-interface {v1}, Ljava/util/Iterator;->remove()V
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
+      goto :goto_0
+  
++     .line 236
+      .end local v0           #current:Landroid/speech/tts/AudioPlaybackHandler$ListEntry;
+      .end local v1           #it:Ljava/util/Iterator;,"Ljava/util/Iterator<Landroid/speech/tts/AudioPlaybackHandler$ListEntry;>;"
+      :catchall_0
+***************
+*** 1005,1010 ****
+--- 1150,1156 ----
+  
+      throw v2
+  
++     .line 247
+      .restart local v1       #it:Ljava/util/Iterator;,"Ljava/util/Iterator<Landroid/speech/tts/AudioPlaybackHandler$ListEntry;>;"
+      :cond_1
+      monitor-exit p0
+***************
+*** 1017,1024 ****
+--- 1163,1172 ----
+      .parameter "p"
+  
+      .prologue
++     .line 296
+      iput-object p1, p0, Landroid/speech/tts/AudioPlaybackHandler;->mCurrentParams:Landroid/speech/tts/MessageParams;
+  
++     .line 297
+      return-void
+  .end method
+  
+***************
+*** 1033,1042 ****
+--- 1181,1192 ----
+  
+      const/high16 v5, 0x3f80
+  
++     .line 614
+      invoke-static {p1, v6, v5}, Landroid/speech/tts/AudioPlaybackHandler;->clip(FFF)F
+  
+      move-result v1
+  
++     .line 615
+      .local v1, vol:F
+      const/high16 v4, -0x4080
+  
+***************
+*** 1044,1064 ****
+--- 1194,1219 ----
+  
+      move-result v0
+  
++     .line 616
+      .local v0, panning:F
+      move v2, v1
+  
++     .line 617
+      .local v2, volLeft:F
+      move v3, v1
+  
++     .line 618
+      .local v3, volRight:F
+      cmpl-float v4, v0, v6
+  
+      if-lez v4, :cond_2
+  
++     .line 619
+      sub-float v4, v5, v0
+  
+      mul-float/2addr v2, v4
+  
++     .line 624
+      :cond_0
+      :goto_0
+      invoke-virtual {p0, v2, v3}, Landroid/media/AudioTrack;->setStereoVolume(FF)I
+***************
+*** 1067,1086 ****
+--- 1222,1245 ----
+  
+      if-eqz v4, :cond_1
+  
++     .line 625
+      const-string v4, "TTS.AudioPlaybackHandler"
+  
+      const-string v5, "Failed to set volume"
+  
+      invoke-static {v4, v5}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 627
+      :cond_1
+      return-void
+  
++     .line 620
+      :cond_2
+      cmpg-float v4, v0, v6
+  
+      if-gez v4, :cond_0
+  
++     .line 621
+      add-float v4, v5, v0
+  
+      mul-float/2addr v3, v4
+***************
+*** 1095,1107 ****
+--- 1254,1269 ----
+      .prologue
+      const/4 v2, 0x3
+  
++     .line 76
+      if-nez p1, :cond_1
+  
++     .line 104
+      .end local p1
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 82
+      .restart local p1
+      :cond_1
+      invoke-virtual {p1}, Landroid/speech/tts/MessageParams;->getType()I
+***************
+*** 1114,1130 ****
+--- 1276,1296 ----
+  
+      move-object v0, p1
+  
++     .line 83
+      check-cast v0, Landroid/speech/tts/SynthesisMessageParams;
+  
+      invoke-virtual {v0}, Landroid/speech/tts/SynthesisMessageParams;->getAudioTrack()Landroid/media/AudioTrack;
+  
+      move-result-object v6
+  
++     .line 84
+      .local v6, current:Landroid/media/AudioTrack;
+      if-eqz v6, :cond_2
+  
++     .line 89
+      invoke-virtual {v6}, Landroid/media/AudioTrack;->stop()V
+  
++     .line 96
+      :cond_2
+      iget-object v7, p0, Landroid/speech/tts/AudioPlaybackHandler;->mQueue:Ljava/util/concurrent/PriorityBlockingQueue;
+  
+***************
+*** 1144,1149 ****
+--- 1310,1316 ----
+  
+      goto :goto_0
+  
++     .line 97
+      .end local v6           #current:Landroid/media/AudioTrack;
+      :cond_3
+      invoke-virtual {p1}, Landroid/speech/tts/MessageParams;->getType()I
+***************
+*** 1154,1159 ****
+--- 1321,1327 ----
+  
+      if-ne v0, v1, :cond_4
+  
++     .line 98
+      check-cast p1, Landroid/speech/tts/AudioMessageParams;
+  
+      .end local p1
+***************
+*** 1165,1170 ****
+--- 1333,1339 ----
+  
+      goto :goto_0
+  
++     .line 100
+      .restart local p1
+      :cond_4
+      invoke-virtual {p1}, Landroid/speech/tts/MessageParams;->getType()I
+***************
+*** 1173,1178 ****
+--- 1342,1348 ----
+  
+      if-ne v0, v2, :cond_0
+  
++     .line 101
+      check-cast p1, Landroid/speech/tts/SilenceMessageParams;
+  
+      .end local p1
+***************
+*** 1192,1197 ****
+--- 1362,1368 ----
+      .parameter "token"
+  
+      .prologue
++     .line 177
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 1209,1218 ****
+--- 1380,1391 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 178
+      monitor-exit p0
+  
+      return-void
+  
++     .line 177
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1226,1231 ****
+--- 1399,1405 ----
+      .parameter "token"
+  
+      .prologue
++     .line 182
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 1243,1252 ****
+--- 1417,1428 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 183
+      monitor-exit p0
+  
+      return-void
+  
++     .line 182
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1260,1265 ****
+--- 1436,1442 ----
+      .parameter "token"
+  
+      .prologue
++     .line 167
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 1277,1286 ****
+--- 1454,1465 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 168
+      monitor-exit p0
+  
+      return-void
+  
++     .line 167
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1294,1299 ****
+--- 1473,1479 ----
+      .parameter "token"
+  
+      .prologue
++     .line 172
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 1311,1320 ****
+--- 1491,1502 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 173
+      monitor-exit p0
+  
+      return-void
+  
++     .line 172
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1328,1333 ****
+--- 1510,1516 ----
+      .parameter "token"
+  
+      .prologue
++     .line 162
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 1345,1354 ****
+--- 1528,1539 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 163
+      monitor-exit p0
+  
+      return-void
+  
++     .line 162
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1361,1366 ****
+--- 1546,1552 ----
+      .locals 1
+  
+      .prologue
++     .line 148
+      iget-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mQueue:Ljava/util/concurrent/PriorityBlockingQueue;
+  
+      invoke-virtual {v0}, Ljava/util/concurrent/PriorityBlockingQueue;->peek()Ljava/lang/Object;
+***************
+*** 1389,1405 ****
+--- 1575,1594 ----
+      .locals 7
+  
+      .prologue
++     .line 155
+      monitor-enter p0
+  
+      :try_start_0
+      invoke-direct {p0}, Landroid/speech/tts/AudioPlaybackHandler;->removeAllMessages()V
+  
++     .line 156
+      invoke-direct {p0}, Landroid/speech/tts/AudioPlaybackHandler;->getCurrentParams()Landroid/speech/tts/MessageParams;
+  
+      move-result-object v0
+  
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->stop(Landroid/speech/tts/MessageParams;)V
+  
++     .line 157
+      iget-object v6, p0, Landroid/speech/tts/AudioPlaybackHandler;->mQueue:Ljava/util/concurrent/PriorityBlockingQueue;
+  
+      new-instance v0, Landroid/speech/tts/AudioPlaybackHandler$ListEntry;
+***************
+*** 1420,1429 ****
+--- 1609,1620 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 158
+      monitor-exit p0
+  
+      return-void
+  
++     .line 155
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1436,1469 ****
+--- 1627,1668 ----
+      .locals 3
+  
+      .prologue
++     .line 132
+      monitor-enter p0
+  
+      :try_start_0
+      invoke-direct {p0}, Landroid/speech/tts/AudioPlaybackHandler;->removeAllMessages()V
+  
++     .line 134
+      invoke-direct {p0}, Landroid/speech/tts/AudioPlaybackHandler;->getCurrentParams()Landroid/speech/tts/MessageParams;
+  
+      move-result-object v0
+  
++     .line 135
+      .local v0, current:Landroid/speech/tts/MessageParams;
+      iget-object v1, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 136
+      .local v1, lastSynthesis:Landroid/speech/tts/MessageParams;
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->stop(Landroid/speech/tts/MessageParams;)V
+  
++     .line 138
+      if-eqz v1, :cond_0
+  
+      if-eq v1, v0, :cond_0
+  
++     .line 139
+      invoke-direct {p0, v1}, Landroid/speech/tts/AudioPlaybackHandler;->stop(Landroid/speech/tts/MessageParams;)V
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 141
+      :cond_0
+      monitor-exit p0
+  
+      return-void
+  
++     .line 132
+      .end local v0           #current:Landroid/speech/tts/MessageParams;
+      .end local v1           #lastSynthesis:Landroid/speech/tts/MessageParams;
+      :catchall_0
+***************
+*** 1479,1493 ****
+--- 1678,1695 ----
+      .parameter "callingApp"
+  
+      .prologue
++     .line 115
+      monitor-enter p0
+  
+      :try_start_0
+      invoke-direct {p0, p1}, Landroid/speech/tts/AudioPlaybackHandler;->removeMessages(Ljava/lang/String;)V
+  
++     .line 117
+      invoke-direct {p0}, Landroid/speech/tts/AudioPlaybackHandler;->getCurrentParams()Landroid/speech/tts/MessageParams;
+  
+      move-result-object v0
+  
++     .line 118
+      .local v0, current:Landroid/speech/tts/MessageParams;
+      if-eqz v0, :cond_0
+  
+***************
+*** 1501,1511 ****
+--- 1703,1716 ----
+  
+      if-eqz v2, :cond_0
+  
++     .line 119
+      invoke-direct {p0, v0}, Landroid/speech/tts/AudioPlaybackHandler;->stop(Landroid/speech/tts/MessageParams;)V
+  
++     .line 122
+      :cond_0
+      iget-object v1, p0, Landroid/speech/tts/AudioPlaybackHandler;->mLastSynthesisRequest:Landroid/speech/tts/SynthesisMessageParams;
+  
++     .line 124
+      .local v1, lastSynthesis:Landroid/speech/tts/MessageParams;
+      if-eqz v1, :cond_1
+  
+***************
+*** 1521,1535 ****
+--- 1726,1743 ----
+  
+      if-eqz v2, :cond_1
+  
++     .line 126
+      invoke-direct {p0, v1}, Landroid/speech/tts/AudioPlaybackHandler;->stop(Landroid/speech/tts/MessageParams;)V
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 128
+      :cond_1
+      monitor-exit p0
+  
+      return-void
+  
++     .line 115
+      .end local v0           #current:Landroid/speech/tts/MessageParams;
+      .end local v1           #lastSynthesis:Landroid/speech/tts/MessageParams;
+      :catchall_0
+***************
+*** 1544,1552 ****
+--- 1752,1762 ----
+      .locals 1
+  
+      .prologue
++     .line 62
+      iget-object v0, p0, Landroid/speech/tts/AudioPlaybackHandler;->mHandlerThread:Ljava/lang/Thread;
+  
+      invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+  
++     .line 63
+      return-void
+  .end method

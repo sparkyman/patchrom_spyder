@@ -1,0 +1,894 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/media/MediaRecorder.smali	2012-03-23 19:35:34.172210014 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/media/MediaRecorder.smali.original	2012-03-23 19:34:44.716308188 -0500
+***************
+*** 75,86 ****
+      .locals 1
+  
+      .prologue
+!     const-string v0, "media_jni"
+  
+      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+  
+      invoke-static {}, Landroid/media/MediaRecorder;->native_init()V
+  
+      return-void
+  .end method
+  
+--- 75,89 ----
+      .locals 1
+  
+      .prologue
+!     .line 76
+!     const-string/jumbo v0, "media_jni"
+  
+      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+  
++     .line 77
+      invoke-static {}, Landroid/media/MediaRecorder;->native_init()V
+  
++     .line 78
+      return-void
+  .end method
+  
+***************
+*** 88,95 ****
+--- 91,100 ----
+      .locals 2
+  
+      .prologue
++     .line 97
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 100
+      invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
+  
+      move-result-object v0
+***************
+*** 97,108 ****
+--- 102,115 ----
+      .local v0, looper:Landroid/os/Looper;
+      if-eqz v0, :cond_0
+  
++     .line 101
+      new-instance v1, Landroid/media/MediaRecorder$EventHandler;
+  
+      invoke-direct {v1, p0, p0, v0}, Landroid/media/MediaRecorder$EventHandler;-><init>(Landroid/media/MediaRecorder;Landroid/media/MediaRecorder;Landroid/os/Looper;)V
+  
+      iput-object v1, p0, Landroid/media/MediaRecorder;->mEventHandler:Landroid/media/MediaRecorder$EventHandler;
+  
++     .line 111
+      :goto_0
+      new-instance v1, Ljava/lang/ref/WeakReference;
+  
+***************
+*** 110,117 ****
+--- 117,126 ----
+  
+      invoke-direct {p0, v1}, Landroid/media/MediaRecorder;->native_setup(Ljava/lang/Object;)V
+  
++     .line 112
+      return-void
+  
++     .line 102
+      :cond_0
+      invoke-static {}, Landroid/os/Looper;->getMainLooper()Landroid/os/Looper;
+  
+***************
+*** 119,124 ****
+--- 128,134 ----
+  
+      if-eqz v0, :cond_1
+  
++     .line 103
+      new-instance v1, Landroid/media/MediaRecorder$EventHandler;
+  
+      invoke-direct {v1, p0, p0, v0}, Landroid/media/MediaRecorder$EventHandler;-><init>(Landroid/media/MediaRecorder;Landroid/media/MediaRecorder;Landroid/os/Looper;)V
+***************
+*** 127,132 ****
+--- 137,143 ----
+  
+      goto :goto_0
+  
++     .line 105
+      :cond_1
+      const/4 v1, 0x0
+  
+***************
+*** 158,163 ****
+--- 169,175 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 73
+      iget v0, p0, Landroid/media/MediaRecorder;->mNativeContext:I
+  
+      return v0
+***************
+*** 168,173 ****
+--- 180,186 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 73
+      iget-object v0, p0, Landroid/media/MediaRecorder;->mOnErrorListener:Landroid/media/MediaRecorder$OnErrorListener;
+  
+      return-object v0
+***************
+*** 178,183 ****
+--- 191,197 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 73
+      iget-object v0, p0, Landroid/media/MediaRecorder;->mOnInfoListener:Landroid/media/MediaRecorder$OnInfoListener;
+  
+      return-object v0
+***************
+*** 187,192 ****
+--- 201,207 ----
+      .locals 1
+  
+      .prologue
++     .line 279
+      const/4 v0, 0x7
+  
+      return v0
+***************
+*** 218,223 ****
+--- 233,239 ----
+      .parameter "obj"
+  
+      .prologue
++     .line 915
+      check-cast p0, Ljava/lang/ref/WeakReference;
+  
+      .end local p0
+***************
+*** 227,250 ****
+--- 243,271 ----
+  
+      check-cast v1, Landroid/media/MediaRecorder;
+  
++     .line 916
+      .local v1, mr:Landroid/media/MediaRecorder;
+      if-nez v1, :cond_1
+  
++     .line 924
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 920
+      :cond_1
+      iget-object v2, v1, Landroid/media/MediaRecorder;->mEventHandler:Landroid/media/MediaRecorder$EventHandler;
+  
+      if-eqz v2, :cond_0
+  
++     .line 921
+      iget-object v2, v1, Landroid/media/MediaRecorder;->mEventHandler:Landroid/media/MediaRecorder$EventHandler;
+  
+      invoke-virtual {v2, p1, p2, p3, p4}, Landroid/media/MediaRecorder$EventHandler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
+  
+      move-result-object v0
+  
++     .line 922
+      .local v0, m:Landroid/os/Message;
+      iget-object v2, v1, Landroid/media/MediaRecorder;->mEventHandler:Landroid/media/MediaRecorder$EventHandler;
+  
+***************
+*** 262,267 ****
+--- 283,289 ----
+      .locals 0
+  
+      .prologue
++     .line 955
+      invoke-direct {p0}, Landroid/media/MediaRecorder;->native_finalize()V
+  
+      return-void
+***************
+*** 287,302 ****
+--- 309,327 ----
+      .prologue
+      const-wide/16 v2, 0x0
+  
++     .line 628
+      iget-object v0, p0, Landroid/media/MediaRecorder;->mPath:Ljava/lang/String;
+  
+      if-eqz v0, :cond_0
+  
++     .line 629
+      new-instance v6, Ljava/io/FileOutputStream;
+  
+      iget-object v0, p0, Landroid/media/MediaRecorder;->mPath:Ljava/lang/String;
+  
+      invoke-direct {v6, v0}, Ljava/io/FileOutputStream;-><init>(Ljava/lang/String;)V
+  
++     .line 631
+      .local v6, fos:Ljava/io/FileOutputStream;
+      :try_start_0
+      invoke-virtual {v6}, Ljava/io/FileOutputStream;->getFD()Ljava/io/FileDescriptor;
+***************
+*** 313,326 ****
+--- 338,355 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 633
+      invoke-virtual {v6}, Ljava/io/FileOutputStream;->close()V
+  
++     .line 641
+      .end local v6           #fos:Ljava/io/FileOutputStream;
+      :goto_0
+      invoke-direct {p0}, Landroid/media/MediaRecorder;->_prepare()V
+  
++     .line 642
+      return-void
+  
++     .line 633
+      .restart local v6       #fos:Ljava/io/FileOutputStream;
+      :catchall_0
+      move-exception v0
+***************
+*** 329,340 ****
+--- 358,371 ----
+  
+      throw v0
+  
++     .line 635
+      .end local v6           #fos:Ljava/io/FileOutputStream;
+      :cond_0
+      iget-object v0, p0, Landroid/media/MediaRecorder;->mFd:Ljava/io/FileDescriptor;
+  
+      if-eqz v0, :cond_1
+  
++     .line 636
+      iget-object v1, p0, Landroid/media/MediaRecorder;->mFd:Ljava/io/FileDescriptor;
+  
+      move-object v0, p0
+***************
+*** 345,350 ****
+--- 376,382 ----
+  
+      goto :goto_0
+  
++     .line 638
+      :cond_1
+      new-instance v0, Ljava/io/IOException;
+  
+***************
+*** 362,375 ****
+--- 394,410 ----
+      .locals 2
+  
+      .prologue
++     .line 679
+      invoke-direct {p0}, Landroid/media/MediaRecorder;->native_reset()V
+  
++     .line 682
+      iget-object v0, p0, Landroid/media/MediaRecorder;->mEventHandler:Landroid/media/MediaRecorder$EventHandler;
+  
+      const/4 v1, 0x0
+  
+      invoke-virtual {v0, v1}, Landroid/media/MediaRecorder$EventHandler;->removeCallbacksAndMessages(Ljava/lang/Object;)V
+  
++     .line 683
+      return-void
+  .end method
+  
+***************
+*** 378,385 ****
+--- 413,422 ----
+      .parameter "numChannels"
+  
+      .prologue
++     .line 526
+      if-gtz p1, :cond_0
+  
++     .line 527
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "Number of channels is not positive"
+***************
+*** 388,393 ****
+--- 425,431 ----
+  
+      throw v0
+  
++     .line 529
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+***************
+*** 409,414 ****
+--- 447,453 ----
+  
+      invoke-direct {p0, v0}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 530
+      return-void
+  .end method
+  
+***************
+*** 425,432 ****
+--- 464,473 ----
+      .parameter "bitRate"
+  
+      .prologue
++     .line 542
+      if-gtz p1, :cond_0
+  
++     .line 543
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "Audio encoding bit rate is not positive"
+***************
+*** 435,440 ****
+--- 476,482 ----
+  
+      throw v0
+  
++     .line 545
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+***************
+*** 456,461 ****
+--- 498,504 ----
+  
+      invoke-direct {p0, v0}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 546
+      return-void
+  .end method
+  
+***************
+*** 464,471 ****
+--- 507,516 ----
+      .parameter "samplingRate"
+  
+      .prologue
++     .line 511
+      if-gtz p1, :cond_0
+  
++     .line 512
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "Audio sampling rate is not positive"
+***************
+*** 474,479 ****
+--- 519,525 ----
+  
+      throw v0
+  
++     .line 514
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+***************
+*** 495,500 ****
+--- 541,547 ----
+  
+      invoke-direct {p0, v0}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 515
+      return-void
+  .end method
+  
+***************
+*** 511,522 ****
+      .parameter "fd"
+  
+      .prologue
+      const-string v0, "MediaRecorder"
+  
+!     const-string v1, "setAuxiliaryOutputFile(FileDescriptor) is no longer supported."
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
+      return-void
+  .end method
+  
+--- 558,571 ----
+      .parameter "fd"
+  
+      .prologue
++     .line 571
+      const-string v0, "MediaRecorder"
+  
+!     const-string/jumbo v1, "setAuxiliaryOutputFile(FileDescriptor) is no longer supported."
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 572
+      return-void
+  .end method
+  
+***************
+*** 525,536 ****
+      .parameter "path"
+  
+      .prologue
+      const-string v0, "MediaRecorder"
+  
+!     const-string v1, "setAuxiliaryOutputFile(String) is no longer supported."
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
+      return-void
+  .end method
+  
+--- 574,587 ----
+      .parameter "path"
+  
+      .prologue
++     .line 581
+      const-string v0, "MediaRecorder"
+  
+!     const-string/jumbo v1, "setAuxiliaryOutputFile(String) is no longer supported."
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 582
+      return-void
+  .end method
+  
+***************
+*** 542,551 ****
+--- 593,604 ----
+      .parameter "fps"
+  
+      .prologue
++     .line 333
+      const-wide/high16 v3, 0x3ff0
+  
+      div-double v0, v3, p1
+  
++     .line 334
+      .local v0, timeBetweenFrameCapture:D
+      const-wide v3, 0x408f400000000000L
+  
+***************
+*** 553,560 ****
+  
+      double-to-int v2, v3
+  
+      .local v2, timeBetweenFrameCaptureMs:I
+!     const-string v3, "time-between-time-lapse-frame-capture=%d"
+  
+      const/4 v4, 0x1
+  
+--- 606,614 ----
+  
+      double-to-int v2, v3
+  
++     .line 335
+      .local v2, timeBetweenFrameCaptureMs:I
+!     const-string/jumbo v3, "time-between-time-lapse-frame-capture=%d"
+  
+      const/4 v4, 0x1
+  
+***************
+*** 574,579 ****
+--- 628,634 ----
+  
+      invoke-direct {p0, v3}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 337
+      return-void
+  .end method
+  
+***************
+*** 587,592 ****
+--- 642,648 ----
+  
+      const-wide/high16 v5, 0x3fe0
+  
++     .line 381
+      mul-float v3, p1, v7
+  
+      float-to-double v3, v3
+***************
+*** 595,600 ****
+--- 651,657 ----
+  
+      double-to-int v0, v3
+  
++     .line 382
+      .local v0, latitudex10000:I
+      mul-float v3, p2, v7
+  
+***************
+*** 604,609 ****
+--- 661,667 ----
+  
+      double-to-int v1, v3
+  
++     .line 384
+      .local v1, longitudex10000:I
+      const v3, 0xdbba0
+  
+***************
+*** 613,618 ****
+--- 671,677 ----
+  
+      if-ge v0, v3, :cond_1
+  
++     .line 385
+      :cond_0
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+***************
+*** 638,643 ****
+--- 697,703 ----
+  
+      move-result-object v2
+  
++     .line 386
+      .local v2, msg:Ljava/lang/String;
+      new-instance v3, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 645,650 ****
+--- 705,711 ----
+  
+      throw v3
+  
++     .line 388
+      .end local v2           #msg:Ljava/lang/String;
+      :cond_1
+      const v3, 0x1b7740
+***************
+*** 655,660 ****
+--- 716,722 ----
+  
+      if-ge v1, v3, :cond_3
+  
++     .line 389
+      :cond_2
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+***************
+*** 680,685 ****
+--- 742,748 ----
+  
+      move-result-object v2
+  
++     .line 390
+      .restart local v2       #msg:Ljava/lang/String;
+      new-instance v3, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 687,699 ****
+  
+      throw v3
+  
+      .end local v2           #msg:Ljava/lang/String;
+      :cond_3
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v4, "param-geotag-latitude="
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 750,763 ----
+  
+      throw v3
+  
++     .line 393
+      .end local v2           #msg:Ljava/lang/String;
+      :cond_3
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v4, "param-geotag-latitude="
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 709,719 ****
+  
+      invoke-direct {p0, v3}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v4, "param-geotag-longitude="
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 773,784 ----
+  
+      invoke-direct {p0, v3}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 394
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v4, "param-geotag-longitude="
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 729,734 ****
+--- 794,800 ----
+  
+      invoke-direct {p0, v3}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 395
+      return-void
+  .end method
+  
+***************
+*** 753,760 ****
+--- 819,828 ----
+      .parameter "l"
+  
+      .prologue
++     .line 733
+      iput-object p1, p0, Landroid/media/MediaRecorder;->mOnErrorListener:Landroid/media/MediaRecorder$OnErrorListener;
+  
++     .line 734
+      return-void
+  .end method
+  
+***************
+*** 763,770 ****
+--- 831,840 ----
+      .parameter "listener"
+  
+      .prologue
++     .line 850
+      iput-object p1, p0, Landroid/media/MediaRecorder;->mOnInfoListener:Landroid/media/MediaRecorder$OnInfoListener;
+  
++     .line 851
+      return-void
+  .end method
+  
+***************
+*** 773,778 ****
+--- 843,849 ----
+      .parameter "degrees"
+  
+      .prologue
++     .line 355
+      if-eqz p1, :cond_0
+  
+      const/16 v0, 0x5a
+***************
+*** 787,792 ****
+--- 858,864 ----
+  
+      if-eq p1, v0, :cond_0
+  
++     .line 359
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      new-instance v1, Ljava/lang/StringBuilder;
+***************
+*** 811,822 ****
+  
+      throw v0
+  
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v1, "video-param-rotation-angle-degrees="
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 883,895 ----
+  
+      throw v0
+  
++     .line 361
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v1, "video-param-rotation-angle-degrees="
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 832,837 ****
+--- 905,911 ----
+  
+      invoke-direct {p0, v0}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 362
+      return-void
+  .end method
+  
+***************
+*** 845,856 ****
+--- 919,933 ----
+      .end annotation
+  
+      .prologue
++     .line 594
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/media/MediaRecorder;->mPath:Ljava/lang/String;
+  
++     .line 595
+      iput-object p1, p0, Landroid/media/MediaRecorder;->mFd:Ljava/io/FileDescriptor;
+  
++     .line 596
+      return-void
+  .end method
+  
+***************
+*** 864,875 ****
+--- 941,955 ----
+      .end annotation
+  
+      .prologue
++     .line 608
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/media/MediaRecorder;->mFd:Ljava/io/FileDescriptor;
+  
++     .line 609
+      iput-object p1, p0, Landroid/media/MediaRecorder;->mPath:Ljava/lang/String;
+  
++     .line 610
+      return-void
+  .end method
+  
+***************
+*** 886,893 ****
+--- 966,975 ----
+      .parameter "sv"
+  
+      .prologue
++     .line 132
+      iput-object p1, p0, Landroid/media/MediaRecorder;->mSurface:Landroid/view/Surface;
+  
++     .line 133
+      return-void
+  .end method
+  
+***************
+*** 896,923 ****
+--- 978,1011 ----
+      .parameter "profile"
+  
+      .prologue
++     .line 302
+      iget v0, p1, Landroid/media/CamcorderProfile;->fileFormat:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setOutputFormat(I)V
+  
++     .line 303
+      iget v0, p1, Landroid/media/CamcorderProfile;->videoFrameRate:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setVideoFrameRate(I)V
+  
++     .line 304
+      iget v0, p1, Landroid/media/CamcorderProfile;->videoFrameWidth:I
+  
+      iget v1, p1, Landroid/media/CamcorderProfile;->videoFrameHeight:I
+  
+      invoke-virtual {p0, v0, v1}, Landroid/media/MediaRecorder;->setVideoSize(II)V
+  
++     .line 305
+      iget v0, p1, Landroid/media/CamcorderProfile;->videoBitRate:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setVideoEncodingBitRate(I)V
+  
++     .line 306
+      iget v0, p1, Landroid/media/CamcorderProfile;->videoCodec:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setVideoEncoder(I)V
+  
++     .line 307
+      iget v0, p1, Landroid/media/CamcorderProfile;->quality:I
+  
+      const/16 v1, 0x3e8
+***************
+*** 930,936 ****
+  
+      if-gt v0, v1, :cond_0
+  
+!     const-string v0, "time-lapse-enable=1"
+  
+      const/4 v1, 0x0
+  
+--- 1018,1025 ----
+  
+      if-gt v0, v1, :cond_0
+  
+!     .line 310
+!     const-string/jumbo v0, "time-lapse-enable=1"
+  
+      const/4 v1, 0x0
+  
+***************
+*** 942,963 ****
+--- 1031,1057 ----
+  
+      invoke-direct {p0, v0}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 317
+      :goto_0
+      return-void
+  
++     .line 312
+      :cond_0
+      iget v0, p1, Landroid/media/CamcorderProfile;->audioBitRate:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setAudioEncodingBitRate(I)V
+  
++     .line 313
+      iget v0, p1, Landroid/media/CamcorderProfile;->audioChannels:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setAudioChannels(I)V
+  
++     .line 314
+      iget v0, p1, Landroid/media/CamcorderProfile;->audioSampleRate:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setAudioSamplingRate(I)V
+  
++     .line 315
+      iget v0, p1, Landroid/media/CamcorderProfile;->audioCodec:I
+  
+      invoke-virtual {p0, v0}, Landroid/media/MediaRecorder;->setAudioEncoder(I)V
+***************
+*** 978,985 ****
+--- 1072,1081 ----
+      .parameter "bitRate"
+  
+      .prologue
++     .line 558
+      if-gtz p1, :cond_0
+  
++     .line 559
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "Video encoding bit rate is not positive"
+***************
+*** 988,999 ****
+  
+      throw v0
+  
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v1, "video-param-encoding-bitrate="
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 1084,1096 ----
+  
+      throw v0
+  
++     .line 561
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v1, "video-param-encoding-bitrate="
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 1009,1014 ****
+--- 1106,1112 ----
+  
+      invoke-direct {p0, v0}, Landroid/media/MediaRecorder;->setParameter(Ljava/lang/String;)V
+  
++     .line 562
+      return-void
+  .end method
+  

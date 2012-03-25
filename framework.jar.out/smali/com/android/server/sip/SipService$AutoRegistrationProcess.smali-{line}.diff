@@ -1,0 +1,1239 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/server/sip/SipService$AutoRegistrationProcess.smali	2012-03-23 19:37:56.031796820 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/server/sip/SipService$AutoRegistrationProcess.smali.original	2012-03-23 19:34:46.418339224 -0500
+***************
+*** 56,81 ****
+--- 56,87 ----
+      .prologue
+      const/4 v1, 0x0
+  
++     .line 786
+      iput-object p1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      invoke-direct {p0}, Landroid/net/sip/SipSessionAdapter;-><init>()V
+  
++     .line 789
+      const-string v0, "SipAutoReg"
+  
+      iput-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->TAG:Ljava/lang/String;
+  
++     .line 793
+      new-instance v0, Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      invoke-direct {v0}, Lcom/android/server/sip/SipSessionListenerProxy;-><init>()V
+  
+      iput-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
++     .line 794
+      const/4 v0, 0x1
+  
+      iput v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mBackoff:I
+  
++     .line 799
+      iput-boolean v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
++     .line 801
+      iput v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+  
+      return-void
+***************
+*** 87,92 ****
+--- 93,99 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 786
+      invoke-direct {p0, p1}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;-><init>(Lcom/android/server/sip/SipService;)V
+  
+      return-void
+***************
+*** 96,115 ****
+--- 103,127 ----
+      .locals 2
+  
+      .prologue
++     .line 997
+      iget v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mBackoff:I
+  
+      mul-int/lit8 v0, v1, 0xa
+  
++     .line 998
+      .local v0, duration:I
+      const/16 v1, 0xe10
+  
+      if-le v0, v1, :cond_0
+  
++     .line 999
+      const/16 v0, 0xe10
+  
++     .line 1003
+      :goto_0
+      return v0
+  
++     .line 1001
+      :cond_0
+      iget v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mBackoff:I
+  
+***************
+*** 124,129 ****
+--- 136,142 ----
+      .locals 1
+  
+      .prologue
++     .line 804
+      invoke-virtual {p0}, Ljava/lang/Object;->toString()Ljava/lang/String;
+  
+      move-result-object v0
+***************
+*** 138,155 ****
+--- 151,171 ----
+      .prologue
+      const/4 v1, 0x1
+  
++     .line 1018
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      if-eq p1, v0, :cond_0
+  
+      move-object v0, p1
+  
++     .line 1019
+      check-cast v0, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/4 v2, 0x0
+  
+      invoke-virtual {v0, v2}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->setListener(Landroid/net/sip/ISipSessionListener;)V
+  
++     .line 1020
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mMyWakeLock:Lcom/android/server/sip/SipWakeLock;
+***************
+*** 159,164 ****
+--- 175,181 ----
+  
+      invoke-virtual {v0, p1}, Lcom/android/server/sip/SipWakeLock;->release(Ljava/lang/Object;)V
+  
++     .line 1023
+      :goto_0
+      return v1
+  
+***************
+*** 185,190 ****
+--- 202,208 ----
+      .parameter "duration"
+  
+      .prologue
++     .line 991
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->TAG:Ljava/lang/String;
+  
+      new-instance v1, Ljava/lang/StringBuilder;
+***************
+*** 201,207 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "s later."
+  
+      invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 219,225 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "s later."
+  
+      invoke-virtual {v1, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 213,218 ****
+--- 231,237 ----
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 992
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mTimer:Lcom/android/server/sip/SipWakeupTimer;
+***************
+*** 222,227 ****
+--- 241,247 ----
+  
+      invoke-virtual {v0, p0}, Lcom/android/server/sip/SipWakeupTimer;->cancel(Ljava/lang/Runnable;)V
+  
++     .line 993
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mTimer:Lcom/android/server/sip/SipWakeupTimer;
+***************
+*** 233,238 ****
+--- 253,259 ----
+  
+      invoke-virtual {v0, v1, p0}, Lcom/android/server/sip/SipWakeupTimer;->set(ILjava/lang/Runnable;)V
+  
++     .line 994
+      return-void
+  .end method
+  
+***************
+*** 240,255 ****
+--- 261,279 ----
+      .locals 1
+  
+      .prologue
++     .line 1102
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
++     .line 1103
+      invoke-direct {p0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->backoffDuration()I
+  
+      move-result v0
+  
+      invoke-direct {p0, v0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->restart(I)V
+  
++     .line 1104
+      return-void
+  .end method
+  
+***************
+*** 258,267 ****
+--- 282,293 ----
+      .parameter "interval"
+  
+      .prologue
++     .line 827
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      if-nez v1, :cond_0
+  
++     .line 828
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      invoke-virtual {v1}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->duplicate()Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+***************
+*** 270,275 ****
+--- 296,302 ----
+  
+      iput-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
++     .line 833
+      :goto_0
+      :try_start_0
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+***************
+*** 278,286 ****
+--- 305,315 ----
+      :try_end_0
+      .catch Ljavax/sip/SipException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 838
+      :goto_1
+      return-void
+  
++     .line 830
+      :cond_0
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+***************
+*** 288,296 ****
+--- 317,327 ----
+  
+      goto :goto_0
+  
++     .line 834
+      :catch_0
+      move-exception v0
+  
++     .line 835
+      .local v0, e:Ljavax/sip/SipException;
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->TAG:Ljava/lang/String;
+  
+***************
+*** 321,343 ****
+--- 352,379 ----
+      .locals 1
+  
+      .prologue
++     .line 841
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      if-eqz v0, :cond_0
+  
++     .line 842
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      invoke-virtual {v0}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->stopKeepAliveProcess()V
+  
++     .line 843
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
++     .line 845
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+  
++     .line 846
+      return-void
+  .end method
+  
+***************
+*** 347,352 ****
+--- 383,389 ----
+      .locals 1
+  
+      .prologue
++     .line 971
+      iget-boolean v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
+      return v0
+***************
+*** 358,367 ****
+--- 395,406 ----
+      .parameter "description"
+  
+      .prologue
++     .line 899
+      const/4 v0, 0x1
+  
+      invoke-virtual {p0, v0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->onResponse(Z)V
+  
++     .line 900
+      return-void
+  .end method
+  
+***************
+*** 369,378 ****
+--- 408,419 ----
+      .locals 2
+  
+      .prologue
++     .line 919
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      if-eqz v1, :cond_0
+  
++     .line 920
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #calls: Lcom/android/server/sip/SipService;->getKeepAliveInterval()I
+***************
+*** 380,392 ****
+--- 421,436 ----
+  
+      move-result v0
+  
++     .line 924
+      .local v0, newInterval:I
+      const/4 v1, 0x0
+  
+      iput v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+  
++     .line 925
+      invoke-direct {p0, v0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->startKeepAliveProcess(I)V
+  
++     .line 927
+      .end local v0           #newInterval:I
+      :cond_0
+      return-void
+***************
+*** 397,406 ****
+--- 441,452 ----
+      .parameter "session"
+  
+      .prologue
++     .line 1009
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v1
+  
++     .line 1010
+      :try_start_0
+      invoke-direct {p0, p1}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->notCurrentSession(Landroid/net/sip/ISipSession;)Z
+  
+***************
+*** 410,427 ****
+--- 456,477 ----
+  
+      monitor-exit v1
+  
++     .line 1015
+      :goto_0
+      return-void
+  
++     .line 1012
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
++     .line 1013
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      invoke-virtual {v0, p1}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistering(Landroid/net/sip/ISipSession;)V
+  
++     .line 1014
+      monitor-exit v1
+  
+      goto :goto_0
+***************
+*** 442,451 ****
+--- 492,503 ----
+      .parameter "duration"
+  
+      .prologue
++     .line 1029
+      iget-object v2, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v2
+  
++     .line 1030
+      :try_start_0
+      invoke-direct {p0, p1}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->notCurrentSession(Landroid/net/sip/ISipSession;)Z
+  
+***************
+*** 455,470 ****
+--- 507,526 ----
+  
+      monitor-exit v2
+  
++     .line 1061
+      :goto_0
+      return-void
+  
++     .line 1032
+      :cond_0
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      invoke-virtual {v1, p1, p2}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationDone(Landroid/net/sip/ISipSession;I)V
+  
++     .line 1034
+      if-lez p2, :cond_4
+  
++     .line 1035
+      invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+  
+      move-result-wide v3
+***************
+*** 477,507 ****
+--- 533,571 ----
+  
+      iput-wide v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mExpiryTime:J
+  
++     .line 1038
+      iget-boolean v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
+      if-nez v1, :cond_3
+  
++     .line 1039
+      const/4 v1, 0x1
+  
+      iput-boolean v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
++     .line 1041
+      add-int/lit8 p2, p2, -0x3c
+  
++     .line 1042
+      const/16 v1, 0x3c
+  
+      if-ge p2, v1, :cond_1
+  
++     .line 1043
+      const/16 p2, 0x3c
+  
++     .line 1045
+      :cond_1
+      invoke-direct {p0, p2}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->restart(I)V
+  
++     .line 1047
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      invoke-virtual {v1}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->getLocalProfile()Landroid/net/sip/SipProfile;
+  
+      move-result-object v0
+  
++     .line 1048
+      .local v0, localProfile:Landroid/net/sip/SipProfile;
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+***************
+*** 529,534 ****
+--- 593,599 ----
+  
+      if-eqz v1, :cond_3
+  
++     .line 1050
+      :cond_2
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+***************
+*** 539,544 ****
+--- 604,610 ----
+  
+      invoke-direct {p0, v1}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->startKeepAliveProcess(I)V
+  
++     .line 1053
+      .end local v0           #localProfile:Landroid/net/sip/SipProfile;
+      :cond_3
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+***************
+*** 550,555 ****
+--- 616,622 ----
+  
+      invoke-virtual {v1, p1}, Lcom/android/server/sip/SipWakeLock;->release(Ljava/lang/Object;)V
+  
++     .line 1060
+      :goto_1
+      monitor-exit v2
+  
+***************
+*** 564,579 ****
+--- 631,649 ----
+  
+      throw v1
+  
++     .line 1055
+      :cond_4
+      const/4 v1, 0x0
+  
+      :try_start_1
+      iput-boolean v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
++     .line 1056
+      const-wide/16 v3, -0x1
+  
+      iput-wide v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mExpiryTime:J
+  
++     .line 1058
+      invoke-virtual {p0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->run()V
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+***************
+*** 588,597 ****
+--- 658,669 ----
+      .parameter "message"
+  
+      .prologue
++     .line 1068
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v1
+  
++     .line 1069
+      :try_start_0
+      invoke-direct {p0, p1}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->notCurrentSession(Landroid/net/sip/ISipSession;)Z
+  
+***************
+*** 601,623 ****
+--- 673,702 ----
+  
+      monitor-exit v1
+  
++     .line 1086
+      :goto_0
+      return-void
+  
++     .line 1071
+      :cond_0
+      sparse-switch p2, :sswitch_data_0
+  
++     .line 1078
+      invoke-direct {p0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->restartLater()V
+  
++     .line 1081
+      :goto_1
+      iput p2, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mErrorCode:I
+  
++     .line 1082
+      iput-object p3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mErrorMessage:Ljava/lang/String;
+  
++     .line 1083
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      invoke-virtual {v0, p1, p2, p3}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationFailed(Landroid/net/sip/ISipSession;ILjava/lang/String;)V
+  
++     .line 1084
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mMyWakeLock:Lcom/android/server/sip/SipWakeLock;
+***************
+*** 627,632 ****
+--- 706,712 ----
+  
+      invoke-virtual {v0, p1}, Lcom/android/server/sip/SipWakeLock;->release(Ljava/lang/Object;)V
+  
++     .line 1085
+      monitor-exit v1
+  
+      goto :goto_0
+***************
+*** 640,645 ****
+--- 720,726 ----
+  
+      throw v0
+  
++     .line 1075
+      :sswitch_0
+      :try_start_1
+      invoke-virtual {p0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->stop()V
+***************
+*** 648,653 ****
+--- 729,735 ----
+  
+      goto :goto_1
+  
++     .line 1071
+      :sswitch_data_0
+      .sparse-switch
+          -0xc -> :sswitch_0
+***************
+*** 660,669 ****
+--- 742,753 ----
+      .parameter "session"
+  
+      .prologue
++     .line 1091
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v1
+  
++     .line 1092
+      :try_start_0
+      invoke-direct {p0, p1}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->notCurrentSession(Landroid/net/sip/ISipSession;)Z
+  
+***************
+*** 673,692 ****
+--- 757,781 ----
+  
+      monitor-exit v1
+  
++     .line 1099
+      :goto_0
+      return-void
+  
++     .line 1094
+      :cond_0
+      const/4 v0, -0x5
+  
+      iput v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mErrorCode:I
+  
++     .line 1095
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      invoke-virtual {v0, p1}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationTimeout(Landroid/net/sip/ISipSession;)V
+  
++     .line 1096
+      invoke-direct {p0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->restartLater()V
+  
++     .line 1097
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mMyWakeLock:Lcom/android/server/sip/SipWakeLock;
+***************
+*** 696,701 ****
+--- 785,791 ----
+  
+      invoke-virtual {v0, p1}, Lcom/android/server/sip/SipWakeLock;->release(Ljava/lang/Object;)V
+  
++     .line 1098
+      monitor-exit v1
+  
+      goto :goto_0
+***************
+*** 717,728 ****
+--- 807,821 ----
+      .prologue
+      const/16 v5, 0xa
+  
++     .line 851
+      iget-object v2, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v2
+  
++     .line 852
+      if-eqz p1, :cond_3
+  
++     .line 853
+      :try_start_0
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+***************
+*** 731,741 ****
+--- 824,836 ----
+  
+      move-result v0
+  
++     .line 854
+      .local v0, interval:I
+      iget v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+  
+      if-ge v1, v5, :cond_2
+  
++     .line 855
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->TAG:Ljava/lang/String;
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 770,777 ****
+--- 865,874 ----
+  
+      invoke-static {v1, v3}, Landroid/util/Log;->i(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 858
+      if-le v0, v5, :cond_0
+  
++     .line 859
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+***************
+*** 783,792 ****
+--- 880,891 ----
+      #calls: Lcom/android/server/sip/SipService;->restartPortMappingLifetimeMeasurement(Landroid/net/sip/SipProfile;I)V
+      invoke-static {v1, v3, v0}, Lcom/android/server/sip/SipService;->access$1400(Lcom/android/server/sip/SipService;Landroid/net/sip/SipProfile;I)V
+  
++     .line 861
+      const/4 v1, 0x0
+  
+      iput v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+  
++     .line 879
+      .end local v0           #interval:I
+      :cond_0
+      :goto_0
+***************
+*** 799,807 ****
+--- 898,908 ----
+      :cond_1
+      monitor-exit v2
+  
++     .line 891
+      :goto_1
+      return-void
+  
++     .line 869
+      .restart local v0       #interval:I
+      :cond_2
+      iget v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+***************
+*** 812,817 ****
+--- 913,919 ----
+  
+      goto :goto_0
+  
++     .line 890
+      .end local v0           #interval:I
+      :catchall_0
+      move-exception v1
+***************
+*** 822,827 ****
+--- 924,930 ----
+  
+      throw v1
+  
++     .line 874
+      :cond_3
+      :try_start_1
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+***************
+*** 835,840 ****
+--- 938,944 ----
+      #calls: Lcom/android/server/sip/SipService;->startPortMappingLifetimeMeasurement(Landroid/net/sip/SipProfile;)V
+      invoke-static {v1, v3}, Lcom/android/server/sip/SipService;->access$1500(Lcom/android/server/sip/SipService;Landroid/net/sip/SipProfile;)V
+  
++     .line 876
+      iget v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSuccessCount:I
+  
+      add-int/lit8 v1, v1, 0x1
+***************
+*** 843,853 ****
+--- 947,959 ----
+  
+      goto :goto_0
+  
++     .line 884
+      :cond_4
+      const/4 v1, 0x0
+  
+      iput-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mKeepAliveSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
++     .line 888
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mMyWakeLock:Lcom/android/server/sip/SipWakeLock;
+***************
+*** 859,870 ****
+--- 965,978 ----
+  
+      invoke-virtual {v1, v3}, Lcom/android/server/sip/SipWakeLock;->acquire(Ljava/lang/Object;)V
+  
++     .line 889
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/16 v3, 0xe10
+  
+      invoke-virtual {v1, v3}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->register(I)V
+  
++     .line 890
+      monitor-exit v2
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+***************
+*** 876,885 ****
+--- 984,995 ----
+      .locals 3
+  
+      .prologue
++     .line 977
+      iget-object v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v1
+  
++     .line 978
+      :try_start_0
+      iget-boolean v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
+***************
+*** 887,904 ****
+--- 997,1018 ----
+  
+      monitor-exit v1
+  
++     .line 988
+      :goto_0
+      return-void
+  
++     .line 980
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mErrorCode:I
+  
++     .line 981
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mErrorMessage:Ljava/lang/String;
+  
++     .line 983
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mConnected:Z
+***************
+*** 908,913 ****
+--- 1022,1028 ----
+  
+      if-eqz v0, :cond_1
+  
++     .line 984
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mMyWakeLock:Lcom/android/server/sip/SipWakeLock;
+***************
+*** 919,930 ****
+--- 1034,1047 ----
+  
+      invoke-virtual {v0, v2}, Lcom/android/server/sip/SipWakeLock;->acquire(Ljava/lang/Object;)V
+  
++     .line 985
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/16 v2, 0xe10
+  
+      invoke-virtual {v0, v2}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->register(I)V
+  
++     .line 987
+      :cond_1
+      monitor-exit v1
+  
+***************
+*** 945,954 ****
+--- 1062,1073 ----
+      .parameter "listener"
+  
+      .prologue
++     .line 930
+      iget-object v4, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      monitor-enter v4
+  
++     .line 931
+      :try_start_0
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+***************
+*** 956,961 ****
+--- 1075,1081 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 934
+      :try_start_1
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+***************
+*** 963,968 ****
+--- 1083,1089 ----
+  
+      const/4 v1, 0x0
+  
++     .line 937
+      .local v1, state:I
+      :goto_0
+      const/4 v3, 0x1
+***************
+*** 973,978 ****
+--- 1094,1100 ----
+  
+      if-ne v1, v3, :cond_2
+  
++     .line 939
+      :cond_0
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+***************
+*** 983,988 ****
+--- 1105,1111 ----
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+      .catch Ljava/lang/Throwable; {:try_start_1 .. :try_end_1} :catch_0
+  
++     .line 967
+      .end local v1           #state:I
+      :goto_1
+      :try_start_2
+***************
+*** 990,997 ****
+--- 1113,1122 ----
+      :try_end_2
+      .catchall {:try_start_2 .. :try_end_2} :catchall_0
+  
++     .line 968
+      return-void
+  
++     .line 934
+      :cond_1
+      :try_start_3
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+***************
+*** 1002,1013 ****
+--- 1127,1140 ----
+  
+      goto :goto_0
+  
++     .line 940
+      .restart local v1       #state:I
+      :cond_2
+      iget-boolean v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
+      if-eqz v3, :cond_3
+  
++     .line 941
+      iget-wide v5, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mExpiryTime:J
+  
+      invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+***************
+*** 1018,1023 ****
+--- 1145,1151 ----
+  
+      long-to-int v0, v5
+  
++     .line 943
+      .local v0, duration:I
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+***************
+*** 1030,1040 ****
+--- 1158,1170 ----
+  
+      goto :goto_1
+  
++     .line 964
+      .end local v0           #duration:I
+      .end local v1           #state:I
+      :catch_0
+      move-exception v2
+  
++     .line 965
+      .local v2, t:Ljava/lang/Throwable;
+      :try_start_4
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->TAG:Ljava/lang/String;
+***************
+*** 1043,1049 ****
+  
+      invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v6, "setListener(): "
+  
+      invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 1173,1179 ----
+  
+      invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v6, "setListener(): "
+  
+      invoke-virtual {v5, v6}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 1061,1066 ****
+--- 1191,1197 ----
+  
+      goto :goto_1
+  
++     .line 967
+      .end local v2           #t:Ljava/lang/Throwable;
+      :catchall_0
+      move-exception v3
+***************
+*** 1071,1076 ****
+--- 1202,1208 ----
+  
+      throw v3
+  
++     .line 944
+      .restart local v1       #state:I
+      :cond_3
+      :try_start_5
+***************
+*** 1078,1089 ****
+--- 1210,1223 ----
+  
+      if-eqz v3, :cond_5
+  
++     .line 945
+      iget v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mErrorCode:I
+  
+      const/4 v5, -0x5
+  
+      if-ne v3, v5, :cond_4
+  
++     .line 946
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      iget-object v5, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+***************
+*** 1092,1097 ****
+--- 1226,1232 ----
+  
+      goto :goto_1
+  
++     .line 948
+      :cond_4
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+***************
+*** 1105,1110 ****
+--- 1240,1246 ----
+  
+      goto :goto_1
+  
++     .line 951
+      :cond_5
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+***************
+*** 1115,1149 ****
+  
+      if-nez v3, :cond_6
+  
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      iget-object v5, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/16 v6, -0xa
+  
+!     const-string v7, "no data connection"
+  
+      invoke-virtual {v3, v5, v6, v7}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationFailed(Landroid/net/sip/ISipSession;ILjava/lang/String;)V
+  
+      goto :goto_1
+  
+      :cond_6
+      iget-boolean v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
+      if-nez v3, :cond_7
+  
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      iget-object v5, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/4 v6, -0x4
+  
+!     const-string v7, "registration not running"
+  
+      invoke-virtual {v3, v5, v6, v7}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationFailed(Landroid/net/sip/ISipSession;ILjava/lang/String;)V
+  
+      goto :goto_1
+  
+      :cond_7
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+--- 1251,1289 ----
+  
+      if-nez v3, :cond_6
+  
++     .line 952
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      iget-object v5, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/16 v6, -0xa
+  
+!     const-string/jumbo v7, "no data connection"
+  
+      invoke-virtual {v3, v5, v6, v7}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationFailed(Landroid/net/sip/ISipSession;ILjava/lang/String;)V
+  
+      goto :goto_1
+  
++     .line 955
+      :cond_6
+      iget-boolean v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
+      if-nez v3, :cond_7
+  
++     .line 956
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      iget-object v5, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/4 v6, -0x4
+  
+!     const-string/jumbo v7, "registration not running"
+  
+      invoke-virtual {v3, v5, v6, v7}, Lcom/android/server/sip/SipSessionListenerProxy;->onRegistrationFailed(Landroid/net/sip/ISipSession;ILjava/lang/String;)V
+  
+      goto :goto_1
+  
++     .line 960
+      :cond_7
+      iget-object v3, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+***************
+*** 1170,1183 ****
+--- 1310,1327 ----
+      .prologue
+      const/4 v1, 0x1
+  
++     .line 808
+      iget-boolean v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
+      if-nez v0, :cond_0
+  
++     .line 809
+      iput-boolean v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
++     .line 810
+      iput v1, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mBackoff:I
+  
++     .line 811
+      invoke-virtual {p1, p0}, Lcom/android/server/sip/SipSessionGroup;->createSession(Landroid/net/sip/ISipSessionListener;)Landroid/net/sip/ISipSession;
+  
+      move-result-object v0
+***************
+*** 1186,1199 ****
+--- 1330,1346 ----
+  
+      iput-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
++     .line 814
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      if-nez v0, :cond_1
+  
++     .line 823
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 819
+      :cond_1
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+***************
+*** 1206,1215 ****
+--- 1353,1364 ----
+  
+      invoke-virtual {v0, v1}, Lcom/android/server/sip/SipWakeLock;->acquire(Ljava/lang/Object;)V
+  
++     .line 820
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      invoke-virtual {v0}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->unregister()V
+  
++     .line 821
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1249,1264 ****
+--- 1398,1417 ----
+      .prologue
+      const/4 v2, 0x0
+  
++     .line 903
+      iget-boolean v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
+      if-nez v0, :cond_0
+  
++     .line 916
+      :goto_0
+      return-void
+  
++     .line 904
+      :cond_0
+      iput-boolean v2, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRunning:Z
+  
++     .line 905
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mMyWakeLock:Lcom/android/server/sip/SipWakeLock;
+***************
+*** 1270,1285 ****
+--- 1423,1441 ----
+  
+      invoke-virtual {v0, v1}, Lcom/android/server/sip/SipWakeLock;->release(Ljava/lang/Object;)V
+  
++     .line 906
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      if-eqz v0, :cond_1
+  
++     .line 907
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mSession:Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;
+  
+      const/4 v1, 0x0
+  
+      invoke-virtual {v0, v1}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->setListener(Landroid/net/sip/ISipSessionListener;)V
+  
++     .line 908
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+      #getter for: Lcom/android/server/sip/SipService;->mConnected:Z
+***************
+*** 1297,1302 ****
+--- 1453,1459 ----
+  
+      invoke-virtual {v0}, Lcom/android/server/sip/SipSessionGroup$SipSessionImpl;->unregister()V
+  
++     .line 911
+      :cond_1
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->this$0:Lcom/android/server/sip/SipService;
+  
+***************
+*** 1307,1316 ****
+--- 1464,1476 ----
+  
+      invoke-virtual {v0, p0}, Lcom/android/server/sip/SipWakeupTimer;->cancel(Ljava/lang/Runnable;)V
+  
++     .line 912
+      invoke-direct {p0}, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->stopKeepAliveProcess()V
+  
++     .line 914
+      iput-boolean v2, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mRegistered:Z
+  
++     .line 915
+      iget-object v0, p0, Lcom/android/server/sip/SipService$AutoRegistrationProcess;->mProxy:Lcom/android/server/sip/SipSessionListenerProxy;
+  
+      invoke-virtual {v0}, Lcom/android/server/sip/SipSessionListenerProxy;->getListener()Landroid/net/sip/ISipSessionListener;

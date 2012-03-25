@@ -1,0 +1,1760 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/widget/RemoteViewsAdapter.smali	2012-03-23 19:35:55.469598372 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/widget/RemoteViewsAdapter.smali.original	2012-03-23 19:34:44.905311634 -0500
+***************
+*** 77,93 ****
+      .parameter "callback"
+  
+      .prologue
+      invoke-direct {p0}, Landroid/widget/BaseAdapter;-><init>()V
+  
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/widget/RemoteViewsAdapter;->mNotifyDataSetChangedAfterOnServiceConnected:Z
+  
+      iput-object p1, p0, Landroid/widget/RemoteViewsAdapter;->mContext:Landroid/content/Context;
+  
+      iput-object p2, p0, Landroid/widget/RemoteViewsAdapter;->mIntent:Landroid/content/Intent;
+  
+!     const-string v0, "remoteAdapterAppWidgetId"
+  
+      const/4 v1, -0x1
+  
+--- 77,98 ----
+      .parameter "callback"
+  
+      .prologue
++     .line 714
+      invoke-direct {p0}, Landroid/widget/BaseAdapter;-><init>()V
+  
++     .line 73
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/widget/RemoteViewsAdapter;->mNotifyDataSetChangedAfterOnServiceConnected:Z
+  
++     .line 715
+      iput-object p1, p0, Landroid/widget/RemoteViewsAdapter;->mContext:Landroid/content/Context;
+  
++     .line 716
+      iput-object p2, p0, Landroid/widget/RemoteViewsAdapter;->mIntent:Landroid/content/Intent;
+  
+!     .line 717
+!     const-string/jumbo v0, "remoteAdapterAppWidgetId"
+  
+      const/4 v1, -0x1
+  
+***************
+*** 97,112 ****
+--- 102,120 ----
+  
+      iput v0, p0, Landroid/widget/RemoteViewsAdapter;->mAppWidgetId:I
+  
++     .line 718
+      invoke-static {p1}, Landroid/view/LayoutInflater;->from(Landroid/content/Context;)Landroid/view/LayoutInflater;
+  
+      move-result-object v0
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mLayoutInflater:Landroid/view/LayoutInflater;
+  
++     .line 719
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mIntent:Landroid/content/Intent;
+  
+      if-nez v0, :cond_0
+  
++     .line 720
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "Non-null Intent must be specified."
+***************
+*** 115,120 ****
+--- 123,129 ----
+  
+      throw v0
+  
++     .line 722
+      :cond_0
+      new-instance v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayoutRefSet;
+  
+***************
+*** 122,128 ****
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mRequestedViews:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayoutRefSet;
+  
+!     const-string v0, "remoteAdapterAppWidgetId"
+  
+      invoke-virtual {p2, v0}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
+  
+--- 131,138 ----
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mRequestedViews:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayoutRefSet;
+  
+!     .line 725
+!     const-string/jumbo v0, "remoteAdapterAppWidgetId"
+  
+      invoke-virtual {p2, v0}, Landroid/content/Intent;->hasExtra(Ljava/lang/String;)Z
+  
+***************
+*** 130,139 ****
+  
+      if-eqz v0, :cond_1
+  
+!     const-string v0, "remoteAdapterAppWidgetId"
+  
+      invoke-virtual {p2, v0}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
+  
+      :cond_1
+      new-instance v0, Landroid/os/HandlerThread;
+  
+--- 140,151 ----
+  
+      if-eqz v0, :cond_1
+  
+!     .line 726
+!     const-string/jumbo v0, "remoteAdapterAppWidgetId"
+  
+      invoke-virtual {p2, v0}, Landroid/content/Intent;->removeExtra(Ljava/lang/String;)V
+  
++     .line 730
+      :cond_1
+      new-instance v0, Landroid/os/HandlerThread;
+  
+***************
+*** 143,152 ****
+--- 155,166 ----
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerThread:Landroid/os/HandlerThread;
+  
++     .line 731
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerThread:Landroid/os/HandlerThread;
+  
+      invoke-virtual {v0}, Landroid/os/HandlerThread;->start()V
+  
++     .line 732
+      new-instance v0, Landroid/os/Handler;
+  
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerThread:Landroid/os/HandlerThread;
+***************
+*** 159,164 ****
+--- 173,179 ----
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerQueue:Landroid/os/Handler;
+  
++     .line 733
+      new-instance v0, Landroid/os/Handler;
+  
+      invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
+***************
+*** 169,174 ****
+--- 184,190 ----
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
++     .line 736
+      new-instance v0, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      const/16 v1, 0x28
+***************
+*** 177,196 ****
+--- 193,216 ----
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
++     .line 737
+      new-instance v0, Ljava/lang/ref/WeakReference;
+  
+      invoke-direct {v0, p3}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCallback:Ljava/lang/ref/WeakReference;
+  
++     .line 738
+      new-instance v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-direct {v0, p0}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;-><init>(Landroid/widget/RemoteViewsAdapter;)V
+  
+      iput-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
++     .line 739
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->requestBindService()Z
+  
++     .line 740
+      return-void
+  .end method
+  
+***************
+*** 199,204 ****
+--- 219,225 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-boolean v0, p0, Landroid/widget/RemoteViewsAdapter;->mNotifyDataSetChangedAfterOnServiceConnected:Z
+  
+      return v0
+***************
+*** 209,214 ****
+--- 230,236 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->onNotifyDataSetChanged()V
+  
+      return-void
+***************
+*** 219,224 ****
+--- 241,247 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerQueue:Landroid/os/Handler;
+  
+      return-object v0
+***************
+*** 229,234 ****
+--- 252,258 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mContext:Landroid/content/Context;
+  
+      return-object v0
+***************
+*** 239,244 ****
+--- 263,269 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mLayoutInflater:Landroid/view/LayoutInflater;
+  
+      return-object v0
+***************
+*** 251,256 ****
+--- 276,282 ----
+      .parameter "x2"
+  
+      .prologue
++     .line 47
+      invoke-direct {p0, p1, p2}, Landroid/widget/RemoteViewsAdapter;->updateRemoteViews(IZ)V
+  
+      return-void
+***************
+*** 261,266 ****
+--- 287,293 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->loadNextIndexInBackground()V
+  
+      return-void
+***************
+*** 271,276 ****
+--- 298,304 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mRequestedViews:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayoutRefSet;
+  
+      return-object v0
+***************
+*** 281,286 ****
+--- 309,315 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      return-object v0
+***************
+*** 291,296 ****
+--- 320,326 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->updateTemporaryMetaData()V
+  
+      return-void
+***************
+*** 301,306 ****
+--- 331,337 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      return-object v0
+***************
+*** 311,316 ****
+--- 342,348 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCallback:Ljava/lang/ref/WeakReference;
+  
+      return-object v0
+***************
+*** 321,326 ****
+--- 353,359 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+      return-object v0
+***************
+*** 331,336 ****
+--- 364,370 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 47
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->enqueueDeferredUnbindServiceMessage()V
+  
+      return-void
+***************
+*** 342,357 ****
+--- 376,394 ----
+      .prologue
+      const/4 v3, 0x1
+  
++     .line 1125
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+      invoke-virtual {v0, v3}, Landroid/os/Handler;->removeMessages(I)V
+  
++     .line 1126
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+      const-wide/16 v1, 0x1388
+  
+      invoke-virtual {v0, v3, v1, v2}, Landroid/os/Handler;->sendEmptyMessageDelayed(IJ)Z
+  
++     .line 1127
+      return-void
+  .end method
+  
+***************
+*** 360,379 ****
+--- 397,421 ----
+      .parameter "convertView"
+  
+      .prologue
++     .line 922
+      const/4 v1, -0x1
+  
++     .line 923
+      .local v1, typeId:I
+      if-eqz p1, :cond_0
+  
++     .line 924
+      const v2, 0x1020225
+  
+      invoke-virtual {p1, v2}, Landroid/view/View;->getTag(I)Ljava/lang/Object;
+  
+      move-result-object v0
+  
++     .line 925
+      .local v0, tag:Ljava/lang/Object;
+      if-eqz v0, :cond_0
+  
++     .line 926
+      check-cast v0, Ljava/lang/Integer;
+  
+      .end local v0           #tag:Ljava/lang/Object;
+***************
+*** 381,386 ****
+--- 423,429 ----
+  
+      move-result v1
+  
++     .line 929
+      :cond_0
+      return v1
+  .end method
+***************
+*** 389,394 ****
+--- 432,438 ----
+      .locals 2
+  
+      .prologue
++     .line 754
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerQueue:Landroid/os/Handler;
+  
+      new-instance v1, Landroid/widget/RemoteViewsAdapter$1;
+***************
+*** 397,402 ****
+--- 441,447 ----
+  
+      invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+  
++     .line 779
+      return-void
+  .end method
+  
+***************
+*** 404,415 ****
+--- 449,462 ----
+      .locals 5
+  
+      .prologue
++     .line 1040
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-virtual {v2}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->getRemoteViewsFactory()Lcom/android/internal/widget/IRemoteViewsFactory;
+  
+      move-result-object v1
+  
++     .line 1042
+      .local v1, factory:Lcom/android/internal/widget/IRemoteViewsFactory;
+      :try_start_0
+      invoke-interface {v1}, Lcom/android/internal/widget/IRemoteViewsFactory;->onDataSetChanged()V
+***************
+*** 417,437 ****
+--- 464,489 ----
+      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+      .catch Ljava/lang/RuntimeException; {:try_start_0 .. :try_end_0} :catch_1
+  
++     .line 1055
+      iget-object v3, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      monitor-enter v3
+  
++     .line 1056
+      :try_start_1
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v2}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->reset()V
+  
++     .line 1057
+      monitor-exit v3
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 1060
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->updateTemporaryMetaData()V
+  
++     .line 1063
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+      new-instance v3, Landroid/widget/RemoteViewsAdapter$4;
+***************
+*** 440,455 ****
+--- 492,511 ----
+  
+      invoke-virtual {v2, v3}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+  
++     .line 1076
+      const/4 v2, 0x0
+  
+      iput-boolean v2, p0, Landroid/widget/RemoteViewsAdapter;->mNotifyDataSetChangedAfterOnServiceConnected:Z
+  
++     .line 1077
+      :goto_0
+      return-void
+  
++     .line 1043
+      :catch_0
+      move-exception v0
+  
++     .line 1044
+      .local v0, e:Landroid/os/RemoteException;
+      const-string v2, "RemoteViewsAdapter"
+  
+***************
+*** 479,488 ****
+--- 535,546 ----
+  
+      goto :goto_0
+  
++     .line 1049
+      .end local v0           #e:Landroid/os/RemoteException;
+      :catch_1
+      move-exception v0
+  
++     .line 1050
+      .local v0, e:Ljava/lang/RuntimeException;
+      const-string v2, "RemoteViewsAdapter"
+  
+***************
+*** 512,517 ****
+--- 570,576 ----
+  
+      goto :goto_0
+  
++     .line 1057
+      .end local v0           #e:Ljava/lang/RuntimeException;
+      :catchall_0
+      move-exception v2
+***************
+*** 530,535 ****
+--- 589,595 ----
+      .parameter "e"
+  
+      .prologue
++     .line 782
+      const-string v1, "RemoteViewsAdapter"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 566,600 ****
+--- 626,668 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 786
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaData()Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+  
+      move-result-object v0
+  
++     .line 787
+      .local v0, metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v0
+  
++     .line 788
+      :try_start_0
+      invoke-virtual {v0}, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->reset()V
+  
++     .line 789
+      monitor-exit v0
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 790
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      monitor-enter v2
+  
++     .line 791
+      :try_start_1
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->reset()V
+  
++     .line 792
+      monitor-exit v2
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_1
+  
++     .line 793
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+      new-instance v2, Landroid/widget/RemoteViewsAdapter$2;
+***************
+*** 603,610 ****
+--- 671,680 ----
+  
+      invoke-virtual {v1, v2}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+  
++     .line 799
+      return-void
+  
++     .line 789
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 615,620 ****
+--- 685,691 ----
+  
+      throw v1
+  
++     .line 792
+      :catchall_1
+      move-exception v1
+  
+***************
+*** 630,635 ****
+--- 701,707 ----
+      .locals 4
+  
+      .prologue
++     .line 1131
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-virtual {v0}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->isConnected()Z
+***************
+*** 638,643 ****
+--- 710,716 ----
+  
+      if-nez v0, :cond_0
+  
++     .line 1132
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mContext:Landroid/content/Context;
+***************
+*** 648,653 ****
+--- 721,727 ----
+  
+      invoke-virtual {v0, v1, v2, v3}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->bind(Landroid/content/Context;ILandroid/content/Intent;)V
+  
++     .line 1136
+      :cond_0
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+***************
+*** 655,660 ****
+--- 729,735 ----
+  
+      invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
+  
++     .line 1137
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-virtual {v0}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->isConnected()Z
+***************
+*** 670,675 ****
+--- 745,751 ----
+      .parameter "isRequested"
+  
+      .prologue
++     .line 831
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-virtual {v0}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->isConnected()Z
+***************
+*** 678,686 ****
+--- 754,764 ----
+  
+      if-nez v0, :cond_0
+  
++     .line 874
+      :goto_0
+      return-void
+  
++     .line 832
+      :cond_0
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+***************
+*** 688,705 ****
+--- 766,787 ----
+  
+      move-result-object v7
+  
++     .line 835
+      .local v7, factory:Lcom/android/internal/widget/IRemoteViewsFactory;
+      const/4 v2, 0x0
+  
++     .line 836
+      .local v2, remoteViews:Landroid/widget/RemoteViews;
+      const-wide/16 v3, 0x0
+  
++     .line 838
+      .local v3, itemId:J
+      :try_start_0
+      invoke-interface {v7, p1}, Lcom/android/internal/widget/IRemoteViewsFactory;->getViewAt(I)Landroid/widget/RemoteViews;
+  
+      move-result-object v2
+  
++     .line 839
+      invoke-interface {v7, p1}, Lcom/android/internal/widget/IRemoteViewsFactory;->getItemId(I)J
+      :try_end_0
+      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+***************
+*** 707,714 ****
+--- 789,798 ----
+  
+      move-result-wide v3
+  
++     .line 851
+      if-nez v2, :cond_1
+  
++     .line 855
+      const-string v0, "RemoteViewsAdapter"
+  
+      new-instance v1, Ljava/lang/StringBuilder;
+***************
+*** 737,743 ****
+  
+      move-result-object v1
+  
+!     const-string v5, "returned from RemoteViewsFactory."
+  
+      invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 821,827 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v5, "returned from RemoteViewsFactory."
+  
+      invoke-virtual {v1, v5}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 751,759 ****
+--- 835,845 ----
+  
+      goto :goto_0
+  
++     .line 840
+      :catch_0
+      move-exception v6
+  
++     .line 841
+      .local v6, e:Landroid/os/RemoteException;
+      const-string v0, "RemoteViewsAdapter"
+  
+***************
+*** 793,802 ****
+--- 879,890 ----
+  
+      goto :goto_0
+  
++     .line 846
+      .end local v6           #e:Landroid/os/RemoteException;
+      :catch_1
+      move-exception v6
+  
++     .line 847
+      .local v6, e:Ljava/lang/RuntimeException;
+      const-string v0, "RemoteViewsAdapter"
+  
+***************
+*** 836,847 ****
+--- 924,937 ----
+  
+      goto/16 :goto_0
+  
++     .line 859
+      .end local v6           #e:Ljava/lang/RuntimeException;
+      :cond_1
+      iget-object v10, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      monitor-enter v10
+  
++     .line 861
+      :try_start_1
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+***************
+*** 851,858 ****
+--- 941,950 ----
+  
+      invoke-virtual/range {v0 .. v5}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->insert(ILandroid/widget/RemoteViews;JZ)V
+  
++     .line 865
+      move-object v8, v2
+  
++     .line 866
+      .local v8, rv:Landroid/widget/RemoteViews;
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+***************
+*** 862,867 ****
+--- 954,960 ----
+  
+      iget v9, v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;->typeId:I
+  
++     .line 867
+      .local v9, typeId:I
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+***************
+*** 871,876 ****
+--- 964,970 ----
+  
+      invoke-virtual {v0, v1}, Landroid/os/Handler;->post(Ljava/lang/Runnable;)Z
+  
++     .line 873
+      monitor-exit v10
+  
+      goto/16 :goto_0
+***************
+*** 891,937 ****
+--- 985,1040 ----
+      .locals 9
+  
+      .prologue
++     .line 802
+      iget-object v8, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-virtual {v8}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->getRemoteViewsFactory()Lcom/android/internal/widget/IRemoteViewsFactory;
+  
+      move-result-object v2
+  
++     .line 807
+      .local v2, factory:Lcom/android/internal/widget/IRemoteViewsFactory;
+      :try_start_0
+      invoke-interface {v2}, Lcom/android/internal/widget/IRemoteViewsFactory;->hasStableIds()Z
+  
+      move-result v4
+  
++     .line 808
+      .local v4, hasStableIds:Z
+      invoke-interface {v2}, Lcom/android/internal/widget/IRemoteViewsFactory;->getViewTypeCount()I
+  
+      move-result v7
+  
++     .line 809
+      .local v7, viewTypeCount:I
+      invoke-interface {v2}, Lcom/android/internal/widget/IRemoteViewsFactory;->getCount()I
+  
+      move-result v0
+  
++     .line 810
+      .local v0, count:I
+      invoke-interface {v2}, Lcom/android/internal/widget/IRemoteViewsFactory;->getLoadingView()Landroid/widget/RemoteViews;
+  
+      move-result-object v5
+  
++     .line 811
+      .local v5, loadingView:Landroid/widget/RemoteViews;
+      const/4 v3, 0x0
+  
++     .line 812
+      .local v3, firstView:Landroid/widget/RemoteViews;
+      if-lez v0, :cond_0
+  
+      if-nez v5, :cond_0
+  
++     .line 813
+      const/4 v8, 0x0
+  
+      invoke-interface {v2, v8}, Lcom/android/internal/widget/IRemoteViewsFactory;->getViewAt(I)Landroid/widget/RemoteViews;
+  
+      move-result-object v3
+  
++     .line 815
+      :cond_0
+      iget-object v8, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+***************
+*** 939,963 ****
+--- 1042,1073 ----
+  
+      move-result-object v6
+  
++     .line 816
+      .local v6, tmpMetaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v6
+      :try_end_0
+      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+      .catch Ljava/lang/RuntimeException; {:try_start_0 .. :try_end_0} :catch_1
+  
++     .line 817
+      :try_start_1
+      iput-boolean v4, v6, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->hasStableIds:Z
+  
++     .line 819
+      add-int/lit8 v8, v7, 0x1
+  
+      iput v8, v6, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->viewTypeCount:I
+  
++     .line 820
+      iput v0, v6, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->count:I
+  
++     .line 821
+      invoke-virtual {v6, v5, v3}, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->setLoadingViewTemplates(Landroid/widget/RemoteViews;Landroid/widget/RemoteViews;)V
+  
++     .line 822
+      monitor-exit v6
+  
++     .line 828
+      .end local v0           #count:I
+      .end local v3           #firstView:Landroid/widget/RemoteViews;
+      .end local v4           #hasStableIds:Z
+***************
+*** 967,972 ****
+--- 1077,1083 ----
+      :goto_0
+      return-void
+  
++     .line 822
+      .restart local v0       #count:I
+      .restart local v3       #firstView:Landroid/widget/RemoteViews;
+      .restart local v4       #hasStableIds:Z
+***************
+*** 986,991 ****
+--- 1097,1103 ----
+      .catch Landroid/os/RemoteException; {:try_start_2 .. :try_end_2} :catch_0
+      .catch Ljava/lang/RuntimeException; {:try_start_2 .. :try_end_2} :catch_1
+  
++     .line 823
+      .end local v0           #count:I
+      .end local v3           #firstView:Landroid/widget/RemoteViews;
+      .end local v4           #hasStableIds:Z
+***************
+*** 995,1013 ****
+      :catch_0
+      move-exception v1
+  
+      .local v1, e:Landroid/os/RemoteException;
+!     const-string v8, "updateMetaData"
+  
+      invoke-direct {p0, v8, v1}, Landroid/widget/RemoteViewsAdapter;->processException(Ljava/lang/String;Ljava/lang/Exception;)V
+  
+      goto :goto_0
+  
+      .end local v1           #e:Landroid/os/RemoteException;
+      :catch_1
+      move-exception v1
+  
+      .local v1, e:Ljava/lang/RuntimeException;
+!     const-string v8, "updateMetaData"
+  
+      invoke-direct {p0, v8, v1}, Landroid/widget/RemoteViewsAdapter;->processException(Ljava/lang/String;Ljava/lang/Exception;)V
+  
+--- 1107,1128 ----
+      :catch_0
+      move-exception v1
+  
++     .line 824
+      .local v1, e:Landroid/os/RemoteException;
+!     const-string/jumbo v8, "updateMetaData"
+  
+      invoke-direct {p0, v8, v1}, Landroid/widget/RemoteViewsAdapter;->processException(Ljava/lang/String;Ljava/lang/Exception;)V
+  
+      goto :goto_0
+  
++     .line 825
+      .end local v1           #e:Landroid/os/RemoteException;
+      :catch_1
+      move-exception v1
+  
++     .line 826
+      .local v1, e:Ljava/lang/RuntimeException;
+!     const-string/jumbo v8, "updateMetaData"
+  
+      invoke-direct {p0, v8, v1}, Landroid/widget/RemoteViewsAdapter;->processException(Ljava/lang/String;Ljava/lang/Exception;)V
+  
+***************
+*** 1025,1046 ****
+--- 1140,1166 ----
+      .end annotation
+  
+      .prologue
++     .line 745
+      :try_start_0
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerThread:Landroid/os/HandlerThread;
+  
+      if-eqz v0, :cond_0
+  
++     .line 746
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerThread:Landroid/os/HandlerThread;
+  
+      invoke-virtual {v0}, Landroid/os/HandlerThread;->quit()Z
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 749
+      :cond_0
+      invoke-super {p0}, Ljava/lang/Object;->finalize()V
+  
++     .line 751
+      return-void
+  
++     .line 749
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1053,1067 ****
+--- 1173,1190 ----
+      .locals 2
+  
+      .prologue
++     .line 881
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaData()Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+  
+      move-result-object v0
+  
++     .line 882
+      .local v0, metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v0
+  
++     .line 883
+      :try_start_0
+      iget v1, v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->count:I
+  
+***************
+*** 1069,1074 ****
+--- 1192,1198 ----
+  
+      return v1
+  
++     .line 884
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 1084,1089 ****
+--- 1208,1214 ----
+      .parameter "position"
+  
+      .prologue
++     .line 889
+      const/4 v0, 0x0
+  
+      return-object v0
+***************
+*** 1094,1103 ****
+--- 1219,1230 ----
+      .parameter "position"
+  
+      .prologue
++     .line 893
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      monitor-enter v2
+  
++     .line 894
+      :try_start_0
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+***************
+*** 1107,1112 ****
+--- 1234,1240 ----
+  
+      if-eqz v0, :cond_0
+  
++     .line 895
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v0, p1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaDataAt(I)Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;
+***************
+*** 1117,1122 ****
+--- 1245,1251 ----
+  
+      monitor-exit v2
+  
++     .line 897
+      :goto_0
+      return-wide v0
+  
+***************
+*** 1127,1132 ****
+--- 1256,1262 ----
+  
+      goto :goto_0
+  
++     .line 898
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1142,1154 ****
+--- 1272,1287 ----
+      .parameter "position"
+  
+      .prologue
++     .line 902
+      const/4 v1, 0x0
+  
++     .line 903
+      .local v1, typeId:I
+      iget-object v3, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      monitor-enter v3
+  
++     .line 904
+      :try_start_0
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+***************
+*** 1158,1163 ****
+--- 1291,1297 ----
+  
+      if-eqz v2, :cond_0
+  
++     .line 905
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v2, p1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaDataAt(I)Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;
+***************
+*** 1166,1184 ****
+--- 1300,1322 ----
+  
+      iget v1, v2, Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;->typeId:I
+  
++     .line 909
+      monitor-exit v3
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 911
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v2}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaData()Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+  
+      move-result-object v0
+  
++     .line 912
+      .local v0, metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v0
+  
++     .line 913
+      :try_start_1
+      invoke-virtual {v0, v1}, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->getMappedViewType(I)I
+  
+***************
+*** 1192,1197 ****
+--- 1330,1336 ----
+      :goto_0
+      return v2
+  
++     .line 907
+      :cond_0
+      const/4 v2, 0x0
+  
+***************
+*** 1200,1205 ****
+--- 1339,1345 ----
+  
+      goto :goto_0
+  
++     .line 909
+      :catchall_0
+      move-exception v2
+  
+***************
+*** 1209,1214 ****
+--- 1349,1355 ----
+  
+      throw v2
+  
++     .line 914
+      .restart local v0       #metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      :catchall_1
+      move-exception v2
+***************
+*** 1225,1230 ****
+--- 1366,1372 ----
+      .locals 1
+  
+      .prologue
++     .line 877
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mIntent:Landroid/content/Intent;
+  
+      return-object v0
+***************
+*** 1237,1242 ****
+--- 1379,1385 ----
+      .parameter "parent"
+  
+      .prologue
++     .line 935
+      move-object/from16 v0, p0
+  
+      iget-object v0, v0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+***************
+*** 1245,1250 ****
+--- 1388,1394 ----
+  
+      monitor-enter v19
+  
++     .line 936
+      :try_start_0
+      move-object/from16 v0, p0
+  
+***************
+*** 1260,1265 ****
+--- 1404,1410 ----
+  
+      move-result v10
+  
++     .line 937
+      .local v10, isInCache:Z
+      move-object/from16 v0, p0
+  
+***************
+*** 1271,1297 ****
+--- 1416,1450 ----
+  
+      move-result v9
+  
++     .line 938
+      .local v9, isConnected:Z
+      const/4 v7, 0x0
+  
++     .line 940
+      .local v7, hasNewItems:Z
+      if-nez v10, :cond_1
+  
+      if-nez v9, :cond_1
+  
++     .line 943
+      invoke-direct/range {p0 .. p0}, Landroid/widget/RemoteViewsAdapter;->requestBindService()Z
+  
++     .line 949
+      :goto_0
+      if-eqz v10, :cond_7
+  
++     .line 950
+      const/4 v4, 0x0
+  
++     .line 951
+      .local v4, convertViewChild:Landroid/view/View;
+      const/4 v5, 0x0
+  
++     .line 952
+      .local v5, convertViewTypeId:I
+      const/4 v11, 0x0
+  
++     .line 954
+      .local v11, layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      move-object/from16 v0, p2
+  
+***************
+*** 1301,1312 ****
+--- 1454,1467 ----
+  
+      if-eqz v18, :cond_8
+  
++     .line 955
+      move-object/from16 v0, p2
+  
+      check-cast v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+  
+      move-object v11, v0
+  
++     .line 956
+      const/16 v18, 0x0
+  
+      move/from16 v0, v18
+***************
+*** 1315,1320 ****
+--- 1470,1476 ----
+  
+      move-result-object v4
+  
++     .line 957
+      move-object/from16 v0, p0
+  
+      invoke-direct {v0, v4}, Landroid/widget/RemoteViewsAdapter;->getConvertViewTypeId(Landroid/view/View;)I
+***************
+*** 1323,1328 ****
+--- 1479,1485 ----
+  
+      move-object v12, v11
+  
++     .line 962
+      .end local v11           #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .local v12, layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      :goto_1
+***************
+*** 1330,1335 ****
+--- 1487,1493 ----
+  
+      move-result-object v3
+  
++     .line 963
+      .local v3, context:Landroid/content/Context;
+      move-object/from16 v0, p0
+  
+***************
+*** 1345,1350 ****
+--- 1503,1509 ----
+  
+      move-result-object v16
+  
++     .line 964
+      .local v16, rv:Landroid/widget/RemoteViews;
+      move-object/from16 v0, p0
+  
+***************
+*** 1360,1365 ****
+--- 1519,1525 ----
+  
+      move-result-object v8
+  
++     .line 965
+      .local v8, indexMetaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;
+      const/16 v18, 0x1
+  
+***************
+*** 1367,1385 ****
+--- 1527,1549 ----
+  
+      iput-boolean v0, v8, Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;->isRequested:Z
+  
++     .line 966
+      iget v0, v8, Landroid/widget/RemoteViewsAdapter$RemoteViewsIndexMetaData;->typeId:I
+  
+      move/from16 v17, v0
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 970
+      .local v17, typeId:I
+      if-eqz v12, :cond_4
+  
++     .line 971
+      move/from16 v0, v17
+  
+      if-ne v5, v0, :cond_2
+  
++     .line 972
+      :try_start_1
+      move-object/from16 v0, v16
+  
+***************
+*** 1388,1393 ****
+--- 1552,1558 ----
+      .catchall {:try_start_1 .. :try_end_1} :catchall_4
+      .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_0
+  
++     .line 1000
+      if-eqz v7, :cond_0
+  
+      :try_start_2
+***************
+*** 1398,1403 ****
+--- 1563,1569 ----
+  
+      move-object v13, v12
+  
++     .line 1015
+      .end local v3           #context:Landroid/content/Context;
+      .end local v4           #convertViewChild:Landroid/view/View;
+      .end local v5           #convertViewTypeId:I
+***************
+*** 1408,1413 ****
+--- 1574,1580 ----
+      :goto_2
+      return-object v13
+  
++     .line 946
+      :cond_1
+      move-object/from16 v0, p0
+  
+***************
+*** 1427,1432 ****
+--- 1594,1600 ----
+  
+      goto :goto_0
+  
++     .line 975
+      .restart local v3       #context:Landroid/content/Context;
+      .restart local v4       #convertViewChild:Landroid/view/View;
+      .restart local v5       #convertViewTypeId:I
+***************
+*** 1443,1448 ****
+--- 1611,1617 ----
+  
+      move-object v11, v12
+  
++     .line 981
+      .end local v12           #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .restart local v11       #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      :goto_3
+***************
+*** 1455,1460 ****
+--- 1624,1630 ----
+  
+      move-result-object v15
+  
++     .line 982
+      .local v15, newView:Landroid/view/View;
+      const v18, 0x1020225
+  
+***************
+*** 1472,1482 ****
+--- 1642,1654 ----
+  
+      invoke-virtual {v15, v0, v1}, Landroid/view/View;->setTagInternal(ILjava/lang/Object;)V
+  
++     .line 984
+      invoke-virtual {v11, v15}, Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;->addView(Landroid/view/View;)V
+      :try_end_4
+      .catchall {:try_start_4 .. :try_end_4} :catchall_2
+      .catch Ljava/lang/Exception; {:try_start_4 .. :try_end_4} :catch_1
+  
++     .line 1000
+      if-eqz v7, :cond_3
+  
+      :try_start_5
+***************
+*** 1491,1496 ****
+--- 1663,1669 ----
+  
+      goto :goto_2
+  
++     .line 977
+      .end local v11           #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .end local v15           #newView:Landroid/view/View;
+      .restart local v12       #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+***************
+*** 1509,1514 ****
+--- 1682,1688 ----
+      .restart local v11       #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      goto :goto_3
+  
++     .line 987
+      .end local v11           #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .restart local v12       #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      :catch_0
+***************
+*** 1516,1521 ****
+--- 1690,1696 ----
+  
+      move-object v11, v12
+  
++     .line 990
+      .end local v12           #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .local v6, e:Ljava/lang/Exception;
+      .restart local v11       #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+***************
+*** 1569,1576 ****
+--- 1744,1753 ----
+  
+      invoke-static {v0, v1}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 993
+      const/4 v13, 0x0
+  
++     .line 994
+      .local v13, loadingView:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      move-object/from16 v0, p0
+  
+***************
+*** 1582,1592 ****
+--- 1759,1771 ----
+  
+      move-result-object v14
+  
++     .line 995
+      .local v14, metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v14
+      :try_end_7
+      .catchall {:try_start_7 .. :try_end_7} :catchall_2
+  
++     .line 996
+      :try_start_8
+      move/from16 v0, p1
+  
+***************
+*** 1599,1608 ****
+--- 1778,1789 ----
+  
+      move-result-object v13
+  
++     .line 997
+      monitor-exit v14
+      :try_end_8
+      .catchall {:try_start_8 .. :try_end_8} :catchall_1
+  
++     .line 1000
+      if-eqz v7, :cond_5
+  
+      :try_start_9
+***************
+*** 1613,1618 ****
+--- 1794,1800 ----
+  
+      goto/16 :goto_2
+  
++     .line 1017
+      .end local v3           #context:Landroid/content/Context;
+      .end local v4           #convertViewChild:Landroid/view/View;
+      .end local v5           #convertViewTypeId:I
+***************
+*** 1635,1640 ****
+--- 1817,1823 ----
+  
+      throw v18
+  
++     .line 997
+      .restart local v3       #context:Landroid/content/Context;
+      .restart local v4       #convertViewChild:Landroid/view/View;
+      .restart local v5       #convertViewTypeId:I
+***************
+*** 1661,1666 ****
+--- 1844,1850 ----
+      :try_end_b
+      .catchall {:try_start_b .. :try_end_b} :catchall_2
+  
++     .line 1000
+      .end local v6           #e:Ljava/lang/Exception;
+      .end local v13           #loadingView:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .end local v14           #metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+***************
+*** 1676,1681 ****
+--- 1860,1866 ----
+      :cond_6
+      throw v18
+  
++     .line 1005
+      .end local v3           #context:Landroid/content/Context;
+      .end local v4           #convertViewChild:Landroid/view/View;
+      .end local v5           #convertViewTypeId:I
+***************
+*** 1686,1691 ****
+--- 1871,1877 ----
+      :cond_7
+      const/4 v13, 0x0
+  
++     .line 1006
+      .restart local v13       #loadingView:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      move-object/from16 v0, p0
+  
+***************
+*** 1697,1707 ****
+--- 1883,1895 ----
+  
+      move-result-object v14
+  
++     .line 1007
+      .restart local v14       #metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v14
+      :try_end_c
+      .catchall {:try_start_c .. :try_end_c} :catchall_0
+  
++     .line 1008
+      :try_start_d
+      move/from16 v0, p1
+  
+***************
+*** 1714,1723 ****
+--- 1902,1913 ----
+  
+      move-result-object v13
+  
++     .line 1009
+      monitor-exit v14
+      :try_end_d
+      .catchall {:try_start_d .. :try_end_d} :catchall_3
+  
++     .line 1011
+      :try_start_e
+      move-object/from16 v0, p0
+  
+***************
+*** 1731,1736 ****
+--- 1921,1927 ----
+  
+      invoke-virtual {v0, v1, v13}, Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayoutRefSet;->add(ILandroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;)V
+  
++     .line 1012
+      move-object/from16 v0, p0
+  
+      iget-object v0, v0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+***************
+*** 1743,1756 ****
+--- 1934,1950 ----
+  
+      invoke-virtual {v0, v1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->queueRequestedPositionToLoad(I)V
+  
++     .line 1013
+      invoke-direct/range {p0 .. p0}, Landroid/widget/RemoteViewsAdapter;->loadNextIndexInBackground()V
+  
++     .line 1015
+      monitor-exit v19
+      :try_end_e
+      .catchall {:try_start_e .. :try_end_e} :catchall_0
+  
+      goto/16 :goto_2
+  
++     .line 1009
+      :catchall_3
+      move-exception v18
+  
+***************
+*** 1764,1769 ****
+--- 1958,1964 ----
+      :try_end_10
+      .catchall {:try_start_10 .. :try_end_10} :catchall_0
+  
++     .line 1000
+      .end local v13           #loadingView:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      .end local v14           #metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      .restart local v3       #context:Landroid/content/Context;
+***************
+*** 1782,1787 ****
+--- 1977,1983 ----
+      .restart local v11       #layout:Landroid/widget/RemoteViewsAdapter$RemoteViewsFrameLayout;
+      goto :goto_5
+  
++     .line 987
+      :catch_1
+      move-exception v6
+  
+***************
+*** 1803,1817 ****
+--- 1999,2016 ----
+      .locals 2
+  
+      .prologue
++     .line 1021
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaData()Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+  
+      move-result-object v0
+  
++     .line 1022
+      .local v0, metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v0
+  
++     .line 1023
+      :try_start_0
+      iget v1, v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->viewTypeCount:I
+  
+***************
+*** 1819,1824 ****
+--- 2018,2024 ----
+  
+      return v1
+  
++     .line 1024
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 1834,1849 ****
+--- 2034,2053 ----
+      .parameter "msg"
+  
+      .prologue
++     .line 1109
+      const/4 v0, 0x0
+  
++     .line 1110
+      .local v0, result:Z
+      iget v1, p1, Landroid/os/Message;->what:I
+  
+      packed-switch v1, :pswitch_data_0
+  
++     .line 1120
+      :goto_0
+      return v0
+  
++     .line 1112
+      :pswitch_0
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+***************
+*** 1853,1858 ****
+--- 2057,2063 ----
+  
+      if-eqz v1, :cond_0
+  
++     .line 1113
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      iget-object v2, p0, Landroid/widget/RemoteViewsAdapter;->mContext:Landroid/content/Context;
+***************
+*** 1863,1873 ****
+--- 2068,2081 ----
+  
+      invoke-virtual {v1, v2, v3, v4}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->unbind(Landroid/content/Context;ILandroid/content/Intent;)V
+  
++     .line 1115
+      :cond_0
+      const/4 v0, 0x1
+  
++     .line 1116
+      goto :goto_0
+  
++     .line 1110
+      :pswitch_data_0
+      .packed-switch 0x1
+          :pswitch_0
+***************
+*** 1878,1892 ****
+--- 2086,2103 ----
+      .locals 2
+  
+      .prologue
++     .line 1028
+      iget-object v1, p0, Landroid/widget/RemoteViewsAdapter;->mCache:Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;
+  
+      invoke-virtual {v1}, Landroid/widget/RemoteViewsAdapter$FixedSizeRemoteViewsCache;->getMetaData()Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+  
+      move-result-object v0
+  
++     .line 1029
+      .local v0, metaData:Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;
+      monitor-enter v0
+  
++     .line 1030
+      :try_start_0
+      iget-boolean v1, v0, Landroid/widget/RemoteViewsAdapter$RemoteViewsMetaData;->hasStableIds:Z
+  
+***************
+*** 1894,1899 ****
+--- 2105,2111 ----
+  
+      return v1
+  
++     .line 1031
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 1908,1913 ****
+--- 2120,2126 ----
+      .locals 1
+  
+      .prologue
++     .line 1035
+      invoke-virtual {p0}, Landroid/widget/RemoteViewsAdapter;->getCount()I
+  
+      move-result v0
+***************
+*** 1931,1940 ****
+--- 2144,2155 ----
+      .prologue
+      const/4 v1, 0x1
+  
++     .line 1081
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mMainQueue:Landroid/os/Handler;
+  
+      invoke-virtual {v0, v1}, Landroid/os/Handler;->removeMessages(I)V
+  
++     .line 1085
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mServiceConnection:Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;
+  
+      invoke-virtual {v0}, Landroid/widget/RemoteViewsAdapter$RemoteViewsAdapterServiceConnection;->isConnected()Z
+***************
+*** 1943,1962 ****
+--- 2158,2182 ----
+  
+      if-nez v0, :cond_1
+  
++     .line 1086
+      iget-boolean v0, p0, Landroid/widget/RemoteViewsAdapter;->mNotifyDataSetChangedAfterOnServiceConnected:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 1101
+      :goto_0
+      return-void
+  
++     .line 1090
+      :cond_0
+      iput-boolean v1, p0, Landroid/widget/RemoteViewsAdapter;->mNotifyDataSetChangedAfterOnServiceConnected:Z
+  
++     .line 1091
+      invoke-direct {p0}, Landroid/widget/RemoteViewsAdapter;->requestBindService()Z
+  
+      goto :goto_0
+  
++     .line 1095
+      :cond_1
+      iget-object v0, p0, Landroid/widget/RemoteViewsAdapter;->mWorkerQueue:Landroid/os/Handler;
+  
+***************
+*** 1973,1979 ****
+--- 2193,2201 ----
+      .locals 0
+  
+      .prologue
++     .line 1104
+      invoke-super {p0}, Landroid/widget/BaseAdapter;->notifyDataSetChanged()V
+  
++     .line 1105
+      return-void
+  .end method

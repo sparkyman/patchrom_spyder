@@ -1,0 +1,173 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/wifi/WpsStateMachine.smali	2012-03-23 19:36:58.202742309 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/wifi/WpsStateMachine.smali.original	2012-03-23 19:34:45.448321536 -0500
+***************
+*** 44,49 ****
+--- 44,50 ----
+      .parameter "target"
+  
+      .prologue
++     .line 66
+      const-string v0, "WpsStateMachine"
+  
+      invoke-virtual {p3}, Landroid/os/Handler;->getLooper()Landroid/os/Looper;
+***************
+*** 52,107 ****
+--- 53,120 ----
+  
+      invoke-direct {p0, v0, v1}, Lcom/android/internal/util/StateMachine;-><init>(Ljava/lang/String;Landroid/os/Looper;)V
+  
++     .line 59
+      new-instance v0, Lcom/android/internal/util/AsyncChannel;
+  
+      invoke-direct {v0}, Lcom/android/internal/util/AsyncChannel;-><init>()V
+  
+      iput-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mReplyChannel:Lcom/android/internal/util/AsyncChannel;
+  
++     .line 61
+      new-instance v0, Landroid/net/wifi/WpsStateMachine$DefaultState;
+  
+      invoke-direct {v0, p0}, Landroid/net/wifi/WpsStateMachine$DefaultState;-><init>(Landroid/net/wifi/WpsStateMachine;)V
+  
+      iput-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mDefaultState:Lcom/android/internal/util/State;
+  
++     .line 62
+      new-instance v0, Landroid/net/wifi/WpsStateMachine$InactiveState;
+  
+      invoke-direct {v0, p0}, Landroid/net/wifi/WpsStateMachine$InactiveState;-><init>(Landroid/net/wifi/WpsStateMachine;)V
+  
+      iput-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mInactiveState:Lcom/android/internal/util/State;
+  
++     .line 63
+      new-instance v0, Landroid/net/wifi/WpsStateMachine$ActiveState;
+  
+      invoke-direct {v0, p0}, Landroid/net/wifi/WpsStateMachine$ActiveState;-><init>(Landroid/net/wifi/WpsStateMachine;)V
+  
+      iput-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mActiveState:Lcom/android/internal/util/State;
+  
++     .line 68
+      iput-object p1, p0, Landroid/net/wifi/WpsStateMachine;->mContext:Landroid/content/Context;
+  
++     .line 69
+      iput-object p2, p0, Landroid/net/wifi/WpsStateMachine;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
+  
++     .line 70
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mDefaultState:Lcom/android/internal/util/State;
+  
+      invoke-virtual {p0, v0}, Landroid/net/wifi/WpsStateMachine;->addState(Lcom/android/internal/util/State;)V
+  
++     .line 71
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mInactiveState:Lcom/android/internal/util/State;
+  
+      iget-object v1, p0, Landroid/net/wifi/WpsStateMachine;->mDefaultState:Lcom/android/internal/util/State;
+  
+      invoke-virtual {p0, v0, v1}, Landroid/net/wifi/WpsStateMachine;->addState(Lcom/android/internal/util/State;Lcom/android/internal/util/State;)V
+  
++     .line 72
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mActiveState:Lcom/android/internal/util/State;
+  
+      iget-object v1, p0, Landroid/net/wifi/WpsStateMachine;->mDefaultState:Lcom/android/internal/util/State;
+  
+      invoke-virtual {p0, v0, v1}, Landroid/net/wifi/WpsStateMachine;->addState(Lcom/android/internal/util/State;Lcom/android/internal/util/State;)V
+  
++     .line 74
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mInactiveState:Lcom/android/internal/util/State;
+  
+      invoke-virtual {p0, v0}, Landroid/net/wifi/WpsStateMachine;->setInitialState(Lcom/android/internal/util/State;)V
+  
++     .line 77
+      invoke-virtual {p0}, Landroid/net/wifi/WpsStateMachine;->start()V
+  
++     .line 78
+      return-void
+  .end method
+  
+***************
+*** 110,115 ****
+--- 123,129 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 49
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mWpsInfo:Landroid/net/wifi/WpsInfo;
+  
+      return-object v0
+***************
+*** 121,126 ****
+--- 135,141 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 49
+      iput-object p1, p0, Landroid/net/wifi/WpsStateMachine;->mWpsInfo:Landroid/net/wifi/WpsInfo;
+  
+      return-object p1
+***************
+*** 131,136 ****
+--- 146,152 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 49
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mActiveState:Lcom/android/internal/util/State;
+  
+      return-object v0
+***************
+*** 142,147 ****
+--- 158,164 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 49
+      invoke-virtual {p0, p1}, Landroid/net/wifi/WpsStateMachine;->transitionTo(Lcom/android/internal/util/IState;)V
+  
+      return-void
+***************
+*** 152,157 ****
+--- 169,175 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 49
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mInactiveState:Lcom/android/internal/util/State;
+  
+      return-object v0
+***************
+*** 163,168 ****
+--- 181,187 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 49
+      invoke-virtual {p0, p1}, Landroid/net/wifi/WpsStateMachine;->transitionTo(Lcom/android/internal/util/IState;)V
+  
+      return-void
+***************
+*** 173,178 ****
+--- 192,198 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 49
+      iget-object v0, p0, Landroid/net/wifi/WpsStateMachine;->mWifiStateMachine:Landroid/net/wifi/WifiStateMachine;
+  
+      return-object v0
+***************
+*** 184,189 ****
+--- 204,210 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 49
+      invoke-virtual {p0, p1}, Landroid/net/wifi/WpsStateMachine;->transitionTo(Lcom/android/internal/util/IState;)V
+  
+      return-void
+***************
+*** 195,200 ****
+--- 216,222 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 49
+      invoke-virtual {p0, p1}, Landroid/net/wifi/WpsStateMachine;->transitionTo(Lcom/android/internal/util/IState;)V
+  
+      return-void

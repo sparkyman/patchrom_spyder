@@ -1,0 +1,1187 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/graphics/Path.smali	2012-03-23 19:35:44.457397565 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/graphics/Path.smali.original	2012-03-23 19:34:44.816310012 -0500
+***************
+*** 33,38 ****
+--- 33,39 ----
+      .locals 3
+  
+      .prologue
++     .line 118
+      const/4 v0, 0x4
+  
+      new-array v0, v0, [Landroid/graphics/Path$FillType;
+***************
+*** 70,97 ****
+--- 71,104 ----
+      .locals 1
+  
+      .prologue
++     .line 48
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 37
+      const/4 v0, 0x1
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 43
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
++     .line 49
+      invoke-static {}, Landroid/graphics/Path;->init1()I
+  
+      move-result v0
+  
+      iput v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
++     .line 50
+      invoke-static {}, Landroid/view/HardwareRenderer;->isAvailable()Z
+  
+      move-result v0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->mDetectSimplePaths:Z
+  
++     .line 51
+      return-void
+  .end method
+  
+***************
+*** 100,122 ****
+--- 107,136 ----
+      .parameter "src"
+  
+      .prologue
++     .line 58
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 37
+      const/4 v1, 0x1
+  
+      iput-boolean v1, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 43
+      const/4 v1, 0x0
+  
+      iput-object v1, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
++     .line 59
+      const/4 v0, 0x0
+  
++     .line 60
+      .local v0, valNative:I
+      if-eqz p1, :cond_0
+  
++     .line 61
+      iget v0, p1, Landroid/graphics/Path;->mNativePath:I
+  
++     .line 63
+      :cond_0
+      invoke-static {v0}, Landroid/graphics/Path;->init2(I)I
+  
+***************
+*** 124,135 ****
+--- 138,151 ----
+  
+      iput v1, p0, Landroid/graphics/Path;->mNativePath:I
+  
++     .line 64
+      invoke-static {}, Landroid/view/HardwareRenderer;->isAvailable()Z
+  
+      move-result v1
+  
+      iput-boolean v1, p0, Landroid/graphics/Path;->mDetectSimplePaths:Z
+  
++     .line 65
+      return-void
+  .end method
+  
+***************
+*** 142,170 ****
+--- 158,193 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 385
+      iget-boolean v0, p0, Landroid/graphics/Path;->mDetectSimplePaths:Z
+  
+      if-eqz v0, :cond_1
+  
++     .line 386
+      iget-object v0, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
+      if-nez v0, :cond_0
+  
++     .line 387
+      iput-object p5, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
++     .line 389
+      :cond_0
+      iget-object v0, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
+      if-eq v0, p5, :cond_2
+  
++     .line 390
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 396
+      :cond_1
+      :goto_0
+      return-void
+  
++     .line 392
+      :cond_2
+      iget-object v0, p0, Landroid/graphics/Path;->rects:Landroid/graphics/Region;
+  
+***************
+*** 176,181 ****
+--- 199,205 ----
+  
+      iput-object v0, p0, Landroid/graphics/Path;->rects:Landroid/graphics/Region;
+  
++     .line 393
+      :cond_3
+      iget-object v0, p0, Landroid/graphics/Path;->rects:Landroid/graphics/Region;
+  
+***************
+*** 314,338 ****
+      .parameter "sweepAngle"
+  
+      .prologue
+      if-nez p1, :cond_0
+  
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string v1, "need oval parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2, p3}, Landroid/graphics/Path;->native_addArc(ILandroid/graphics/RectF;FF)V
+  
+      return-void
+  .end method
+  
+--- 338,367 ----
+      .parameter "sweepAngle"
+  
+      .prologue
++     .line 461
+      if-nez p1, :cond_0
+  
++     .line 462
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string/jumbo v1, "need oval parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
++     .line 464
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 465
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2, p3}, Landroid/graphics/Path;->native_addArc(ILandroid/graphics/RectF;FF)V
+  
++     .line 466
+      return-void
+  .end method
+  
+***************
+*** 344,359 ****
+--- 373,391 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 449
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 450
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p4, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, p2, p3, v1}, Landroid/graphics/Path;->native_addCircle(IFFFI)V
+  
++     .line 451
+      return-void
+  .end method
+  
+***************
+*** 363,389 ****
+      .parameter "dir"
+  
+      .prologue
+      if-nez p1, :cond_0
+  
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string v1, "need oval parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p2, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, v1}, Landroid/graphics/Path;->native_addOval(ILandroid/graphics/RectF;I)V
+  
+      return-void
+  .end method
+  
+--- 395,426 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 433
+      if-nez p1, :cond_0
+  
++     .line 434
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string/jumbo v1, "need oval parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
++     .line 436
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 437
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p2, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, v1}, Landroid/graphics/Path;->native_addOval(ILandroid/graphics/RectF;I)V
+  
++     .line 438
+      return-void
+  .end method
+  
+***************
+*** 392,407 ****
+--- 429,447 ----
+      .parameter "src"
+  
+      .prologue
++     .line 521
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 522
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p1, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, v1}, Landroid/graphics/Path;->native_addPath(II)V
+  
++     .line 523
+      return-void
+  .end method
+  
+***************
+*** 412,427 ****
+--- 452,470 ----
+      .parameter "dy"
+  
+      .prologue
++     .line 511
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 512
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p1, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, v1, p2, p3}, Landroid/graphics/Path;->native_addPath(IIFF)V
+  
++     .line 513
+      return-void
+  .end method
+  
+***************
+*** 431,436 ****
+--- 474,480 ----
+      .parameter "matrix"
+  
+      .prologue
++     .line 531
+      iget-boolean v0, p1, Landroid/graphics/Path;->isSimplePath:Z
+  
+      if-nez v0, :cond_0
+***************
+*** 439,444 ****
+--- 483,489 ----
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 532
+      :cond_0
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+***************
+*** 448,453 ****
+--- 493,499 ----
+  
+      invoke-static {v0, v1, v2}, Landroid/graphics/Path;->native_addPath(III)V
+  
++     .line 533
+      return-void
+  .end method
+  
+***************
+*** 460,467 ****
+--- 506,515 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 422
+      invoke-direct/range {p0 .. p5}, Landroid/graphics/Path;->detectSimplePath(FFFFLandroid/graphics/Path$Direction;)V
+  
++     .line 423
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v5, p5, Landroid/graphics/Path$Direction;->nativeInt:I
+***************
+*** 476,481 ****
+--- 524,530 ----
+  
+      invoke-static/range {v0 .. v5}, Landroid/graphics/Path;->native_addRect(IFFFFI)V
+  
++     .line 424
+      return-void
+  .end method
+  
+***************
+*** 485,500 ****
+      .parameter "dir"
+  
+      .prologue
+      if-nez p1, :cond_0
+  
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string v1, "need rect parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
+      :cond_0
+      iget v1, p1, Landroid/graphics/RectF;->left:F
+  
+--- 534,552 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 405
+      if-nez p1, :cond_0
+  
++     .line 406
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string/jumbo v1, "need rect parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
++     .line 408
+      :cond_0
+      iget v1, p1, Landroid/graphics/RectF;->left:F
+  
+***************
+*** 510,521 ****
+--- 562,575 ----
+  
+      invoke-direct/range {v0 .. v5}, Landroid/graphics/Path;->detectSimplePath(FFFFLandroid/graphics/Path$Direction;)V
+  
++     .line 409
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p2, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, v1}, Landroid/graphics/Path;->native_addRect(ILandroid/graphics/RectF;I)V
+  
++     .line 410
+      return-void
+  .end method
+  
+***************
+*** 527,553 ****
+      .parameter "dir"
+  
+      .prologue
+      if-nez p1, :cond_0
+  
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string v1, "need rect parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p4, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, p2, p3, v1}, Landroid/graphics/Path;->native_addRoundRect(ILandroid/graphics/RectF;FFI)V
+  
+      return-void
+  .end method
+  
+--- 581,612 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 477
+      if-nez p1, :cond_0
+  
++     .line 478
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string/jumbo v1, "need rect parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
++     .line 480
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 481
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p4, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, p2, p3, v1}, Landroid/graphics/Path;->native_addRoundRect(ILandroid/graphics/RectF;FFI)V
+  
++     .line 482
+      return-void
+  .end method
+  
+***************
+*** 558,573 ****
+      .parameter "dir"
+  
+      .prologue
+      if-nez p1, :cond_0
+  
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string v1, "need rect parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
+      :cond_0
+      array-length v0, p2
+  
+--- 617,635 ----
+      .parameter "dir"
+  
+      .prologue
++     .line 494
+      if-nez p1, :cond_0
+  
++     .line 495
+      new-instance v0, Ljava/lang/NullPointerException;
+  
+!     const-string/jumbo v1, "need rect parameter"
+  
+      invoke-direct {v0, v1}, Ljava/lang/NullPointerException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
++     .line 497
+      :cond_0
+      array-length v0, p2
+  
+***************
+*** 575,599 ****
+  
+      if-ge v0, v1, :cond_1
+  
+      new-instance v0, Ljava/lang/ArrayIndexOutOfBoundsException;
+  
+!     const-string v1, "radii[] needs 8 values"
+  
+      invoke-direct {v0, v1}, Ljava/lang/ArrayIndexOutOfBoundsException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
+      :cond_1
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p3, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, p2, v1}, Landroid/graphics/Path;->native_addRoundRect(ILandroid/graphics/RectF;[FI)V
+  
+      return-void
+  .end method
+  
+--- 637,665 ----
+  
+      if-ge v0, v1, :cond_1
+  
++     .line 498
+      new-instance v0, Ljava/lang/ArrayIndexOutOfBoundsException;
+  
+!     const-string/jumbo v1, "radii[] needs 8 values"
+  
+      invoke-direct {v0, v1}, Ljava/lang/ArrayIndexOutOfBoundsException;-><init>(Ljava/lang/String;)V
+  
+      throw v0
+  
++     .line 500
+      :cond_1
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 501
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p3, Landroid/graphics/Path$Direction;->nativeInt:I
+  
+      invoke-static {v0, p1, p2, v1}, Landroid/graphics/Path;->native_addRoundRect(ILandroid/graphics/RectF;[FI)V
+  
++     .line 502
+      return-void
+  .end method
+  
+***************
+*** 606,617 ****
+--- 672,686 ----
+      .prologue
+      const/4 v1, 0x0
+  
++     .line 355
+      iput-boolean v1, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 356
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2, p3, v1}, Landroid/graphics/Path;->native_arcTo(ILandroid/graphics/RectF;FFZ)V
+  
++     .line 357
+      return-void
+  .end method
+  
+***************
+*** 623,636 ****
+--- 692,708 ----
+      .parameter "forceMoveTo"
+  
+      .prologue
++     .line 339
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 340
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2, p3, p4}, Landroid/graphics/Path;->native_arcTo(ILandroid/graphics/RectF;FFZ)V
+  
++     .line 341
+      return-void
+  .end method
+  
+***************
+*** 638,651 ****
+--- 710,726 ----
+      .locals 1
+  
+      .prologue
++     .line 364
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 365
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0}, Landroid/graphics/Path;->native_close(I)V
+  
++     .line 366
+      return-void
+  .end method
+  
+***************
+*** 655,664 ****
+--- 730,741 ----
+      .parameter "exact"
+  
+      .prologue
++     .line 195
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1}, Landroid/graphics/Path;->native_computeBounds(ILandroid/graphics/RectF;)V
+  
++     .line 196
+      return-void
+  .end method
+  
+***************
+*** 672,681 ****
+--- 749,760 ----
+      .parameter "y3"
+  
+      .prologue
++     .line 309
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 310
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      move v1, p1
+***************
+*** 692,697 ****
+--- 771,777 ----
+  
+      invoke-static/range {v0 .. v6}, Landroid/graphics/Path;->native_cubicTo(IFFFFFF)V
+  
++     .line 311
+      return-void
+  .end method
+  
+***************
+*** 704,709 ****
+--- 784,790 ----
+      .end annotation
+  
+      .prologue
++     .line 599
+      :try_start_0
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+***************
+*** 711,720 ****
+--- 792,804 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 601
+      invoke-super {p0}, Ljava/lang/Object;->finalize()V
+  
++     .line 603
+      return-void
+  
++     .line 601
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 727,732 ****
+--- 811,817 ----
+      .locals 2
+  
+      .prologue
++     .line 132
+      sget-object v0, Landroid/graphics/Path;->sFillTypeArray:[Landroid/graphics/Path$FillType;
+  
+      iget v1, p0, Landroid/graphics/Path;->mNativePath:I
+***************
+*** 745,754 ****
+--- 830,841 ----
+      .parameter "extraPtCount"
+  
+      .prologue
++     .line 206
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1}, Landroid/graphics/Path;->native_incReserve(II)V
+  
++     .line 207
+      return-void
+  .end method
+  
+***************
+*** 756,761 ****
+--- 843,849 ----
+      .locals 1
+  
+      .prologue
++     .line 169
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0}, Landroid/graphics/Path;->native_isEmpty(I)Z
+***************
+*** 769,780 ****
+--- 857,870 ----
+      .locals 2
+  
+      .prologue
++     .line 150
+      iget v1, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v1}, Landroid/graphics/Path;->native_getFillType(I)I
+  
+      move-result v0
+  
++     .line 151
+      .local v0, ft:I
+      and-int/lit8 v1, v0, 0x2
+  
+***************
+*** 796,801 ****
+--- 886,892 ----
+      .parameter "rect"
+  
+      .prologue
++     .line 182
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1}, Landroid/graphics/Path;->native_isRect(ILandroid/graphics/RectF;)Z
+***************
+*** 811,824 ****
+--- 902,918 ----
+      .parameter "y"
+  
+      .prologue
++     .line 242
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 243
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2}, Landroid/graphics/Path;->native_lineTo(IFF)V
+  
++     .line 244
+      return-void
+  .end method
+  
+***************
+*** 828,837 ****
+--- 922,933 ----
+      .parameter "y"
+  
+      .prologue
++     .line 216
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2}, Landroid/graphics/Path;->native_moveTo(IFF)V
+  
++     .line 217
+      return-void
+  .end method
+  
+***************
+*** 839,844 ****
+--- 935,941 ----
+      .locals 1
+  
+      .prologue
++     .line 606
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      return v0
+***************
+*** 850,859 ****
+--- 947,958 ----
+      .parameter "dy"
+  
+      .prologue
++     .line 558
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2}, Landroid/graphics/Path;->native_offset(IFF)V
+  
++     .line 559
+      return-void
+  .end method
+  
+***************
+*** 864,881 ****
+--- 963,985 ----
+      .parameter "dst"
+  
+      .prologue
++     .line 544
+      const/4 v0, 0x0
+  
++     .line 545
+      .local v0, dstNative:I
+      if-eqz p3, :cond_0
+  
++     .line 546
+      iget v0, p3, Landroid/graphics/Path;->mNativePath:I
+  
++     .line 548
+      :cond_0
+      iget v1, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v1, p1, p2, v0}, Landroid/graphics/Path;->native_offset(IFFI)V
+  
++     .line 549
+      return-void
+  .end method
+  
+***************
+*** 887,900 ****
+--- 991,1007 ----
+      .parameter "y2"
+  
+      .prologue
++     .line 272
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 273
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2, p3, p4}, Landroid/graphics/Path;->native_quadTo(IFFFF)V
+  
++     .line 274
+      return-void
+  .end method
+  
+***************
+*** 908,917 ****
+--- 1015,1026 ----
+      .parameter "y3"
+  
+      .prologue
++     .line 320
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 321
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      move v1, p1
+***************
+*** 928,933 ****
+--- 1037,1043 ----
+  
+      invoke-static/range {v0 .. v6}, Landroid/graphics/Path;->native_rCubicTo(IFFFFFF)V
+  
++     .line 322
+      return-void
+  .end method
+  
+***************
+*** 937,950 ****
+--- 1047,1063 ----
+      .parameter "dy"
+  
+      .prologue
++     .line 257
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 258
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2}, Landroid/graphics/Path;->native_rLineTo(IFF)V
+  
++     .line 259
+      return-void
+  .end method
+  
+***************
+*** 954,963 ****
+--- 1067,1078 ----
+      .parameter "dy"
+  
+      .prologue
++     .line 230
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2}, Landroid/graphics/Path;->native_rMoveTo(IFF)V
+  
++     .line 231
+      return-void
+  .end method
+  
+***************
+*** 969,982 ****
+--- 1084,1100 ----
+      .parameter "dy2"
+  
+      .prologue
++     .line 291
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 292
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2, p3, p4}, Landroid/graphics/Path;->native_rQuadTo(IFFFF)V
+  
++     .line 293
+      return-void
+  .end method
+  
+***************
+*** 984,1001 ****
+--- 1102,1123 ----
+      .locals 1
+  
+      .prologue
++     .line 72
+      const/4 v0, 0x1
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 73
+      iget-boolean v0, p0, Landroid/graphics/Path;->mDetectSimplePaths:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 74
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
++     .line 75
+      iget-object v0, p0, Landroid/graphics/Path;->rects:Landroid/graphics/Region;
+  
+      if-eqz v0, :cond_0
+***************
+*** 1004,1014 ****
+--- 1126,1138 ----
+  
+      invoke-virtual {v0}, Landroid/graphics/Region;->setEmpty()V
+  
++     .line 77
+      :cond_0
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0}, Landroid/graphics/Path;->native_reset(I)V
+  
++     .line 78
+      return-void
+  .end method
+  
+***************
+*** 1016,1033 ****
+--- 1140,1161 ----
+      .locals 1
+  
+      .prologue
++     .line 85
+      const/4 v0, 0x1
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 86
+      iget-boolean v0, p0, Landroid/graphics/Path;->mDetectSimplePaths:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 87
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/graphics/Path;->mLastDirection:Landroid/graphics/Path$Direction;
+  
++     .line 88
+      iget-object v0, p0, Landroid/graphics/Path;->rects:Landroid/graphics/Region;
+  
+      if-eqz v0, :cond_0
+***************
+*** 1036,1046 ****
+--- 1164,1176 ----
+  
+      invoke-virtual {v0}, Landroid/graphics/Region;->setEmpty()V
+  
++     .line 90
+      :cond_0
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0}, Landroid/graphics/Path;->native_rewind(I)V
+  
++     .line 91
+      return-void
+  .end method
+  
+***************
+*** 1049,1066 ****
+--- 1179,1200 ----
+      .parameter "src"
+  
+      .prologue
++     .line 96
+      if-eq p0, p1, :cond_0
+  
++     .line 97
+      iget-boolean v0, p1, Landroid/graphics/Path;->isSimplePath:Z
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 98
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p1, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, v1}, Landroid/graphics/Path;->native_set(II)V
+  
++     .line 100
+      :cond_0
+      return-void
+  .end method
+***************
+*** 1070,1081 ****
+--- 1204,1217 ----
+      .parameter "ft"
+  
+      .prologue
++     .line 141
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p1, Landroid/graphics/Path$FillType;->nativeInt:I
+  
+      invoke-static {v0, v1}, Landroid/graphics/Path;->native_setFillType(II)V
+  
++     .line 142
+      return-void
+  .end method
+  
+***************
+*** 1085,1098 ****
+--- 1221,1237 ----
+      .parameter "dy"
+  
+      .prologue
++     .line 568
+      const/4 v0, 0x0
+  
+      iput-boolean v0, p0, Landroid/graphics/Path;->isSimplePath:Z
+  
++     .line 569
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v0, p1, p2}, Landroid/graphics/Path;->native_setLastPoint(IFF)V
+  
++     .line 570
+      return-void
+  .end method
+  
+***************
+*** 1100,1118 ****
+--- 1239,1261 ----
+      .locals 2
+  
+      .prologue
++     .line 158
+      iget v1, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v1}, Landroid/graphics/Path;->native_getFillType(I)I
+  
+      move-result v0
+  
++     .line 159
+      .local v0, ft:I
+      xor-int/lit8 v0, v0, 0x2
+  
++     .line 160
+      iget v1, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      invoke-static {v1, v0}, Landroid/graphics/Path;->native_setFillType(II)V
+  
++     .line 161
+      return-void
+  .end method
+  
+***************
+*** 1121,1132 ****
+--- 1264,1277 ----
+      .parameter "matrix"
+  
+      .prologue
++     .line 594
+      iget v0, p0, Landroid/graphics/Path;->mNativePath:I
+  
+      iget v1, p1, Landroid/graphics/Matrix;->native_instance:I
+  
+      invoke-static {v0, v1}, Landroid/graphics/Path;->native_transform(II)V
+  
++     .line 595
+      return-void
+  .end method
+  
+***************
+*** 1136,1148 ****
+--- 1281,1297 ----
+      .parameter "dst"
+  
+      .prologue
++     .line 581
+      const/4 v0, 0x0
+  
++     .line 582
+      .local v0, dstNative:I
+      if-eqz p2, :cond_0
+  
++     .line 583
+      iget v0, p2, Landroid/graphics/Path;->mNativePath:I
+  
++     .line 585
+      :cond_0
+      iget v1, p0, Landroid/graphics/Path;->mNativePath:I
+  
+***************
+*** 1150,1154 ****
+--- 1299,1304 ----
+  
+      invoke-static {v1, v2, v0}, Landroid/graphics/Path;->native_transform(III)V
+  
++     .line 586
+      return-void
+  .end method

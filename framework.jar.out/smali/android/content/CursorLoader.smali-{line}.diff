@@ -1,0 +1,522 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/content/CursorLoader.smali	2012-03-23 19:36:26.509164378 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/content/CursorLoader.smali.original	2012-03-23 19:34:45.112315409 -0500
+***************
+*** 46,59 ****
+--- 46,62 ----
+      .parameter "context"
+  
+      .prologue
++     .line 102
+      invoke-direct {p0, p1}, Landroid/content/AsyncTaskLoader;-><init>(Landroid/content/Context;)V
+  
++     .line 103
+      new-instance v0, Landroid/content/Loader$ForceLoadContentObserver;
+  
+      invoke-direct {v0, p0}, Landroid/content/Loader$ForceLoadContentObserver;-><init>(Landroid/content/Loader;)V
+  
+      iput-object v0, p0, Landroid/content/CursorLoader;->mObserver:Landroid/content/Loader$ForceLoadContentObserver;
+  
++     .line 104
+      return-void
+  .end method
+  
+***************
+*** 67,90 ****
+--- 70,101 ----
+      .parameter "sortOrder"
+  
+      .prologue
++     .line 114
+      invoke-direct {p0, p1}, Landroid/content/AsyncTaskLoader;-><init>(Landroid/content/Context;)V
+  
++     .line 115
+      new-instance v0, Landroid/content/Loader$ForceLoadContentObserver;
+  
+      invoke-direct {v0, p0}, Landroid/content/Loader$ForceLoadContentObserver;-><init>(Landroid/content/Loader;)V
+  
+      iput-object v0, p0, Landroid/content/CursorLoader;->mObserver:Landroid/content/Loader$ForceLoadContentObserver;
+  
++     .line 116
+      iput-object p2, p0, Landroid/content/CursorLoader;->mUri:Landroid/net/Uri;
+  
++     .line 117
+      iput-object p3, p0, Landroid/content/CursorLoader;->mProjection:[Ljava/lang/String;
+  
++     .line 118
+      iput-object p4, p0, Landroid/content/CursorLoader;->mSelection:Ljava/lang/String;
+  
++     .line 119
+      iput-object p5, p0, Landroid/content/CursorLoader;->mSelectionArgs:[Ljava/lang/String;
+  
++     .line 120
+      iput-object p6, p0, Landroid/content/CursorLoader;->mSortOrder:Ljava/lang/String;
+  
++     .line 121
+      return-void
+  .end method
+  
+***************
+*** 95,128 ****
+--- 106,148 ----
+      .parameter "cursor"
+  
+      .prologue
++     .line 77
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->isReset()Z
+  
+      move-result v1
+  
+      if-eqz v1, :cond_1
+  
++     .line 79
+      if-eqz p1, :cond_0
+  
++     .line 80
+      invoke-interface {p1}, Landroid/database/Cursor;->close()V
+  
++     .line 94
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 84
+      :cond_1
+      iget-object v0, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
++     .line 85
+      .local v0, oldCursor:Landroid/database/Cursor;
+      iput-object p1, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
++     .line 87
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->isStarted()Z
+  
+      move-result v1
+  
+      if-eqz v1, :cond_2
+  
++     .line 88
+      invoke-super {p0, p1}, Landroid/content/AsyncTaskLoader;->deliverResult(Ljava/lang/Object;)V
+  
++     .line 91
+      :cond_2
+      if-eqz v0, :cond_0
+  
+***************
+*** 134,139 ****
+--- 154,160 ----
+  
+      if-nez v1, :cond_0
+  
++     .line 92
+      invoke-interface {v0}, Landroid/database/Cursor;->close()V
+  
+      goto :goto_0
+***************
+*** 144,149 ****
+--- 165,171 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 42
+      check-cast p1, Landroid/database/Cursor;
+  
+      .end local p1
+***************
+*** 160,170 ****
+      .parameter "args"
+  
+      .prologue
+      invoke-super {p0, p1, p2, p3, p4}, Landroid/content/AsyncTaskLoader;->dump(Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V
+  
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+!     const-string v0, "mUri="
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+--- 182,194 ----
+      .parameter "args"
+  
+      .prologue
++     .line 211
+      invoke-super {p0, p1, p2, p3, p4}, Landroid/content/AsyncTaskLoader;->dump(Ljava/lang/String;Ljava/io/FileDescriptor;Ljava/io/PrintWriter;[Ljava/lang/String;)V
+  
++     .line 212
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+!     const-string/jumbo v0, "mUri="
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+***************
+*** 172,183 ****
+--- 196,209 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/Object;)V
+  
++     .line 213
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "mProjection="
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
++     .line 214
+      iget-object v0, p0, Landroid/content/CursorLoader;->mProjection:[Ljava/lang/String;
+  
+      invoke-static {v0}, Ljava/util/Arrays;->toString([Ljava/lang/Object;)Ljava/lang/String;
+***************
+*** 186,191 ****
+--- 212,218 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 215
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "mSelection="
+***************
+*** 196,207 ****
+--- 223,236 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 216
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "mSelectionArgs="
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
++     .line 217
+      iget-object v0, p0, Landroid/content/CursorLoader;->mSelectionArgs:[Ljava/lang/String;
+  
+      invoke-static {v0}, Ljava/util/Arrays;->toString([Ljava/lang/Object;)Ljava/lang/String;
+***************
+*** 210,215 ****
+--- 239,245 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 218
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "mSortOrder="
+***************
+*** 220,225 ****
+--- 250,256 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 219
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "mCursor="
+***************
+*** 230,235 ****
+--- 261,267 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/Object;)V
+  
++     .line 220
+      invoke-virtual {p3, p1}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "mContentChanged="
+***************
+*** 240,245 ****
+--- 272,278 ----
+  
+      invoke-virtual {p3, v0}, Ljava/io/PrintWriter;->println(Z)V
+  
++     .line 221
+      return-void
+  .end method
+  
+***************
+*** 247,252 ****
+--- 280,286 ----
+      .locals 1
+  
+      .prologue
++     .line 178
+      iget-object v0, p0, Landroid/content/CursorLoader;->mProjection:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 256,261 ****
+--- 290,296 ----
+      .locals 1
+  
+      .prologue
++     .line 186
+      iget-object v0, p0, Landroid/content/CursorLoader;->mSelection:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 265,270 ****
+--- 300,306 ----
+      .locals 1
+  
+      .prologue
++     .line 194
+      iget-object v0, p0, Landroid/content/CursorLoader;->mSelectionArgs:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 274,279 ****
+--- 310,316 ----
+      .locals 1
+  
+      .prologue
++     .line 202
+      iget-object v0, p0, Landroid/content/CursorLoader;->mSortOrder:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 283,288 ****
+--- 320,326 ----
+      .locals 1
+  
+      .prologue
++     .line 170
+      iget-object v0, p0, Landroid/content/CursorLoader;->mUri:Landroid/net/Uri;
+  
+      return-object v0
+***************
+*** 292,297 ****
+--- 330,336 ----
+      .locals 7
+  
+      .prologue
++     .line 56
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->getContext()Landroid/content/Context;
+  
+      move-result-object v0
+***************
+*** 314,328 ****
+--- 353,371 ----
+  
+      move-result-object v6
+  
++     .line 58
+      .local v6, cursor:Landroid/database/Cursor;
+      if-eqz v6, :cond_0
+  
++     .line 60
+      invoke-interface {v6}, Landroid/database/Cursor;->getCount()I
+  
++     .line 61
+      iget-object v0, p0, Landroid/content/CursorLoader;->mObserver:Landroid/content/Loader$ForceLoadContentObserver;
+  
+      invoke-virtual {p0, v6, v0}, Landroid/content/CursorLoader;->registerContentObserver(Landroid/database/Cursor;Landroid/database/ContentObserver;)V
+  
++     .line 63
+      :cond_0
+      return-object v6
+  .end method
+***************
+*** 331,336 ****
+--- 374,380 ----
+      .locals 1
+  
+      .prologue
++     .line 42
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->loadInBackground()Landroid/database/Cursor;
+  
+      move-result-object v0
+***************
+*** 343,348 ****
+--- 387,393 ----
+      .parameter "cursor"
+  
+      .prologue
++     .line 151
+      if-eqz p1, :cond_0
+  
+      invoke-interface {p1}, Landroid/database/Cursor;->isClosed()Z
+***************
+*** 351,358 ****
+--- 396,405 ----
+  
+      if-nez v0, :cond_0
+  
++     .line 152
+      invoke-interface {p1}, Landroid/database/Cursor;->close()V
+  
++     .line 154
+      :cond_0
+      return-void
+  .end method
+***************
+*** 362,367 ****
+--- 409,415 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 42
+      check-cast p1, Landroid/database/Cursor;
+  
+      .end local p1
+***************
+*** 374,383 ****
+--- 422,434 ----
+      .locals 1
+  
+      .prologue
++     .line 158
+      invoke-super {p0}, Landroid/content/AsyncTaskLoader;->onReset()V
+  
++     .line 161
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->onStopLoading()V
+  
++     .line 163
+      iget-object v0, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
+      if-eqz v0, :cond_0
+***************
+*** 390,404 ****
+--- 441,458 ----
+  
+      if-nez v0, :cond_0
+  
++     .line 164
+      iget-object v0, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
+      invoke-interface {v0}, Landroid/database/Cursor;->close()V
+  
++     .line 166
+      :cond_0
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
++     .line 167
+      return-void
+  .end method
+  
+***************
+*** 406,419 ****
+--- 460,476 ----
+      .locals 1
+  
+      .prologue
++     .line 132
+      iget-object v0, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
+      if-eqz v0, :cond_0
+  
++     .line 133
+      iget-object v0, p0, Landroid/content/CursorLoader;->mCursor:Landroid/database/Cursor;
+  
+      invoke-virtual {p0, v0}, Landroid/content/CursorLoader;->deliverResult(Landroid/database/Cursor;)V
+  
++     .line 135
+      :cond_0
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->takeContentChanged()Z
+  
+***************
+*** 425,433 ****
+--- 482,492 ----
+  
+      if-nez v0, :cond_2
+  
++     .line 136
+      :cond_1
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->forceLoad()V
+  
++     .line 138
+      :cond_2
+      return-void
+  .end method
+***************
+*** 436,443 ****
+--- 495,504 ----
+      .locals 0
+  
+      .prologue
++     .line 146
+      invoke-virtual {p0}, Landroid/content/CursorLoader;->cancelLoad()Z
+  
++     .line 147
+      return-void
+  .end method
+  
+***************
+*** 447,456 ****
+--- 508,519 ----
+      .parameter "observer"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Landroid/content/CursorLoader;->mObserver:Landroid/content/Loader$ForceLoadContentObserver;
+  
+      invoke-interface {p1, v0}, Landroid/database/Cursor;->registerContentObserver(Landroid/database/ContentObserver;)V
+  
++     .line 72
+      return-void
+  .end method
+  
+***************
+*** 459,466 ****
+--- 522,531 ----
+      .parameter "projection"
+  
+      .prologue
++     .line 182
+      iput-object p1, p0, Landroid/content/CursorLoader;->mProjection:[Ljava/lang/String;
+  
++     .line 183
+      return-void
+  .end method
+  
+***************
+*** 469,476 ****
+--- 534,543 ----
+      .parameter "selection"
+  
+      .prologue
++     .line 190
+      iput-object p1, p0, Landroid/content/CursorLoader;->mSelection:Ljava/lang/String;
+  
++     .line 191
+      return-void
+  .end method
+  
+***************
+*** 479,486 ****
+--- 546,555 ----
+      .parameter "selectionArgs"
+  
+      .prologue
++     .line 198
+      iput-object p1, p0, Landroid/content/CursorLoader;->mSelectionArgs:[Ljava/lang/String;
+  
++     .line 199
+      return-void
+  .end method
+  
+***************
+*** 489,496 ****
+--- 558,567 ----
+      .parameter "sortOrder"
+  
+      .prologue
++     .line 206
+      iput-object p1, p0, Landroid/content/CursorLoader;->mSortOrder:Ljava/lang/String;
+  
++     .line 207
+      return-void
+  .end method
+  
+***************
+*** 499,505 ****
+--- 570,578 ----
+      .parameter "uri"
+  
+      .prologue
++     .line 174
+      iput-object p1, p0, Landroid/content/CursorLoader;->mUri:Landroid/net/Uri;
+  
++     .line 175
+      return-void
+  .end method

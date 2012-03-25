@@ -1,0 +1,132 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/app/QueuedWork.smali	2012-03-23 19:36:33.884298864 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/app/QueuedWork.smali.original	2012-03-23 19:34:45.196316941 -0500
+***************
+*** 23,34 ****
+--- 23,36 ----
+      .locals 1
+  
+      .prologue
++     .line 38
+      new-instance v0, Ljava/util/concurrent/ConcurrentLinkedQueue;
+  
+      invoke-direct {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;-><init>()V
+  
+      sput-object v0, Landroid/app/QueuedWork;->sPendingWorkFinishers:Ljava/util/concurrent/ConcurrentLinkedQueue;
+  
++     .line 41
+      const/4 v0, 0x0
+  
+      sput-object v0, Landroid/app/QueuedWork;->sSingleThreadExecutor:Ljava/util/concurrent/ExecutorService;
+***************
+*** 40,45 ****
+--- 42,48 ----
+      .locals 0
+  
+      .prologue
++     .line 34
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      return-void
+***************
+*** 50,59 ****
+--- 53,64 ----
+      .parameter "finisher"
+  
+      .prologue
++     .line 70
+      sget-object v0, Landroid/app/QueuedWork;->sPendingWorkFinishers:Ljava/util/concurrent/ConcurrentLinkedQueue;
+  
+      invoke-virtual {v0, p0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->add(Ljava/lang/Object;)Z
+  
++     .line 71
+      return-void
+  .end method
+  
+***************
+*** 61,66 ****
+--- 66,72 ----
+      .locals 1
+  
+      .prologue
++     .line 98
+      sget-object v0, Landroid/app/QueuedWork;->sPendingWorkFinishers:Ljava/util/concurrent/ConcurrentLinkedQueue;
+  
+      invoke-virtual {v0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->isEmpty()Z
+***************
+*** 85,94 ****
+--- 91,102 ----
+      .parameter "finisher"
+  
+      .prologue
++     .line 74
+      sget-object v0, Landroid/app/QueuedWork;->sPendingWorkFinishers:Ljava/util/concurrent/ConcurrentLinkedQueue;
+  
+      invoke-virtual {v0, p0}, Ljava/util/concurrent/ConcurrentLinkedQueue;->remove(Ljava/lang/Object;)Z
+  
++     .line 75
+      return-void
+  .end method
+  
+***************
+*** 96,116 ****
+--- 104,128 ----
+      .locals 2
+  
+      .prologue
++     .line 48
+      const-class v1, Landroid/app/QueuedWork;
+  
+      monitor-enter v1
+  
++     .line 49
+      :try_start_0
+      sget-object v0, Landroid/app/QueuedWork;->sSingleThreadExecutor:Ljava/util/concurrent/ExecutorService;
+  
+      if-nez v0, :cond_0
+  
++     .line 51
+      invoke-static {}, Ljava/util/concurrent/Executors;->newSingleThreadExecutor()Ljava/util/concurrent/ExecutorService;
+  
+      move-result-object v0
+  
+      sput-object v0, Landroid/app/QueuedWork;->sSingleThreadExecutor:Ljava/util/concurrent/ExecutorService;
+  
++     .line 53
+      :cond_0
+      sget-object v0, Landroid/app/QueuedWork;->sSingleThreadExecutor:Ljava/util/concurrent/ExecutorService;
+  
+***************
+*** 118,123 ****
+--- 130,136 ----
+  
+      return-object v0
+  
++     .line 54
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 132,137 ****
+--- 145,151 ----
+      .locals 2
+  
+      .prologue
++     .line 87
+      .local v0, toFinish:Ljava/lang/Runnable;
+      :goto_0
+      sget-object v1, Landroid/app/QueuedWork;->sPendingWorkFinishers:Ljava/util/concurrent/ConcurrentLinkedQueue;
+***************
+*** 146,155 ****
+--- 160,171 ----
+      .restart local v0       #toFinish:Ljava/lang/Runnable;
+      if-eqz v0, :cond_0
+  
++     .line 88
+      invoke-interface {v0}, Ljava/lang/Runnable;->run()V
+  
+      goto :goto_0
+  
++     .line 90
+      :cond_0
+      return-void
+  .end method

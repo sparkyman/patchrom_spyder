@@ -1,0 +1,256 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/app/backup/BackupDataInput.smali	2012-03-23 19:36:40.798424942 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/app/backup/BackupDataInput.smali.original	2012-03-23 19:34:45.298318801 -0500
+***************
+*** 26,33 ****
+--- 26,35 ----
+      .parameter "fd"
+  
+      .prologue
++     .line 73
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 64
+      new-instance v0, Landroid/app/backup/BackupDataInput$EntityHeader;
+  
+      const/4 v1, 0x0
+***************
+*** 36,41 ****
+--- 38,44 ----
+  
+      iput-object v0, p0, Landroid/app/backup/BackupDataInput;->mHeader:Landroid/app/backup/BackupDataInput$EntityHeader;
+  
++     .line 74
+      if-nez p1, :cond_0
+  
+      new-instance v0, Ljava/lang/NullPointerException;
+***************
+*** 44,49 ****
+--- 47,53 ----
+  
+      throw v0
+  
++     .line 75
+      :cond_0
+      invoke-static {p1}, Landroid/app/backup/BackupDataInput;->ctor(Ljava/io/FileDescriptor;)I
+  
+***************
+*** 51,60 ****
+--- 55,66 ----
+  
+      iput v0, p0, Landroid/app/backup/BackupDataInput;->mBackupReader:I
+  
++     .line 76
+      iget v0, p0, Landroid/app/backup/BackupDataInput;->mBackupReader:I
+  
+      if-nez v0, :cond_1
+  
++     .line 77
+      new-instance v0, Ljava/lang/RuntimeException;
+  
+      new-instance v1, Ljava/lang/StringBuilder;
+***************
+*** 79,84 ****
+--- 85,91 ----
+  
+      throw v0
+  
++     .line 79
+      :cond_1
+      return-void
+  .end method
+***************
+*** 109,114 ****
+--- 116,122 ----
+      .end annotation
+  
+      .prologue
++     .line 84
+      :try_start_0
+      iget v0, p0, Landroid/app/backup/BackupDataInput;->mBackupReader:I
+  
+***************
+*** 116,125 ****
+--- 124,136 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 86
+      invoke-super {p0}, Ljava/lang/Object;->finalize()V
+  
++     .line 88
+      return-void
+  
++     .line 86
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 132,147 ****
+--- 143,161 ----
+      .locals 2
+  
+      .prologue
++     .line 137
+      iget-boolean v0, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 138
+      iget-object v0, p0, Landroid/app/backup/BackupDataInput;->mHeader:Landroid/app/backup/BackupDataInput$EntityHeader;
+  
+      iget v0, v0, Landroid/app/backup/BackupDataInput$EntityHeader;->dataSize:I
+  
+      return v0
+  
++     .line 140
+      :cond_0
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+***************
+*** 156,171 ****
+--- 170,188 ----
+      .locals 2
+  
+      .prologue
++     .line 122
+      iget-boolean v0, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 123
+      iget-object v0, p0, Landroid/app/backup/BackupDataInput;->mHeader:Landroid/app/backup/BackupDataInput$EntityHeader;
+  
+      iget-object v0, v0, Landroid/app/backup/BackupDataInput$EntityHeader;->key:Ljava/lang/String;
+  
+      return-object v0
+  
++     .line 125
+      :cond_0
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+***************
+*** 188,208 ****
+--- 205,230 ----
+      .end annotation
+  
+      .prologue
++     .line 160
+      iget-boolean v1, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
+      if-eqz v1, :cond_1
+  
++     .line 161
+      iget v1, p0, Landroid/app/backup/BackupDataInput;->mBackupReader:I
+  
+      invoke-direct {p0, v1, p1, p2, p3}, Landroid/app/backup/BackupDataInput;->readEntityData_native(I[BII)I
+  
+      move-result v0
+  
++     .line 162
+      .local v0, result:I
+      if-ltz v0, :cond_0
+  
++     .line 163
+      return v0
+  
++     .line 165
+      :cond_0
+      new-instance v1, Ljava/io/IOException;
+  
+***************
+*** 210,216 ****
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v3, "result=0x"
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 232,238 ----
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v3, "result=0x"
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 232,237 ****
+--- 254,260 ----
+  
+      throw v1
+  
++     .line 168
+      .end local v0           #result:I
+      :cond_1
+      new-instance v1, Ljava/lang/IllegalStateException;
+***************
+*** 256,261 ****
+--- 279,285 ----
+  
+      const/4 v2, 0x0
+  
++     .line 100
+      iget v3, p0, Landroid/app/backup/BackupDataInput;->mBackupReader:I
+  
+      iget-object v4, p0, Landroid/app/backup/BackupDataInput;->mHeader:Landroid/app/backup/BackupDataInput$EntityHeader;
+***************
+*** 264,289 ****
+--- 288,321 ----
+  
+      move-result v0
+  
++     .line 101
+      .local v0, result:I
+      if-nez v0, :cond_0
+  
++     .line 103
+      iput-boolean v1, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
++     .line 108
+      :goto_0
+      return v1
+  
++     .line 105
+      :cond_0
+      if-lez v0, :cond_1
+  
++     .line 107
+      iput-boolean v2, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
+      move v1, v2
+  
++     .line 108
+      goto :goto_0
+  
++     .line 111
+      :cond_1
+      iput-boolean v2, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
++     .line 112
+      new-instance v1, Ljava/io/IOException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 322,337 ****
+--- 354,373 ----
+      .end annotation
+  
+      .prologue
++     .line 181
+      iget-boolean v0, p0, Landroid/app/backup/BackupDataInput;->mHeaderReady:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 182
+      iget v0, p0, Landroid/app/backup/BackupDataInput;->mBackupReader:I
+  
+      invoke-direct {p0, v0}, Landroid/app/backup/BackupDataInput;->skipEntityData_native(I)I
+  
++     .line 186
+      return-void
+  
++     .line 184
+      :cond_0
+      new-instance v0, Ljava/lang/IllegalStateException;
+  

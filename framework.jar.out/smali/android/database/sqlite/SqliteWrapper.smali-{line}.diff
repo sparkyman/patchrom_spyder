@@ -1,0 +1,276 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/database/sqlite/SqliteWrapper.smali	2012-03-23 19:36:11.073882916 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/database/sqlite/SqliteWrapper.smali.original	2012-03-23 19:34:45.008313513 -0500
+***************
+*** 14,21 ****
+--- 14,23 ----
+      .locals 0
+  
+      .prologue
++     .line 38
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 40
+      return-void
+  .end method
+  
+***************
+*** 25,36 ****
+--- 27,40 ----
+      .parameter "e"
+  
+      .prologue
++     .line 48
+      invoke-static {p1}, Landroid/database/sqlite/SqliteWrapper;->isLowMemory(Landroid/database/sqlite/SQLiteException;)Z
+  
+      move-result v0
+  
+      if-eqz v0, :cond_0
+  
++     .line 49
+      const v0, 0x104011e
+  
+      const/4 v1, 0x0
+***************
+*** 41,48 ****
+--- 45,54 ----
+  
+      invoke-virtual {v0}, Landroid/widget/Toast;->show()V
+  
++     .line 54
+      return-void
+  
++     .line 52
+      :cond_0
+      throw p1
+  .end method
+***************
+*** 56,61 ****
+--- 62,68 ----
+      .parameter "selectionArgs"
+  
+      .prologue
++     .line 90
+      :try_start_0
+      invoke-virtual {p1, p2, p3, p4}, Landroid/content/ContentResolver;->delete(Landroid/net/Uri;Ljava/lang/String;[Ljava/lang/String;)I
+      :try_end_0
+***************
+*** 63,74 ****
+--- 70,84 ----
+  
+      move-result v1
+  
++     .line 94
+      :goto_0
+      return v1
+  
++     .line 91
+      :catch_0
+      move-exception v0
+  
++     .line 92
+      .local v0, e:Landroid/database/sqlite/SQLiteException;
+      const-string v1, "SqliteWrapper"
+  
+***************
+*** 76,83 ****
+--- 86,95 ----
+  
+      invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 93
+      invoke-static {p0, v0}, Landroid/database/sqlite/SqliteWrapper;->checkSQLiteException(Landroid/content/Context;Landroid/database/sqlite/SQLiteException;)V
+  
++     .line 94
+      const/4 v1, -0x1
+  
+      goto :goto_0
+***************
+*** 91,96 ****
+--- 103,109 ----
+      .parameter "values"
+  
+      .prologue
++     .line 101
+      :try_start_0
+      invoke-virtual {p1, p2, p3}, Landroid/content/ContentResolver;->insert(Landroid/net/Uri;Landroid/content/ContentValues;)Landroid/net/Uri;
+      :try_end_0
+***************
+*** 98,109 ****
+--- 111,125 ----
+  
+      move-result-object v1
+  
++     .line 105
+      :goto_0
+      return-object v1
+  
++     .line 102
+      :catch_0
+      move-exception v0
+  
++     .line 103
+      .local v0, e:Landroid/database/sqlite/SQLiteException;
+      const-string v1, "SqliteWrapper"
+  
+***************
+*** 111,118 ****
+--- 127,136 ----
+  
+      invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 104
+      invoke-static {p0, v0}, Landroid/database/sqlite/SqliteWrapper;->checkSQLiteException(Landroid/content/Context;Landroid/database/sqlite/SQLiteException;)V
+  
++     .line 105
+      const/4 v1, 0x0
+  
+      goto :goto_0
+***************
+*** 123,133 ****
+      .parameter "e"
+  
+      .prologue
+      invoke-virtual {p0}, Landroid/database/sqlite/SQLiteException;->getMessage()Ljava/lang/String;
+  
+      move-result-object v0
+  
+!     const-string v1, "unable to open database file"
+  
+      invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+--- 141,152 ----
+      .parameter "e"
+  
+      .prologue
++     .line 44
+      invoke-virtual {p0}, Landroid/database/sqlite/SQLiteException;->getMessage()Ljava/lang/String;
+  
+      move-result-object v0
+  
+!     const-string/jumbo v1, "unable to open database file"
+  
+      invoke-virtual {v0, v1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+***************
+*** 147,152 ****
+--- 166,172 ----
+      .parameter "sortOrder"
+  
+      .prologue
++     .line 59
+      :try_start_0
+      invoke-virtual/range {p1 .. p6}, Landroid/content/ContentResolver;->query(Landroid/net/Uri;[Ljava/lang/String;Ljava/lang/String;[Ljava/lang/String;Ljava/lang/String;)Landroid/database/Cursor;
+      :try_end_0
+***************
+*** 154,165 ****
+--- 174,188 ----
+  
+      move-result-object v1
+  
++     .line 63
+      :goto_0
+      return-object v1
+  
++     .line 60
+      :catch_0
+      move-exception v0
+  
++     .line 61
+      .local v0, e:Landroid/database/sqlite/SQLiteException;
+      const-string v1, "SqliteWrapper"
+  
+***************
+*** 167,174 ****
+--- 190,199 ----
+  
+      invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 62
+      invoke-static {p0, v0}, Landroid/database/sqlite/SqliteWrapper;->checkSQLiteException(Landroid/content/Context;Landroid/database/sqlite/SQLiteException;)V
+  
++     .line 63
+      const/4 v1, 0x0
+  
+      goto :goto_0
+***************
+*** 180,185 ****
+--- 205,211 ----
+      .parameter "cursor"
+  
+      .prologue
++     .line 69
+      :try_start_0
+      invoke-interface {p1}, Landroid/database/Cursor;->requery()Z
+      :try_end_0
+***************
+*** 187,198 ****
+--- 213,227 ----
+  
+      move-result v1
+  
++     .line 73
+      :goto_0
+      return v1
+  
++     .line 70
+      :catch_0
+      move-exception v0
+  
++     .line 71
+      .local v0, e:Landroid/database/sqlite/SQLiteException;
+      const-string v1, "SqliteWrapper"
+  
+***************
+*** 200,207 ****
+--- 229,238 ----
+  
+      invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 72
+      invoke-static {p0, v0}, Landroid/database/sqlite/SqliteWrapper;->checkSQLiteException(Landroid/content/Context;Landroid/database/sqlite/SQLiteException;)V
+  
++     .line 73
+      const/4 v1, 0x0
+  
+      goto :goto_0
+***************
+*** 217,222 ****
+--- 248,254 ----
+      .parameter "selectionArgs"
+  
+      .prologue
++     .line 79
+      :try_start_0
+      invoke-virtual {p1, p2, p3, p4, p5}, Landroid/content/ContentResolver;->update(Landroid/net/Uri;Landroid/content/ContentValues;Ljava/lang/String;[Ljava/lang/String;)I
+      :try_end_0
+***************
+*** 224,235 ****
+--- 256,270 ----
+  
+      move-result v1
+  
++     .line 83
+      :goto_0
+      return v1
+  
++     .line 80
+      :catch_0
+      move-exception v0
+  
++     .line 81
+      .local v0, e:Landroid/database/sqlite/SQLiteException;
+      const-string v1, "SqliteWrapper"
+  
+***************
+*** 237,244 ****
+--- 272,281 ----
+  
+      invoke-static {v1, v2, v0}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 82
+      invoke-static {p0, v0}, Landroid/database/sqlite/SqliteWrapper;->checkSQLiteException(Landroid/content/Context;Landroid/database/sqlite/SQLiteException;)V
+  
++     .line 83
+      const/4 v1, -0x1
+  
+      goto :goto_0

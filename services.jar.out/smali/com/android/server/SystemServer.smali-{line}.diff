@@ -1,0 +1,130 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/SystemServer.smali	2012-03-23 19:35:09.079752455 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/SystemServer.smali.original	2012-03-23 19:34:47.318355636 -0500
+***************
+*** 24,29 ****
+--- 24,30 ----
+      .locals 0
+  
+      .prologue
++     .line 757
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      return-void
+***************
+*** 36,58 ****
+--- 37,64 ----
+      .locals 3
+  
+      .prologue
++     .line 812
+      const-string v1, "SystemServer"
+  
+      const-string v2, "Entered the Android system server!"
+  
+      invoke-static {v1, v2}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 813
+      new-instance v0, Lcom/android/server/ServerThread;
+  
+      invoke-direct {v0}, Lcom/android/server/ServerThread;-><init>()V
+  
++     .line 814
+      .local v0, thr:Ljava/lang/Thread;
+      const-string v1, "android.server.ServerThread"
+  
+      invoke-virtual {v0, v1}, Ljava/lang/Thread;->setName(Ljava/lang/String;)V
+  
++     .line 815
+      invoke-virtual {v0}, Ljava/lang/Thread;->start()V
+  
++     .line 816
+      return-void
+  .end method
+  
+***************
+*** 65,70 ****
+--- 71,77 ----
+  
+      const-wide/32 v2, 0x36ee80
+  
++     .line 779
+      invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+  
+      move-result-wide v0
+***************
+*** 73,86 ****
+--- 80,96 ----
+  
+      if-gez v0, :cond_0
+  
++     .line 785
+      const-string v0, "SystemServer"
+  
+      const-string v1, "System clock is before 1970; setting to 1970."
+  
+      invoke-static {v0, v1}, Landroid/util/Slog;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 786
+      invoke-static {v4, v5}, Landroid/os/SystemClock;->setCurrentTimeMillis(J)Z
+  
++     .line 789
+      :cond_0
+      invoke-static {}, Lcom/android/internal/os/SamplingProfilerIntegration;->isEnabled()Z
+  
+***************
+*** 88,101 ****
+--- 98,114 ----
+  
+      if-eqz v0, :cond_1
+  
++     .line 790
+      invoke-static {}, Lcom/android/internal/os/SamplingProfilerIntegration;->start()V
+  
++     .line 791
+      new-instance v0, Ljava/util/Timer;
+  
+      invoke-direct {v0}, Ljava/util/Timer;-><init>()V
+  
+      sput-object v0, Lcom/android/server/SystemServer;->timer:Ljava/util/Timer;
+  
++     .line 792
+      sget-object v0, Lcom/android/server/SystemServer;->timer:Ljava/util/Timer;
+  
+      new-instance v1, Lcom/android/server/SystemServer$1;
+***************
+*** 106,111 ****
+--- 119,125 ----
+  
+      invoke-virtual/range {v0 .. v5}, Ljava/util/Timer;->schedule(Ljava/util/TimerTask;JJ)V
+  
++     .line 801
+      :cond_1
+      invoke-static {}, Ldalvik/system/VMRuntime;->getRuntime()Ldalvik/system/VMRuntime;
+  
+***************
+*** 113,118 ****
+--- 127,133 ----
+  
+      invoke-virtual {v0}, Ldalvik/system/VMRuntime;->clearGrowthLimit()V
+  
++     .line 805
+      invoke-static {}, Ldalvik/system/VMRuntime;->getRuntime()Ldalvik/system/VMRuntime;
+  
+      move-result-object v0
+***************
+*** 121,131 ****
+--- 136,149 ----
+  
+      invoke-virtual {v0, v1}, Ldalvik/system/VMRuntime;->setTargetHeapUtilization(F)F
+  
++     .line 807
+      const-string v0, "android_servers"
+  
+      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+  
++     .line 808
+      invoke-static {p0}, Lcom/android/server/SystemServer;->init1([Ljava/lang/String;)V
+  
++     .line 809
+      return-void
+  .end method

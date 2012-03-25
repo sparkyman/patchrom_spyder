@@ -1,0 +1,256 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/http/HttpResponseCache.smali	2012-03-23 19:37:01.072794644 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/http/HttpResponseCache.smali.original	2012-03-23 19:34:45.489322283 -0500
+***************
+*** 22,35 ****
+--- 22,38 ----
+      .end annotation
+  
+      .prologue
++     .line 144
+      invoke-direct {p0}, Ljava/net/ResponseCache;-><init>()V
+  
++     .line 145
+      new-instance v0, Llibcore/net/http/HttpResponseCache;
+  
+      invoke-direct {v0, p1, p2, p3}, Llibcore/net/http/HttpResponseCache;-><init>(Ljava/io/File;J)V
+  
+      iput-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
++     .line 146
+      return-void
+  .end method
+  
+***************
+*** 37,46 ****
+--- 40,51 ----
+      .locals 2
+  
+      .prologue
++     .line 153
+      invoke-static {}, Ljava/net/ResponseCache;->getDefault()Ljava/net/ResponseCache;
+  
+      move-result-object v0
+  
++     .line 154
+      .local v0, installed:Ljava/net/ResponseCache;
+      instance-of v1, v0, Landroid/net/http/HttpResponseCache;
+  
+***************
+*** 70,88 ****
+--- 75,97 ----
+      .end annotation
+  
+      .prologue
++     .line 169
+      invoke-static {}, Landroid/net/http/HttpResponseCache;->getInstalled()Landroid/net/http/HttpResponseCache;
+  
+      move-result-object v0
+  
++     .line 170
+      .local v0, installed:Landroid/net/http/HttpResponseCache;
+      if-eqz v0, :cond_1
+  
++     .line 172
+      iget-object v3, v0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v3}, Llibcore/net/http/HttpResponseCache;->getCache()Llibcore/io/DiskLruCache;
+  
+      move-result-object v1
+  
++     .line 173
+      .local v1, installedCache:Llibcore/io/DiskLruCache;
+      invoke-virtual {v1}, Llibcore/io/DiskLruCache;->getDirectory()Ljava/io/File;
+  
+***************
+*** 108,134 ****
+--- 117,148 ----
+  
+      if-nez v3, :cond_0
+  
++     .line 184
+      .end local v0           #installed:Landroid/net/http/HttpResponseCache;
+      .end local v1           #installedCache:Llibcore/io/DiskLruCache;
+      :goto_0
+      return-object v0
+  
++     .line 178
+      .restart local v0       #installed:Landroid/net/http/HttpResponseCache;
+      .restart local v1       #installedCache:Llibcore/io/DiskLruCache;
+      :cond_0
+      invoke-static {v0}, Llibcore/io/IoUtils;->closeQuietly(Ljava/lang/AutoCloseable;)V
+  
++     .line 182
+      .end local v1           #installedCache:Llibcore/io/DiskLruCache;
+      :cond_1
+      new-instance v2, Landroid/net/http/HttpResponseCache;
+  
+      invoke-direct {v2, p0, p1, p2}, Landroid/net/http/HttpResponseCache;-><init>(Ljava/io/File;J)V
+  
++     .line 183
+      .local v2, result:Landroid/net/http/HttpResponseCache;
+      invoke-static {v2}, Ljava/net/ResponseCache;->setDefault(Ljava/net/ResponseCache;)V
+  
+      move-object v0, v2
+  
++     .line 184
+      goto :goto_0
+  .end method
+  
+***************
+*** 143,158 ****
+--- 157,175 ----
+      .end annotation
+  
+      .prologue
++     .line 256
+      invoke-static {}, Ljava/net/ResponseCache;->getDefault()Ljava/net/ResponseCache;
+  
+      move-result-object v0
+  
+      if-ne v0, p0, :cond_0
+  
++     .line 257
+      const/4 v0, 0x0
+  
+      invoke-static {v0}, Ljava/net/ResponseCache;->setDefault(Ljava/net/ResponseCache;)V
+  
++     .line 259
+      :cond_0
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+***************
+*** 162,167 ****
+--- 179,185 ----
+  
+      invoke-virtual {v0}, Llibcore/io/DiskLruCache;->close()V
+  
++     .line 260
+      return-void
+  .end method
+  
+***************
+*** 174,189 ****
+--- 192,210 ----
+      .end annotation
+  
+      .prologue
++     .line 266
+      invoke-static {}, Ljava/net/ResponseCache;->getDefault()Ljava/net/ResponseCache;
+  
+      move-result-object v0
+  
+      if-ne v0, p0, :cond_0
+  
++     .line 267
+      const/4 v0, 0x0
+  
+      invoke-static {v0}, Ljava/net/ResponseCache;->setDefault(Ljava/net/ResponseCache;)V
+  
++     .line 269
+      :cond_0
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+***************
+*** 193,198 ****
+--- 214,220 ----
+  
+      invoke-virtual {v0}, Llibcore/io/DiskLruCache;->delete()V
+  
++     .line 270
+      return-void
+  .end method
+  
+***************
+*** 200,205 ****
+--- 222,228 ----
+      .locals 1
+  
+      .prologue
++     .line 220
+      :try_start_0
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+***************
+*** 211,219 ****
+--- 234,244 ----
+      :try_end_0
+      .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 223
+      :goto_0
+      return-void
+  
++     .line 221
+      :catch_0
+      move-exception v0
+  
+***************
+*** 248,253 ****
+--- 273,279 ----
+      .end annotation
+  
+      .prologue
++     .line 189
+      .local p3, requestHeaders:Ljava/util/Map;,"Ljava/util/Map<Ljava/lang/String;Ljava/util/List<Ljava/lang/String;>;>;"
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+***************
+*** 262,267 ****
+--- 288,294 ----
+      .locals 1
+  
+      .prologue
++     .line 239
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v0}, Llibcore/net/http/HttpResponseCache;->getHitCount()I
+***************
+*** 275,280 ****
+--- 302,308 ----
+      .locals 1
+  
+      .prologue
++     .line 230
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v0}, Llibcore/net/http/HttpResponseCache;->getNetworkCount()I
+***************
+*** 288,293 ****
+--- 316,322 ----
+      .locals 1
+  
+      .prologue
++     .line 248
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v0}, Llibcore/net/http/HttpResponseCache;->getRequestCount()I
+***************
+*** 301,306 ****
+--- 330,336 ----
+      .locals 2
+  
+      .prologue
++     .line 210
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v0}, Llibcore/net/http/HttpResponseCache;->getCache()Llibcore/io/DiskLruCache;
+***************
+*** 325,330 ****
+--- 355,361 ----
+      .end annotation
+  
+      .prologue
++     .line 193
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v0, p1, p2}, Llibcore/net/http/HttpResponseCache;->put(Ljava/net/URI;Ljava/net/URLConnection;)Ljava/net/CacheRequest;
+***************
+*** 338,343 ****
+--- 369,375 ----
+      .locals 2
+  
+      .prologue
++     .line 202
+      iget-object v0, p0, Landroid/net/http/HttpResponseCache;->delegate:Llibcore/net/http/HttpResponseCache;
+  
+      invoke-virtual {v0}, Llibcore/net/http/HttpResponseCache;->getCache()Llibcore/io/DiskLruCache;

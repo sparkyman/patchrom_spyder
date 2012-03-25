@@ -1,0 +1,773 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/media/audiofx/Visualizer.smali	2012-03-23 19:35:34.788221248 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/media/audiofx/Visualizer.smali.original	2012-03-23 19:34:44.722308298 -0500
+***************
+*** 65,76 ****
+--- 65,79 ----
+      .locals 1
+  
+      .prologue
++     .line 65
+      const-string v0, "audioeffect_jni"
+  
+      invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V
+  
++     .line 66
+      invoke-static {}, Landroid/media/audiofx/Visualizer;->native_init()V
+  
++     .line 67
+      return-void
+  .end method
+  
+***************
+*** 91,128 ****
+--- 94,141 ----
+  
+      const/4 v2, 0x0
+  
++     .line 169
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 128
+      iput v2, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
++     .line 132
+      new-instance v2, Ljava/lang/Object;
+  
+      invoke-direct {v2}, Ljava/lang/Object;-><init>()V
+  
+      iput-object v2, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
++     .line 141
+      new-instance v2, Ljava/lang/Object;
+  
+      invoke-direct {v2}, Ljava/lang/Object;-><init>()V
+  
+      iput-object v2, p0, Landroid/media/audiofx/Visualizer;->mListenerLock:Ljava/lang/Object;
+  
++     .line 145
+      iput-object v4, p0, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
++     .line 149
+      iput-object v4, p0, Landroid/media/audiofx/Visualizer;->mCaptureListener:Landroid/media/audiofx/Visualizer$OnDataCaptureListener;
+  
++     .line 170
+      new-array v0, v3, [I
+  
++     .line 172
+      .local v0, id:[I
+      iget-object v3, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 173
+      const/4 v2, 0x0
+  
+      :try_start_0
+      iput v2, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
++     .line 175
+      new-instance v2, Ljava/lang/ref/WeakReference;
+  
+      invoke-direct {v2, p0}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+***************
+*** 131,136 ****
+--- 144,150 ----
+  
+      move-result v1
+  
++     .line 176
+      .local v1, result:I
+      if-eqz v1, :cond_0
+  
+***************
+*** 138,143 ****
+--- 152,158 ----
+  
+      if-eq v1, v2, :cond_0
+  
++     .line 177
+      const-string v2, "Visualizer-JAVA"
+  
+      new-instance v4, Ljava/lang/StringBuilder;
+***************
+*** 166,173 ****
+--- 181,190 ----
+  
+      invoke-static {v2, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 178
+      packed-switch v1, :pswitch_data_0
+  
++     .line 182
+      new-instance v2, Ljava/lang/RuntimeException;
+  
+      new-instance v4, Ljava/lang/StringBuilder;
+***************
+*** 192,197 ****
+--- 209,215 ----
+  
+      throw v2
+  
++     .line 192
+      .end local v1           #result:I
+      :catchall_0
+      move-exception v2
+***************
+*** 202,207 ****
+--- 220,226 ----
+  
+      throw v2
+  
++     .line 180
+      .restart local v1       #result:I
+      :pswitch_0
+      :try_start_1
+***************
+*** 213,218 ****
+--- 232,238 ----
+  
+      throw v2
+  
++     .line 186
+      :cond_0
+      const/4 v2, 0x0
+  
+***************
+*** 220,240 ****
+--- 240,265 ----
+  
+      iput v2, p0, Landroid/media/audiofx/Visualizer;->mId:I
+  
++     .line 187
+      invoke-direct {p0}, Landroid/media/audiofx/Visualizer;->native_getEnabled()Z
+  
+      move-result v2
+  
+      if-eqz v2, :cond_1
+  
++     .line 188
+      const/4 v2, 0x2
+  
+      iput v2, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
++     .line 192
+      :goto_0
+      monitor-exit v3
+  
++     .line 193
+      return-void
+  
++     .line 190
+      :cond_1
+      const/4 v2, 0x1
+  
+***************
+*** 244,249 ****
+--- 269,275 ----
+  
+      goto :goto_0
+  
++     .line 178
+      nop
+  
+      :pswitch_data_0
+***************
+*** 257,262 ****
+--- 283,289 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 62
+      iget-object v0, p0, Landroid/media/audiofx/Visualizer;->mListenerLock:Ljava/lang/Object;
+  
+      return-object v0
+***************
+*** 267,272 ****
+--- 294,300 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 62
+      iget-object v0, p0, Landroid/media/audiofx/Visualizer;->mCaptureListener:Landroid/media/audiofx/Visualizer$OnDataCaptureListener;
+  
+      return-object v0
+***************
+*** 323,328 ****
+--- 351,357 ----
+      .parameter "obj"
+  
+      .prologue
++     .line 530
+      check-cast p0, Ljava/lang/ref/WeakReference;
+  
+      .end local p0
+***************
+*** 332,355 ****
+--- 361,389 ----
+  
+      check-cast v1, Landroid/media/audiofx/Visualizer;
+  
++     .line 531
+      .local v1, visu:Landroid/media/audiofx/Visualizer;
+      if-nez v1, :cond_1
+  
++     .line 540
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 535
+      :cond_1
+      iget-object v2, v1, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
+      if-eqz v2, :cond_0
+  
++     .line 536
+      iget-object v2, v1, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
+      invoke-virtual {v2, p1, p2, p3, p4}, Landroid/media/audiofx/Visualizer$NativeEventHandler;->obtainMessage(IIILjava/lang/Object;)Landroid/os/Message;
+  
+      move-result-object v0
+  
++     .line 537
+      .local v0, m:Landroid/os/Message;
+      iget-object v2, v1, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
+***************
+*** 364,371 ****
+--- 398,407 ----
+      .locals 0
+  
+      .prologue
++     .line 208
+      invoke-direct {p0}, Landroid/media/audiofx/Visualizer;->native_finalize()V
+  
++     .line 209
+      return-void
+  .end method
+  
+***************
+*** 378,392 ****
+--- 414,431 ----
+      .end annotation
+  
+      .prologue
++     .line 291
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 292
+      :try_start_0
+      iget v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+      if-nez v0, :cond_0
+  
++     .line 293
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 413,418 ****
+--- 452,458 ----
+  
+      throw v0
+  
++     .line 296
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 422,427 ****
+--- 462,468 ----
+  
+      throw v0
+  
++     .line 295
+      :cond_0
+      :try_start_1
+      invoke-direct {p0}, Landroid/media/audiofx/Visualizer;->native_getCaptureSize()I
+***************
+*** 439,453 ****
+--- 480,497 ----
+      .locals 4
+  
+      .prologue
++     .line 242
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 243
+      :try_start_0
+      iget v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+      if-nez v0, :cond_0
+  
++     .line 244
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 474,479 ****
+--- 518,524 ----
+  
+      throw v0
+  
++     .line 247
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 483,488 ****
+--- 528,534 ----
+  
+      throw v0
+  
++     .line 246
+      :cond_0
+      :try_start_1
+      invoke-direct {p0}, Landroid/media/audiofx/Visualizer;->native_getEnabled()Z
+***************
+*** 506,515 ****
+--- 552,563 ----
+      .end annotation
+  
+      .prologue
++     .line 379
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 380
+      :try_start_0
+      iget v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+***************
+*** 517,522 ****
+--- 565,571 ----
+  
+      if-eq v0, v2, :cond_0
+  
++     .line 381
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 543,548 ****
+--- 592,598 ----
+  
+      throw v0
+  
++     .line 384
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 552,557 ****
+--- 602,608 ----
+  
+      throw v0
+  
++     .line 383
+      :cond_0
+      :try_start_1
+      invoke-direct {p0, p1}, Landroid/media/audiofx/Visualizer;->native_getFft([B)I
+***************
+*** 574,588 ****
+--- 625,642 ----
+      .end annotation
+  
+      .prologue
++     .line 305
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 306
+      :try_start_0
+      iget v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+      if-nez v0, :cond_0
+  
++     .line 307
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 609,614 ****
+--- 663,669 ----
+  
+      throw v0
+  
++     .line 310
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 618,623 ****
+--- 673,679 ----
+  
+      throw v0
+  
++     .line 309
+      :cond_0
+      :try_start_1
+      invoke-direct {p0}, Landroid/media/audiofx/Visualizer;->native_getSamplingRate()I
+***************
+*** 641,650 ****
+--- 697,708 ----
+      .end annotation
+  
+      .prologue
++     .line 326
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 327
+      :try_start_0
+      iget v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+***************
+*** 652,657 ****
+--- 710,716 ----
+  
+      if-eq v0, v2, :cond_0
+  
++     .line 328
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 678,683 ****
+--- 737,743 ----
+  
+      throw v0
+  
++     .line 331
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 687,692 ****
+--- 747,753 ----
+  
+      throw v0
+  
++     .line 330
+      :cond_0
+      :try_start_1
+      invoke-direct {p0, p1}, Landroid/media/audiofx/Visualizer;->native_getWaveForm([B)I
+***************
+*** 704,724 ****
+--- 765,791 ----
+      .locals 2
+  
+      .prologue
++     .line 200
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 201
+      :try_start_0
+      invoke-direct {p0}, Landroid/media/audiofx/Visualizer;->native_release()V
+  
++     .line 202
+      const/4 v0, 0x0
+  
+      iput v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
++     .line 203
+      monitor-exit v1
+  
++     .line 204
+      return-void
+  
++     .line 203
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 739,748 ****
+--- 806,817 ----
+      .end annotation
+  
+      .prologue
++     .line 277
+      iget-object v1, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 278
+      :try_start_0
+      iget v0, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+***************
+*** 750,762 ****
+  
+      if-eq v0, v2, :cond_0
+  
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v3, "setCaptureSize() called in wrong state: "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 819,832 ----
+  
+      if-eq v0, v2, :cond_0
+  
++     .line 279
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v3, "setCaptureSize() called in wrong state: "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 776,781 ****
+--- 846,852 ----
+  
+      throw v0
+  
++     .line 282
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 785,790 ****
+--- 856,862 ----
+  
+      throw v0
+  
++     .line 281
+      :cond_0
+      :try_start_1
+      invoke-direct {p0, p1}, Landroid/media/audiofx/Visualizer;->native_setCaptureSize(I)I
+***************
+*** 806,842 ****
+--- 878,924 ----
+      .parameter "fft"
+  
+      .prologue
++     .line 429
+      iget-object v3, p0, Landroid/media/audiofx/Visualizer;->mListenerLock:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 430
+      :try_start_0
+      iput-object p1, p0, Landroid/media/audiofx/Visualizer;->mCaptureListener:Landroid/media/audiofx/Visualizer$OnDataCaptureListener;
+  
++     .line 431
+      monitor-exit v3
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 432
+      if-nez p1, :cond_0
+  
++     .line 434
+      const/4 p3, 0x0
+  
++     .line 435
+      const/4 p4, 0x0
+  
++     .line 437
+      :cond_0
+      invoke-direct {p0, p2, p3, p4}, Landroid/media/audiofx/Visualizer;->native_setPeriodicCapture(IZZ)I
+  
+      move-result v1
+  
++     .line 438
+      .local v1, status:I
+      if-nez v1, :cond_1
+  
++     .line 439
+      if-eqz p1, :cond_1
+  
+      iget-object v2, p0, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
+      if-nez v2, :cond_1
+  
++     .line 441
+      invoke-static {}, Landroid/os/Looper;->myLooper()Landroid/os/Looper;
+  
+      move-result-object v0
+***************
+*** 844,860 ****
+--- 926,945 ----
+      .local v0, looper:Landroid/os/Looper;
+      if-eqz v0, :cond_2
+  
++     .line 442
+      new-instance v2, Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
+      invoke-direct {v2, p0, p0, v0}, Landroid/media/audiofx/Visualizer$NativeEventHandler;-><init>(Landroid/media/audiofx/Visualizer;Landroid/media/audiofx/Visualizer;Landroid/os/Looper;)V
+  
+      iput-object v2, p0, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
++     .line 451
+      .end local v0           #looper:Landroid/os/Looper;
+      :cond_1
+      :goto_0
+      return v1
+  
++     .line 431
+      .end local v1           #status:I
+      :catchall_0
+      move-exception v2
+***************
+*** 866,871 ****
+--- 951,957 ----
+  
+      throw v2
+  
++     .line 443
+      .restart local v0       #looper:Landroid/os/Looper;
+      .restart local v1       #status:I
+      :cond_2
+***************
+*** 875,880 ****
+--- 961,967 ----
+  
+      if-eqz v0, :cond_3
+  
++     .line 444
+      new-instance v2, Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
+      invoke-direct {v2, p0, p0, v0}, Landroid/media/audiofx/Visualizer$NativeEventHandler;-><init>(Landroid/media/audiofx/Visualizer;Landroid/media/audiofx/Visualizer;Landroid/os/Looper;)V
+***************
+*** 883,893 ****
+--- 970,982 ----
+  
+      goto :goto_0
+  
++     .line 446
+      :cond_3
+      const/4 v2, 0x0
+  
+      iput-object v2, p0, Landroid/media/audiofx/Visualizer;->mNativeEventHandler:Landroid/media/audiofx/Visualizer$NativeEventHandler;
+  
++     .line 447
+      const/4 v1, -0x3
+  
+      goto :goto_0
+***************
+*** 907,928 ****
+  
+      const/4 v2, 0x1
+  
+      iget-object v3, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
+      :try_start_0
+      iget v4, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+      if-nez v4, :cond_0
+  
+      new-instance v1, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v4, "setEnabled() called in wrong state: "
+  
+      invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 996,1020 ----
+  
+      const/4 v2, 0x1
+  
++     .line 220
+      iget-object v3, p0, Landroid/media/audiofx/Visualizer;->mStateLock:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 221
+      :try_start_0
+      iget v4, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
+      if-nez v4, :cond_0
+  
++     .line 222
+      new-instance v1, Ljava/lang/IllegalStateException;
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v4, "setEnabled() called in wrong state: "
+  
+      invoke-virtual {v2, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 942,947 ****
+--- 1034,1040 ----
+  
+      throw v1
+  
++     .line 233
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 951,959 ****
+--- 1044,1054 ----
+  
+      throw v1
+  
++     .line 224
+      :cond_0
+      const/4 v0, 0x0
+  
++     .line 225
+      .local v0, status:I
+      if-eqz p1, :cond_1
+  
+***************
+*** 969,986 ****
+--- 1064,1085 ----
+  
+      if-ne v4, v1, :cond_3
+  
++     .line 227
+      :cond_2
+      invoke-direct {p0, p1}, Landroid/media/audiofx/Visualizer;->native_setEnabled(Z)I
+  
+      move-result v0
+  
++     .line 228
+      if-nez v0, :cond_3
+  
++     .line 229
+      if-eqz p1, :cond_4
+  
+      :goto_0
+      iput v1, p0, Landroid/media/audiofx/Visualizer;->mState:I
+  
++     .line 232
+      :cond_3
+      monitor-exit v3
+      :try_end_1
+***************
+*** 991,995 ****
+--- 1090,1095 ----
+      :cond_4
+      move v1, v2
+  
++     .line 229
+      goto :goto_0
+  .end method

@@ -1,0 +1,795 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/am/PendingIntentRecord.smali	2012-03-23 19:35:01.158608012 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/am/PendingIntentRecord.smali.original	2012-03-23 19:34:47.063350987 -0500
+***************
+*** 46,69 ****
+--- 46,77 ----
+      .prologue
+      const/4 v0, 0x0
+  
++     .line 173
+      invoke-direct {p0}, Landroid/content/IIntentSender$Stub;-><init>()V
+  
++     .line 37
+      iput-boolean v0, p0, Lcom/android/server/am/PendingIntentRecord;->sent:Z
+  
++     .line 38
+      iput-boolean v0, p0, Lcom/android/server/am/PendingIntentRecord;->canceled:Z
+  
++     .line 174
+      iput-object p1, p0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+  
++     .line 175
+      iput-object p2, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
++     .line 176
+      iput p3, p0, Lcom/android/server/am/PendingIntentRecord;->uid:I
+  
++     .line 177
+      new-instance v0, Ljava/lang/ref/WeakReference;
+  
+      invoke-direct {v0, p0}, Ljava/lang/ref/WeakReference;-><init>(Ljava/lang/Object;)V
+  
+      iput-object v0, p0, Lcom/android/server/am/PendingIntentRecord;->ref:Ljava/lang/ref/WeakReference;
+  
++     .line 178
+      return-void
+  .end method
+  
+***************
+*** 73,82 ****
+--- 81,92 ----
+      .locals 4
+  
+      .prologue
++     .line 297
+      iget-object v2, p0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+  
+      monitor-enter v2
+  
++     .line 298
+      :try_start_0
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+  
+***************
+*** 90,100 ****
+--- 100,112 ----
+  
+      check-cast v0, Ljava/lang/ref/WeakReference;
+  
++     .line 300
+      .local v0, current:Ljava/lang/ref/WeakReference;,"Ljava/lang/ref/WeakReference<Lcom/android/server/am/PendingIntentRecord;>;"
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->ref:Ljava/lang/ref/WeakReference;
+  
+      if-ne v0, v1, :cond_0
+  
++     .line 301
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+  
+      iget-object v1, v1, Lcom/android/server/am/ActivityManagerService;->mIntentSenderRecords:Ljava/util/HashMap;
+***************
+*** 103,113 ****
+--- 115,128 ----
+  
+      invoke-virtual {v1, v3}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 303
+      :cond_0
+      monitor-exit v2
+  
++     .line 304
+      return-void
+  
++     .line 303
+      .end local v0           #current:Ljava/lang/ref/WeakReference;,"Ljava/lang/ref/WeakReference<Lcom/android/server/am/PendingIntentRecord;>;"
+      :catchall_0
+      move-exception v1
+***************
+*** 127,132 ****
+--- 142,148 ----
+      .prologue
+      const/4 v2, 0x1
+  
++     .line 307
+      invoke-virtual {p1, p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "uid="
+***************
+*** 137,142 ****
+--- 153,159 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(I)V
+  
++     .line 308
+      const-string v0, " packageName="
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+***************
+*** 147,152 ****
+--- 164,170 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
++     .line 309
+      const-string v0, " type="
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+***************
+*** 159,164 ****
+--- 177,183 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
++     .line 310
+      const-string v0, " flags=0x"
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+***************
+*** 173,178 ****
+--- 192,198 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 311
+      iget-object v0, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
+      iget-object v0, v0, Lcom/android/server/am/PendingIntentRecord$Key;->activity:Lcom/android/server/am/ActivityRecord;
+***************
+*** 185,190 ****
+--- 205,211 ----
+  
+      if-eqz v0, :cond_1
+  
++     .line 312
+      :cond_0
+      invoke-virtual {p1, p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+***************
+*** 198,203 ****
+--- 219,225 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/Object;)V
+  
++     .line 313
+      const-string v0, " who="
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+***************
+*** 208,213 ****
+--- 230,236 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 315
+      :cond_1
+      iget-object v0, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
+***************
+*** 221,226 ****
+--- 244,250 ----
+  
+      if-eqz v0, :cond_3
+  
++     .line 316
+      :cond_2
+      invoke-virtual {p1, p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+***************
+*** 234,239 ****
+--- 258,264 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(I)V
+  
++     .line 317
+      const-string v0, " requestResolvedType="
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+***************
+*** 244,249 ****
+--- 269,275 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 319
+      :cond_3
+      iget-object v0, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
+***************
+*** 251,262 ****
+--- 277,290 ----
+  
+      if-eqz v0, :cond_4
+  
++     .line 320
+      invoke-virtual {p1, p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+      const-string v0, "requestIntent="
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
++     .line 321
+      iget-object v0, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
+      iget-object v0, v0, Lcom/android/server/am/PendingIntentRecord$Key;->requestIntent:Landroid/content/Intent;
+***************
+*** 269,274 ****
+--- 297,303 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 323
+      :cond_4
+      iget-boolean v0, p0, Lcom/android/server/am/PendingIntentRecord;->sent:Z
+  
+***************
+*** 278,283 ****
+--- 307,313 ----
+  
+      if-eqz v0, :cond_6
+  
++     .line 324
+      :cond_5
+      invoke-virtual {p1, p2}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+  
+***************
+*** 289,294 ****
+--- 319,325 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Z)V
+  
++     .line 325
+      const-string v0, " canceled="
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->print(Ljava/lang/String;)V
+***************
+*** 297,302 ****
+--- 328,334 ----
+  
+      invoke-virtual {p1, v0}, Ljava/io/PrintWriter;->println(Z)V
+  
++     .line 327
+      :cond_6
+      return-void
+  .end method
+***************
+*** 310,320 ****
+--- 342,354 ----
+      .end annotation
+  
+      .prologue
++     .line 287
+      :try_start_0
+      iget-boolean v0, p0, Lcom/android/server/am/PendingIntentRecord;->canceled:Z
+  
+      if-nez v0, :cond_0
+  
++     .line 288
+      iget-object v0, p0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+  
+      iget-object v0, v0, Lcom/android/server/am/ActivityManagerService;->mHandler:Landroid/os/Handler;
+***************
+*** 333,343 ****
+--- 367,380 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 292
+      :cond_0
+      invoke-super {p0}, Landroid/content/IIntentSender$Stub;->finalize()V
+  
++     .line 294
+      return-void
+  
++     .line 292
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 355,360 ****
+--- 392,398 ----
+      .parameter "requiredPermission"
+  
+      .prologue
++     .line 182
+      const/4 v6, 0x0
+  
+      const/4 v7, 0x0
+***************
+*** 398,403 ****
+--- 436,442 ----
+      .parameter "flagsValues"
+  
+      .prologue
++     .line 190
+      move-object/from16 v0, p0
+  
+      iget-object v0, v0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+***************
+*** 406,411 ****
+--- 445,451 ----
+  
+      monitor-enter v25
+  
++     .line 191
+      :try_start_0
+      move-object/from16 v0, p0
+  
+***************
+*** 413,424 ****
+--- 453,466 ----
+  
+      if-nez v3, :cond_9
+  
++     .line 192
+      const/4 v3, 0x1
+  
+      move-object/from16 v0, p0
+  
+      iput-boolean v3, v0, Lcom/android/server/am/PendingIntentRecord;->sent:Z
+  
++     .line 193
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+***************
+*** 431,436 ****
+--- 473,479 ----
+  
+      if-eqz v3, :cond_0
+  
++     .line 194
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+***************
+*** 441,452 ****
+--- 484,497 ----
+  
+      invoke-virtual {v3, v0, v4}, Lcom/android/server/am/ActivityManagerService;->cancelIntentSenderLocked(Lcom/android/server/am/PendingIntentRecord;Z)V
+  
++     .line 195
+      const/4 v3, 0x1
+  
+      move-object/from16 v0, p0
+  
+      iput-boolean v3, v0, Lcom/android/server/am/PendingIntentRecord;->canceled:Z
+  
++     .line 197
+      :cond_0
+      move-object/from16 v0, p0
+  
+***************
+*** 466,475 ****
+--- 511,522 ----
+  
+      invoke-direct {v5, v3}, Landroid/content/Intent;-><init>(Landroid/content/Intent;)V
+  
++     .line 199
+      .local v5, finalIntent:Landroid/content/Intent;
+      :goto_0
+      if-eqz p2, :cond_4
+  
++     .line 200
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+***************
+*** 482,492 ****
+--- 529,541 ----
+  
+      move-result v20
+  
++     .line 201
+      .local v20, changes:I
+      and-int/lit8 v3, v20, 0x2
+  
+      if-nez v3, :cond_1
+  
++     .line 202
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+***************
+*** 495,507 ****
+--- 544,559 ----
+  
+      move-object/from16 p3, v0
+  
++     .line 207
+      .end local v20           #changes:I
+      :cond_1
+      :goto_1
+      and-int/lit8 p9, p9, -0x4
+  
++     .line 208
+      and-int p10, p10, p9
+  
++     .line 209
+      invoke-virtual {v5}, Landroid/content/Intent;->getFlags()I
+  
+      move-result v3
+***************
+*** 514,528 ****
+--- 566,583 ----
+  
+      invoke-virtual {v5, v3}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
+  
++     .line 211
+      invoke-static {}, Landroid/os/Binder;->clearCallingIdentity()J
+  
+      move-result-wide v22
+  
++     .line 213
+      .local v22, origId:J
+      if-eqz p4, :cond_5
+  
+      const/16 v24, 0x1
+  
++     .line 214
+      .local v24, sendFinish:Z
+      :goto_2
+      move-object/from16 v0, p0
+***************
+*** 535,543 ****
+--- 590,600 ----
+  
+      packed-switch v3, :pswitch_data_0
+  
++     .line 269
+      :goto_3
+      if-eqz v24, :cond_2
+  
++     .line 271
+      :try_start_1
+      new-instance v7, Landroid/content/Intent;
+  
+***************
+*** 560,580 ****
+--- 617,641 ----
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+      .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_3
+  
++     .line 277
+      :cond_2
+      :goto_4
+      :try_start_2
+      invoke-static/range {v22 .. v23}, Landroid/os/Binder;->restoreCallingIdentity(J)V
+  
++     .line 279
+      const/4 v3, 0x0
+  
+      monitor-exit v25
+  
++     .line 282
+      .end local v5           #finalIntent:Landroid/content/Intent;
+      .end local v22           #origId:J
+      .end local v24           #sendFinish:Z
+      :goto_5
+      return v3
+  
++     .line 197
+      :cond_3
+      new-instance v5, Landroid/content/Intent;
+  
+***************
+*** 582,587 ****
+--- 643,649 ----
+  
+      goto :goto_0
+  
++     .line 281
+      :catchall_0
+      move-exception v3
+  
+***************
+*** 591,596 ****
+--- 653,659 ----
+  
+      throw v3
+  
++     .line 205
+      .restart local v5       #finalIntent:Landroid/content/Intent;
+      :cond_4
+      :try_start_3
+***************
+*** 606,617 ****
+--- 669,682 ----
+  
+      goto :goto_1
+  
++     .line 213
+      .restart local v22       #origId:J
+      :cond_5
+      const/16 v24, 0x0
+  
+      goto :goto_2
+  
++     .line 217
+      .restart local v24       #sendFinish:Z
+      :pswitch_0
+      :try_start_4
+***************
+*** 635,640 ****
+--- 700,706 ----
+  
+      if-le v3, v4, :cond_7
+  
++     .line 218
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+***************
+*** 647,652 ****
+--- 713,719 ----
+  
+      move-object/from16 v18, v0
+  
++     .line 219
+      .local v18, allIntents:[Landroid/content/Intent;
+      move-object/from16 v0, p0
+  
+***************
+*** 660,665 ****
+--- 727,733 ----
+  
+      move-object/from16 v19, v0
+  
++     .line 220
+      .local v19, allResolvedTypes:[Ljava/lang/String;
+      move-object/from16 v0, p0
+  
+***************
+*** 683,688 ****
+--- 751,757 ----
+  
+      invoke-static {v3, v4, v0, v6, v7}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  
++     .line 222
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+***************
+*** 691,696 ****
+--- 760,766 ----
+  
+      if-eqz v3, :cond_6
+  
++     .line 223
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+***************
+*** 713,718 ****
+--- 783,789 ----
+  
+      invoke-static {v3, v4, v0, v6, v7}, Ljava/lang/System;->arraycopy(Ljava/lang/Object;ILjava/lang/Object;II)V
+  
++     .line 226
+      :cond_6
+      move-object/from16 v0, v18
+  
+***************
+*** 722,727 ****
+--- 793,799 ----
+  
+      aput-object v5, v18, v3
+  
++     .line 227
+      move-object/from16 v0, v19
+  
+      array-length v3, v0
+***************
+*** 730,735 ****
+--- 802,808 ----
+  
+      aput-object p3, v19, v3
+  
++     .line 228
+      move-object/from16 v0, p0
+  
+      iget-object v3, v0, Lcom/android/server/am/PendingIntentRecord;->owner:Lcom/android/server/am/ActivityManagerService;
+***************
+*** 751,761 ****
+--- 824,836 ----
+  
+      goto/16 :goto_3
+  
++     .line 235
+      .end local v18           #allIntents:[Landroid/content/Intent;
+      .end local v19           #allResolvedTypes:[Ljava/lang/String;
+      :catch_0
+      move-exception v21
+  
++     .line 236
+      .local v21, e:Ljava/lang/RuntimeException;
+      :try_start_5
+      const-string v3, "ActivityManager"
+***************
+*** 770,775 ****
+--- 845,851 ----
+  
+      goto/16 :goto_3
+  
++     .line 231
+      .end local v21           #e:Ljava/lang/RuntimeException;
+      :cond_7
+      :try_start_6
+***************
+*** 798,803 ****
+--- 874,880 ----
+  
+      goto/16 :goto_3
+  
++     .line 241
+      :pswitch_1
+      :try_start_7
+      move-object/from16 v0, p0
+***************
+*** 838,843 ****
+--- 915,921 ----
+  
+      goto/16 :goto_3
+  
++     .line 248
+      :pswitch_2
+      :try_start_8
+      move-object/from16 v0, p0
+***************
+*** 880,897 ****
+--- 958,979 ----
+      .catchall {:try_start_8 .. :try_end_8} :catchall_0
+      .catch Ljava/lang/RuntimeException; {:try_start_8 .. :try_end_8} :catch_1
+  
++     .line 252
+      const/16 v24, 0x0
+  
+      goto/16 :goto_3
+  
++     .line 248
+      :cond_8
+      const/16 v16, 0x0
+  
+      goto :goto_6
+  
++     .line 253
+      :catch_1
+      move-exception v21
+  
++     .line 254
+      .restart local v21       #e:Ljava/lang/RuntimeException;
+      :try_start_9
+      const-string v3, "ActivityManager"
+***************
+*** 906,911 ****
+--- 988,994 ----
+  
+      goto/16 :goto_3
+  
++     .line 260
+      .end local v21           #e:Ljava/lang/RuntimeException;
+      :pswitch_3
+      :try_start_a
+***************
+*** 926,934 ****
+--- 1009,1019 ----
+  
+      goto/16 :goto_3
+  
++     .line 262
+      :catch_2
+      move-exception v21
+  
++     .line 263
+      .restart local v21       #e:Ljava/lang/RuntimeException;
+      :try_start_b
+      const-string v3, "ActivityManager"
+***************
+*** 941,946 ****
+--- 1026,1032 ----
+  
+      goto/16 :goto_3
+  
++     .line 281
+      .end local v5           #finalIntent:Landroid/content/Intent;
+      .end local v21           #e:Ljava/lang/RuntimeException;
+      .end local v22           #origId:J
+***************
+*** 950,959 ****
+--- 1036,1047 ----
+      :try_end_b
+      .catchall {:try_start_b .. :try_end_b} :catchall_0
+  
++     .line 282
+      const/4 v3, -0x6
+  
+      goto/16 :goto_5
+  
++     .line 273
+      .restart local v5       #finalIntent:Landroid/content/Intent;
+      .restart local v22       #origId:J
+      .restart local v24       #sendFinish:Z
+***************
+*** 962,967 ****
+--- 1050,1056 ----
+  
+      goto/16 :goto_4
+  
++     .line 214
+      nop
+  
+      :pswitch_data_0
+***************
+*** 979,993 ****
+--- 1068,1086 ----
+      .prologue
+      const/16 v2, 0x20
+  
++     .line 330
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->stringName:Ljava/lang/String;
+  
+      if-eqz v1, :cond_0
+  
++     .line 331
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->stringName:Ljava/lang/String;
+  
++     .line 341
+      :goto_0
+      return-object v1
+  
++     .line 333
+      :cond_0
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+***************
+*** 995,1005 ****
+--- 1088,1100 ----
+  
+      invoke-direct {v0, v1}, Ljava/lang/StringBuilder;-><init>(I)V
+  
++     .line 334
+      .local v0, sb:Ljava/lang/StringBuilder;
+      const-string v1, "PendingIntentRecord{"
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 335
+      invoke-static {p0}, Ljava/lang/System;->identityHashCode(Ljava/lang/Object;)I
+  
+      move-result v1
+***************
+*** 1010,1025 ****
+--- 1105,1124 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 336
+      invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+  
++     .line 337
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
+      iget-object v1, v1, Lcom/android/server/am/PendingIntentRecord$Key;->packageName:Ljava/lang/String;
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 338
+      invoke-virtual {v0, v2}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+  
++     .line 339
+      iget-object v1, p0, Lcom/android/server/am/PendingIntentRecord;->key:Lcom/android/server/am/PendingIntentRecord$Key;
+  
+      invoke-virtual {v1}, Lcom/android/server/am/PendingIntentRecord$Key;->typeName()Ljava/lang/String;
+***************
+*** 1028,1037 ****
+--- 1127,1138 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 340
+      const/16 v1, 0x7d
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+  
++     .line 341
+      invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+  
+      move-result-object v1

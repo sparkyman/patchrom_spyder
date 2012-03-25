@@ -1,0 +1,510 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/google/android/util/AbstractMessageParser$FlickrPhoto.smali	2012-03-23 19:37:56.955813671 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/google/android/util/AbstractMessageParser$FlickrPhoto.smali.original	2012-03-23 19:34:46.426339371 -0500
+***************
+*** 39,44 ****
+--- 39,45 ----
+      .locals 1
+  
+      .prologue
++     .line 1021
+      const-string v0, "http://(?:www.)?flickr.com/photos/([^/?#&]+)/?([^/?#&]+)?/?.*"
+  
+      invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+***************
+*** 47,52 ****
+--- 48,54 ----
+  
+      sput-object v0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->URL_PATTERN:Ljava/util/regex/Pattern;
+  
++     .line 1023
+      const-string v0, "http://(?:www.)?flickr.com/photos/([^/?#&]+)/(tags|sets)/([^/?#&]+)/?"
+  
+      invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+***************
+*** 69,79 ****
+      .prologue
+      const/4 v0, 0x0
+  
+      sget-object v1, Lcom/google/android/util/AbstractMessageParser$Token$Type;->FLICKR:Lcom/google/android/util/AbstractMessageParser$Token$Type;
+  
+      invoke-direct {p0, v1, p5}, Lcom/google/android/util/AbstractMessageParser$Token;-><init>(Lcom/google/android/util/AbstractMessageParser$Token$Type;Ljava/lang/String;)V
+  
+!     const-string v1, "tags"
+  
+      invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+--- 71,83 ----
+      .prologue
+      const/4 v0, 0x0
+  
++     .line 1037
+      sget-object v1, Lcom/google/android/util/AbstractMessageParser$Token$Type;->FLICKR:Lcom/google/android/util/AbstractMessageParser$Token$Type;
+  
+      invoke-direct {p0, v1, p5}, Lcom/google/android/util/AbstractMessageParser$Token;-><init>(Lcom/google/android/util/AbstractMessageParser$Token$Type;Ljava/lang/String;)V
+  
+!     .line 1040
+!     const-string/jumbo v1, "tags"
+  
+      invoke-virtual {v1, p1}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+***************
+*** 81,89 ****
+  
+      if-nez v1, :cond_1
+  
+      iput-object p1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+!     const-string v1, "show"
+  
+      invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+--- 85,95 ----
+  
+      if-nez v1, :cond_1
+  
++     .line 1041
+      iput-object p1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+!     .line 1043
+!     const-string/jumbo v1, "show"
+  
+      invoke-virtual {v1, p2}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+***************
+*** 95,104 ****
+--- 101,113 ----
+      :goto_0
+      iput-object p2, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->photo:Ljava/lang/String;
+  
++     .line 1044
+      iput-object p3, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
++     .line 1045
+      iput-object p4, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+  
++     .line 1052
+      :goto_1
+      return-void
+  
+***************
+*** 106,122 ****
+      :cond_0
+      move-object p2, v0
+  
+      goto :goto_0
+  
+      :cond_1
+      iput-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+      iput-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->photo:Ljava/lang/String;
+  
+!     const-string v0, "tags"
+  
+      iput-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
+      iput-object p2, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+  
+      goto :goto_1
+--- 115,136 ----
+      :cond_0
+      move-object p2, v0
+  
++     .line 1043
+      goto :goto_0
+  
++     .line 1047
+      :cond_1
+      iput-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
++     .line 1048
+      iput-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->photo:Ljava/lang/String;
+  
+!     .line 1049
+!     const-string/jumbo v0, "tags"
+  
+      iput-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
++     .line 1050
+      iput-object p2, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+  
+      goto :goto_1
+***************
+*** 128,133 ****
+--- 142,148 ----
+      .parameter "photo"
+  
+      .prologue
++     .line 1123
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 164,169 ****
+--- 179,185 ----
+      .parameter "user"
+  
+      .prologue
++     .line 1108
+      const/4 v0, 0x0
+  
+      return-object v0
+***************
+*** 174,179 ****
+--- 190,196 ----
+      .parameter "tag"
+  
+      .prologue
++     .line 1113
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 201,206 ****
+--- 218,224 ----
+      .parameter "setId"
+  
+      .prologue
++     .line 1133
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 238,243 ****
+--- 256,262 ----
+      .parameter "tagId"
+  
+      .prologue
++     .line 1128
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 274,279 ****
+--- 293,299 ----
+      .parameter "user"
+  
+      .prologue
++     .line 1118
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 307,318 ****
+--- 327,340 ----
+  
+      const/4 v2, 0x0
+  
++     .line 1067
+      sget-object v0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->GROUPING_PATTERN:Ljava/util/regex/Pattern;
+  
+      invoke-virtual {v0, p0}, Ljava/util/regex/Pattern;->matcher(Ljava/lang/CharSequence;)Ljava/util/regex/Matcher;
+  
+      move-result-object v9
+  
++     .line 1068
+      .local v9, m:Ljava/util/regex/Matcher;
+      invoke-virtual {v9}, Ljava/util/regex/Matcher;->matches()Z
+  
+***************
+*** 320,325 ****
+--- 342,348 ----
+  
+      if-eqz v0, :cond_0
+  
++     .line 1069
+      new-instance v0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;
+  
+      invoke-virtual {v9, v1}, Ljava/util/regex/Matcher;->group(I)Ljava/lang/String;
+***************
+*** 340,348 ****
+--- 363,373 ----
+  
+      invoke-direct/range {v0 .. v5}, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;-><init>(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 1076
+      :goto_0
+      return-object v0
+  
++     .line 1072
+      :cond_0
+      sget-object v0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->URL_PATTERN:Ljava/util/regex/Pattern;
+  
+***************
+*** 350,361 ****
+--- 375,388 ----
+  
+      move-result-object v9
+  
++     .line 1073
+      invoke-virtual {v9}, Ljava/util/regex/Matcher;->matches()Z
+  
+      move-result v0
+  
+      if-eqz v0, :cond_1
+  
++     .line 1074
+      new-instance v3, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;
+  
+      invoke-virtual {v9, v1}, Ljava/util/regex/Matcher;->group(I)Ljava/lang/String;
+***************
+*** 381,386 ****
+--- 408,414 ----
+      :cond_1
+      move-object v0, v2
+  
++     .line 1076
+      goto :goto_0
+  .end method
+  
+***************
+*** 390,395 ****
+--- 418,424 ----
+      .locals 1
+  
+      .prologue
++     .line 1056
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 399,404 ****
+--- 428,434 ----
+      .locals 1
+  
+      .prologue
++     .line 1057
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 417,426 ****
+--- 447,458 ----
+      .end annotation
+  
+      .prologue
++     .line 1081
+      invoke-super {p0}, Lcom/google/android/util/AbstractMessageParser$Token;->getInfo()Ljava/util/List;
+  
+      move-result-object v0
+  
++     .line 1082
+      .local v0, info:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+      invoke-virtual {p0}, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->getUrl()Ljava/lang/String;
+  
+***************
+*** 428,433 ****
+--- 460,466 ----
+  
+      invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 1083
+      invoke-virtual {p0}, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->getUser()Ljava/lang/String;
+  
+      move-result-object v1
+***************
+*** 441,446 ****
+--- 474,480 ----
+      :goto_0
+      invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 1084
+      invoke-virtual {p0}, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->getPhoto()Ljava/lang/String;
+  
+      move-result-object v1
+***************
+*** 454,459 ****
+--- 488,494 ----
+      :goto_1
+      invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 1085
+      invoke-virtual {p0}, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->getGrouping()Ljava/lang/String;
+  
+      move-result-object v1
+***************
+*** 467,472 ****
+--- 502,508 ----
+      :goto_2
+      invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 1086
+      invoke-virtual {p0}, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->getGroupingId()Ljava/lang/String;
+  
+      move-result-object v1
+***************
+*** 480,502 ****
+--- 516,543 ----
+      :goto_3
+      invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 1087
+      return-object v0
+  
++     .line 1083
+      :cond_0
+      const-string v1, ""
+  
+      goto :goto_0
+  
++     .line 1084
+      :cond_1
+      const-string v1, ""
+  
+      goto :goto_1
+  
++     .line 1085
+      :cond_2
+      const-string v1, ""
+  
+      goto :goto_2
+  
++     .line 1086
+      :cond_3
+      const-string v1, ""
+  
+***************
+*** 507,512 ****
+--- 548,554 ----
+      .locals 1
+  
+      .prologue
++     .line 1055
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->photo:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 516,522 ****
+      .locals 2
+  
+      .prologue
+!     const-string v0, "sets"
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
+--- 558,565 ----
+      .locals 2
+  
+      .prologue
+!     .line 1091
+!     const-string/jumbo v0, "sets"
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
+***************
+*** 526,531 ****
+--- 569,575 ----
+  
+      if-eqz v0, :cond_0
+  
++     .line 1092
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+***************
+*** 534,544 ****
+  
+      move-result-object v0
+  
+      :goto_0
+      return-object v0
+  
+      :cond_0
+!     const-string v0, "tags"
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
+--- 578,590 ----
+  
+      move-result-object v0
+  
++     .line 1102
+      :goto_0
+      return-object v0
+  
++     .line 1093
+      :cond_0
+!     const-string/jumbo v0, "tags"
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->grouping:Ljava/lang/String;
+  
+***************
+*** 548,557 ****
+--- 594,605 ----
+  
+      if-eqz v0, :cond_2
+  
++     .line 1094
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+      if-eqz v0, :cond_1
+  
++     .line 1095
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+***************
+*** 562,567 ****
+--- 610,616 ----
+  
+      goto :goto_0
+  
++     .line 1097
+      :cond_1
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->groupingId:Ljava/lang/String;
+  
+***************
+*** 571,581 ****
+--- 620,632 ----
+  
+      goto :goto_0
+  
++     .line 1099
+      :cond_2
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->photo:Ljava/lang/String;
+  
+      if-eqz v0, :cond_3
+  
++     .line 1100
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+      iget-object v1, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->photo:Ljava/lang/String;
+***************
+*** 586,591 ****
+--- 637,643 ----
+  
+      goto :goto_0
+  
++     .line 1102
+      :cond_3
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+***************
+*** 600,605 ****
+--- 652,658 ----
+      .locals 1
+  
+      .prologue
++     .line 1054
+      iget-object v0, p0, Lcom/google/android/util/AbstractMessageParser$FlickrPhoto;->user:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 609,614 ****
+--- 662,668 ----
+      .locals 1
+  
+      .prologue
++     .line 1059
+      const/4 v0, 0x0
+  
+      return v0
+***************
+*** 618,623 ****
+--- 672,678 ----
+      .locals 1
+  
+      .prologue
++     .line 1060
+      const/4 v0, 0x1
+  
+      return v0

@@ -1,0 +1,130 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState.smali	2012-03-23 19:36:55.596694788 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState.smali.original	2012-03-23 19:34:45.415320935 -0500
+***************
+*** 24,29 ****
+--- 24,30 ----
+      .parameter
+  
+      .prologue
++     .line 455
+      iput-object p1, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+      invoke-direct {p0}, Lcom/android/internal/util/State;-><init>()V
+***************
+*** 37,55 ****
+      .locals 2
+  
+      .prologue
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+!     const-string v1, "stopping supplicant"
+  
+      #calls: Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->logd(Ljava/lang/String;)V
+      invoke-static {v0, v1}, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->access$1500(Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;Ljava/lang/String;)V
+  
+      invoke-static {}, Landroid/net/wifi/WifiNative;->stopSupplicant()Z
+  
+      move-result v0
+  
+      if-nez v0, :cond_0
+  
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+      const-string v1, "Failed to stop supplicant, issue kill"
+--- 38,59 ----
+      .locals 2
+  
+      .prologue
++     .line 459
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+!     const-string/jumbo v1, "stopping supplicant"
+  
+      #calls: Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->logd(Ljava/lang/String;)V
+      invoke-static {v0, v1}, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->access$1500(Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;Ljava/lang/String;)V
+  
++     .line 460
+      invoke-static {}, Landroid/net/wifi/WifiNative;->stopSupplicant()Z
+  
+      move-result v0
+  
+      if-nez v0, :cond_0
+  
++     .line 461
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+      const-string v1, "Failed to stop supplicant, issue kill"
+***************
+*** 57,64 ****
+--- 61,70 ----
+      #calls: Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->loge(Ljava/lang/String;)V
+      invoke-static {v0, v1}, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->access$500(Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;Ljava/lang/String;)V
+  
++     .line 462
+      invoke-static {}, Landroid/net/wifi/WifiNative;->killSupplicant()Z
+  
++     .line 464
+      :cond_0
+      return-void
+  .end method
+***************
+*** 68,82 ****
+--- 74,92 ----
+      .parameter "message"
+  
+      .prologue
++     .line 469
+      iget v0, p1, Landroid/os/Message;->what:I
+  
+      sparse-switch v0, :sswitch_data_0
+  
++     .line 480
+      const/4 v0, 0x0
+  
++     .line 482
+      :goto_0
+      return v0
+  
++     .line 471
+      :sswitch_0
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+***************
+*** 85,92 ****
+--- 95,104 ----
+      #calls: Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->logd(Ljava/lang/String;)V
+      invoke-static {v0, v1}, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->access$1500(Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;Ljava/lang/String;)V
+  
++     .line 472
+      invoke-static {}, Landroid/net/wifi/WifiNative;->closeSupplicantConnection()V
+  
++     .line 473
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+      iget-object v1, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+***************
+*** 99,109 ****
+--- 111,123 ----
+      #calls: Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->transitionTo(Lcom/android/internal/util/IState;)V
+      invoke-static {v0, v1}, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;->access$1700(Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;Lcom/android/internal/util/IState;)V
+  
++     .line 482
+      :goto_1
+      const/4 v0, 0x1
+  
+      goto :goto_0
+  
++     .line 477
+      :sswitch_1
+      iget-object v0, p0, Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine$P2pDisablingState;->this$1:Landroid/net/wifi/p2p/WifiP2pService$P2pStateMachine;
+  
+***************
+*** 112,117 ****
+--- 126,132 ----
+  
+      goto :goto_1
+  
++     .line 469
+      :sswitch_data_0
+      .sparse-switch
+          0x22001 -> :sswitch_1

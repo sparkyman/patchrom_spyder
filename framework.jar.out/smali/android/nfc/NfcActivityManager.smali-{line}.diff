@@ -1,0 +1,685 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/nfc/NfcActivityManager.smali	2012-03-23 19:36:05.547782148 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/nfc/NfcActivityManager.smali.original	2012-03-23 19:34:44.965312728 -0500
+***************
+*** 40,45 ****
+--- 40,46 ----
+      .locals 1
+  
+      .prologue
++     .line 38
+      const/4 v0, 0x0
+  
+      invoke-static {v0}, Ljava/lang/Boolean;->valueOf(Z)Ljava/lang/Boolean;
+***************
+*** 56,71 ****
+--- 57,76 ----
+      .parameter "adapter"
+  
+      .prologue
++     .line 61
+      invoke-direct {p0}, Landroid/nfc/INdefPushCallback$Stub;-><init>()V
+  
++     .line 62
+      iput-object p1, p0, Landroid/nfc/NfcActivityManager;->mAdapter:Landroid/nfc/NfcAdapter;
+  
++     .line 63
+      new-instance v0, Ljava/util/WeakHashMap;
+  
+      invoke-direct {v0}, Ljava/util/WeakHashMap;-><init>()V
+  
+      iput-object v0, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
++     .line 64
+      new-instance v0, Landroid/nfc/NfcEvent;
+  
+      iget-object v1, p0, Landroid/nfc/NfcActivityManager;->mAdapter:Landroid/nfc/NfcAdapter;
+***************
+*** 74,79 ****
+--- 79,85 ----
+  
+      iput-object v0, p0, Landroid/nfc/NfcActivityManager;->mDefaultEvent:Landroid/nfc/NfcEvent;
+  
++     .line 65
+      return-void
+  .end method
+  
+***************
+*** 83,93 ****
+--- 89,102 ----
+      .locals 4
+  
+      .prologue
++     .line 190
+      const/4 v0, 0x0
+  
++     .line 191
+      .local v0, callback:Landroid/nfc/NfcAdapter$CreateNdefMessageCallback;
+      monitor-enter p0
+  
++     .line 192
+      :try_start_0
+      iget-object v3, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
+***************
+*** 114,145 ****
+--- 123,161 ----
+  
+      check-cast v2, Landroid/nfc/NfcActivityManager$NfcActivityState;
+  
++     .line 193
+      .local v2, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      iget-boolean v3, v2, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
+      if-eqz v3, :cond_0
+  
++     .line 194
+      iget-object v0, v2, Landroid/nfc/NfcActivityManager$NfcActivityState;->ndefMessageCallback:Landroid/nfc/NfcAdapter$CreateNdefMessageCallback;
+  
+      goto :goto_0
+  
++     .line 197
+      .end local v2           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_1
+      monitor-exit p0
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 200
+      if-eqz v0, :cond_2
+  
++     .line 201
+      iget-object v3, p0, Landroid/nfc/NfcActivityManager;->mDefaultEvent:Landroid/nfc/NfcEvent;
+  
+      invoke-interface {v0, v3}, Landroid/nfc/NfcAdapter$CreateNdefMessageCallback;->createNdefMessage(Landroid/nfc/NfcEvent;)Landroid/nfc/NdefMessage;
+  
+      move-result-object v3
+  
++     .line 203
+      :goto_1
+      return-object v3
+  
++     .line 197
+      .end local v1           #i$:Ljava/util/Iterator;
+      :catchall_0
+      move-exception v3
+***************
+*** 151,156 ****
+--- 167,173 ----
+  
+      throw v3
+  
++     .line 203
+      .restart local v1       #i$:Ljava/util/Iterator;
+      :cond_2
+      const/4 v3, 0x0
+***************
+*** 164,169 ****
+--- 181,187 ----
+      .parameter "create"
+  
+      .prologue
++     .line 148
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 207,212 ****
+--- 225,231 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 149
+      :cond_0
+      iget-object v1, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
+***************
+*** 216,245 ****
+--- 235,270 ----
+  
+      check-cast v0, Landroid/nfc/NfcActivityManager$NfcActivityState;
+  
++     .line 150
+      .local v0, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      if-nez v0, :cond_1
+  
+      if-eqz p2, :cond_1
+  
++     .line 151
+      new-instance v0, Landroid/nfc/NfcActivityManager$NfcActivityState;
+  
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      invoke-direct {v0, p0}, Landroid/nfc/NfcActivityManager$NfcActivityState;-><init>(Landroid/nfc/NfcActivityManager;)V
+  
++     .line 152
+      .restart local v0       #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      iget-object v1, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
+      invoke-virtual {v1, p1, v0}, Ljava/util/WeakHashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 153
+      invoke-static {p1}, Landroid/nfc/NfcFragment;->attach(Landroid/app/Activity;)V
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 155
+      :cond_1
+      monitor-exit p0
+  
+      return-object v0
+  
++     .line 148
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :catchall_0
+      move-exception v1
+***************
+*** 255,260 ****
+--- 280,286 ----
+      .parameter "state"
+  
+      .prologue
++     .line 163
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 270,288 ****
+--- 296,318 ----
+  
+      if-nez v0, :cond_0
+  
++     .line 165
+      invoke-static {p1}, Landroid/nfc/NfcFragment;->remove(Landroid/app/Activity;)V
+  
++     .line 166
+      iget-object v0, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
+      invoke-virtual {v0, p1}, Ljava/util/WeakHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 168
+      :cond_0
+      monitor-exit p0
+  
+      return-void
+  
++     .line 163
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 296,305 ****
+--- 326,337 ----
+      .parameter "activity"
+  
+      .prologue
++     .line 95
+      iget-object v0, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
+      invoke-virtual {v0, p1}, Ljava/util/WeakHashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 96
+      return-void
+  .end method
+  
+***************
+*** 307,317 ****
+--- 339,352 ----
+      .locals 4
+  
+      .prologue
++     .line 211
+      const/4 v0, 0x0
+  
++     .line 212
+      .local v0, callback:Landroid/nfc/NfcAdapter$OnNdefPushCompleteCallback;
+      monitor-enter p0
+  
++     .line 213
+      :try_start_0
+      iget-object v3, p0, Landroid/nfc/NfcActivityManager;->mNfcState:Ljava/util/WeakHashMap;
+  
+***************
+*** 338,367 ****
+--- 373,409 ----
+  
+      check-cast v2, Landroid/nfc/NfcActivityManager$NfcActivityState;
+  
++     .line 214
+      .local v2, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      iget-boolean v3, v2, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
+      if-eqz v3, :cond_0
+  
++     .line 215
+      iget-object v0, v2, Landroid/nfc/NfcActivityManager$NfcActivityState;->onNdefPushCompleteCallback:Landroid/nfc/NfcAdapter$OnNdefPushCompleteCallback;
+  
+      goto :goto_0
+  
++     .line 218
+      .end local v2           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_1
+      monitor-exit p0
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 221
+      if-eqz v0, :cond_2
+  
++     .line 222
+      iget-object v3, p0, Landroid/nfc/NfcActivityManager;->mDefaultEvent:Landroid/nfc/NfcEvent;
+  
+      invoke-interface {v0, v3}, Landroid/nfc/NfcAdapter$OnNdefPushCompleteCallback;->onNdefPushComplete(Landroid/nfc/NfcEvent;)V
+  
++     .line 224
+      :cond_2
+      return-void
+  
++     .line 218
+      .end local v1           #i$:Ljava/util/Iterator;
+      :catchall_0
+      move-exception v3
+***************
+*** 379,384 ****
+--- 421,427 ----
+      .parameter "activity"
+  
+      .prologue
++     .line 83
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 390,395 ****
+--- 433,439 ----
+  
+      check-cast v0, Landroid/nfc/NfcActivityManager$NfcActivityState;
+  
++     .line 84
+      .local v0, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      sget-object v1, Landroid/nfc/NfcActivityManager;->DBG:Ljava/lang/Boolean;
+  
+***************
+*** 405,411 ****
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v3, "onPause() for "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 449,455 ----
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v3, "onPause() for "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 431,452 ****
+--- 475,501 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 85
+      :cond_0
+      if-eqz v0, :cond_1
+  
++     .line 86
+      const/4 v1, 0x0
+  
+      iput-boolean v1, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
++     .line 87
+      invoke-virtual {p0, v0}, Landroid/nfc/NfcActivityManager;->updateNfcService(Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 89
+      :cond_1
+      monitor-exit p0
+  
+      return-void
+  
++     .line 83
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :catchall_0
+      move-exception v1
+***************
+*** 461,466 ****
+--- 510,516 ----
+      .parameter "activity"
+  
+      .prologue
++     .line 71
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 472,477 ****
+--- 522,528 ----
+  
+      check-cast v0, Landroid/nfc/NfcActivityManager$NfcActivityState;
+  
++     .line 72
+      .local v0, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      sget-object v1, Landroid/nfc/NfcActivityManager;->DBG:Ljava/lang/Boolean;
+  
+***************
+*** 487,493 ****
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v3, "onResume() for "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 538,544 ----
+  
+      invoke-direct {v2}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v3, "onResume() for "
+  
+      invoke-virtual {v2, v3}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 513,534 ****
+--- 564,590 ----
+  
+      invoke-static {v1, v2}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 73
+      :cond_0
+      if-eqz v0, :cond_1
+  
++     .line 74
+      const/4 v1, 0x1
+  
+      iput-boolean v1, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
++     .line 75
+      invoke-virtual {p0, v0}, Landroid/nfc/NfcActivityManager;->updateNfcService(Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 77
+      :cond_1
+      monitor-exit p0
+  
+      return-void
+  
++     .line 71
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :catchall_0
+      move-exception v1
+***************
+*** 544,549 ****
+--- 600,606 ----
+      .parameter "message"
+  
+      .prologue
++     .line 99
+      monitor-enter p0
+  
+      if-eqz p2, :cond_1
+***************
+*** 556,561 ****
+--- 613,619 ----
+  
+      move-result-object v0
+  
++     .line 100
+      .local v0, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      if-eqz v0, :cond_0
+  
+***************
+*** 565,602 ****
+--- 623,668 ----
+  
+      if-ne v1, p2, :cond_2
+  
++     .line 110
+      :cond_0
+      :goto_1
+      monitor-exit p0
+  
+      return-void
+  
++     .line 99
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_1
+      const/4 v1, 0x0
+  
+      goto :goto_0
+  
++     .line 103
+      .restart local v0       #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_2
+      :try_start_1
+      iput-object p2, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->ndefMessage:Landroid/nfc/NdefMessage;
+  
++     .line 104
+      if-nez p2, :cond_3
+  
++     .line 105
+      invoke-virtual {p0, p1, v0}, Landroid/nfc/NfcActivityManager;->maybeRemoveState(Landroid/app/Activity;Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+  
++     .line 107
+      :cond_3
+      iget-boolean v1, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
+      if-eqz v1, :cond_0
+  
++     .line 108
+      invoke-virtual {p0, v0}, Landroid/nfc/NfcActivityManager;->updateNfcService(Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
+      goto :goto_1
+  
++     .line 99
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :catchall_0
+      move-exception v1
+***************
+*** 612,617 ****
+--- 678,684 ----
+      .parameter "callback"
+  
+      .prologue
++     .line 114
+      monitor-enter p0
+  
+      if-eqz p2, :cond_1
+***************
+*** 624,629 ****
+--- 691,697 ----
+  
+      move-result-object v0
+  
++     .line 115
+      .local v0, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      if-eqz v0, :cond_0
+  
+***************
+*** 633,670 ****
+--- 701,746 ----
+  
+      if-ne v1, p2, :cond_2
+  
++     .line 125
+      :cond_0
+      :goto_1
+      monitor-exit p0
+  
+      return-void
+  
++     .line 114
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_1
+      const/4 v1, 0x0
+  
+      goto :goto_0
+  
++     .line 118
+      .restart local v0       #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_2
+      :try_start_1
+      iput-object p2, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->ndefMessageCallback:Landroid/nfc/NfcAdapter$CreateNdefMessageCallback;
+  
++     .line 119
+      if-nez p2, :cond_3
+  
++     .line 120
+      invoke-virtual {p0, p1, v0}, Landroid/nfc/NfcActivityManager;->maybeRemoveState(Landroid/app/Activity;Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+  
++     .line 122
+      :cond_3
+      iget-boolean v1, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
+      if-eqz v1, :cond_0
+  
++     .line 123
+      invoke-virtual {p0, v0}, Landroid/nfc/NfcActivityManager;->updateNfcService(Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
+      goto :goto_1
+  
++     .line 114
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :catchall_0
+      move-exception v1
+***************
+*** 680,685 ****
+--- 756,762 ----
+      .parameter "callback"
+  
+      .prologue
++     .line 129
+      monitor-enter p0
+  
+      if-eqz p2, :cond_1
+***************
+*** 692,697 ****
+--- 769,775 ----
+  
+      move-result-object v0
+  
++     .line 130
+      .local v0, state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      if-eqz v0, :cond_0
+  
+***************
+*** 701,738 ****
+--- 779,824 ----
+  
+      if-ne v1, p2, :cond_2
+  
++     .line 140
+      :cond_0
+      :goto_1
+      monitor-exit p0
+  
+      return-void
+  
++     .line 129
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_1
+      const/4 v1, 0x0
+  
+      goto :goto_0
+  
++     .line 133
+      .restart local v0       #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :cond_2
+      :try_start_1
+      iput-object p2, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->onNdefPushCompleteCallback:Landroid/nfc/NfcAdapter$OnNdefPushCompleteCallback;
+  
++     .line 134
+      if-nez p2, :cond_3
+  
++     .line 135
+      invoke-virtual {p0, p1, v0}, Landroid/nfc/NfcActivityManager;->maybeRemoveState(Landroid/app/Activity;Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+  
++     .line 137
+      :cond_3
+      iget-boolean v1, v0, Landroid/nfc/NfcActivityManager$NfcActivityState;->resumed:Z
+  
+      if-eqz v1, :cond_0
+  
++     .line 138
+      invoke-virtual {p0, v0}, Landroid/nfc/NfcActivityManager;->updateNfcService(Landroid/nfc/NfcActivityManager$NfcActivityState;)V
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
+      goto :goto_1
+  
++     .line 129
+      .end local v0           #state:Landroid/nfc/NfcActivityManager$NfcActivityState;
+      :catchall_0
+      move-exception v1
+***************
+*** 749,754 ****
+--- 835,841 ----
+      .prologue
+      const/4 v2, 0x0
+  
++     .line 174
+      monitor-enter p0
+  
+      :try_start_0
+***************
+*** 765,770 ****
+--- 852,858 ----
+      :cond_0
+      const/4 v1, 0x1
+  
++     .line 178
+      .local v1, serviceCallbackNeeded:Z
+      :goto_0
+      :try_start_1
+***************
+*** 791,801 ****
+--- 879,891 ----
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+      .catch Landroid/os/RemoteException; {:try_start_1 .. :try_end_1} :catch_0
+  
++     .line 183
+      :goto_2
+      monitor-exit p0
+  
+      return-void
+  
++     .line 174
+      .end local v1           #serviceCallbackNeeded:Z
+      :cond_2
+      const/4 v1, 0x0
+***************
+*** 806,816 ****
+--- 896,909 ----
+      :cond_3
+      move-object v3, v2
+  
++     .line 178
+      goto :goto_1
+  
++     .line 180
+      :catch_0
+      move-exception v0
+  
++     .line 181
+      .local v0, e:Landroid/os/RemoteException;
+      :try_start_2
+      iget-object v2, p0, Landroid/nfc/NfcActivityManager;->mAdapter:Landroid/nfc/NfcAdapter;
+***************
+*** 821,826 ****
+--- 914,920 ----
+  
+      goto :goto_2
+  
++     .line 174
+      .end local v0           #e:Landroid/os/RemoteException;
+      .end local v1           #serviceCallbackNeeded:Z
+      :catchall_0

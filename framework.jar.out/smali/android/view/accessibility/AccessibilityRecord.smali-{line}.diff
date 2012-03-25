@@ -1,0 +1,1355 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/view/accessibility/AccessibilityRecord.smali	2012-03-23 19:37:19.297126965 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/view/accessibility/AccessibilityRecord.smali.original	2012-03-23 19:34:45.637324983 -0500
+***************
+*** 85,90 ****
+--- 85,91 ----
+      .locals 1
+  
+      .prologue
++     .line 61
+      new-instance v0, Ljava/lang/Object;
+  
+      invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+***************
+*** 100,139 ****
+--- 101,156 ----
+      .prologue
+      const/4 v1, -0x1
+  
++     .line 95
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 69
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mCurrentItemIndex:I
+  
++     .line 70
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mItemCount:I
+  
++     .line 71
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mFromIndex:I
+  
++     .line 72
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mToIndex:I
+  
++     .line 73
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollX:I
+  
++     .line 74
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollY:I
+  
++     .line 75
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollX:I
+  
++     .line 76
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollY:I
+  
++     .line 78
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mAddedCount:I
+  
++     .line 79
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mRemovedCount:I
+  
++     .line 80
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceViewId:I
+  
++     .line 81
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
++     .line 88
+      new-instance v0, Ljava/util/ArrayList;
+  
+      invoke-direct {v0}, Ljava/util/ArrayList;-><init>()V
+  
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mText:Ljava/util/List;
+  
++     .line 90
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
++     .line 96
+      return-void
+  .end method
+  
+***************
+*** 142,147 ****
+--- 159,165 ----
+      .parameter "property"
+  
+      .prologue
++     .line 615
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
+      and-int/2addr v0, p1
+***************
+*** 163,179 ****
+--- 181,201 ----
+      .locals 3
+  
+      .prologue
++     .line 652
+      sget-object v2, Landroid/view/accessibility/AccessibilityRecord;->sPoolLock:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
++     .line 653
+      :try_start_0
+      sget-object v1, Landroid/view/accessibility/AccessibilityRecord;->sPool:Landroid/view/accessibility/AccessibilityRecord;
+  
+      if-eqz v1, :cond_0
+  
++     .line 654
+      sget-object v0, Landroid/view/accessibility/AccessibilityRecord;->sPool:Landroid/view/accessibility/AccessibilityRecord;
+  
++     .line 655
+      .local v0, record:Landroid/view/accessibility/AccessibilityRecord;
+      sget-object v1, Landroid/view/accessibility/AccessibilityRecord;->sPool:Landroid/view/accessibility/AccessibilityRecord;
+  
+***************
+*** 181,202 ****
+--- 203,229 ----
+  
+      sput-object v1, Landroid/view/accessibility/AccessibilityRecord;->sPool:Landroid/view/accessibility/AccessibilityRecord;
+  
++     .line 656
+      sget v1, Landroid/view/accessibility/AccessibilityRecord;->sPoolSize:I
+  
+      add-int/lit8 v1, v1, -0x1
+  
+      sput v1, Landroid/view/accessibility/AccessibilityRecord;->sPoolSize:I
+  
++     .line 657
+      const/4 v1, 0x0
+  
+      iput-object v1, v0, Landroid/view/accessibility/AccessibilityRecord;->mNext:Landroid/view/accessibility/AccessibilityRecord;
+  
++     .line 658
+      const/4 v1, 0x0
+  
+      iput-boolean v1, v0, Landroid/view/accessibility/AccessibilityRecord;->mIsInPool:Z
+  
++     .line 659
+      monitor-exit v2
+  
++     .line 661
+      .end local v0           #record:Landroid/view/accessibility/AccessibilityRecord;
+      :goto_0
+      return-object v0
+***************
+*** 210,215 ****
+--- 237,243 ----
+  
+      goto :goto_0
+  
++     .line 662
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 225,237 ****
+--- 253,268 ----
+      .parameter "record"
+  
+      .prologue
++     .line 640
+      invoke-static {}, Landroid/view/accessibility/AccessibilityRecord;->obtain()Landroid/view/accessibility/AccessibilityRecord;
+  
+      move-result-object v0
+  
++     .line 641
+      .local v0, clone:Landroid/view/accessibility/AccessibilityRecord;
+      invoke-virtual {v0, p0}, Landroid/view/accessibility/AccessibilityRecord;->init(Landroid/view/accessibility/AccessibilityRecord;)V
+  
++     .line 642
+      return-object v0
+  .end method
+  
+***************
+*** 241,257 ****
+--- 272,292 ----
+      .parameter "value"
+  
+      .prologue
++     .line 625
+      if-eqz p2, :cond_0
+  
++     .line 626
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
+      or-int/2addr v0, p1
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
++     .line 630
+      :goto_0
+      return-void
+  
++     .line 628
+      :cond_0
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
+***************
+*** 276,323 ****
+--- 311,379 ----
+  
+      const/4 v1, -0x1
+  
++     .line 719
+      iput-boolean v2, p0, Landroid/view/accessibility/AccessibilityRecord;->mSealed:Z
+  
++     .line 720
+      iput v2, p0, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
++     .line 721
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mCurrentItemIndex:I
+  
++     .line 722
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mItemCount:I
+  
++     .line 723
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mFromIndex:I
+  
++     .line 724
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mToIndex:I
+  
++     .line 725
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollX:I
+  
++     .line 726
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollY:I
+  
++     .line 727
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollX:I
+  
++     .line 728
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollY:I
+  
++     .line 729
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mAddedCount:I
+  
++     .line 730
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mRemovedCount:I
+  
++     .line 731
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mClassName:Ljava/lang/CharSequence;
+  
++     .line 732
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mContentDescription:Ljava/lang/CharSequence;
+  
++     .line 733
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBeforeText:Ljava/lang/CharSequence;
+  
++     .line 734
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mParcelableData:Landroid/os/Parcelable;
+  
++     .line 735
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mText:Ljava/util/List;
+  
+      invoke-interface {v0}, Ljava/util/List;->clear()V
+  
++     .line 736
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceViewId:I
+  
++     .line 737
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
++     .line 738
+      iput v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
++     .line 739
+      return-void
+  .end method
+  
+***************
+*** 325,336 ****
+--- 381,394 ----
+      .locals 2
+  
+      .prologue
++     .line 602
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->isSealed()Z
+  
+      move-result v0
+  
+      if-eqz v0, :cond_0
+  
++     .line 603
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      const-string v1, "Cannot perform this action on an sealed instance."
+***************
+*** 339,344 ****
+--- 397,403 ----
+  
+      throw v0
+  
++     .line 606
+      :cond_0
+      return-void
+  .end method
+***************
+*** 347,358 ****
+--- 406,419 ----
+      .locals 2
+  
+      .prologue
++     .line 590
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->isSealed()Z
+  
+      move-result v0
+  
+      if-nez v0, :cond_0
+  
++     .line 591
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      const-string v1, "Cannot perform this action on a not sealed instance."
+***************
+*** 361,366 ****
+--- 422,428 ----
+  
+      throw v0
+  
++     .line 594
+      :cond_0
+      return-void
+  .end method
+***************
+*** 369,374 ****
+--- 431,437 ----
+      .locals 1
+  
+      .prologue
++     .line 421
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mAddedCount:I
+  
+      return v0
+***************
+*** 378,383 ****
+--- 441,447 ----
+      .locals 1
+  
+      .prologue
++     .line 494
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBeforeText:Ljava/lang/CharSequence;
+  
+      return-object v0
+***************
+*** 387,392 ****
+--- 451,457 ----
+      .locals 1
+  
+      .prologue
++     .line 463
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mClassName:Ljava/lang/CharSequence;
+  
+      return-object v0
+***************
+*** 396,401 ****
+--- 461,467 ----
+      .locals 1
+  
+      .prologue
++     .line 515
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mContentDescription:Ljava/lang/CharSequence;
+  
+      return-object v0
+***************
+*** 405,410 ****
+--- 471,477 ----
+      .locals 1
+  
+      .prologue
++     .line 277
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mCurrentItemIndex:I
+  
+      return v0
+***************
+*** 414,419 ****
+--- 481,487 ----
+      .locals 1
+  
+      .prologue
++     .line 301
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mFromIndex:I
+  
+      return v0
+***************
+*** 423,428 ****
+--- 491,497 ----
+      .locals 1
+  
+      .prologue
++     .line 256
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mItemCount:I
+  
+      return v0
+***************
+*** 432,437 ****
+--- 501,507 ----
+      .locals 1
+  
+      .prologue
++     .line 384
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollX:I
+  
+      return v0
+***************
+*** 441,446 ****
+--- 511,517 ----
+      .locals 1
+  
+      .prologue
++     .line 402
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollY:I
+  
+      return v0
+***************
+*** 450,455 ****
+--- 521,527 ----
+      .locals 1
+  
+      .prologue
++     .line 536
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mParcelableData:Landroid/os/Parcelable;
+  
+      return-object v0
+***************
+*** 459,464 ****
+--- 531,537 ----
+      .locals 1
+  
+      .prologue
++     .line 442
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mRemovedCount:I
+  
+      return v0
+***************
+*** 468,473 ****
+--- 541,547 ----
+      .locals 1
+  
+      .prologue
++     .line 346
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollX:I
+  
+      return v0
+***************
+*** 477,482 ****
+--- 551,557 ----
+      .locals 1
+  
+      .prologue
++     .line 365
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollY:I
+  
+      return v0
+***************
+*** 488,495 ****
+--- 563,572 ----
+      .prologue
+      const/4 v2, -0x1
+  
++     .line 126
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceSealed()V
+  
++     .line 127
+      iget v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
+      if-eq v1, v2, :cond_0
+***************
+*** 502,518 ****
+--- 579,599 ----
+  
+      if-ne v1, v2, :cond_1
+  
++     .line 129
+      :cond_0
+      const/4 v1, 0x0
+  
++     .line 132
+      :goto_0
+      return-object v1
+  
++     .line 131
+      :cond_1
+      invoke-static {}, Landroid/view/accessibility/AccessibilityInteractionClient;->getInstance()Landroid/view/accessibility/AccessibilityInteractionClient;
+  
+      move-result-object v0
+  
++     .line 132
+      .local v0, client:Landroid/view/accessibility/AccessibilityInteractionClient;
+      iget v1, p0, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
+***************
+*** 540,545 ****
+--- 621,627 ----
+      .end annotation
+  
+      .prologue
++     .line 485
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mText:Ljava/util/List;
+  
+      return-object v0
+***************
+*** 549,554 ****
+--- 631,637 ----
+      .locals 1
+  
+      .prologue
++     .line 326
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mToIndex:I
+  
+      return v0
+***************
+*** 558,563 ****
+--- 641,647 ----
+      .locals 1
+  
+      .prologue
++     .line 142
+      iget v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
+      return v0
+***************
+*** 568,655 ****
+--- 652,760 ----
+      .parameter "record"
+  
+      .prologue
++     .line 693
+      iget-boolean v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mSealed:Z
+  
+      iput-boolean v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSealed:Z
+  
++     .line 694
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBooleanProperties:I
+  
++     .line 695
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mCurrentItemIndex:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mCurrentItemIndex:I
+  
++     .line 696
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mItemCount:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mItemCount:I
+  
++     .line 697
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mFromIndex:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mFromIndex:I
+  
++     .line 698
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mToIndex:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mToIndex:I
+  
++     .line 699
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mScrollX:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollX:I
+  
++     .line 700
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mScrollY:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollY:I
+  
++     .line 701
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollX:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollX:I
+  
++     .line 702
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollY:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollY:I
+  
++     .line 703
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mAddedCount:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mAddedCount:I
+  
++     .line 704
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mRemovedCount:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mRemovedCount:I
+  
++     .line 705
+      iget-object v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mClassName:Ljava/lang/CharSequence;
+  
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mClassName:Ljava/lang/CharSequence;
+  
++     .line 706
+      iget-object v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mContentDescription:Ljava/lang/CharSequence;
+  
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mContentDescription:Ljava/lang/CharSequence;
+  
++     .line 707
+      iget-object v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mBeforeText:Ljava/lang/CharSequence;
+  
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mBeforeText:Ljava/lang/CharSequence;
+  
++     .line 708
+      iget-object v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mParcelableData:Landroid/os/Parcelable;
+  
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mParcelableData:Landroid/os/Parcelable;
+  
++     .line 709
+      iget-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mText:Ljava/util/List;
+  
+      iget-object v1, p1, Landroid/view/accessibility/AccessibilityRecord;->mText:Ljava/util/List;
+  
+      invoke-interface {v0, v1}, Ljava/util/List;->addAll(Ljava/util/Collection;)Z
+  
++     .line 710
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
++     .line 711
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mSourceViewId:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceViewId:I
+  
++     .line 712
+      iget v0, p1, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
++     .line 713
+      return-void
+  .end method
+  
+***************
+*** 657,662 ****
+--- 762,768 ----
+      .locals 1
+  
+      .prologue
++     .line 151
+      const/4 v0, 0x1
+  
+      invoke-direct {p0, v0}, Landroid/view/accessibility/AccessibilityRecord;->getBooleanProperty(I)Z
+***************
+*** 670,675 ****
+--- 776,782 ----
+      .locals 1
+  
+      .prologue
++     .line 172
+      const/4 v0, 0x2
+  
+      invoke-direct {p0, v0}, Landroid/view/accessibility/AccessibilityRecord;->getBooleanProperty(I)Z
+***************
+*** 683,688 ****
+--- 790,796 ----
+      .locals 1
+  
+      .prologue
++     .line 214
+      const/16 v0, 0x80
+  
+      invoke-direct {p0, v0}, Landroid/view/accessibility/AccessibilityRecord;->getBooleanProperty(I)Z
+***************
+*** 696,701 ****
+--- 804,810 ----
+      .locals 1
+  
+      .prologue
++     .line 193
+      const/4 v0, 0x4
+  
+      invoke-direct {p0, v0}, Landroid/view/accessibility/AccessibilityRecord;->getBooleanProperty(I)Z
+***************
+*** 709,714 ****
+--- 818,824 ----
+      .locals 1
+  
+      .prologue
++     .line 235
+      const/16 v0, 0x100
+  
+      invoke-direct {p0, v0}, Landroid/view/accessibility/AccessibilityRecord;->getBooleanProperty(I)Z
+***************
+*** 722,727 ****
+--- 832,838 ----
+      .locals 1
+  
+      .prologue
++     .line 581
+      iget-boolean v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSealed:Z
+  
+      return v0
+***************
+*** 731,740 ****
+--- 842,853 ----
+      .locals 3
+  
+      .prologue
++     .line 673
+      iget-boolean v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mIsInPool:Z
+  
+      if-eqz v0, :cond_0
+  
++     .line 674
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      const-string v1, "Record already recycled!"
+***************
+*** 743,755 ****
+--- 856,871 ----
+  
+      throw v0
+  
++     .line 676
+      :cond_0
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->clear()V
+  
++     .line 677
+      sget-object v1, Landroid/view/accessibility/AccessibilityRecord;->sPoolLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 678
+      :try_start_0
+      sget v0, Landroid/view/accessibility/AccessibilityRecord;->sPoolSize:I
+  
+***************
+*** 757,783 ****
+--- 873,906 ----
+  
+      if-gt v0, v2, :cond_1
+  
++     .line 679
+      sget-object v0, Landroid/view/accessibility/AccessibilityRecord;->sPool:Landroid/view/accessibility/AccessibilityRecord;
+  
+      iput-object v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mNext:Landroid/view/accessibility/AccessibilityRecord;
+  
++     .line 680
+      sput-object p0, Landroid/view/accessibility/AccessibilityRecord;->sPool:Landroid/view/accessibility/AccessibilityRecord;
+  
++     .line 681
+      const/4 v0, 0x1
+  
+      iput-boolean v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mIsInPool:Z
+  
++     .line 682
+      sget v0, Landroid/view/accessibility/AccessibilityRecord;->sPoolSize:I
+  
+      add-int/lit8 v0, v0, 0x1
+  
+      sput v0, Landroid/view/accessibility/AccessibilityRecord;->sPoolSize:I
+  
++     .line 684
+      :cond_1
+      monitor-exit v1
+  
++     .line 685
+      return-void
+  
++     .line 684
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 793,802 ****
+--- 916,928 ----
+      .parameter "addedCount"
+  
+      .prologue
++     .line 432
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 433
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mAddedCount:I
+  
++     .line 434
+      return-void
+  .end method
+  
+***************
+*** 805,814 ****
+--- 931,943 ----
+      .parameter "beforeText"
+  
+      .prologue
++     .line 505
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 506
+      iput-object p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mBeforeText:Ljava/lang/CharSequence;
+  
++     .line 507
+      return-void
+  .end method
+  
+***************
+*** 817,828 ****
+--- 946,960 ----
+      .parameter "isChecked"
+  
+      .prologue
++     .line 162
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 163
+      const/4 v0, 0x1
+  
+      invoke-direct {p0, v0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setBooleanProperty(IZ)V
+  
++     .line 164
+      return-void
+  .end method
+  
+***************
+*** 831,840 ****
+--- 963,975 ----
+      .parameter "className"
+  
+      .prologue
++     .line 474
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 475
+      iput-object p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mClassName:Ljava/lang/CharSequence;
+  
++     .line 476
+      return-void
+  .end method
+  
+***************
+*** 843,852 ****
+--- 978,990 ----
+      .parameter "connectionId"
+  
+      .prologue
++     .line 560
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 561
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mConnectionId:I
+  
++     .line 562
+      return-void
+  .end method
+  
+***************
+*** 855,864 ****
+--- 993,1005 ----
+      .parameter "contentDescription"
+  
+      .prologue
++     .line 526
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 527
+      iput-object p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mContentDescription:Ljava/lang/CharSequence;
+  
++     .line 528
+      return-void
+  .end method
+  
+***************
+*** 867,876 ****
+--- 1008,1020 ----
+      .parameter "currentItemIndex"
+  
+      .prologue
++     .line 288
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 289
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mCurrentItemIndex:I
+  
++     .line 290
+      return-void
+  .end method
+  
+***************
+*** 879,890 ****
+--- 1023,1037 ----
+      .parameter "isEnabled"
+  
+      .prologue
++     .line 183
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 184
+      const/4 v0, 0x2
+  
+      invoke-direct {p0, v0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setBooleanProperty(IZ)V
+  
++     .line 185
+      return-void
+  .end method
+  
+***************
+*** 893,902 ****
+--- 1040,1052 ----
+      .parameter "fromIndex"
+  
+      .prologue
++     .line 315
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 316
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mFromIndex:I
+  
++     .line 317
+      return-void
+  .end method
+  
+***************
+*** 905,916 ****
+--- 1055,1069 ----
+      .parameter "isFullScreen"
+  
+      .prologue
++     .line 225
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 226
+      const/16 v0, 0x80
+  
+      invoke-direct {p0, v0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setBooleanProperty(IZ)V
+  
++     .line 227
+      return-void
+  .end method
+  
+***************
+*** 919,928 ****
+--- 1072,1084 ----
+      .parameter "itemCount"
+  
+      .prologue
++     .line 267
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 268
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mItemCount:I
+  
++     .line 269
+      return-void
+  .end method
+  
+***************
+*** 931,940 ****
+--- 1087,1099 ----
+      .parameter "maxScrollX"
+  
+      .prologue
++     .line 392
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 393
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollX:I
+  
++     .line 394
+      return-void
+  .end method
+  
+***************
+*** 943,952 ****
+--- 1102,1114 ----
+      .parameter "maxScrollY"
+  
+      .prologue
++     .line 411
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 412
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mMaxScrollY:I
+  
++     .line 413
+      return-void
+  .end method
+  
+***************
+*** 955,964 ****
+--- 1117,1129 ----
+      .parameter "parcelableData"
+  
+      .prologue
++     .line 547
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 548
+      iput-object p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mParcelableData:Landroid/os/Parcelable;
+  
++     .line 549
+      return-void
+  .end method
+  
+***************
+*** 967,978 ****
+--- 1132,1146 ----
+      .parameter "isPassword"
+  
+      .prologue
++     .line 204
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 205
+      const/4 v0, 0x4
+  
+      invoke-direct {p0, v0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setBooleanProperty(IZ)V
+  
++     .line 206
+      return-void
+  .end method
+  
+***************
+*** 981,990 ****
+--- 1149,1161 ----
+      .parameter "removedCount"
+  
+      .prologue
++     .line 453
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 454
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mRemovedCount:I
+  
++     .line 455
+      return-void
+  .end method
+  
+***************
+*** 993,1002 ****
+--- 1164,1176 ----
+      .parameter "scrollX"
+  
+      .prologue
++     .line 355
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 356
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollX:I
+  
++     .line 357
+      return-void
+  .end method
+  
+***************
+*** 1005,1014 ****
+--- 1179,1191 ----
+      .parameter "scrollY"
+  
+      .prologue
++     .line 374
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 375
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mScrollY:I
+  
++     .line 376
+      return-void
+  .end method
+  
+***************
+*** 1017,1028 ****
+--- 1194,1208 ----
+      .parameter "scrollable"
+  
+      .prologue
++     .line 246
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 247
+      const/16 v0, 0x100
+  
+      invoke-direct {p0, v0, p1}, Landroid/view/accessibility/AccessibilityRecord;->setBooleanProperty(IZ)V
+  
++     .line 248
+      return-void
+  .end method
+  
+***************
+*** 1031,1038 ****
+--- 1211,1220 ----
+      .parameter "sealed"
+  
+      .prologue
++     .line 572
+      iput-boolean p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mSealed:Z
+  
++     .line 573
+      return-void
+  .end method
+  
+***************
+*** 1043,1070 ****
+--- 1225,1259 ----
+      .prologue
+      const/4 v0, -0x1
+  
++     .line 106
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 107
+      if-eqz p1, :cond_0
+  
++     .line 108
+      invoke-virtual {p1}, Landroid/view/View;->getAccessibilityWindowId()I
+  
+      move-result v0
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
++     .line 109
+      invoke-virtual {p1}, Landroid/view/View;->getAccessibilityViewId()I
+  
+      move-result v0
+  
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceViewId:I
+  
++     .line 114
+      :goto_0
+      return-void
+  
++     .line 111
+      :cond_0
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceWindowId:I
+  
++     .line 112
+      iput v0, p0, Landroid/view/accessibility/AccessibilityRecord;->mSourceViewId:I
+  
+      goto :goto_0
+***************
+*** 1075,1084 ****
+--- 1264,1276 ----
+      .parameter "toIndex"
+  
+      .prologue
++     .line 336
+      invoke-virtual {p0}, Landroid/view/accessibility/AccessibilityRecord;->enforceNotSealed()V
+  
++     .line 337
+      iput p1, p0, Landroid/view/accessibility/AccessibilityRecord;->mToIndex:I
+  
++     .line 338
+      return-void
+  .end method
+  
+***************
+*** 1086,1095 ****
+--- 1278,1289 ----
+      .locals 3
+  
+      .prologue
++     .line 743
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+  
++     .line 744
+      .local v0, builder:Ljava/lang/StringBuilder;
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+***************
+*** 1113,1118 ****
+--- 1307,1313 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 745
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1135,1140 ****
+--- 1330,1336 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 746
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1157,1162 ****
+--- 1353,1359 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 747
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1179,1184 ****
+--- 1376,1382 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 748
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1201,1206 ****
+--- 1399,1405 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 749
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1227,1232 ****
+--- 1426,1432 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 750
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1253,1258 ****
+--- 1453,1459 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 751
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1279,1284 ****
+--- 1480,1486 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 752
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1305,1310 ****
+--- 1507,1513 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 753
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1331,1336 ****
+--- 1534,1540 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 754
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1353,1358 ****
+--- 1557,1563 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 755
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1375,1380 ****
+--- 1580,1586 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 756
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1397,1402 ****
+--- 1603,1609 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 757
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1419,1424 ****
+--- 1626,1632 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 758
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1441,1446 ****
+--- 1649,1655 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 759
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1463,1468 ****
+--- 1672,1678 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 760
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1485,1490 ****
+--- 1695,1701 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 761
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1507,1512 ****
+--- 1718,1724 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 762
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1529,1534 ****
+--- 1741,1747 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 763
+      new-instance v1, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v1}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1551,1560 ****
+--- 1764,1775 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 764
+      const-string v1, " ]"
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 765
+      invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+  
+      move-result-object v1

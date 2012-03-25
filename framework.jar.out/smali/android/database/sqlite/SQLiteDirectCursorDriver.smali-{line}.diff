@@ -1,0 +1,201 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/database/sqlite/SQLiteDirectCursorDriver.smali	2012-03-23 19:36:10.753877082 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/database/sqlite/SQLiteDirectCursorDriver.smali.original	2012-03-23 19:34:45.007313495 -0500
+***************
+*** 26,39 ****
+--- 26,44 ----
+      .parameter "editTable"
+  
+      .prologue
++     .line 34
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 35
+      iput-object p1, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mDatabase:Landroid/database/sqlite/SQLiteDatabase;
+  
++     .line 36
+      iput-object p3, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mEditTable:Ljava/lang/String;
+  
++     .line 37
+      iput-object p2, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mSql:Ljava/lang/String;
+  
++     .line 38
+      return-void
+  .end method
+  
+***************
+*** 43,52 ****
+--- 48,59 ----
+      .locals 1
+  
+      .prologue
++     .line 67
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mCursor:Landroid/database/Cursor;
+  
++     .line 68
+      return-void
+  .end method
+  
+***************
+*** 54,59 ****
+--- 61,67 ----
+      .locals 0
+  
+      .prologue
++     .line 76
+      return-void
+  .end method
+  
+***************
+*** 62,67 ****
+--- 70,76 ----
+      .parameter "cursor"
+  
+      .prologue
++     .line 80
+      return-void
+  .end method
+  
+***************
+*** 71,78 ****
+--- 80,89 ----
+      .parameter "selectionArgs"
+  
+      .prologue
++     .line 42
+      const/4 v0, 0x0
+  
++     .line 45
+      .local v0, query:Landroid/database/sqlite/SQLiteQuery;
+      :try_start_0
+      iget-object v2, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mDatabase:Landroid/database/sqlite/SQLiteDatabase;
+***************
+*** 81,90 ****
+--- 92,103 ----
+  
+      invoke-virtual {v2, v3}, Landroid/database/sqlite/SQLiteDatabase;->lock(Ljava/lang/String;)V
+  
++     .line 46
+      iget-object v2, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mDatabase:Landroid/database/sqlite/SQLiteDatabase;
+  
+      invoke-virtual {v2}, Landroid/database/sqlite/SQLiteDatabase;->closePendingStatements()V
+  
++     .line 47
+      new-instance v1, Landroid/database/sqlite/SQLiteQuery;
+  
+      iget-object v2, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mDatabase:Landroid/database/sqlite/SQLiteDatabase;
+***************
+*** 97,106 ****
+--- 110,121 ----
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_1
+  
++     .line 50
+      .end local v0           #query:Landroid/database/sqlite/SQLiteQuery;
+      .local v1, query:Landroid/database/sqlite/SQLiteQuery;
+      if-nez p1, :cond_1
+  
++     .line 51
+      :try_start_1
+      new-instance v2, Landroid/database/sqlite/SQLiteCursor;
+  
+***************
+*** 110,122 ****
+--- 125,140 ----
+  
+      iput-object v2, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mCursor:Landroid/database/Cursor;
+  
++     .line 56
+      :goto_0
+      iput-object v1, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mQuery:Landroid/database/sqlite/SQLiteQuery;
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 57
+      const/4 v0, 0x0
+  
++     .line 58
+      .end local v1           #query:Landroid/database/sqlite/SQLiteQuery;
+      .restart local v0       #query:Landroid/database/sqlite/SQLiteQuery;
+      :try_start_2
+***************
+*** 124,133 ****
+--- 142,153 ----
+      :try_end_2
+      .catchall {:try_start_2 .. :try_end_2} :catchall_1
+  
++     .line 61
+      if-eqz v0, :cond_0
+  
+      invoke-virtual {v0}, Landroid/database/sqlite/SQLiteQuery;->close()V
+  
++     .line 62
+      :cond_0
+      iget-object v3, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mDatabase:Landroid/database/sqlite/SQLiteDatabase;
+  
+***************
+*** 135,140 ****
+--- 155,161 ----
+  
+      return-object v2
+  
++     .line 53
+      .end local v0           #query:Landroid/database/sqlite/SQLiteQuery;
+      .restart local v1       #query:Landroid/database/sqlite/SQLiteQuery;
+      :cond_1
+***************
+*** 153,158 ****
+--- 174,180 ----
+  
+      goto :goto_0
+  
++     .line 61
+      :catchall_0
+      move-exception v2
+  
+***************
+*** 165,170 ****
+--- 187,193 ----
+  
+      invoke-virtual {v0}, Landroid/database/sqlite/SQLiteQuery;->close()V
+  
++     .line 62
+      :cond_2
+      iget-object v3, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mDatabase:Landroid/database/sqlite/SQLiteDatabase;
+  
+***************
+*** 172,177 ****
+--- 195,201 ----
+  
+      throw v2
+  
++     .line 61
+      :catchall_1
+      move-exception v2
+  
+***************
+*** 183,192 ****
+--- 207,218 ----
+      .parameter "bindArgs"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Landroid/database/sqlite/SQLiteDirectCursorDriver;->mQuery:Landroid/database/sqlite/SQLiteQuery;
+  
+      invoke-virtual {v0, p1}, Landroid/database/sqlite/SQLiteQuery;->bindAllArgsAsStrings([Ljava/lang/String;)V
+  
++     .line 72
+      return-void
+  .end method
+  
+***************
+*** 194,199 ****
+--- 220,226 ----
+      .locals 2
+  
+      .prologue
++     .line 84
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V

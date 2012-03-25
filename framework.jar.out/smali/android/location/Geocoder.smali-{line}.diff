@@ -1,0 +1,474 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/location/Geocoder.smali	2012-03-23 19:36:16.562983010 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/location/Geocoder.smali.original	2012-03-23 19:34:45.035314005 -0500
+***************
+*** 19,30 ****
+--- 19,32 ----
+      .parameter "context"
+  
+      .prologue
++     .line 95
+      invoke-static {}, Ljava/util/Locale;->getDefault()Ljava/util/Locale;
+  
+      move-result-object v0
+  
+      invoke-direct {p0, p1, v0}, Landroid/location/Geocoder;-><init>(Landroid/content/Context;Ljava/util/Locale;)V
+  
++     .line 96
+      return-void
+  .end method
+  
+***************
+*** 34,43 ****
+--- 36,48 ----
+      .parameter "locale"
+  
+      .prologue
++     .line 79
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 80
+      if-nez p2, :cond_0
+  
++     .line 81
+      new-instance v1, Ljava/lang/NullPointerException;
+  
+      const-string v2, "locale == null"
+***************
+*** 46,51 ****
+--- 51,57 ----
+  
+      throw v1
+  
++     .line 83
+      :cond_0
+      new-instance v1, Landroid/location/GeocoderParams;
+  
+***************
+*** 53,64 ****
+--- 59,72 ----
+  
+      iput-object v1, p0, Landroid/location/Geocoder;->mParams:Landroid/location/GeocoderParams;
+  
++     .line 84
+      const-string v1, "location"
+  
+      invoke-static {v1}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
+  
+      move-result-object v0
+  
++     .line 85
+      .local v0, b:Landroid/os/IBinder;
+      invoke-static {v0}, Landroid/location/ILocationManager$Stub;->asInterface(Landroid/os/IBinder;)Landroid/location/ILocationManager;
+  
+***************
+*** 66,71 ****
+--- 74,80 ----
+  
+      iput-object v1, p0, Landroid/location/Geocoder;->mService:Landroid/location/ILocationManager;
+  
++     .line 86
+      return-void
+  .end method
+  
+***************
+*** 73,89 ****
+--- 82,101 ----
+      .locals 5
+  
+      .prologue
++     .line 60
+      const-string v3, "location"
+  
+      invoke-static {v3}, Landroid/os/ServiceManager;->getService(Ljava/lang/String;)Landroid/os/IBinder;
+  
+      move-result-object v0
+  
++     .line 61
+      .local v0, b:Landroid/os/IBinder;
+      invoke-static {v0}, Landroid/location/ILocationManager$Stub;->asInterface(Landroid/os/IBinder;)Landroid/location/ILocationManager;
+  
+      move-result-object v2
+  
++     .line 63
+      .local v2, lm:Landroid/location/ILocationManager;
+      :try_start_0
+      invoke-interface {v2}, Landroid/location/ILocationManager;->geocoderIsPresent()Z
+***************
+*** 92,103 ****
+--- 104,118 ----
+  
+      move-result v3
+  
++     .line 66
+      :goto_0
+      return v3
+  
++     .line 64
+      :catch_0
+      move-exception v1
+  
++     .line 65
+      .local v1, e:Landroid/os/RemoteException;
+      const-string v3, "Geocoder"
+  
+***************
+*** 105,110 ****
+--- 120,126 ----
+  
+      invoke-static {v3, v4, v1}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 66
+      const/4 v3, 0x0
+  
+      goto :goto_0
+***************
+*** 134,139 ****
+--- 150,156 ----
+      .end annotation
+  
+      .prologue
++     .line 125
+      const-wide v0, -0x3fa9800000000000L
+  
+      cmpg-double v0, p1, v0
+***************
+*** 146,151 ****
+--- 163,169 ----
+  
+      if-lez v0, :cond_1
+  
++     .line 126
+      :cond_0
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 171,176 ****
+--- 189,195 ----
+  
+      throw v0
+  
++     .line 128
+      :cond_1
+      const-wide v0, -0x3f99800000000000L
+  
+***************
+*** 184,189 ****
+--- 203,209 ----
+  
+      if-lez v0, :cond_3
+  
++     .line 129
+      :cond_2
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 209,220 ****
+--- 229,242 ----
+  
+      throw v0
+  
++     .line 132
+      :cond_3
+      :try_start_0
+      new-instance v7, Ljava/util/ArrayList;
+  
+      invoke-direct {v7}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 133
+      .local v7, results:Ljava/util/List;,"Ljava/util/List<Landroid/location/Address;>;"
+      iget-object v0, p0, Landroid/location/Geocoder;->mService:Landroid/location/ILocationManager;
+  
+***************
+*** 230,238 ****
+--- 252,262 ----
+  
+      move-result-object v9
+  
++     .line 135
+      .local v9, ex:Ljava/lang/String;
+      if-eqz v9, :cond_4
+  
++     .line 136
+      new-instance v0, Ljava/io/IOException;
+  
+      invoke-direct {v0, v9}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+***************
+*** 241,251 ****
+--- 265,277 ----
+      :try_end_0
+      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 140
+      .end local v7           #results:Ljava/util/List;,"Ljava/util/List<Landroid/location/Address;>;"
+      .end local v9           #ex:Ljava/lang/String;
+      :catch_0
+      move-exception v8
+  
++     .line 141
+      .local v8, e:Landroid/os/RemoteException;
+      const-string v0, "Geocoder"
+  
+***************
+*** 253,258 ****
+--- 279,285 ----
+  
+      invoke-static {v0, v1, v8}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 142
+      const/4 v7, 0x0
+  
+      .end local v8           #e:Landroid/os/RemoteException;
+***************
+*** 283,290 ****
+--- 310,319 ----
+      .end annotation
+  
+      .prologue
++     .line 170
+      if-nez p1, :cond_0
+  
++     .line 171
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "locationName == null"
+***************
+*** 293,304 ****
+--- 322,335 ----
+  
+      throw v0
+  
++     .line 174
+      :cond_0
+      :try_start_0
+      new-instance v12, Ljava/util/ArrayList;
+  
+      invoke-direct {v12}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 175
+      .local v12, results:Ljava/util/List;,"Ljava/util/List<Landroid/location/Address;>;"
+      iget-object v0, p0, Landroid/location/Geocoder;->mService:Landroid/location/ILocationManager;
+  
+***************
+*** 320,328 ****
+--- 351,361 ----
+  
+      move-result-object v14
+  
++     .line 177
+      .local v14, ex:Ljava/lang/String;
+      if-eqz v14, :cond_1
+  
++     .line 178
+      new-instance v0, Ljava/io/IOException;
+  
+      invoke-direct {v0, v14}, Ljava/io/IOException;-><init>(Ljava/lang/String;)V
+***************
+*** 331,341 ****
+--- 364,376 ----
+      :try_end_0
+      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 182
+      .end local v12           #results:Ljava/util/List;,"Ljava/util/List<Landroid/location/Address;>;"
+      .end local v14           #ex:Ljava/lang/String;
+      :catch_0
+      move-exception v13
+  
++     .line 183
+      .local v13, e:Landroid/os/RemoteException;
+      const-string v0, "Geocoder"
+  
+***************
+*** 343,348 ****
+--- 378,384 ----
+  
+      invoke-static {v0, v1, v13}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 184
+      const/4 v12, 0x0
+  
+      .end local v13           #e:Landroid/os/RemoteException;
+***************
+*** 377,384 ****
+--- 413,422 ----
+      .end annotation
+  
+      .prologue
++     .line 226
+      if-nez p1, :cond_0
+  
++     .line 227
+      new-instance v2, Ljava/lang/IllegalArgumentException;
+  
+      const-string v3, "locationName == null"
+***************
+*** 387,392 ****
+--- 425,431 ----
+  
+      throw v2
+  
++     .line 229
+      :cond_0
+      const-wide v2, -0x3fa9800000000000L
+  
+***************
+*** 400,405 ****
+--- 439,445 ----
+  
+      if-lez v2, :cond_2
+  
++     .line 230
+      :cond_1
+      new-instance v2, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 427,432 ****
+--- 467,473 ----
+  
+      throw v2
+  
++     .line 233
+      :cond_2
+      const-wide v2, -0x3f99800000000000L
+  
+***************
+*** 440,445 ****
+--- 481,487 ----
+  
+      if-lez v2, :cond_4
+  
++     .line 234
+      :cond_3
+      new-instance v2, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 467,472 ****
+--- 509,515 ----
+  
+      throw v2
+  
++     .line 237
+      :cond_4
+      const-wide v2, -0x3fa9800000000000L
+  
+***************
+*** 480,485 ****
+--- 523,529 ----
+  
+      if-lez v2, :cond_6
+  
++     .line 238
+      :cond_5
+      new-instance v2, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 487,493 ****
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v4, "upperRightLatitude == "
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 531,537 ----
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v4, "upperRightLatitude == "
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 507,512 ****
+--- 551,557 ----
+  
+      throw v2
+  
++     .line 241
+      :cond_6
+      const-wide v2, -0x3f99800000000000L
+  
+***************
+*** 520,525 ****
+--- 565,571 ----
+  
+      if-lez v2, :cond_8
+  
++     .line 242
+      :cond_7
+      new-instance v2, Ljava/lang/IllegalArgumentException;
+  
+***************
+*** 527,533 ****
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string v4, "upperRightLongitude == "
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+--- 573,579 ----
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+  
+!     const-string/jumbo v4, "upperRightLongitude == "
+  
+      invoke-virtual {v3, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 547,558 ****
+--- 593,606 ----
+  
+      throw v2
+  
++     .line 246
+      :cond_8
+      :try_start_0
+      new-instance v14, Ljava/util/ArrayList;
+  
+      invoke-direct {v14}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 247
+      .local v14, result:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/location/Address;>;"
+      move-object/from16 v0, p0
+  
+***************
+*** 578,586 ****
+--- 626,636 ----
+  
+      move-result-object v16
+  
++     .line 250
+      .local v16, ex:Ljava/lang/String;
+      if-eqz v16, :cond_9
+  
++     .line 251
+      new-instance v2, Ljava/io/IOException;
+  
+      move-object/from16 v0, v16
+***************
+*** 591,601 ****
+--- 641,653 ----
+      :try_end_0
+      .catch Landroid/os/RemoteException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 255
+      .end local v14           #result:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Landroid/location/Address;>;"
+      .end local v16           #ex:Ljava/lang/String;
+      :catch_0
+      move-exception v15
+  
++     .line 256
+      .local v15, e:Landroid/os/RemoteException;
+      const-string v2, "Geocoder"
+  
+***************
+*** 603,608 ****
+--- 655,661 ----
+  
+      invoke-static {v2, v3, v15}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 257
+      const/4 v14, 0x0
+  
+      .end local v15           #e:Landroid/os/RemoteException;

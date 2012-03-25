@@ -1,0 +1,472 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/provider/ContactsContract.smali	2012-03-23 19:35:30.566144258 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/provider/ContactsContract.smali.original	2012-03-23 19:34:44.628306583 -0500
+***************
+*** 90,95 ****
+--- 90,96 ----
+      .locals 1
+  
+      .prologue
++     .line 116
+      const-string v0, "content://com.android.contacts"
+  
+      invoke-static {v0}, Landroid/net/Uri;->parse(Ljava/lang/String;)Landroid/net/Uri;
+***************
+*** 98,103 ****
+--- 99,105 ----
+  
+      sput-object v0, Landroid/provider/ContactsContract;->AUTHORITY_URI:Landroid/net/Uri;
+  
++     .line 8325
+      const-string v0, "([\\w-\\.]+)@((?:[\\w]+\\.)+)([a-zA-Z]{2,4})|[\\w]+"
+  
+      invoke-static {v0}, Ljava/util/regex/Pattern;->compile(Ljava/lang/String;)Ljava/util/regex/Pattern;
+***************
+*** 113,120 ****
+--- 115,124 ----
+      .locals 0
+  
+      .prologue
++     .line 112
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 7711
+      return-void
+  .end method
+  
+***************
+*** 123,128 ****
+--- 127,133 ----
+      .parameter "id"
+  
+      .prologue
++     .line 2109
+      const-wide v0, 0x7fffffff80000000L
+  
+      cmp-long v0, p0, v0
+***************
+*** 151,162 ****
+--- 156,169 ----
+      .parameter "snippetMaxTokens"
+  
+      .prologue
++     .line 8233
+      if-eqz p2, :cond_1
+  
+      invoke-virtual/range {p2 .. p2}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+  
+      move-result-object v13
+  
++     .line 8234
+      .local v13, lowerQuery:Ljava/lang/String;
+      :goto_0
+      invoke-static/range {p0 .. p0}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+***************
+*** 189,206 ****
+--- 196,217 ----
+  
+      if-nez v24, :cond_2
+  
++     .line 8236
+      :cond_0
+      const/16 v24, 0x0
+  
++     .line 8316
+      :goto_1
+      return-object v24
+  
++     .line 8233
+      .end local v13           #lowerQuery:Ljava/lang/String;
+      :cond_1
+      const/4 v13, 0x0
+  
+      goto :goto_0
+  
++     .line 8241
+      .restart local v13       #lowerQuery:Ljava/lang/String;
+      :cond_2
+      if-eqz p1, :cond_4
+***************
+*** 209,225 ****
+--- 220,239 ----
+  
+      move-result-object v12
+  
++     .line 8242
+      .local v12, lowerDisplayName:Ljava/lang/String;
+      :goto_2
+      new-instance v19, Ljava/util/ArrayList;
+  
+      invoke-direct/range {v19 .. v19}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 8243
+      .local v19, nameTokens:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+      new-instance v18, Ljava/util/ArrayList;
+  
+      invoke-direct/range {v18 .. v18}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 8244
+      .local v18, nameTokenOffsets:Ljava/util/List;,"Ljava/util/List<Ljava/lang/Integer;>;"
+      invoke-virtual {v12}, Ljava/lang/String;->trim()Ljava/lang/String;
+  
+***************
+*** 233,238 ****
+--- 247,253 ----
+  
+      invoke-static {v0, v1, v2}, Landroid/provider/ContactsContract;->split(Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+  
++     .line 8245
+      invoke-interface/range {v19 .. v19}, Ljava/util/List;->iterator()Ljava/util/Iterator;
+  
+      move-result-object v8
+***************
+*** 251,256 ****
+--- 266,272 ----
+  
+      check-cast v17, Ljava/lang/String;
+  
++     .line 8246
+      .local v17, nameToken:Ljava/lang/String;
+      move-object/from16 v0, v17
+  
+***************
+*** 260,269 ****
+--- 276,287 ----
+  
+      if-eqz v24, :cond_3
+  
++     .line 8247
+      const/16 v24, 0x0
+  
+      goto :goto_1
+  
++     .line 8241
+      .end local v8           #i$:Ljava/util/Iterator;
+      .end local v12           #lowerDisplayName:Ljava/lang/String;
+      .end local v17           #nameToken:Ljava/lang/String;
+***************
+*** 274,279 ****
+--- 292,298 ----
+  
+      goto :goto_2
+  
++     .line 8251
+      .restart local v8       #i$:Ljava/util/Iterator;
+      .restart local v12       #lowerDisplayName:Ljava/lang/String;
+      .restart local v18       #nameTokenOffsets:Ljava/util/List;,"Ljava/util/List<Ljava/lang/Integer;>;"
+***************
+*** 289,294 ****
+--- 308,314 ----
+  
+      move-result-object v5
+  
++     .line 8254
+      .local v5, contentLines:[Ljava/lang/String;
+      move-object v3, v5
+  
+***************
+*** 304,309 ****
+--- 324,330 ----
+  
+      aget-object v4, v3, v8
+  
++     .line 8255
+      .local v4, contentLine:Ljava/lang/String;
+      invoke-virtual {v4}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+  
+***************
+*** 317,331 ****
+--- 338,355 ----
+  
+      if-eqz v24, :cond_d
+  
++     .line 8258
+      new-instance v11, Ljava/util/ArrayList;
+  
+      invoke-direct {v11}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 8259
+      .local v11, lineTokens:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+      new-instance v23, Ljava/util/ArrayList;
+  
+      invoke-direct/range {v23 .. v23}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 8260
+      .local v23, tokenOffsets:Ljava/util/List;,"Ljava/util/List<Ljava/lang/Integer;>;"
+      invoke-virtual {v4}, Ljava/lang/String;->trim()Ljava/lang/String;
+  
+***************
+*** 337,352 ****
+--- 361,380 ----
+  
+      invoke-static {v0, v11, v1}, Landroid/provider/ContactsContract;->split(Ljava/lang/String;Ljava/util/List;Ljava/util/List;)V
+  
++     .line 8264
+      new-instance v16, Ljava/util/ArrayList;
+  
+      invoke-direct/range {v16 .. v16}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 8266
+      .local v16, markedTokens:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+      const/4 v6, -0x1
+  
++     .line 8267
+      .local v6, firstToken:I
+      const/4 v9, -0x1
+  
++     .line 8268
+      .local v9, lastToken:I
+      const/4 v7, 0x0
+  
+***************
+*** 360,376 ****
+--- 388,407 ----
+  
+      if-ge v7, v0, :cond_8
+  
++     .line 8269
+      invoke-interface {v11, v7}, Ljava/util/List;->get(I)Ljava/lang/Object;
+  
+      move-result-object v22
+  
+      check-cast v22, Ljava/lang/String;
+  
++     .line 8270
+      .local v22, token:Ljava/lang/String;
+      invoke-virtual/range {v22 .. v22}, Ljava/lang/String;->toLowerCase()Ljava/lang/String;
+  
+      move-result-object v14
+  
++     .line 8271
+      .local v14, lowerToken:Ljava/lang/String;
+      invoke-virtual {v14, v13}, Ljava/lang/String;->startsWith(Ljava/lang/String;)Z
+  
+***************
+*** 378,383 ****
+--- 409,415 ----
+  
+      if-eqz v24, :cond_7
+  
++     .line 8274
+      new-instance v24, Ljava/lang/StringBuilder;
+  
+      invoke-direct/range {v24 .. v24}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 416,427 ****
+--- 448,461 ----
+  
+      invoke-interface {v0, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 8278
+      const/16 v24, -0x1
+  
+      move/from16 v0, v24
+  
+      if-ne v6, v0, :cond_6
+  
++     .line 8279
+      const/16 v24, 0x0
+  
+      invoke-static/range {p6 .. p6}, Ljava/lang/Math;->abs(I)I
+***************
+*** 454,459 ****
+--- 488,494 ----
+  
+      move-result v6
+  
++     .line 8283
+      invoke-interface {v11}, Ljava/util/List;->size()I
+  
+      move-result v24
+***************
+*** 468,479 ****
+--- 503,516 ----
+  
+      move-result v9
+  
++     .line 8268
+      :cond_6
+      :goto_5
+      add-int/lit8 v7, v7, 0x1
+  
+      goto :goto_4
+  
++     .line 8288
+      :cond_7
+      move-object/from16 v0, v16
+  
+***************
+*** 483,488 ****
+--- 520,526 ----
+  
+      goto :goto_5
+  
++     .line 8293
+      .end local v14           #lowerToken:Ljava/lang/String;
+      .end local v22           #token:Ljava/lang/String;
+      :cond_8
+***************
+*** 492,516 ****
+--- 530,559 ----
+  
+      if-le v6, v0, :cond_d
+  
++     .line 8294
+      new-instance v21, Ljava/lang/StringBuilder;
+  
+      invoke-direct/range {v21 .. v21}, Ljava/lang/StringBuilder;-><init>()V
+  
++     .line 8295
+      .local v21, sb:Ljava/lang/StringBuilder;
+      if-lez v6, :cond_9
+  
++     .line 8296
+      move-object/from16 v0, v21
+  
+      move-object/from16 v1, p5
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 8298
+      :cond_9
+      move v7, v6
+  
+      :goto_6
+      if-ge v7, v9, :cond_b
+  
++     .line 8299
+      move-object/from16 v0, v16
+  
+      invoke-interface {v0, v7}, Ljava/util/List;->get(I)Ljava/lang/Object;
+***************
+*** 519,524 ****
+--- 562,568 ----
+  
+      check-cast v15, Ljava/lang/String;
+  
++     .line 8300
+      .local v15, markedToken:Ljava/lang/String;
+      invoke-interface {v11, v7}, Ljava/util/List;->get(I)Ljava/lang/Object;
+  
+***************
+*** 526,542 ****
+--- 570,589 ----
+  
+      check-cast v20, Ljava/lang/String;
+  
++     .line 8301
+      .local v20, originalToken:Ljava/lang/String;
+      move-object/from16 v0, v21
+  
+      invoke-virtual {v0, v15}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 8302
+      add-int/lit8 v24, v9, -0x1
+  
+      move/from16 v0, v24
+  
+      if-ge v7, v0, :cond_a
+  
++     .line 8304
+      move-object/from16 v0, v23
+  
+      invoke-interface {v0, v7}, Ljava/util/List;->get(I)Ljava/lang/Object;
+***************
+*** 581,591 ****
+--- 628,640 ----
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 8298
+      :cond_a
+      add-int/lit8 v7, v7, 0x1
+  
+      goto :goto_6
+  
++     .line 8309
+      .end local v15           #markedToken:Ljava/lang/String;
+      .end local v20           #originalToken:Ljava/lang/String;
+      :cond_b
+***************
+*** 597,608 ****
+--- 646,659 ----
+  
+      if-ge v9, v0, :cond_c
+  
++     .line 8310
+      move-object/from16 v0, v21
+  
+      move-object/from16 v1, p5
+  
+      invoke-virtual {v0, v1}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 8312
+      :cond_c
+      invoke-virtual/range {v21 .. v21}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+  
+***************
+*** 610,615 ****
+--- 661,667 ----
+  
+      goto/16 :goto_1
+  
++     .line 8254
+      .end local v6           #firstToken:I
+      .end local v7           #i:I
+      .end local v9           #lastToken:I
+***************
+*** 622,627 ****
+--- 674,680 ----
+  
+      goto/16 :goto_3
+  
++     .line 8316
+      .end local v4           #contentLine:Ljava/lang/String;
+      :cond_e
+      const/16 v24, 0x0
+***************
+*** 650,655 ****
+--- 703,709 ----
+      .end annotation
+  
+      .prologue
++     .line 8339
+      .local p1, tokens:Ljava/util/List;,"Ljava/util/List<Ljava/lang/String;>;"
+      .local p2, offsets:Ljava/util/List;,"Ljava/util/List<Ljava/lang/Integer;>;"
+      sget-object v1, Landroid/provider/ContactsContract;->SPLIT_PATTERN:Ljava/util/regex/Pattern;
+***************
+*** 658,663 ****
+--- 712,718 ----
+  
+      move-result-object v0
+  
++     .line 8340
+      .local v0, matcher:Ljava/util/regex/Matcher;
+      :goto_0
+      invoke-virtual {v0}, Ljava/util/regex/Matcher;->find()Z
+***************
+*** 666,677 ****
+--- 721,734 ----
+  
+      if-eqz v1, :cond_0
+  
++     .line 8341
+      invoke-virtual {v0}, Ljava/util/regex/Matcher;->group()Ljava/lang/String;
+  
+      move-result-object v1
+  
+      invoke-interface {p1, v1}, Ljava/util/List;->add(Ljava/lang/Object;)Z
+  
++     .line 8342
+      invoke-virtual {v0}, Ljava/util/regex/Matcher;->start()I
+  
+      move-result v1
+***************
+*** 684,689 ****
+--- 741,747 ----
+  
+      goto :goto_0
+  
++     .line 8344
+      :cond_0
+      return-void
+  .end method

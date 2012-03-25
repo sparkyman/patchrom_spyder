@@ -1,0 +1,228 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/wm/InputFilter.smali	2012-03-23 19:35:05.978695907 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/wm/InputFilter.smali.original	2012-03-23 19:34:47.117351971 -0500
+***************
+*** 40,47 ****
+--- 40,49 ----
+  
+      const/4 v3, 0x1
+  
++     .line 121
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 105
+      invoke-static {}, Landroid/view/InputEventConsistencyVerifier;->isInstrumentationEnabled()Z
+  
+      move-result v0
+***************
+*** 57,62 ****
+--- 59,65 ----
+      :goto_0
+      iput-object v0, p0, Lcom/android/server/wm/InputFilter;->mInboundInputEventConsistencyVerifier:Landroid/view/InputEventConsistencyVerifier;
+  
++     .line 110
+      invoke-static {}, Landroid/view/InputEventConsistencyVerifier;->isInstrumentationEnabled()Z
+  
+      move-result v0
+***************
+*** 72,88 ****
+--- 75,94 ----
+      :cond_0
+      iput-object v1, p0, Lcom/android/server/wm/InputFilter;->mOutboundInputEventConsistencyVerifier:Landroid/view/InputEventConsistencyVerifier;
+  
++     .line 122
+      new-instance v0, Lcom/android/server/wm/InputFilter$H;
+  
+      invoke-direct {v0, p0, p1}, Lcom/android/server/wm/InputFilter$H;-><init>(Lcom/android/server/wm/InputFilter;Landroid/os/Looper;)V
+  
+      iput-object v0, p0, Lcom/android/server/wm/InputFilter;->mH:Lcom/android/server/wm/InputFilter$H;
+  
++     .line 123
+      return-void
+  
+      :cond_1
+      move-object v0, v1
+  
++     .line 105
+      goto :goto_0
+  .end method
+  
+***************
+*** 92,97 ****
+--- 98,104 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 96
+      iput-object p1, p0, Lcom/android/server/wm/InputFilter;->mHost:Lcom/android/server/wm/InputFilter$Host;
+  
+      return-object p1
+***************
+*** 102,107 ****
+--- 109,115 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 96
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mInboundInputEventConsistencyVerifier:Landroid/view/InputEventConsistencyVerifier;
+  
+      return-object v0
+***************
+*** 112,117 ****
+--- 120,126 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 96
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mOutboundInputEventConsistencyVerifier:Landroid/view/InputEventConsistencyVerifier;
+  
+      return-object v0
+***************
+*** 125,130 ****
+--- 134,140 ----
+      .parameter "policyFlags"
+  
+      .prologue
++     .line 151
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mH:Lcom/android/server/wm/InputFilter$H;
+  
+      const/4 v1, 0x3
+***************
+*** 137,142 ****
+--- 147,153 ----
+  
+      invoke-virtual {v0}, Landroid/os/Message;->sendToTarget()V
+  
++     .line 152
+      return-void
+  .end method
+  
+***************
+*** 145,150 ****
+--- 156,162 ----
+      .parameter "host"
+  
+      .prologue
++     .line 132
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mH:Lcom/android/server/wm/InputFilter$H;
+  
+      const/4 v1, 0x1
+***************
+*** 155,160 ****
+--- 167,173 ----
+  
+      invoke-virtual {v0}, Landroid/os/Message;->sendToTarget()V
+  
++     .line 133
+      return-void
+  .end method
+  
+***************
+*** 164,171 ****
+--- 177,186 ----
+      .parameter "policyFlags"
+  
+      .prologue
++     .line 187
+      invoke-virtual {p0, p1, p2}, Lcom/android/server/wm/InputFilter;->sendInputEvent(Landroid/view/InputEvent;I)V
+  
++     .line 188
+      return-void
+  .end method
+  
+***************
+*** 173,178 ****
+--- 188,194 ----
+      .locals 0
+  
+      .prologue
++     .line 198
+      return-void
+  .end method
+  
+***************
+*** 180,185 ****
+--- 196,202 ----
+      .locals 0
+  
+      .prologue
++     .line 208
+      return-void
+  .end method
+  
+***************
+*** 189,196 ****
+--- 206,215 ----
+      .parameter "policyFlags"
+  
+      .prologue
++     .line 161
+      if-nez p1, :cond_0
+  
++     .line 162
+      new-instance v0, Ljava/lang/IllegalArgumentException;
+  
+      const-string v1, "event must not be null"
+***************
+*** 199,209 ****
+--- 218,230 ----
+  
+      throw v0
+  
++     .line 164
+      :cond_0
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mHost:Lcom/android/server/wm/InputFilter$Host;
+  
+      if-nez v0, :cond_1
+  
++     .line 165
+      new-instance v0, Ljava/lang/IllegalStateException;
+  
+      const-string v1, "Cannot send input event because the input filter is not installed."
+***************
+*** 212,233 ****
+--- 233,258 ----
+  
+      throw v0
+  
++     .line 168
+      :cond_1
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mOutboundInputEventConsistencyVerifier:Landroid/view/InputEventConsistencyVerifier;
+  
+      if-eqz v0, :cond_2
+  
++     .line 169
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mOutboundInputEventConsistencyVerifier:Landroid/view/InputEventConsistencyVerifier;
+  
+      const/4 v1, 0x0
+  
+      invoke-virtual {v0, p1, v1}, Landroid/view/InputEventConsistencyVerifier;->onInputEvent(Landroid/view/InputEvent;I)V
+  
++     .line 171
+      :cond_2
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mHost:Lcom/android/server/wm/InputFilter$Host;
+  
+      invoke-interface {v0, p1, p2}, Lcom/android/server/wm/InputFilter$Host;->sendInputEvent(Landroid/view/InputEvent;I)V
+  
++     .line 172
+      return-void
+  .end method
+  
+***************
+*** 235,240 ****
+--- 260,266 ----
+      .locals 2
+  
+      .prologue
++     .line 140
+      iget-object v0, p0, Lcom/android/server/wm/InputFilter;->mH:Lcom/android/server/wm/InputFilter$H;
+  
+      const/4 v1, 0x2
+***************
+*** 245,249 ****
+--- 271,276 ----
+  
+      invoke-virtual {v0}, Landroid/os/Message;->sendToTarget()V
+  
++     .line 141
+      return-void
+  .end method

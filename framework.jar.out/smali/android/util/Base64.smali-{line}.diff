@@ -1,0 +1,274 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/util/Base64.smali	2012-03-23 19:35:17.530906561 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/util/Base64.smali.original	2012-03-23 19:34:44.460303519 -0500
+***************
+*** 35,40 ****
+--- 35,41 ----
+      .locals 1
+  
+      .prologue
++     .line 27
+      const-class v0, Landroid/util/Base64;
+  
+      invoke-virtual {v0}, Ljava/lang/Class;->desiredAssertionStatus()Z
+***************
+*** 60,65 ****
+--- 61,67 ----
+      .locals 0
+  
+      .prologue
++     .line 740
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      return-void
+***************
+*** 71,76 ****
+--- 73,79 ----
+      .parameter "flags"
+  
+      .prologue
++     .line 118
+      invoke-virtual {p0}, Ljava/lang/String;->getBytes()[B
+  
+      move-result-object v0
+***************
+*** 88,93 ****
+--- 91,97 ----
+      .parameter "flags"
+  
+      .prologue
++     .line 136
+      const/4 v0, 0x0
+  
+      array-length v1, p0
+***************
+*** 109,114 ****
+--- 113,119 ----
+      .prologue
+      const/4 v4, 0x0
+  
++     .line 158
+      new-instance v0, Landroid/util/Base64$Decoder;
+  
+      mul-int/lit8 v2, p2, 0x3
+***************
+*** 119,124 ****
+--- 124,130 ----
+  
+      invoke-direct {v0, p3, v2}, Landroid/util/Base64$Decoder;-><init>(I[B)V
+  
++     .line 160
+      .local v0, decoder:Landroid/util/Base64$Decoder;
+      const/4 v2, 0x1
+  
+***************
+*** 128,133 ****
+--- 134,140 ----
+  
+      if-nez v2, :cond_0
+  
++     .line 161
+      new-instance v2, Ljava/lang/IllegalArgumentException;
+  
+      const-string v3, "bad base-64"
+***************
+*** 136,141 ****
+--- 143,149 ----
+  
+      throw v2
+  
++     .line 165
+      :cond_0
+      iget v2, v0, Landroid/util/Base64$Decoder;->op:I
+  
+***************
+*** 145,160 ****
+--- 153,172 ----
+  
+      if-ne v2, v3, :cond_1
+  
++     .line 166
+      iget-object v1, v0, Landroid/util/Base64$Decoder;->output:[B
+  
++     .line 173
+      :goto_0
+      return-object v1
+  
++     .line 171
+      :cond_1
+      iget v2, v0, Landroid/util/Base64$Decoder;->op:I
+  
+      new-array v1, v2, [B
+  
++     .line 172
+      .local v1, temp:[B
+      iget-object v2, v0, Landroid/util/Base64$Decoder;->output:[B
+  
+***************
+*** 171,176 ****
+--- 183,189 ----
+      .parameter "flags"
+  
+      .prologue
++     .line 494
+      const/4 v0, 0x0
+  
+      array-length v1, p0
+***************
+*** 192,219 ****
+--- 205,238 ----
+      .prologue
+      const/4 v3, 0x1
+  
++     .line 510
+      new-instance v0, Landroid/util/Base64$Encoder;
+  
+      const/4 v2, 0x0
+  
+      invoke-direct {v0, p3, v2}, Landroid/util/Base64$Encoder;-><init>(I[B)V
+  
++     .line 513
+      .local v0, encoder:Landroid/util/Base64$Encoder;
+      div-int/lit8 v2, p2, 0x3
+  
+      mul-int/lit8 v1, v2, 0x4
+  
++     .line 516
+      .local v1, output_len:I
+      iget-boolean v2, v0, Landroid/util/Base64$Encoder;->do_padding:Z
+  
+      if-eqz v2, :cond_2
+  
++     .line 517
+      rem-int/lit8 v2, p2, 0x3
+  
+      if-lez v2, :cond_0
+  
++     .line 518
+      add-int/lit8 v1, v1, 0x4
+  
++     .line 529
+      :cond_0
+      :goto_0
+      :pswitch_0
+***************
+*** 223,228 ****
+--- 242,248 ----
+  
+      if-lez p2, :cond_1
+  
++     .line 530
+      add-int/lit8 v2, p2, -0x1
+  
+      div-int/lit8 v2, v2, 0x39
+***************
+*** 240,252 ****
+--- 260,275 ----
+  
+      add-int/2addr v1, v2
+  
++     .line 534
+      :cond_1
+      new-array v2, v1, [B
+  
+      iput-object v2, v0, Landroid/util/Base64$Encoder;->output:[B
+  
++     .line 535
+      invoke-virtual {v0, p0, p1, p2, v3}, Landroid/util/Base64$Encoder;->process([BIIZ)Z
+  
++     .line 537
+      sget-boolean v2, Landroid/util/Base64;->$assertionsDisabled:Z
+  
+      if-nez v2, :cond_4
+***************
+*** 261,266 ****
+--- 284,290 ----
+  
+      throw v2
+  
++     .line 521
+      :cond_2
+      rem-int/lit8 v2, p2, 0x3
+  
+***************
+*** 268,278 ****
+--- 292,304 ----
+  
+      goto :goto_0
+  
++     .line 523
+      :pswitch_1
+      add-int/lit8 v1, v1, 0x2
+  
+      goto :goto_0
+  
++     .line 524
+      :pswitch_2
+      add-int/lit8 v1, v1, 0x3
+  
+***************
+*** 281,293 ****
+--- 307,322 ----
+      :cond_3
+      move v2, v3
+  
++     .line 530
+      goto :goto_1
+  
++     .line 539
+      :cond_4
+      iget-object v2, v0, Landroid/util/Base64$Encoder;->output:[B
+  
+      return-object v2
+  
++     .line 521
+      :pswitch_data_0
+      .packed-switch 0x0
+          :pswitch_0
+***************
+*** 302,307 ****
+--- 331,337 ----
+      .parameter "flags"
+  
+      .prologue
++     .line 456
+      :try_start_0
+      new-instance v1, Ljava/lang/String;
+  
+***************
+*** 317,325 ****
+--- 347,357 ----
+  
+      return-object v1
+  
++     .line 457
+      :catch_0
+      move-exception v0
+  
++     .line 459
+      .local v0, e:Ljava/io/UnsupportedEncodingException;
+      new-instance v1, Ljava/lang/AssertionError;
+  
+***************
+*** 336,341 ****
+--- 368,374 ----
+      .parameter "flags"
+  
+      .prologue
++     .line 477
+      :try_start_0
+      new-instance v1, Ljava/lang/String;
+  
+***************
+*** 351,359 ****
+--- 384,394 ----
+  
+      return-object v1
+  
++     .line 478
+      :catch_0
+      move-exception v0
+  
++     .line 480
+      .local v0, e:Ljava/io/UnsupportedEncodingException;
+      new-instance v1, Ljava/lang/AssertionError;
+  

@@ -1,0 +1,241 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/util/Xml.smali	2012-03-23 19:35:17.311902567 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/util/Xml.smali.original	2012-03-23 19:34:44.458303483 -0500
+***************
+*** 21,26 ****
+--- 21,27 ----
+      .locals 1
+  
+      .prologue
++     .line 47
+      const-string v0, "http://xmlpull.org/v1/doc/features.html#relaxed"
+  
+      sput-object v0, Landroid/util/Xml;->FEATURE_RELAXED:Ljava/lang/String;
+***************
+*** 32,37 ****
+--- 33,39 ----
+      .locals 0
+  
+      .prologue
++     .line 39
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      return-void
+***************
+*** 42,47 ****
+--- 44,50 ----
+      .parameter "parser"
+  
+      .prologue
++     .line 176
+      instance-of v0, p0, Landroid/util/AttributeSet;
+  
+      if-eqz v0, :cond_0
+***************
+*** 73,85 ****
+--- 76,92 ----
+      .end annotation
+  
+      .prologue
++     .line 148
+      if-nez p0, :cond_1
+  
++     .line 149
+      sget-object v1, Landroid/util/Xml$Encoding;->UTF_8:Landroid/util/Xml$Encoding;
+  
++     .line 154
+      :cond_0
+      return-object v1
+  
++     .line 152
+      :cond_1
+      invoke-static {}, Landroid/util/Xml$Encoding;->values()[Landroid/util/Xml$Encoding;
+  
+***************
+*** 97,102 ****
+--- 104,110 ----
+  
+      aget-object v1, v0, v2
+  
++     .line 153
+      .local v1, encoding:Landroid/util/Xml$Encoding;
+      iget-object v4, v1, Landroid/util/Xml$Encoding;->expatName:Ljava/lang/String;
+  
+***************
+*** 106,115 ****
+--- 114,125 ----
+  
+      if-nez v4, :cond_0
+  
++     .line 152
+      add-int/lit8 v2, v2, 0x1
+  
+      goto :goto_0
+  
++     .line 156
+      .end local v1           #encoding:Landroid/util/Xml$Encoding;
+      :cond_2
+      new-instance v4, Ljava/io/UnsupportedEncodingException;
+***************
+*** 123,133 ****
+--- 133,145 ----
+      .locals 4
+  
+      .prologue
++     .line 92
+      :try_start_0
+      new-instance v1, Lorg/kxml2/io/KXmlParser;
+  
+      invoke-direct {v1}, Lorg/kxml2/io/KXmlParser;-><init>()V
+  
++     .line 93
+      .local v1, parser:Lorg/kxml2/io/KXmlParser;
+      const-string v2, "http://xmlpull.org/v1/doc/features.html#process-docdecl"
+  
+***************
+*** 135,140 ****
+--- 147,153 ----
+  
+      invoke-virtual {v1, v2, v3}, Lorg/kxml2/io/KXmlParser;->setFeature(Ljava/lang/String;Z)V
+  
++     .line 94
+      const-string v2, "http://xmlpull.org/v1/doc/features.html#process-namespaces"
+  
+      const/4 v3, 0x1
+***************
+*** 143,153 ****
+--- 156,169 ----
+      :try_end_0
+      .catch Lorg/xmlpull/v1/XmlPullParserException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 95
+      return-object v1
+  
++     .line 96
+      :catch_0
+      move-exception v0
+  
++     .line 97
+      .local v0, e:Lorg/xmlpull/v1/XmlPullParserException;
+      new-instance v2, Ljava/lang/AssertionError;
+  
+***************
+*** 160,165 ****
+--- 176,182 ----
+      .locals 2
+  
+      .prologue
++     .line 106
+      :try_start_0
+      sget-object v1, Landroid/util/Xml$XmlSerializerFactory;->instance:Lorg/xmlpull/v1/XmlPullParserFactory;
+  
+***************
+*** 171,179 ****
+--- 188,198 ----
+  
+      return-object v1
+  
++     .line 107
+      :catch_0
+      move-exception v0
+  
++     .line 108
+      .local v0, e:Lorg/xmlpull/v1/XmlPullParserException;
+      new-instance v1, Ljava/lang/AssertionError;
+  
+***************
+*** 195,218 ****
+--- 214,243 ----
+      .end annotation
+  
+      .prologue
++     .line 80
+      new-instance v0, Lorg/apache/harmony/xml/ExpatReader;
+  
+      invoke-direct {v0}, Lorg/apache/harmony/xml/ExpatReader;-><init>()V
+  
++     .line 81
+      .local v0, reader:Lorg/xml/sax/XMLReader;
+      invoke-interface {v0, p2}, Lorg/xml/sax/XMLReader;->setContentHandler(Lorg/xml/sax/ContentHandler;)V
+  
++     .line 82
+      new-instance v1, Lorg/xml/sax/InputSource;
+  
+      invoke-direct {v1, p0}, Lorg/xml/sax/InputSource;-><init>(Ljava/io/InputStream;)V
+  
++     .line 83
+      .local v1, source:Lorg/xml/sax/InputSource;
+      iget-object v2, p1, Landroid/util/Xml$Encoding;->expatName:Ljava/lang/String;
+  
+      invoke-virtual {v1, v2}, Lorg/xml/sax/InputSource;->setEncoding(Ljava/lang/String;)V
+  
++     .line 84
+      invoke-interface {v0, v1}, Lorg/xml/sax/XMLReader;->parse(Lorg/xml/sax/InputSource;)V
+  
++     .line 85
+      return-void
+  .end method
+  
+***************
+*** 228,246 ****
+--- 253,275 ----
+      .end annotation
+  
+      .prologue
++     .line 69
+      new-instance v0, Lorg/apache/harmony/xml/ExpatReader;
+  
+      invoke-direct {v0}, Lorg/apache/harmony/xml/ExpatReader;-><init>()V
+  
++     .line 70
+      .local v0, reader:Lorg/xml/sax/XMLReader;
+      invoke-interface {v0, p1}, Lorg/xml/sax/XMLReader;->setContentHandler(Lorg/xml/sax/ContentHandler;)V
+  
++     .line 71
+      new-instance v1, Lorg/xml/sax/InputSource;
+  
+      invoke-direct {v1, p0}, Lorg/xml/sax/InputSource;-><init>(Ljava/io/Reader;)V
+  
+      invoke-interface {v0, v1}, Lorg/xml/sax/XMLReader;->parse(Lorg/xml/sax/InputSource;)V
+  
++     .line 72
+      return-void
+  .end method
+  
+***************
+*** 255,268 ****
+--- 284,300 ----
+      .end annotation
+  
+      .prologue
++     .line 55
+      :try_start_0
+      new-instance v1, Lorg/apache/harmony/xml/ExpatReader;
+  
+      invoke-direct {v1}, Lorg/apache/harmony/xml/ExpatReader;-><init>()V
+  
++     .line 56
+      .local v1, reader:Lorg/xml/sax/XMLReader;
+      invoke-interface {v1, p1}, Lorg/xml/sax/XMLReader;->setContentHandler(Lorg/xml/sax/ContentHandler;)V
+  
++     .line 57
+      new-instance v2, Lorg/xml/sax/InputSource;
+  
+      new-instance v3, Ljava/io/StringReader;
+***************
+*** 275,286 ****
+--- 307,321 ----
+      :try_end_0
+      .catch Ljava/io/IOException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 61
+      return-void
+  
++     .line 58
+      .end local v1           #reader:Lorg/xml/sax/XMLReader;
+      :catch_0
+      move-exception v0
+  
++     .line 59
+      .local v0, e:Ljava/io/IOException;
+      new-instance v2, Ljava/lang/AssertionError;
+  

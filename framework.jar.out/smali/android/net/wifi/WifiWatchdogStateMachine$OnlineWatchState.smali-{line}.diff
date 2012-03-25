@@ -1,0 +1,312 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/wifi/WifiWatchdogStateMachine$OnlineWatchState.smali	2012-03-23 19:36:58.989756662 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/wifi/WifiWatchdogStateMachine$OnlineWatchState.smali.original	2012-03-23 19:34:45.460321755 -0500
+***************
+*** 46,65 ****
+--- 46,71 ----
+      .prologue
+      const/4 v0, 0x0
+  
++     .line 862
+      iput-object p1, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+      invoke-direct {p0}, Lcom/android/internal/util/State;-><init>()V
+  
++     .line 866
+      iput-boolean v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->unstableSignalChecks:Z
+  
++     .line 872
+      iput-boolean v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->signalUnstable:Z
+  
++     .line 879
+      iput v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->checkGuard:I
+  
++     .line 880
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->lastCheckTime:Ljava/lang/Long;
+  
++     .line 883
+      new-instance v0, Ljava/util/HashMap;
+  
+      invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+***************
+*** 73,82 ****
+--- 79,90 ----
+      .locals 7
+  
+      .prologue
++     .line 974
+      iget-boolean v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->signalUnstable:Z
+  
+      if-eqz v2, :cond_0
+  
++     .line 975
+      iget-object v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+      #getter for: Landroid/net/wifi/WifiWatchdogStateMachine;->mDnsCheckShortIntervalMs:J
+***************
+*** 84,94 ****
+--- 92,104 ----
+  
+      move-result-wide v0
+  
++     .line 976
+      .local v0, waitInterval:J
+      const/4 v2, 0x1
+  
+      iput-boolean v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->unstableSignalChecks:Z
+  
++     .line 980
+      :goto_0
+      iget-object v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+***************
+*** 113,120 ****
+--- 123,132 ----
+  
+      invoke-virtual {v2, v3, v4, v5}, Landroid/net/wifi/WifiWatchdogStateMachine;->sendMessageDelayed(Landroid/os/Message;J)V
+  
++     .line 982
+      return-void
+  
++     .line 978
+      .end local v0           #waitInterval:J
+      :cond_0
+      iget-object v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+***************
+*** 136,141 ****
+--- 148,154 ----
+      .prologue
+      const/4 v2, 0x0
+  
++     .line 887
+      invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+  
+      move-result-wide v0
+***************
+*** 146,167 ****
+--- 159,186 ----
+  
+      iput-object v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->lastCheckTime:Ljava/lang/Long;
+  
++     .line 888
+      iput-boolean v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->signalUnstable:Z
+  
++     .line 889
+      iget v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->checkGuard:I
+  
+      add-int/lit8 v0, v0, 0x1
+  
+      iput v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->checkGuard:I
+  
++     .line 890
+      iput-boolean v2, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->unstableSignalChecks:Z
+  
++     .line 891
+      iget-object v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->pingInfoMap:Ljava/util/HashMap;
+  
+      invoke-virtual {v0}, Ljava/util/HashMap;->clear()V
+  
++     .line 892
+      invoke-direct {p0}, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->triggerSingleDnsCheck()V
+  
++     .line 893
+      return-void
+  .end method
+  
+***************
+*** 169,174 ****
+--- 188,194 ----
+      .locals 1
+  
+      .prologue
++     .line 966
+      iget-object v0, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+      #getter for: Landroid/net/wifi/WifiWatchdogStateMachine;->mDnsPinger:Landroid/net/DnsPinger;
+***************
+*** 178,183 ****
+--- 198,204 ----
+  
+      invoke-virtual {v0}, Landroid/net/DnsPinger;->cancelPings()V
+  
++     .line 967
+      return-void
+  .end method
+  
+***************
+*** 190,205 ****
+--- 211,229 ----
+  
+      const/4 v6, 0x1
+  
++     .line 897
+      iget v7, p1, Landroid/os/Message;->what:I
+  
+      sparse-switch v7, :sswitch_data_0
+  
+      move v6, v5
+  
++     .line 961
+      :cond_0
+      :goto_0
+      return v6
+  
++     .line 899
+      :sswitch_0
+      iget v7, p1, Landroid/os/Message;->arg1:I
+  
+***************
+*** 212,219 ****
+--- 236,245 ----
+  
+      if-ne v7, v8, :cond_0
+  
++     .line 905
+      iget v3, p1, Landroid/os/Message;->arg2:I
+  
++     .line 906
+      .local v3, newRssi:I
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+***************
+*** 229,234 ****
+--- 255,261 ----
+      :cond_1
+      iput-boolean v5, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->signalUnstable:Z
+  
++     .line 912
+      iget-boolean v5, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->signalUnstable:Z
+  
+      if-eqz v5, :cond_0
+***************
+*** 237,246 ****
+--- 264,275 ----
+  
+      if-nez v5, :cond_0
+  
++     .line 916
+      invoke-direct {p0}, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->triggerSingleDnsCheck()V
+  
+      goto :goto_0
+  
++     .line 920
+      .end local v3           #newRssi:I
+      :sswitch_1
+      iget v7, p1, Landroid/os/Message;->arg1:I
+***************
+*** 249,254 ****
+--- 278,284 ----
+  
+      if-ne v7, v8, :cond_0
+  
++     .line 926
+      invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+  
+      move-result-wide v7
+***************
+*** 259,268 ****
+--- 289,300 ----
+  
+      iput-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->lastCheckTime:Ljava/lang/Long;
+  
++     .line 927
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->pingInfoMap:Ljava/util/HashMap;
+  
+      invoke-virtual {v7}, Ljava/util/HashMap;->clear()V
+  
++     .line 928
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+      #getter for: Landroid/net/wifi/WifiWatchdogStateMachine;->mDnsPinger:Landroid/net/DnsPinger;
+***************
+*** 292,297 ****
+--- 324,330 ----
+  
+      check-cast v0, Ljava/net/InetAddress;
+  
++     .line 929
+      .local v0, curDns:Ljava/net/InetAddress;
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->pingInfoMap:Ljava/util/HashMap;
+  
+***************
+*** 321,326 ****
+--- 354,360 ----
+  
+      goto :goto_1
+  
++     .line 934
+      .end local v0           #curDns:Ljava/net/InetAddress;
+      .end local v2           #i$:Ljava/util/Iterator;
+      :sswitch_2
+***************
+*** 338,346 ****
+--- 372,382 ----
+  
+      check-cast v1, Ljava/net/InetAddress;
+  
++     .line 935
+      .local v1, curDnsServer:Ljava/net/InetAddress;
+      if-eqz v1, :cond_0
+  
++     .line 938
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->pingInfoMap:Ljava/util/HashMap;
+  
+      iget v8, p1, Landroid/os/Message;->arg1:I
+***************
+*** 351,377 ****
+--- 387,420 ----
+  
+      invoke-virtual {v7, v8}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 939
+      iget v4, p1, Landroid/os/Message;->arg2:I
+  
++     .line 940
+      .local v4, responseTime:I
+      if-ltz v4, :cond_2
+  
++     .line 945
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->pingInfoMap:Ljava/util/HashMap;
+  
+      invoke-virtual {v7}, Ljava/util/HashMap;->clear()V
+  
++     .line 947
+      iget v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->checkGuard:I
+  
+      add-int/lit8 v7, v7, 0x1
+  
+      iput v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->checkGuard:I
+  
++     .line 948
+      iput-boolean v5, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->unstableSignalChecks:Z
+  
++     .line 949
+      invoke-direct {p0}, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->triggerSingleDnsCheck()V
+  
+      goto/16 :goto_0
+  
++     .line 951
+      :cond_2
+      iget-object v5, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->pingInfoMap:Ljava/util/HashMap;
+  
+***************
+*** 381,386 ****
+--- 424,430 ----
+  
+      if-eqz v5, :cond_0
+  
++     .line 956
+      iget-object v5, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+  
+      iget-object v7, p0, Landroid/net/wifi/WifiWatchdogStateMachine$OnlineWatchState;->this$0:Landroid/net/wifi/WifiWatchdogStateMachine;
+***************
+*** 395,400 ****
+--- 439,445 ----
+  
+      goto/16 :goto_0
+  
++     .line 897
+      nop
+  
+      :sswitch_data_0

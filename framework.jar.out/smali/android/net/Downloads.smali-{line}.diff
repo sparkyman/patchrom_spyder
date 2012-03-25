@@ -1,0 +1,171 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/Downloads.smali	2012-03-23 19:37:02.715824606 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/Downloads.smali.original	2012-03-23 19:34:45.514322739 -0500
+***************
+*** 69,74 ****
+--- 69,75 ----
+      .locals 3
+  
+      .prologue
++     .line 562
+      const/4 v0, 0x6
+  
+      new-array v0, v0, [Ljava/lang/String;
+***************
+*** 87,93 ****
+  
+      const/4 v1, 0x2
+  
+!     const-string v2, "status"
+  
+      aput-object v2, v0, v1
+  
+--- 88,94 ----
+  
+      const/4 v1, 0x2
+  
+!     const-string/jumbo v2, "status"
+  
+      aput-object v2, v0, v1
+  
+***************
+*** 118,123 ****
+--- 119,125 ----
+      .locals 0
+  
+      .prologue
++     .line 643
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      return-void
+***************
+*** 127,132 ****
+--- 129,135 ----
+      .locals 1
+  
+      .prologue
++     .line 41
+      sget-object v0, Landroid/net/Downloads;->DOWNLOADS_PROJECTION:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 138,143 ****
+--- 141,147 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 41
+      invoke-static {p0, p1, p2}, Landroid/net/Downloads;->getStatusOfDownload(Landroid/database/Cursor;J)I
+  
+      move-result v0
+***************
+*** 157,173 ****
+--- 161,180 ----
+  
+      const/4 v9, 0x0
+  
++     .line 610
+      const/4 v11, 0x2
+  
+      invoke-interface {p0, v11}, Landroid/database/Cursor;->getInt(I)I
+  
+      move-result v7
+  
++     .line 611
+      .local v7, status:I
+      invoke-static {}, Landroid/os/SystemClock;->elapsedRealtime()J
+  
+      move-result-wide v5
+  
++     .line 616
+      .local v5, realtime:J
+      invoke-static {v7}, Landroid/provider/Downloads$Impl;->isStatusCompleted(I)Z
+  
+***************
+*** 175,189 ****
+--- 182,199 ----
+  
+      if-nez v11, :cond_2
+  
++     .line 618
+      invoke-interface {p0, v10}, Landroid/database/Cursor;->getLong(I)J
+  
+      move-result-wide v1
+  
++     .line 619
+      .local v1, modified:J
+      invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+  
+      move-result-wide v3
+  
++     .line 620
+      .local v3, now:J
+      cmp-long v10, v3, v1
+  
+***************
+*** 198,209 ****
+--- 208,221 ----
+      :cond_0
+      move v8, v9
+  
++     .line 636
+      .end local v1           #modified:J
+      .end local v3           #now:J
+      :cond_1
+      :goto_0
+      return v8
+  
++     .line 627
+      :cond_2
+      invoke-static {v7}, Landroid/provider/Downloads$Impl;->isStatusError(I)Z
+  
+***************
+*** 213,235 ****
+--- 225,252 ----
+  
+      move v8, v9
+  
++     .line 628
+      goto :goto_0
+  
++     .line 631
+      :cond_3
+      invoke-interface {p0, v8}, Landroid/database/Cursor;->getString(I)Ljava/lang/String;
+  
+      move-result-object v0
+  
++     .line 632
+      .local v0, filename:Ljava/lang/String;
+      if-nez v0, :cond_4
+  
+      move v8, v9
+  
++     .line 633
+      goto :goto_0
+  
+      :cond_4
+      move v8, v10
+  
++     .line 636
+      goto :goto_0
+  .end method
+  
+***************
+*** 238,243 ****
+--- 255,261 ----
+      .parameter "status"
+  
+      .prologue
++     .line 110
+      const/16 v0, 0x190
+  
+      if-lt p0, v0, :cond_0
+***************
+*** 262,267 ****
+--- 280,286 ----
+      .parameter "status"
+  
+      .prologue
++     .line 103
+      const/16 v0, 0xc8
+  
+      if-lt p0, v0, :cond_0

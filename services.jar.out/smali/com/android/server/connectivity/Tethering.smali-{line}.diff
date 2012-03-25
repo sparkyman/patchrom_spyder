@@ -1,0 +1,3011 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/connectivity/Tethering.smali	2012-03-23 19:34:56.732527303 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/connectivity/Tethering.smali.original	2012-03-23 19:34:46.907348142 -0500
+***************
+*** 110,133 ****
+--- 110,137 ----
+  
+      const/4 v2, 0x0
+  
++     .line 87
+      new-instance v0, Ljava/lang/Integer;
+  
+      invoke-direct {v0, v2}, Ljava/lang/Integer;-><init>(I)V
+  
+      sput-object v0, Lcom/android/server/connectivity/Tethering;->MOBILE_TYPE:Ljava/lang/Integer;
+  
++     .line 88
+      new-instance v0, Ljava/lang/Integer;
+  
+      invoke-direct {v0, v4}, Ljava/lang/Integer;-><init>(I)V
+  
+      sput-object v0, Lcom/android/server/connectivity/Tethering;->HIPRI_TYPE:Ljava/lang/Integer;
+  
++     .line 89
+      new-instance v0, Ljava/lang/Integer;
+  
+      invoke-direct {v0, v3}, Ljava/lang/Integer;-><init>(I)V
+  
+      sput-object v0, Lcom/android/server/connectivity/Tethering;->DUN_TYPE:Ljava/lang/Integer;
+  
++     .line 114
+      const/16 v0, 0xe
+  
+      new-array v0, v0, [Ljava/lang/String;
+***************
+*** 226,259 ****
+--- 230,273 ----
+      .prologue
+      const/4 v4, 0x1
+  
++     .line 134
+      invoke-direct {p0}, Landroid/net/INetworkManagementEventObserver$Stub;-><init>()V
+  
++     .line 93
+      const/4 v1, -0x1
+  
+      iput v1, p0, Lcom/android/server/connectivity/Tethering;->mPreferredUpstreamMobileApn:I
+  
++     .line 135
+      iput-object p1, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
++     .line 136
+      iput-object p2, p0, Lcom/android/server/connectivity/Tethering;->mNMService:Landroid/os/INetworkManagementService;
+  
++     .line 137
+      iput-object p3, p0, Lcom/android/server/connectivity/Tethering;->mStatsService:Landroid/net/INetworkStatsService;
+  
++     .line 138
+      iput-object p4, p0, Lcom/android/server/connectivity/Tethering;->mConnService:Landroid/net/IConnectivityManager;
+  
++     .line 139
+      iput-object p5, p0, Lcom/android/server/connectivity/Tethering;->mLooper:Landroid/os/Looper;
+  
++     .line 141
+      new-instance v1, Ljava/lang/Object;
+  
+      invoke-direct {v1}, Ljava/lang/Object;-><init>()V
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
++     .line 143
+      new-instance v1, Ljava/util/HashMap;
+  
+      invoke-direct {v1}, Ljava/util/HashMap;-><init>()V
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
++     .line 146
+      new-instance v1, Landroid/os/HandlerThread;
+  
+      const-string v2, "Tethering"
+***************
+*** 262,271 ****
+--- 276,287 ----
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mThread:Landroid/os/HandlerThread;
+  
++     .line 147
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mThread:Landroid/os/HandlerThread;
+  
+      invoke-virtual {v1}, Landroid/os/HandlerThread;->start()V
+  
++     .line 148
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mThread:Landroid/os/HandlerThread;
+  
+      invoke-virtual {v1}, Landroid/os/HandlerThread;->getLooper()Landroid/os/Looper;
+***************
+*** 274,279 ****
+--- 290,296 ----
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mLooper:Landroid/os/Looper;
+  
++     .line 149
+      new-instance v1, Lcom/android/server/connectivity/Tethering$TetherMasterSM;
+  
+      const-string v2, "TetherMaster"
+***************
+*** 284,293 ****
+--- 301,312 ----
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mTetherMasterSM:Lcom/android/internal/util/StateMachine;
+  
++     .line 150
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mTetherMasterSM:Lcom/android/internal/util/StateMachine;
+  
+      invoke-virtual {v1}, Lcom/android/internal/util/StateMachine;->start()V
+  
++     .line 152
+      new-instance v1, Lcom/android/server/connectivity/Tethering$StateReceiver;
+  
+      const/4 v2, 0x0
+***************
+*** 296,344 ****
+--- 315,373 ----
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mStateReceiver:Landroid/content/BroadcastReceiver;
+  
++     .line 153
+      new-instance v0, Landroid/content/IntentFilter;
+  
+      invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+  
++     .line 154
+      .local v0, filter:Landroid/content/IntentFilter;
+      const-string v1, "android.hardware.usb.action.USB_STATE"
+  
+      invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+  
++     .line 155
+      const-string v1, "android.net.conn.CONNECTIVITY_CHANGE"
+  
+      invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+  
++     .line 156
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mStateReceiver:Landroid/content/BroadcastReceiver;
+  
+      invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+  
++     .line 158
+      new-instance v0, Landroid/content/IntentFilter;
+  
+      .end local v0           #filter:Landroid/content/IntentFilter;
+      invoke-direct {v0}, Landroid/content/IntentFilter;-><init>()V
+  
++     .line 159
+      .restart local v0       #filter:Landroid/content/IntentFilter;
+      const-string v1, "android.intent.action.MEDIA_SHARED"
+  
+      invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+  
++     .line 160
+      const-string v1, "android.intent.action.MEDIA_UNSHARED"
+  
+      invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addAction(Ljava/lang/String;)V
+  
++     .line 161
+      const-string v1, "file"
+  
+      invoke-virtual {v0, v1}, Landroid/content/IntentFilter;->addDataScheme(Ljava/lang/String;)V
+  
++     .line 162
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mStateReceiver:Landroid/content/BroadcastReceiver;
+  
+      invoke-virtual {v1, v2, v0}, Landroid/content/Context;->registerReceiver(Landroid/content/BroadcastReceiver;Landroid/content/IntentFilter;)Landroid/content/Intent;
+  
++     .line 164
+      invoke-virtual {p1}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+  
+      move-result-object v1
+***************
+*** 351,356 ****
+--- 380,386 ----
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mDhcpRange:[Ljava/lang/String;
+  
++     .line 166
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mDhcpRange:[Ljava/lang/String;
+  
+      array-length v1, v1
+***************
+*** 365,384 ****
+--- 395,418 ----
+  
+      if-ne v1, v4, :cond_1
+  
++     .line 167
+      :cond_0
+      sget-object v1, Lcom/android/server/connectivity/Tethering;->DHCP_DEFAULT_RANGE:[Ljava/lang/String;
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mDhcpRange:[Ljava/lang/String;
+  
++     .line 171
+      :cond_1
+      invoke-virtual {p0}, Lcom/android/server/connectivity/Tethering;->updateConfiguration()V
+  
++     .line 174
+      const/4 v1, 0x2
+  
+      new-array v1, v1, [Ljava/lang/String;
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mDnsServers:[Ljava/lang/String;
+  
++     .line 175
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mDnsServers:[Ljava/lang/String;
+  
+      const/4 v2, 0x0
+***************
+*** 387,398 ****
+--- 421,434 ----
+  
+      aput-object v3, v1, v2
+  
++     .line 176
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mDnsServers:[Ljava/lang/String;
+  
+      const-string v2, "8.8.4.4"
+  
+      aput-object v2, v1, v4
+  
++     .line 177
+      return-void
+  .end method
+  
+***************
+*** 401,406 ****
+--- 437,443 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      return-object v0
+***************
+*** 411,416 ****
+--- 448,454 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-boolean v0, p0, Lcom/android/server/connectivity/Tethering;->mRndisEnabled:Z
+  
+      return v0
+***************
+*** 422,427 ****
+--- 460,466 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 71
+      iput-boolean p1, p0, Lcom/android/server/connectivity/Tethering;->mRndisEnabled:Z
+  
+      return p1
+***************
+*** 432,437 ****
+--- 471,477 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mNMService:Landroid/os/INetworkManagementService;
+  
+      return-object v0
+***************
+*** 442,447 ****
+--- 482,488 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mStatsService:Landroid/net/INetworkStatsService;
+  
+      return-object v0
+***************
+*** 452,457 ****
+--- 493,499 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-boolean v0, p0, Lcom/android/server/connectivity/Tethering;->mUsbTetherRequested:Z
+  
+      return v0
+***************
+*** 462,467 ****
+--- 504,510 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mConnService:Landroid/net/IConnectivityManager;
+  
+      return-object v0
+***************
+*** 473,478 ****
+--- 516,522 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 71
+      iput-boolean p1, p0, Lcom/android/server/connectivity/Tethering;->mUsbTetherRequested:Z
+  
+      return p1
+***************
+*** 483,488 ****
+--- 527,533 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mDhcpRange:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 493,498 ****
+--- 538,544 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mDnsServers:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 504,509 ****
+--- 550,556 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 71
+      invoke-direct {p0, p1}, Lcom/android/server/connectivity/Tethering;->tetherUsb(Z)V
+  
+      return-void
+***************
+*** 514,519 ****
+--- 561,567 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      return-object v0
+***************
+*** 524,529 ****
+--- 572,578 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget v0, p0, Lcom/android/server/connectivity/Tethering;->mPreferredUpstreamMobileApn:I
+  
+      return v0
+***************
+*** 534,539 ****
+--- 583,589 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherMasterSM:Lcom/android/internal/util/StateMachine;
+  
+      return-object v0
+***************
+*** 545,550 ****
+--- 595,601 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 71
+      invoke-direct {p0, p1}, Lcom/android/server/connectivity/Tethering;->configureUsbIface(Z)Z
+  
+      move-result v0
+***************
+*** 557,562 ****
+--- 608,614 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      invoke-direct {p0}, Lcom/android/server/connectivity/Tethering;->sendTetherStateChangedBroadcast()V
+  
+      return-void
+***************
+*** 566,571 ****
+--- 618,624 ----
+      .locals 3
+  
+      .prologue
++     .line 480
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      const-string v2, "notification"
+***************
+*** 576,581 ****
+--- 629,635 ----
+  
+      check-cast v0, Landroid/app/NotificationManager;
+  
++     .line 482
+      .local v0, notificationManager:Landroid/app/NotificationManager;
+      if-eqz v0, :cond_0
+  
+***************
+*** 583,598 ****
+--- 637,655 ----
+  
+      if-eqz v1, :cond_0
+  
++     .line 483
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iget v1, v1, Landroid/app/Notification;->icon:I
+  
+      invoke-virtual {v0, v1}, Landroid/app/NotificationManager;->cancel(I)V
+  
++     .line 484
+      const/4 v1, 0x0
+  
+      iput-object v1, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
++     .line 486
+      :cond_0
+      return-void
+  .end method
+***************
+*** 604,611 ****
+--- 661,670 ----
+      .prologue
+      const/4 v8, 0x0
+  
++     .line 534
+      new-array v5, v8, [Ljava/lang/String;
+  
++     .line 536
+      .local v5, ifaces:[Ljava/lang/String;
+      :try_start_0
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mNMService:Landroid/os/INetworkManagementService;
+***************
+*** 616,621 ****
+--- 675,681 ----
+  
+      move-result-object v5
+  
++     .line 541
+      move-object v1, v5
+  
+      .local v1, arr$:[Ljava/lang/String;
+***************
+*** 630,635 ****
+--- 690,696 ----
+  
+      aget-object v4, v1, v3
+  
++     .line 542
+      .local v4, iface:Ljava/lang/String;
+      invoke-direct {p0, v4}, Lcom/android/server/connectivity/Tethering;->isUsb(Ljava/lang/String;)Z
+  
+***************
+*** 637,644 ****
+--- 698,707 ----
+  
+      if-eqz v9, :cond_0
+  
++     .line 543
+      const/4 v6, 0x0
+  
++     .line 545
+      .local v6, ifcg:Landroid/net/InterfaceConfiguration;
+      :try_start_1
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mNMService:Landroid/os/INetworkManagementService;
+***************
+*** 647,660 ****
+--- 710,726 ----
+  
+      move-result-object v6
+  
++     .line 546
+      if-eqz v6, :cond_0
+  
++     .line 547
+      const-string v9, "192.168.42.129"
+  
+      invoke-static {v9}, Landroid/net/NetworkUtils;->numericToInetAddress(Ljava/lang/String;)Ljava/net/InetAddress;
+  
+      move-result-object v0
+  
++     .line 548
+      .local v0, addr:Ljava/net/InetAddress;
+      new-instance v9, Landroid/net/LinkAddress;
+  
+***************
+*** 664,671 ****
+--- 730,739 ----
+  
+      iput-object v9, v6, Landroid/net/InterfaceConfiguration;->addr:Landroid/net/LinkAddress;
+  
++     .line 549
+      if-eqz p1, :cond_1
+  
++     .line 550
+      iget-object v9, v6, Landroid/net/InterfaceConfiguration;->interfaceFlags:Ljava/lang/String;
+  
+      const-string v10, "down"
+***************
+*** 678,683 ****
+--- 746,752 ----
+  
+      iput-object v9, v6, Landroid/net/InterfaceConfiguration;->interfaceFlags:Ljava/lang/String;
+  
++     .line 554
+      :goto_1
+      iget-object v9, v6, Landroid/net/InterfaceConfiguration;->interfaceFlags:Ljava/lang/String;
+  
+***************
+*** 691,696 ****
+--- 760,766 ----
+  
+      iput-object v9, v6, Landroid/net/InterfaceConfiguration;->interfaceFlags:Ljava/lang/String;
+  
++     .line 555
+      iget-object v9, v6, Landroid/net/InterfaceConfiguration;->interfaceFlags:Ljava/lang/String;
+  
+      const-string v10, "  "
+***************
+*** 703,714 ****
+--- 773,786 ----
+  
+      iput-object v9, v6, Landroid/net/InterfaceConfiguration;->interfaceFlags:Ljava/lang/String;
+  
++     .line 556
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mNMService:Landroid/os/INetworkManagementService;
+  
+      invoke-interface {v9, v4, v6}, Landroid/os/INetworkManagementService;->setInterfaceConfig(Ljava/lang/String;Landroid/net/InterfaceConfiguration;)V
+      :try_end_1
+      .catch Ljava/lang/Exception; {:try_start_1 .. :try_end_1} :catch_1
+  
++     .line 541
+      .end local v0           #addr:Ljava/net/InetAddress;
+      .end local v6           #ifcg:Landroid/net/InterfaceConfiguration;
+      :cond_0
+***************
+*** 716,721 ****
+--- 788,794 ----
+  
+      goto :goto_0
+  
++     .line 537
+      .end local v1           #arr$:[Ljava/lang/String;
+      .end local v3           #i$:I
+      .end local v4           #iface:Ljava/lang/String;
+***************
+*** 723,728 ****
+--- 796,802 ----
+      :catch_0
+      move-exception v2
+  
++     .line 538
+      .local v2, e:Ljava/lang/Exception;
+      const-string v9, "Tethering"
+  
+***************
+*** 730,739 ****
+--- 804,815 ----
+  
+      invoke-static {v9, v10, v2}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;Ljava/lang/Throwable;)I
+  
++     .line 565
+      .end local v2           #e:Ljava/lang/Exception;
+      :goto_2
+      return v8
+  
++     .line 552
+      .restart local v0       #addr:Ljava/net/InetAddress;
+      .restart local v1       #arr$:[Ljava/lang/String;
+      .restart local v3       #i$:I
+***************
+*** 758,767 ****
+--- 834,845 ----
+  
+      goto :goto_1
+  
++     .line 558
+      .end local v0           #addr:Ljava/net/InetAddress;
+      :catch_1
+      move-exception v2
+  
++     .line 559
+      .restart local v2       #e:Ljava/lang/Exception;
+      const-string v9, "Tethering"
+  
+***************
+*** 787,792 ****
+--- 865,871 ----
+  
+      goto :goto_2
+  
++     .line 565
+      .end local v2           #e:Ljava/lang/Exception;
+      .end local v4           #iface:Ljava/lang/String;
+      .end local v6           #ifcg:Landroid/net/InterfaceConfiguration;
+***************
+*** 801,810 ****
+--- 880,891 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 246
+      iget-object v5, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v5
+  
++     .line 247
+      :try_start_0
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherableUsbRegexs:[Ljava/lang/String;
+  
+***************
+*** 820,825 ****
+--- 901,907 ----
+  
+      aget-object v3, v0, v1
+  
++     .line 248
+      .local v3, regex:Ljava/lang/String;
+      invoke-virtual {p1, v3}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+  
+***************
+*** 831,846 ****
+--- 913,931 ----
+  
+      monitor-exit v5
+  
++     .line 250
+      .end local v3           #regex:Ljava/lang/String;
+      :goto_1
+      return v4
+  
++     .line 247
+      .restart local v3       #regex:Ljava/lang/String;
+      :cond_0
+      add-int/lit8 v1, v1, 0x1
+  
+      goto :goto_0
+  
++     .line 250
+      .end local v3           #regex:Ljava/lang/String;
+      :cond_1
+      const/4 v4, 0x0
+***************
+*** 849,854 ****
+--- 934,940 ----
+  
+      goto :goto_1
+  
++     .line 251
+      .end local v0           #arr$:[Ljava/lang/String;
+      .end local v1           #i$:I
+      .end local v2           #len$:I
+***************
+*** 866,871 ****
+--- 952,958 ----
+      .locals 16
+  
+      .prologue
++     .line 373
+      :try_start_0
+      move-object/from16 v0, p0
+  
+***************
+*** 879,918 ****
+--- 966,1015 ----
+  
+      if-nez v13, :cond_0
+  
++     .line 439
+      :goto_0
+      return-void
+  
++     .line 374
+      :catch_0
+      move-exception v5
+  
++     .line 375
+      .local v5, e:Landroid/os/RemoteException;
+      goto :goto_0
+  
++     .line 378
+      .end local v5           #e:Landroid/os/RemoteException;
+      :cond_0
+      new-instance v2, Ljava/util/ArrayList;
+  
+      invoke-direct {v2}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 379
+      .local v2, availableList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      new-instance v1, Ljava/util/ArrayList;
+  
+      invoke-direct {v1}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 380
+      .local v1, activeList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      new-instance v6, Ljava/util/ArrayList;
+  
+      invoke-direct {v6}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 382
+      .local v6, erroredList:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      const/4 v12, 0x0
+  
++     .line 383
+      .local v12, wifiTethered:Z
+      const/4 v11, 0x0
+  
++     .line 384
+      .local v11, usbTethered:Z
+      const/4 v3, 0x0
+  
++     .line 386
+      .local v3, bluetoothTethered:Z
+      move-object/from16 v0, p0
+  
+***************
+*** 920,925 ****
+--- 1017,1023 ----
+  
+      monitor-enter v14
+  
++     .line 387
+      :try_start_1
+      move-object/from16 v0, p0
+  
+***************
+*** 929,934 ****
+--- 1027,1033 ----
+  
+      move-result-object v9
+  
++     .line 388
+      .local v9, ifaces:Ljava/util/Set;
+      invoke-interface {v9}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+  
+***************
+*** 947,952 ****
+--- 1046,1052 ----
+  
+      move-result-object v8
+  
++     .line 389
+      .local v8, iface:Ljava/lang/Object;
+      move-object/from16 v0, p0
+  
+***************
+*** 958,972 ****
+--- 1058,1075 ----
+  
+      check-cast v10, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 390
+      .local v10, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      if-eqz v10, :cond_1
+  
++     .line 391
+      invoke-virtual {v10}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isErrored()Z
+  
+      move-result v13
+  
+      if-eqz v13, :cond_2
+  
++     .line 392
+      check-cast v8, Ljava/lang/String;
+  
+      .end local v8           #iface:Ljava/lang/Object;
+***************
+*** 974,979 ****
+--- 1077,1083 ----
+  
+      goto :goto_1
+  
++     .line 407
+      .end local v7           #i$:Ljava/util/Iterator;
+      .end local v9           #ifaces:Ljava/util/Set;
+      .end local v10           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+***************
+*** 986,991 ****
+--- 1090,1096 ----
+  
+      throw v13
+  
++     .line 393
+      .restart local v7       #i$:Ljava/util/Iterator;
+      .restart local v8       #iface:Ljava/lang/Object;
+      .restart local v9       #ifaces:Ljava/util/Set;
+***************
+*** 998,1003 ****
+--- 1103,1109 ----
+  
+      if-eqz v13, :cond_3
+  
++     .line 394
+      check-cast v8, Ljava/lang/String;
+  
+      .end local v8           #iface:Ljava/lang/Object;
+***************
+*** 1005,1010 ****
+--- 1111,1117 ----
+  
+      goto :goto_1
+  
++     .line 395
+      .restart local v8       #iface:Ljava/lang/Object;
+      :cond_3
+      invoke-virtual {v10}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isTethered()Z
+***************
+*** 1013,1018 ****
+--- 1120,1126 ----
+  
+      if-eqz v13, :cond_1
+  
++     .line 396
+      move-object v0, v8
+  
+      check-cast v0, Ljava/lang/String;
+***************
+*** 1027,1034 ****
+--- 1135,1144 ----
+  
+      if-eqz v13, :cond_5
+  
++     .line 397
+      const/4 v11, 0x1
+  
++     .line 403
+      :cond_4
+      :goto_2
+      check-cast v8, Ljava/lang/String;
+***************
+*** 1038,1043 ****
+--- 1148,1154 ----
+  
+      goto :goto_1
+  
++     .line 398
+      .restart local v8       #iface:Ljava/lang/Object;
+      :cond_5
+      move-object v0, v8
+***************
+*** 1054,1063 ****
+--- 1165,1176 ----
+  
+      if-eqz v13, :cond_6
+  
++     .line 399
+      const/4 v12, 0x1
+  
+      goto :goto_2
+  
++     .line 400
+      :cond_6
+      move-object v0, v8
+  
+***************
+*** 1073,1082 ****
+--- 1186,1197 ----
+  
+      if-eqz v13, :cond_4
+  
++     .line 401
+      const/4 v3, 0x1
+  
+      goto :goto_2
+  
++     .line 407
+      .end local v8           #iface:Ljava/lang/Object;
+      .end local v10           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      :cond_7
+***************
+*** 1084,1118 ****
+--- 1199,1240 ----
+      :try_end_2
+      .catchall {:try_start_2 .. :try_end_2} :catchall_0
+  
++     .line 408
+      new-instance v4, Landroid/content/Intent;
+  
+      const-string v13, "android.net.conn.TETHER_STATE_CHANGED"
+  
+      invoke-direct {v4, v13}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+  
++     .line 409
+      .local v4, broadcast:Landroid/content/Intent;
+      const/high16 v13, 0x3000
+  
+      invoke-virtual {v4, v13}, Landroid/content/Intent;->addFlags(I)Landroid/content/Intent;
+  
++     .line 411
+      const-string v13, "availableArray"
+  
+      invoke-virtual {v4, v13, v2}, Landroid/content/Intent;->putStringArrayListExtra(Ljava/lang/String;Ljava/util/ArrayList;)Landroid/content/Intent;
+  
++     .line 413
+      const-string v13, "activeArray"
+  
+      invoke-virtual {v4, v13, v1}, Landroid/content/Intent;->putStringArrayListExtra(Ljava/lang/String;Ljava/util/ArrayList;)Landroid/content/Intent;
+  
++     .line 414
+      const-string v13, "erroredArray"
+  
+      invoke-virtual {v4, v13, v6}, Landroid/content/Intent;->putStringArrayListExtra(Ljava/lang/String;Ljava/util/ArrayList;)Landroid/content/Intent;
+  
++     .line 416
+      move-object/from16 v0, p0
+  
+      iget-object v13, v0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      invoke-virtual {v13, v4}, Landroid/content/Context;->sendStickyBroadcast(Landroid/content/Intent;)V
+  
++     .line 418
+      const-string v13, "Tethering"
+  
+      new-instance v14, Ljava/lang/StringBuilder;
+***************
+*** 1167,1178 ****
+--- 1289,1303 ----
+  
+      invoke-static {v13, v14}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 422
+      if-eqz v11, :cond_a
+  
++     .line 423
+      if-nez v12, :cond_8
+  
+      if-eqz v3, :cond_9
+  
++     .line 424
+      :cond_8
+      const v13, 0x1080534
+  
+***************
+*** 1182,1187 ****
+--- 1307,1313 ----
+  
+      goto/16 :goto_0
+  
++     .line 426
+      :cond_9
+      const v13, 0x1080535
+  
+***************
+*** 1191,1201 ****
+--- 1317,1330 ----
+  
+      goto/16 :goto_0
+  
++     .line 428
+      :cond_a
+      if-eqz v12, :cond_c
+  
++     .line 429
+      if-eqz v3, :cond_b
+  
++     .line 430
+      const v13, 0x1080534
+  
+      move-object/from16 v0, p0
+***************
+*** 1204,1209 ****
+--- 1333,1339 ----
+  
+      goto/16 :goto_0
+  
++     .line 432
+      :cond_b
+      const v13, 0x1080536
+  
+***************
+*** 1213,1221 ****
+--- 1343,1353 ----
+  
+      goto/16 :goto_0
+  
++     .line 434
+      :cond_c
+      if-eqz v3, :cond_d
+  
++     .line 435
+      const v13, 0x1080533
+  
+      move-object/from16 v0, p0
+***************
+*** 1224,1229 ****
+--- 1356,1362 ----
+  
+      goto/16 :goto_0
+  
++     .line 437
+      :cond_d
+      invoke-direct/range {p0 .. p0}, Lcom/android/server/connectivity/Tethering;->clearTetheredNotification()V
+  
+***************
+*** 1237,1242 ****
+--- 1370,1376 ----
+      .prologue
+      const/4 v8, 0x0
+  
++     .line 442
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      const-string v7, "notification"
+***************
+*** 1247,1281 ****
+--- 1381,1422 ----
+  
+      check-cast v2, Landroid/app/NotificationManager;
+  
++     .line 444
+      .local v2, notificationManager:Landroid/app/NotificationManager;
+      if-nez v2, :cond_1
+  
++     .line 477
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 448
+      :cond_1
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      if-eqz v6, :cond_2
+  
++     .line 449
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iget v6, v6, Landroid/app/Notification;->icon:I
+  
+      if-eq v6, p1, :cond_0
+  
++     .line 452
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iget v6, v6, Landroid/app/Notification;->icon:I
+  
+      invoke-virtual {v2, v6}, Landroid/app/NotificationManager;->cancel(I)V
+  
++     .line 455
+      :cond_2
+      new-instance v0, Landroid/content/Intent;
+  
+      invoke-direct {v0}, Landroid/content/Intent;-><init>()V
+  
++     .line 456
+      .local v0, intent:Landroid/content/Intent;
+      const-string v6, "com.android.settings"
+  
+***************
+*** 1283,1303 ****
+--- 1424,1448 ----
+  
+      invoke-virtual {v0, v6, v7}, Landroid/content/Intent;->setClassName(Ljava/lang/String;Ljava/lang/String;)Landroid/content/Intent;
+  
++     .line 457
+      const/high16 v6, 0x4000
+  
+      invoke-virtual {v0, v6}, Landroid/content/Intent;->setFlags(I)Landroid/content/Intent;
+  
++     .line 459
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      invoke-static {v6, v8, v0, v8}, Landroid/app/PendingIntent;->getActivity(Landroid/content/Context;ILandroid/content/Intent;I)Landroid/app/PendingIntent;
+  
+      move-result-object v3
+  
++     .line 461
+      .local v3, pi:Landroid/app/PendingIntent;
+      invoke-static {}, Landroid/content/res/Resources;->getSystem()Landroid/content/res/Resources;
+  
+      move-result-object v4
+  
++     .line 462
+      .local v4, r:Landroid/content/res/Resources;
+      const v6, 0x104044e
+  
+***************
+*** 1305,1310 ****
+--- 1450,1456 ----
+  
+      move-result-object v5
+  
++     .line 463
+      .local v5, title:Ljava/lang/CharSequence;
+      const v6, 0x104044f
+  
+***************
+*** 1312,1339 ****
+--- 1458,1490 ----
+  
+      move-result-object v1
+  
++     .line 466
+      .local v1, message:Ljava/lang/CharSequence;
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      if-nez v6, :cond_3
+  
++     .line 467
+      new-instance v6, Landroid/app/Notification;
+  
+      invoke-direct {v6}, Landroid/app/Notification;-><init>()V
+  
+      iput-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
++     .line 468
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      const-wide/16 v7, 0x0
+  
+      iput-wide v7, v6, Landroid/app/Notification;->when:J
+  
++     .line 470
+      :cond_3
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iput p1, v6, Landroid/app/Notification;->icon:I
+  
++     .line 471
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iget v7, v6, Landroid/app/Notification;->defaults:I
+***************
+*** 1342,1363 ****
+--- 1493,1518 ----
+  
+      iput v7, v6, Landroid/app/Notification;->defaults:I
+  
++     .line 472
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      const/4 v7, 0x2
+  
+      iput v7, v6, Landroid/app/Notification;->flags:I
+  
++     .line 473
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iput-object v5, v6, Landroid/app/Notification;->tickerText:Ljava/lang/CharSequence;
+  
++     .line 474
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      invoke-virtual {v6, v7, v5, v1, v3}, Landroid/app/Notification;->setLatestEventInfo(Landroid/content/Context;Ljava/lang/CharSequence;Ljava/lang/CharSequence;Landroid/app/PendingIntent;)V
+  
++     .line 476
+      iget-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetheredNotification:Landroid/app/Notification;
+  
+      iget v6, v6, Landroid/app/Notification;->icon:I
+***************
+*** 1374,1383 ****
+--- 1529,1540 ----
+      .parameter "enable"
+  
+      .prologue
++     .line 511
+      const/4 v7, 0x0
+  
+      new-array v4, v7, [Ljava/lang/String;
+  
++     .line 513
+      .local v4, ifaces:[Ljava/lang/String;
+      :try_start_0
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mNMService:Landroid/os/INetworkManagementService;
+***************
+*** 1388,1393 ****
+--- 1545,1551 ----
+  
+      move-result-object v4
+  
++     .line 518
+      move-object v0, v4
+  
+      .local v0, arr$:[Ljava/lang/String;
+***************
+*** 1402,1407 ****
+--- 1560,1566 ----
+  
+      aget-object v3, v0, v2
+  
++     .line 519
+      .local v3, iface:Ljava/lang/String;
+      invoke-direct {p0, v3}, Lcom/android/server/connectivity/Tethering;->isUsb(Ljava/lang/String;)Z
+  
+***************
+*** 1409,1424 ****
+--- 1568,1586 ----
+  
+      if-eqz v7, :cond_1
+  
++     .line 520
+      if-eqz p1, :cond_0
+  
+      invoke-virtual {p0, v3}, Lcom/android/server/connectivity/Tethering;->tether(Ljava/lang/String;)I
+  
+      move-result v6
+  
++     .line 521
+      .local v6, result:I
+      :goto_1
+      if-nez v6, :cond_1
+  
++     .line 527
+      .end local v0           #arr$:[Ljava/lang/String;
+      .end local v2           #i$:I
+      .end local v3           #iface:Ljava/lang/String;
+***************
+*** 1427,1435 ****
+--- 1589,1599 ----
+      :goto_2
+      return-void
+  
++     .line 514
+      :catch_0
+      move-exception v1
+  
++     .line 515
+      .local v1, e:Ljava/lang/Exception;
+      const-string v7, "Tethering"
+  
+***************
+*** 1439,1444 ****
+--- 1603,1609 ----
+  
+      goto :goto_2
+  
++     .line 520
+      .end local v1           #e:Ljava/lang/Exception;
+      .restart local v0       #arr$:[Ljava/lang/String;
+      .restart local v2       #i$:I
+***************
+*** 1451,1461 ****
+--- 1616,1628 ----
+  
+      goto :goto_1
+  
++     .line 518
+      :cond_1
+      add-int/lit8 v2, v2, 0x1
+  
+      goto :goto_0
+  
++     .line 526
+      .end local v3           #iface:Ljava/lang/String;
+      :cond_2
+      const-string v7, "Tethering"
+***************
+*** 1479,1484 ****
+--- 1646,1652 ----
+  
+      const/4 v2, 0x4
+  
++     .line 618
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      invoke-virtual {v3}, Landroid/content/Context;->getContentResolver()Landroid/content/ContentResolver;
+***************
+*** 1491,1513 ****
+--- 1659,1686 ----
+  
+      move-result v1
+  
++     .line 620
+      .local v1, secureSetting:I
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 622
+      if-eq v1, v5, :cond_3
+  
++     .line 623
+      const/4 v4, 0x1
+  
+      if-ne v1, v4, :cond_0
+  
+      move v0, v2
+  
++     .line 626
+      .local v0, requiredApn:I
+      :cond_0
+      if-ne v0, v2, :cond_4
+  
++     .line 627
+      :goto_0
+      :try_start_0
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+***************
+*** 1520,1525 ****
+--- 1693,1699 ----
+  
+      if-eqz v2, :cond_1
+  
++     .line 628
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      sget-object v4, Lcom/android/server/connectivity/Tethering;->MOBILE_TYPE:Ljava/lang/Integer;
+***************
+*** 1528,1533 ****
+--- 1702,1708 ----
+  
+      goto :goto_0
+  
++     .line 653
+      .end local v0           #requiredApn:I
+      :catchall_0
+      move-exception v2
+***************
+*** 1538,1543 ****
+--- 1713,1719 ----
+  
+      throw v2
+  
++     .line 630
+      .restart local v0       #requiredApn:I
+      :cond_1
+      :goto_1
+***************
+*** 1552,1557 ****
+--- 1728,1734 ----
+  
+      if-eqz v2, :cond_2
+  
++     .line 631
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      sget-object v4, Lcom/android/server/connectivity/Tethering;->HIPRI_TYPE:Ljava/lang/Integer;
+***************
+*** 1560,1565 ****
+--- 1737,1743 ----
+  
+      goto :goto_1
+  
++     .line 633
+      :cond_2
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+***************
+*** 1571,1582 ****
+--- 1749,1762 ----
+  
+      if-nez v2, :cond_3
+  
++     .line 634
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      sget-object v4, Lcom/android/server/connectivity/Tethering;->DUN_TYPE:Ljava/lang/Integer;
+  
+      invoke-interface {v2, v4}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
+  
++     .line 648
+      .end local v0           #requiredApn:I
+      :cond_3
+      :goto_2
+***************
+*** 1590,1604 ****
+--- 1770,1788 ----
+  
+      if-eqz v2, :cond_7
+  
++     .line 649
+      const/4 v2, 0x4
+  
+      iput v2, p0, Lcom/android/server/connectivity/Tethering;->mPreferredUpstreamMobileApn:I
+  
++     .line 653
+      :goto_3
+      monitor-exit v3
+  
++     .line 654
+      return-void
+  
++     .line 637
+      .restart local v0       #requiredApn:I
+      :cond_4
+      :goto_4
+***************
+*** 1612,1617 ****
+--- 1796,1802 ----
+  
+      if-eqz v2, :cond_5
+  
++     .line 638
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      sget-object v4, Lcom/android/server/connectivity/Tethering;->DUN_TYPE:Ljava/lang/Integer;
+***************
+*** 1620,1625 ****
+--- 1805,1811 ----
+  
+      goto :goto_4
+  
++     .line 640
+      :cond_5
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+***************
+*** 1631,1642 ****
+--- 1817,1830 ----
+  
+      if-nez v2, :cond_6
+  
++     .line 641
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      sget-object v4, Lcom/android/server/connectivity/Tethering;->MOBILE_TYPE:Ljava/lang/Integer;
+  
+      invoke-interface {v2, v4}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
+  
++     .line 643
+      :cond_6
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+***************
+*** 1648,1653 ****
+--- 1836,1842 ----
+  
+      if-nez v2, :cond_3
+  
++     .line 644
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      sget-object v4, Lcom/android/server/connectivity/Tethering;->HIPRI_TYPE:Ljava/lang/Integer;
+***************
+*** 1656,1661 ****
+--- 1845,1851 ----
+  
+      goto :goto_2
+  
++     .line 651
+      .end local v0           #requiredApn:I
+      :cond_7
+      const/4 v2, 0x5
+***************
+*** 1674,1679 ****
+--- 1864,1870 ----
+      .parameter "args"
+  
+      .prologue
++     .line 1514
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      const-string v4, "android.permission.DUMP"
+***************
+*** 1684,1689 ****
+--- 1875,1881 ----
+  
+      if-eqz v3, :cond_0
+  
++     .line 1516
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v3}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 1722,1740 ****
+--- 1914,1936 ----
+  
+      invoke-virtual {p2, v3}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 1535
+      :goto_0
+      return-void
+  
++     .line 1522
+      :cond_0
+      iget-object v4, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v4
+  
++     .line 1523
+      :try_start_0
+      const-string v3, "mUpstreamIfaceTypes: "
+  
+      invoke-virtual {p2, v3}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 1524
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      invoke-interface {v3}, Ljava/util/Collection;->iterator()Ljava/util/Iterator;
+***************
+*** 1755,1760 ****
+--- 1951,1957 ----
+  
+      check-cast v1, Ljava/lang/Integer;
+  
++     .line 1525
+      .local v1, netType:Ljava/lang/Integer;
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+***************
+*** 1778,1783 ****
+--- 1975,1981 ----
+  
+      goto :goto_1
+  
++     .line 1533
+      .end local v0           #i$:Ljava/util/Iterator;
+      .end local v1           #netType:Ljava/lang/Integer;
+      :catchall_0
+***************
+*** 1789,1803 ****
+--- 1987,2004 ----
+  
+      throw v3
+  
++     .line 1528
+      .restart local v0       #i$:Ljava/util/Iterator;
+      :cond_1
+      :try_start_1
+      invoke-virtual {p2}, Ljava/io/PrintWriter;->println()V
+  
++     .line 1529
+      const-string v3, "Tether state:"
+  
+      invoke-virtual {p2, v3}, Ljava/io/PrintWriter;->println(Ljava/lang/String;)V
+  
++     .line 1530
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+      invoke-virtual {v3}, Ljava/util/HashMap;->values()Ljava/util/Collection;
+***************
+*** 1821,1826 ****
+--- 2022,2028 ----
+  
+      check-cast v2, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 1531
+      .local v2, o:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+***************
+*** 1848,1859 ****
+--- 2050,2063 ----
+  
+      goto :goto_2
+  
++     .line 1533
+      .end local v2           #o:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      :cond_2
+      monitor-exit v4
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 1534
+      invoke-virtual {p2}, Ljava/io/PrintWriter;->println()V
+  
+      goto :goto_0
+***************
+*** 1863,1877 ****
+--- 2067,2084 ----
+      .locals 9
+  
+      .prologue
++     .line 707
+      new-instance v4, Ljava/util/ArrayList;
+  
+      invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 708
+      .local v4, list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      iget-object v8, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v8
+  
++     .line 709
+      :try_start_0
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 1879,1884 ****
+--- 2086,2092 ----
+  
+      move-result-object v3
+  
++     .line 710
+      .local v3, keys:Ljava/util/Set;
+      invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+  
+***************
+*** 1897,1902 ****
+--- 2105,2111 ----
+  
+      move-result-object v2
+  
++     .line 711
+      .local v2, key:Ljava/lang/Object;
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 1906,1911 ****
+--- 2115,2121 ----
+  
+      check-cast v6, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 712
+      .local v6, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      invoke-virtual {v6}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isErrored()Z
+  
+***************
+*** 1913,1918 ****
+--- 2123,2129 ----
+  
+      if-eqz v7, :cond_0
+  
++     .line 713
+      check-cast v2, Ljava/lang/String;
+  
+      .end local v2           #key:Ljava/lang/Object;
+***************
+*** 1920,1925 ****
+--- 2131,2137 ----
+  
+      goto :goto_0
+  
++     .line 716
+      .end local v1           #i$:Ljava/util/Iterator;
+      .end local v3           #keys:Ljava/util/Set;
+      .end local v6           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+***************
+*** 1940,1951 ****
+--- 2152,2165 ----
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 717
+      invoke-virtual {v4}, Ljava/util/ArrayList;->size()I
+  
+      move-result v7
+  
+      new-array v5, v7, [Ljava/lang/String;
+  
++     .line 718
+      .local v5, retVal:[Ljava/lang/String;
+      const/4 v0, 0x0
+  
+***************
+*** 1957,1962 ****
+--- 2171,2177 ----
+  
+      if-ge v0, v7, :cond_2
+  
++     .line 719
+      invoke-virtual {v4, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+  
+      move-result-object v7
+***************
+*** 1965,1974 ****
+--- 2180,2191 ----
+  
+      aput-object v7, v5, v0
+  
++     .line 718
+      add-int/lit8 v0, v0, 0x1
+  
+      goto :goto_1
+  
++     .line 721
+      :cond_2
+      return-object v5
+  .end method
+***************
+*** 1978,1990 ****
+--- 2195,2210 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 357
+      const/4 v1, 0x0
+  
++     .line 358
+      .local v1, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 359
+      :try_start_0
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 1998,2005 ****
+--- 2218,2227 ----
+  
+      move-object v1, v0
+  
++     .line 360
+      if-nez v1, :cond_0
+  
++     .line 361
+      const-string v2, "Tethering"
+  
+      new-instance v4, Ljava/lang/StringBuilder;
+***************
+*** 2028,2037 ****
+--- 2250,2261 ----
+  
+      invoke-static {v2, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 363
+      const/4 v2, 0x1
+  
+      monitor-exit v3
+  
++     .line 365
+      :goto_0
+      return v2
+  
+***************
+*** 2044,2049 ****
+--- 2268,2274 ----
+  
+      goto :goto_0
+  
++     .line 366
+      :catchall_0
+      move-exception v2
+  
+***************
+*** 2058,2063 ****
+--- 2283,2289 ----
+      .locals 1
+  
+      .prologue
++     .line 578
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherableBluetoothRegexs:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 2067,2081 ****
+--- 2293,2310 ----
+      .locals 9
+  
+      .prologue
++     .line 689
+      new-instance v4, Ljava/util/ArrayList;
+  
+      invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 690
+      .local v4, list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      iget-object v8, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v8
+  
++     .line 691
+      :try_start_0
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2083,2088 ****
+--- 2312,2318 ----
+  
+      move-result-object v3
+  
++     .line 692
+      .local v3, keys:Ljava/util/Set;
+      invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+  
+***************
+*** 2101,2106 ****
+--- 2331,2337 ----
+  
+      move-result-object v2
+  
++     .line 693
+      .local v2, key:Ljava/lang/Object;
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2110,2115 ****
+--- 2341,2347 ----
+  
+      check-cast v6, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 694
+      .local v6, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      invoke-virtual {v6}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isAvailable()Z
+  
+***************
+*** 2117,2122 ****
+--- 2349,2355 ----
+  
+      if-eqz v7, :cond_0
+  
++     .line 695
+      check-cast v2, Ljava/lang/String;
+  
+      .end local v2           #key:Ljava/lang/Object;
+***************
+*** 2124,2129 ****
+--- 2357,2363 ----
+  
+      goto :goto_0
+  
++     .line 698
+      .end local v1           #i$:Ljava/util/Iterator;
+      .end local v3           #keys:Ljava/util/Set;
+      .end local v6           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+***************
+*** 2144,2155 ****
+--- 2378,2391 ----
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 699
+      invoke-virtual {v4}, Ljava/util/ArrayList;->size()I
+  
+      move-result v7
+  
+      new-array v5, v7, [Ljava/lang/String;
+  
++     .line 700
+      .local v5, retVal:[Ljava/lang/String;
+      const/4 v0, 0x0
+  
+***************
+*** 2161,2166 ****
+--- 2397,2403 ----
+  
+      if-ge v0, v7, :cond_2
+  
++     .line 701
+      invoke-virtual {v4, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+  
+      move-result-object v7
+***************
+*** 2169,2178 ****
+--- 2406,2417 ----
+  
+      aput-object v7, v5, v0
+  
++     .line 700
+      add-int/lit8 v0, v0, 0x1
+  
+      goto :goto_1
+  
++     .line 703
+      :cond_2
+      return-object v5
+  .end method
+***************
+*** 2181,2186 ****
+--- 2420,2426 ----
+      .locals 1
+  
+      .prologue
++     .line 570
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherableUsbRegexs:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 2190,2195 ****
+--- 2430,2436 ----
+      .locals 1
+  
+      .prologue
++     .line 574
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherableWifiRegexs:[Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 2199,2213 ****
+--- 2440,2457 ----
+      .locals 5
+  
+      .prologue
++     .line 676
+      invoke-static {}, Lcom/google/android/collect/Lists;->newArrayList()Ljava/util/ArrayList;
+  
+      move-result-object v1
+  
++     .line 677
+      .local v1, list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      iget-object v4, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v4
+  
++     .line 678
+      :try_start_0
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2234,2239 ****
+--- 2478,2484 ----
+  
+      check-cast v2, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 679
+      .local v2, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      invoke-virtual {v2}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isTethered()Z
+  
+***************
+*** 2241,2256 ****
+--- 2486,2504 ----
+  
+      if-eqz v3, :cond_0
+  
++     .line 680
+      iget-object v3, v2, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->mMyUpstreamIfaceName:Ljava/lang/String;
+  
+      invoke-virtual {v1, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+  
++     .line 681
+      iget-object v3, v2, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->mIfaceName:Ljava/lang/String;
+  
+      invoke-virtual {v1, v3}, Ljava/util/ArrayList;->add(Ljava/lang/Object;)Z
+  
+      goto :goto_0
+  
++     .line 684
+      .end local v0           #i$:Ljava/util/Iterator;
+      .end local v2           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      :catchall_0
+***************
+*** 2269,2274 ****
+--- 2517,2523 ----
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 685
+      invoke-virtual {v1}, Ljava/util/ArrayList;->size()I
+  
+      move-result v3
+***************
+*** 2288,2302 ****
+--- 2537,2554 ----
+      .locals 9
+  
+      .prologue
++     .line 658
+      new-instance v4, Ljava/util/ArrayList;
+  
+      invoke-direct {v4}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 659
+      .local v4, list:Ljava/util/ArrayList;,"Ljava/util/ArrayList<Ljava/lang/String;>;"
+      iget-object v8, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v8
+  
++     .line 660
+      :try_start_0
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2304,2309 ****
+--- 2556,2562 ----
+  
+      move-result-object v3
+  
++     .line 661
+      .local v3, keys:Ljava/util/Set;
+      invoke-interface {v3}, Ljava/util/Set;->iterator()Ljava/util/Iterator;
+  
+***************
+*** 2322,2327 ****
+--- 2575,2581 ----
+  
+      move-result-object v2
+  
++     .line 662
+      .local v2, key:Ljava/lang/Object;
+      iget-object v7, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2331,2336 ****
+--- 2585,2591 ----
+  
+      check-cast v6, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 663
+      .local v6, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      invoke-virtual {v6}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isTethered()Z
+  
+***************
+*** 2338,2343 ****
+--- 2593,2599 ----
+  
+      if-eqz v7, :cond_0
+  
++     .line 664
+      check-cast v2, Ljava/lang/String;
+  
+      .end local v2           #key:Ljava/lang/Object;
+***************
+*** 2345,2350 ****
+--- 2601,2607 ----
+  
+      goto :goto_0
+  
++     .line 667
+      .end local v1           #i$:Ljava/util/Iterator;
+      .end local v3           #keys:Ljava/util/Set;
+      .end local v6           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+***************
+*** 2365,2376 ****
+--- 2622,2635 ----
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+  
++     .line 668
+      invoke-virtual {v4}, Ljava/util/ArrayList;->size()I
+  
+      move-result v7
+  
+      new-array v5, v7, [Ljava/lang/String;
+  
++     .line 669
+      .local v5, retVal:[Ljava/lang/String;
+      const/4 v0, 0x0
+  
+***************
+*** 2382,2387 ****
+--- 2641,2647 ----
+  
+      if-ge v0, v7, :cond_2
+  
++     .line 670
+      invoke-virtual {v4, v0}, Ljava/util/ArrayList;->get(I)Ljava/lang/Object;
+  
+      move-result-object v7
+***************
+*** 2390,2399 ****
+--- 2650,2661 ----
+  
+      aput-object v7, v5, v0
+  
++     .line 669
+      add-int/lit8 v0, v0, 0x1
+  
+      goto :goto_1
+  
++     .line 672
+      :cond_2
+      return-object v5
+  .end method
+***************
+*** 2402,2414 ****
+--- 2664,2679 ----
+      .locals 5
+  
+      .prologue
++     .line 606
+      iget-object v4, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v4
+  
++     .line 607
+      :try_start_0
+      invoke-virtual {p0}, Lcom/android/server/connectivity/Tethering;->updateConfiguration()V
+  
++     .line 608
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+      invoke-interface {v3}, Ljava/util/Collection;->size()I
+***************
+*** 2417,2422 ****
+--- 2682,2688 ----
+  
+      new-array v2, v3, [I
+  
++     .line 609
+      .local v2, values:[I
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
+***************
+*** 2424,2429 ****
+--- 2690,2696 ----
+  
+      move-result-object v1
+  
++     .line 610
+      .local v1, iterator:Ljava/util/Iterator;,"Ljava/util/Iterator<Ljava/lang/Integer;>;"
+      const/4 v0, 0x0
+  
+***************
+*** 2437,2442 ****
+--- 2704,2710 ----
+  
+      if-ge v0, v3, :cond_0
+  
++     .line 611
+      invoke-interface {v1}, Ljava/util/Iterator;->next()Ljava/lang/Object;
+  
+      move-result-object v3
+***************
+*** 2449,2463 ****
+--- 2717,2735 ----
+  
+      aput v3, v2, v0
+  
++     .line 610
+      add-int/lit8 v0, v0, 0x1
+  
+      goto :goto_0
+  
++     .line 613
+      :cond_0
+      monitor-exit v4
+  
++     .line 614
+      return-object v2
+  
++     .line 613
+      .end local v0           #i:I
+      .end local v1           #iterator:Ljava/util/Iterator;,"Ljava/util/Iterator<Ljava/lang/Integer;>;"
+      .end local v2           #values:[I
+***************
+*** 2475,2486 ****
+--- 2747,2760 ----
+      .locals 2
+  
+      .prologue
++     .line 729
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherMasterSM:Lcom/android/internal/util/StateMachine;
+  
+      const/4 v1, 0x3
+  
+      invoke-virtual {v0, v1}, Lcom/android/internal/util/StateMachine;->sendMessage(I)V
+  
++     .line 730
+      return-void
+  .end method
+  
+***************
+*** 2489,2504 ****
+--- 2763,2782 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 274
+      const/4 v0, 0x0
+  
++     .line 275
+      .local v0, found:Z
+      const/4 v2, 0x0
+  
++     .line 276
+      .local v2, usb:Z
+      iget-object v4, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v4
+  
++     .line 277
+      :try_start_0
+      invoke-virtual {p0, p1}, Lcom/android/server/connectivity/Tethering;->isWifi(Ljava/lang/String;)Z
+  
+***************
+*** 2506,2513 ****
+--- 2784,2793 ----
+  
+      if-eqz v3, :cond_0
+  
++     .line 278
+      const/4 v0, 0x1
+  
++     .line 280
+      :cond_0
+      invoke-direct {p0, p1}, Lcom/android/server/connectivity/Tethering;->isUsb(Ljava/lang/String;)Z
+  
+***************
+*** 2515,2524 ****
+--- 2795,2807 ----
+  
+      if-eqz v3, :cond_1
+  
++     .line 281
+      const/4 v0, 0x1
+  
++     .line 282
+      const/4 v2, 0x1
+  
++     .line 284
+      :cond_1
+      invoke-virtual {p0, p1}, Lcom/android/server/connectivity/Tethering;->isBluetooth(Ljava/lang/String;)Z
+  
+***************
+*** 2526,2541 ****
+--- 2809,2829 ----
+  
+      if-eqz v3, :cond_2
+  
++     .line 285
+      const/4 v0, 0x1
+  
++     .line 287
+      :cond_2
+      if-nez v0, :cond_3
+  
++     .line 289
+      monitor-exit v4
+  
++     .line 301
+      :goto_0
+      return-void
+  
++     .line 292
+      :cond_3
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2545,2557 ****
+--- 2833,2848 ----
+  
+      check-cast v1, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 293
+      .local v1, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      if-eqz v1, :cond_4
+  
++     .line 295
+      monitor-exit v4
+  
+      goto :goto_0
+  
++     .line 300
+      .end local v1           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      :catchall_0
+      move-exception v3
+***************
+*** 2562,2567 ****
+--- 2853,2859 ----
+  
+      throw v3
+  
++     .line 297
+      .restart local v1       #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      :cond_4
+      :try_start_1
+***************
+*** 2572,2584 ****
+--- 2864,2879 ----
+  
+      invoke-direct {v1, p0, p1, v3, v2}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;-><init>(Lcom/android/server/connectivity/Tethering;Ljava/lang/String;Landroid/os/Looper;Z)V
+  
++     .line 298
+      .restart local v1       #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+      invoke-virtual {v3, p1, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 299
+      invoke-virtual {v1}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->start()V
+  
++     .line 300
+      monitor-exit v4
+      :try_end_1
+      .catchall {:try_start_1 .. :try_end_1} :catchall_0
+***************
+*** 2592,2599 ****
+--- 2887,2896 ----
+      .parameter "up"
+  
+      .prologue
++     .line 242
+      invoke-virtual {p0, p1, p2}, Lcom/android/server/connectivity/Tethering;->interfaceStatusChanged(Ljava/lang/String;Z)V
+  
++     .line 243
+      return-void
+  .end method
+  
+***************
+*** 2602,2611 ****
+--- 2899,2910 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 305
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
++     .line 306
+      :try_start_0
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2615,2637 ****
+--- 2914,2942 ----
+  
+      check-cast v0, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 307
+      .local v0, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      if-nez v0, :cond_0
+  
++     .line 311
+      monitor-exit v2
+  
++     .line 316
+      :goto_0
+      return-void
+  
++     .line 313
+      :cond_0
+      const/4 v1, 0x4
+  
+      invoke-virtual {v0, v1}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->sendMessage(I)V
+  
++     .line 314
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+      invoke-virtual {v1, p1}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 315
+      monitor-exit v2
+  
+      goto :goto_0
+***************
+*** 2653,2668 ****
+--- 2958,2977 ----
+      .parameter "up"
+  
+      .prologue
++     .line 207
+      const/4 v0, 0x0
+  
++     .line 208
+      .local v0, found:Z
+      const/4 v2, 0x0
+  
++     .line 209
+      .local v2, usb:Z
+      iget-object v4, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v4
+  
++     .line 210
+      :try_start_0
+      invoke-virtual {p0, p1}, Lcom/android/server/connectivity/Tethering;->isWifi(Ljava/lang/String;)Z
+  
+***************
+*** 2670,2686 ****
+--- 2979,2999 ----
+  
+      if-eqz v3, :cond_1
+  
++     .line 211
+      const/4 v0, 0x1
+  
++     .line 218
+      :cond_0
+      :goto_0
+      if-nez v0, :cond_3
+  
+      monitor-exit v4
+  
++     .line 238
+      :goto_1
+      return-void
+  
++     .line 212
+      :cond_1
+      invoke-direct {p0, p1}, Lcom/android/server/connectivity/Tethering;->isUsb(Ljava/lang/String;)Z
+  
+***************
+*** 2688,2699 ****
+--- 3001,3015 ----
+  
+      if-eqz v3, :cond_2
+  
++     .line 213
+      const/4 v0, 0x1
+  
++     .line 214
+      const/4 v2, 0x1
+  
+      goto :goto_0
+  
++     .line 215
+      :cond_2
+      invoke-virtual {p0, p1}, Lcom/android/server/connectivity/Tethering;->isBluetooth(Ljava/lang/String;)Z
+  
+***************
+*** 2701,2710 ****
+--- 3017,3028 ----
+  
+      if-eqz v3, :cond_0
+  
++     .line 216
+      const/4 v0, 0x1
+  
+      goto :goto_0
+  
++     .line 220
+      :cond_3
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 2714,2724 ****
+--- 3032,3045 ----
+  
+      check-cast v1, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
++     .line 221
+      .local v1, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      if-eqz p2, :cond_5
+  
++     .line 222
+      if-nez v1, :cond_4
+  
++     .line 223
+      new-instance v1, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+  
+      .end local v1           #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+***************
+*** 2726,2738 ****
+--- 3047,3062 ----
+  
+      invoke-direct {v1, p0, p1, v3, v2}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;-><init>(Lcom/android/server/connectivity/Tethering;Ljava/lang/String;Landroid/os/Looper;Z)V
+  
++     .line 224
+      .restart local v1       #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+      invoke-virtual {v3, p1, v1}, Ljava/util/HashMap;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 225
+      invoke-virtual {v1}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->start()V
+  
++     .line 237
+      :cond_4
+      :goto_2
+      monitor-exit v4
+***************
+*** 2749,2754 ****
+--- 3073,3079 ----
+  
+      throw v3
+  
++     .line 228
+      .restart local v1       #sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      :cond_5
+      :try_start_1
+***************
+*** 2758,2769 ****
+--- 3083,3097 ----
+  
+      if-nez v3, :cond_4
+  
++     .line 232
+      if-eqz v1, :cond_4
+  
++     .line 233
+      const/4 v3, 0x4
+  
+      invoke-virtual {v1, v3}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->sendMessage(I)V
+  
++     .line 234
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+      invoke-virtual {v3, p1}, Ljava/util/HashMap;->remove(Ljava/lang/Object;)Ljava/lang/Object;
+***************
+*** 2778,2787 ****
+--- 3106,3117 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 264
+      iget-object v5, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v5
+  
++     .line 265
+      :try_start_0
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherableBluetoothRegexs:[Ljava/lang/String;
+  
+***************
+*** 2797,2802 ****
+--- 3127,3133 ----
+  
+      aget-object v3, v0, v1
+  
++     .line 266
+      .local v3, regex:Ljava/lang/String;
+      invoke-virtual {p1, v3}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+  
+***************
+*** 2808,2823 ****
+--- 3139,3157 ----
+  
+      monitor-exit v5
+  
++     .line 268
+      .end local v3           #regex:Ljava/lang/String;
+      :goto_1
+      return v4
+  
++     .line 265
+      .restart local v3       #regex:Ljava/lang/String;
+      :cond_0
+      add-int/lit8 v1, v1, 0x1
+  
+      goto :goto_0
+  
++     .line 268
+      .end local v3           #regex:Ljava/lang/String;
+      :cond_1
+      const/4 v4, 0x0
+***************
+*** 2826,2831 ****
+--- 3160,3166 ----
+  
+      goto :goto_1
+  
++     .line 269
+      .end local v0           #arr$:[Ljava/lang/String;
+      .end local v1           #i$:I
+      .end local v2           #len$:I
+***************
+*** 2844,2853 ****
+--- 3179,3190 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 255
+      iget-object v5, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v5
+  
++     .line 256
+      :try_start_0
+      iget-object v0, p0, Lcom/android/server/connectivity/Tethering;->mTetherableWifiRegexs:[Ljava/lang/String;
+  
+***************
+*** 2863,2868 ****
+--- 3200,3206 ----
+  
+      aget-object v3, v0, v1
+  
++     .line 257
+      .local v3, regex:Ljava/lang/String;
+      invoke-virtual {p1, v3}, Ljava/lang/String;->matches(Ljava/lang/String;)Z
+  
+***************
+*** 2874,2889 ****
+--- 3212,3230 ----
+  
+      monitor-exit v5
+  
++     .line 259
+      .end local v3           #regex:Ljava/lang/String;
+      :goto_1
+      return v4
+  
++     .line 256
+      .restart local v3       #regex:Ljava/lang/String;
+      :cond_0
+      add-int/lit8 v1, v1, 0x1
+  
+      goto :goto_0
+  
++     .line 259
+      .end local v3           #regex:Ljava/lang/String;
+      :cond_1
+      const/4 v4, 0x0
+***************
+*** 2892,2897 ****
+--- 3233,3239 ----
+  
+      goto :goto_1
+  
++     .line 260
+      .end local v0           #arr$:[Ljava/lang/String;
+      .end local v1           #i$:I
+      .end local v2           #len$:I
+***************
+*** 2911,2916 ****
+--- 3253,3259 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 318
+      return-void
+  .end method
+  
+***************
+*** 2921,2926 ****
+--- 3264,3270 ----
+      .prologue
+      const/4 v4, 0x0
+  
++     .line 583
+      iget-object v1, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      const-string v2, "usb"
+***************
+*** 2931,2962 ****
+--- 3275,3314 ----
+  
+      check-cast v0, Landroid/hardware/usb/UsbManager;
+  
++     .line 585
+      .local v0, usbManager:Landroid/hardware/usb/UsbManager;
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
++     .line 586
+      if-eqz p1, :cond_1
+  
++     .line 587
+      :try_start_0
+      iget-boolean v1, p0, Lcom/android/server/connectivity/Tethering;->mRndisEnabled:Z
+  
+      if-eqz v1, :cond_0
+  
++     .line 588
+      const/4 v1, 0x1
+  
+      invoke-direct {p0, v1}, Lcom/android/server/connectivity/Tethering;->tetherUsb(Z)V
+  
++     .line 600
+      :goto_0
+      monitor-exit v2
+  
++     .line 601
+      return v4
+  
++     .line 590
+      :cond_0
+      const/4 v1, 0x1
+  
+      iput-boolean v1, p0, Lcom/android/server/connectivity/Tethering;->mUsbTetherRequested:Z
+  
++     .line 591
+      const-string v1, "rndis"
+  
+      const/4 v3, 0x0
+***************
+*** 2965,2970 ****
+--- 3317,3323 ----
+  
+      goto :goto_0
+  
++     .line 600
+      :catchall_0
+      move-exception v1
+  
+***************
+*** 2974,2995 ****
+--- 3327,3352 ----
+  
+      throw v1
+  
++     .line 594
+      :cond_1
+      const/4 v1, 0x0
+  
+      :try_start_1
+      invoke-direct {p0, v1}, Lcom/android/server/connectivity/Tethering;->tetherUsb(Z)V
+  
++     .line 595
+      iget-boolean v1, p0, Lcom/android/server/connectivity/Tethering;->mRndisEnabled:Z
+  
+      if-eqz v1, :cond_2
+  
++     .line 596
+      const/4 v1, 0x0
+  
+      const/4 v3, 0x0
+  
+      invoke-virtual {v0, v1, v3}, Landroid/hardware/usb/UsbManager;->setCurrentFunction(Ljava/lang/String;Z)V
+  
++     .line 598
+      :cond_2
+      const/4 v1, 0x0
+  
+***************
+*** 3005,3010 ****
+--- 3362,3368 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 321
+      const-string v2, "Tethering"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 3027,3039 ****
+--- 3385,3400 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 322
+      const/4 v1, 0x0
+  
++     .line 323
+      .local v1, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 324
+      :try_start_0
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 3047,3058 ****
+--- 3408,3422 ----
+  
+      move-object v1, v0
+  
++     .line 325
+      monitor-exit v3
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 326
+      if-nez v1, :cond_0
+  
++     .line 327
+      const-string v2, "Tethering"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 3081,3091 ****
+--- 3445,3458 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 328
+      const/4 v2, 0x1
+  
++     .line 335
+      :goto_0
+      return v2
+  
++     .line 325
+      :catchall_0
+      move-exception v2
+  
+***************
+*** 3096,3101 ****
+--- 3463,3469 ----
+  
+      throw v2
+  
++     .line 330
+      :cond_0
+      invoke-virtual {v1}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isAvailable()Z
+  
+***************
+*** 3109,3114 ****
+--- 3477,3483 ----
+  
+      if-nez v2, :cond_1
+  
++     .line 331
+      const-string v2, "Tethering"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 3137,3151 ****
+--- 3506,3523 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 332
+      const/4 v2, 0x4
+  
+      goto :goto_0
+  
++     .line 334
+      :cond_1
+      const/4 v2, 0x2
+  
+      invoke-virtual {v1, v2}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->sendMessage(I)V
+  
++     .line 335
+      const/4 v2, 0x0
+  
+      goto :goto_0
+***************
+*** 3156,3161 ****
+--- 3528,3534 ----
+      .parameter "iface"
+  
+      .prologue
++     .line 339
+      const-string v2, "Tethering"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 3178,3190 ****
+--- 3551,3566 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->d(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 340
+      const/4 v1, 0x0
+  
++     .line 341
+      .local v1, sm:Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;
+      iget-object v3, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v3
+  
++     .line 342
+      :try_start_0
+      iget-object v2, p0, Lcom/android/server/connectivity/Tethering;->mIfaces:Ljava/util/HashMap;
+  
+***************
+*** 3198,3209 ****
+--- 3574,3588 ----
+  
+      move-object v1, v0
+  
++     .line 343
+      monitor-exit v3
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 344
+      if-nez v1, :cond_0
+  
++     .line 345
+      const-string v2, "Tethering"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 3232,3242 ****
+--- 3611,3624 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 346
+      const/4 v2, 0x1
+  
++     .line 353
+      :goto_0
+      return v2
+  
++     .line 343
+      :catchall_0
+      move-exception v2
+  
+***************
+*** 3247,3252 ****
+--- 3629,3635 ----
+  
+      throw v2
+  
++     .line 348
+      :cond_0
+      invoke-virtual {v1}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->isErrored()Z
+  
+***************
+*** 3254,3259 ****
+--- 3637,3643 ----
+  
+      if-eqz v2, :cond_1
+  
++     .line 349
+      const-string v2, "Tethering"
+  
+      new-instance v3, Ljava/lang/StringBuilder;
+***************
+*** 3282,3296 ****
+--- 3666,3683 ----
+  
+      invoke-static {v2, v3}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 350
+      const/4 v2, 0x4
+  
+      goto :goto_0
+  
++     .line 352
+      :cond_1
+      const/4 v2, 0x3
+  
+      invoke-virtual {v1, v2}, Lcom/android/server/connectivity/Tethering$TetherInterfaceSM;->sendMessage(I)V
+  
++     .line 353
+      const/4 v2, 0x0
+  
+      goto :goto_0
+***************
+*** 3300,3305 ****
+--- 3687,3693 ----
+      .locals 11
+  
+      .prologue
++     .line 180
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+      invoke-virtual {v9}, Landroid/content/Context;->getResources()Landroid/content/res/Resources;
+***************
+*** 3312,3317 ****
+--- 3700,3706 ----
+  
+      move-result-object v6
+  
++     .line 182
+      .local v6, tetherableUsbRegexs:[Ljava/lang/String;
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+***************
+*** 3325,3330 ****
+--- 3714,3720 ----
+  
+      move-result-object v7
+  
++     .line 184
+      .local v7, tetherableWifiRegexs:[Ljava/lang/String;
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+***************
+*** 3338,3343 ****
+--- 3728,3734 ----
+  
+      move-result-object v5
+  
++     .line 187
+      .local v5, tetherableBluetoothRegexs:[Ljava/lang/String;
+      iget-object v9, p0, Lcom/android/server/connectivity/Tethering;->mContext:Landroid/content/Context;
+  
+***************
+*** 3351,3361 ****
+--- 3742,3754 ----
+  
+      move-result-object v3
+  
++     .line 189
+      .local v3, ifaceTypes:[I
+      new-instance v8, Ljava/util/ArrayList;
+  
+      invoke-direct {v8}, Ljava/util/ArrayList;-><init>()V
+  
++     .line 190
+      .local v8, upstreamIfaceTypes:Ljava/util/Collection;,"Ljava/util/Collection<Ljava/lang/Integer;>;"
+      move-object v0, v3
+  
+***************
+*** 3371,3376 ****
+--- 3764,3770 ----
+  
+      aget v1, v0, v2
+  
++     .line 191
+      .local v1, i:I
+      new-instance v9, Ljava/lang/Integer;
+  
+***************
+*** 3378,3410 ****
+--- 3772,3814 ----
+  
+      invoke-interface {v8, v9}, Ljava/util/Collection;->add(Ljava/lang/Object;)Z
+  
++     .line 190
+      add-int/lit8 v2, v2, 0x1
+  
+      goto :goto_0
+  
++     .line 194
+      .end local v1           #i:I
+      :cond_0
+      iget-object v10, p0, Lcom/android/server/connectivity/Tethering;->mPublicSync:Ljava/lang/Object;
+  
+      monitor-enter v10
+  
++     .line 195
+      :try_start_0
+      iput-object v6, p0, Lcom/android/server/connectivity/Tethering;->mTetherableUsbRegexs:[Ljava/lang/String;
+  
++     .line 196
+      iput-object v7, p0, Lcom/android/server/connectivity/Tethering;->mTetherableWifiRegexs:[Ljava/lang/String;
+  
++     .line 197
+      iput-object v5, p0, Lcom/android/server/connectivity/Tethering;->mTetherableBluetoothRegexs:[Ljava/lang/String;
+  
++     .line 198
+      iput-object v8, p0, Lcom/android/server/connectivity/Tethering;->mUpstreamIfaceTypes:Ljava/util/Collection;
+  
++     .line 199
+      monitor-exit v10
+      :try_end_0
+      .catchall {:try_start_0 .. :try_end_0} :catchall_0
+  
++     .line 202
+      invoke-virtual {p0}, Lcom/android/server/connectivity/Tethering;->checkDunRequired()V
+  
++     .line 203
+      return-void
+  
++     .line 199
+      :catchall_0
+      move-exception v9
+  

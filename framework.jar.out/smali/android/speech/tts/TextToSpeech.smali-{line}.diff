@@ -1,0 +1,1456 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/speech/tts/TextToSpeech.smali	2012-03-23 19:36:33.819297678 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/speech/tts/TextToSpeech.smali.original	2012-03-23 19:34:45.195316923 -0500
+***************
+*** 95,104 ****
+--- 95,106 ----
+      .parameter "listener"
+  
+      .prologue
++     .line 507
+      const/4 v0, 0x0
+  
+      invoke-direct {p0, p1, p2, v0}, Landroid/speech/tts/TextToSpeech;-><init>(Landroid/content/Context;Landroid/speech/tts/TextToSpeech$OnInitListener;Ljava/lang/String;)V
+  
++     .line 508
+      return-void
+  .end method
+  
+***************
+*** 109,118 ****
+--- 111,122 ----
+      .parameter "engine"
+  
+      .prologue
++     .line 522
+      const/4 v0, 0x0
+  
+      invoke-direct {p0, p1, p2, p3, v0}, Landroid/speech/tts/TextToSpeech;-><init>(Landroid/content/Context;Landroid/speech/tts/TextToSpeech$OnInitListener;Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 523
+      return-void
+  .end method
+  
+***************
+*** 126,167 ****
+--- 130,182 ----
+      .prologue
+      const/4 v1, 0x0
+  
++     .line 532
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 486
+      new-instance v0, Ljava/lang/Object;
+  
+      invoke-direct {v0}, Ljava/lang/Object;-><init>()V
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
++     .line 491
+      new-instance v0, Landroid/os/Bundle;
+  
+      invoke-direct {v0}, Landroid/os/Bundle;-><init>()V
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
++     .line 494
+      iput-object v1, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
++     .line 533
+      iput-object p1, p0, Landroid/speech/tts/TextToSpeech;->mContext:Landroid/content/Context;
+  
++     .line 534
+      iput-object p2, p0, Landroid/speech/tts/TextToSpeech;->mInitListener:Landroid/speech/tts/TextToSpeech$OnInitListener;
+  
++     .line 535
+      iput-object p3, p0, Landroid/speech/tts/TextToSpeech;->mRequestedEngine:Ljava/lang/String;
+  
++     .line 537
+      new-instance v0, Ljava/util/HashMap;
+  
+      invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEarcons:Ljava/util/Map;
+  
++     .line 538
+      new-instance v0, Ljava/util/HashMap;
+  
+      invoke-direct {v0}, Ljava/util/HashMap;-><init>()V
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mUtterances:Ljava/util/Map;
+  
++     .line 539
+      iput-object v1, p0, Landroid/speech/tts/TextToSpeech;->mUtteranceProgressListener:Landroid/speech/tts/UtteranceProgressListener;
+  
++     .line 541
+      new-instance v0, Landroid/speech/tts/TtsEngines;
+  
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mContext:Landroid/content/Context;
+***************
+*** 170,184 ****
+--- 185,204 ----
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEnginesHelper:Landroid/speech/tts/TtsEngines;
+  
++     .line 542
+      if-eqz p4, :cond_0
+  
++     .line 543
+      iput-object p4, p0, Landroid/speech/tts/TextToSpeech;->mPackageName:Ljava/lang/String;
+  
++     .line 547
+      :goto_0
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeech;->initTts()I
+  
++     .line 548
+      return-void
+  
++     .line 545
+      :cond_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mContext:Landroid/content/Context;
+  
+***************
+*** 196,201 ****
+--- 216,222 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeech;->getPackageName()Ljava/lang/String;
+  
+      move-result-object v0
+***************
+*** 209,214 ****
+--- 230,236 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 52
+      invoke-direct {p0, p1}, Landroid/speech/tts/TextToSpeech;->dispatchOnInit(I)V
+  
+      return-void
+***************
+*** 219,224 ****
+--- 241,247 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mContext:Landroid/content/Context;
+  
+      return-object v0
+***************
+*** 229,234 ****
+--- 252,258 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeech;->initTts()I
+  
+      move-result v0
+***************
+*** 241,246 ****
+--- 265,271 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mServiceConnection:Landroid/speech/tts/TextToSpeech$Connection;
+  
+      return-object v0
+***************
+*** 252,257 ****
+--- 277,283 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 52
+      iput-object p1, p0, Landroid/speech/tts/TextToSpeech;->mServiceConnection:Landroid/speech/tts/TextToSpeech$Connection;
+  
+      return-object p1
+***************
+*** 263,268 ****
+--- 289,295 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 52
+      iput-object p1, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
+      return-object p1
+***************
+*** 273,278 ****
+--- 300,306 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mUtterances:Ljava/util/Map;
+  
+      return-object v0
+***************
+*** 284,289 ****
+--- 312,318 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 52
+      invoke-direct {p0, p1}, Landroid/speech/tts/TextToSpeech;->getParams(Ljava/util/HashMap;)Landroid/os/Bundle;
+  
+      move-result-object v0
+***************
+*** 296,301 ****
+--- 325,331 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEarcons:Ljava/util/Map;
+  
+      return-object v0
+***************
+*** 306,311 ****
+--- 336,342 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+      return-object v0
+***************
+*** 316,321 ****
+--- 347,353 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mUtteranceProgressListener:Landroid/speech/tts/UtteranceProgressListener;
+  
+      return-object v0
+***************
+*** 326,331 ****
+--- 358,364 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 52
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      return-object v0
+***************
+*** 338,349 ****
+--- 371,384 ----
+      .prologue
+      const/4 v3, 0x1
+  
++     .line 611
+      new-instance v1, Landroid/speech/tts/TextToSpeech$Connection;
+  
+      const/4 v4, 0x0
+  
+      invoke-direct {v1, p0, v4}, Landroid/speech/tts/TextToSpeech$Connection;-><init>(Landroid/speech/tts/TextToSpeech;Landroid/speech/tts/TextToSpeech$1;)V
+  
++     .line 612
+      .local v1, connection:Landroid/speech/tts/TextToSpeech$Connection;
+      new-instance v2, Landroid/content/Intent;
+  
+***************
+*** 351,368 ****
+--- 386,407 ----
+  
+      invoke-direct {v2, v4}, Landroid/content/Intent;-><init>(Ljava/lang/String;)V
+  
++     .line 613
+      .local v2, intent:Landroid/content/Intent;
+      invoke-virtual {v2, p1}, Landroid/content/Intent;->setPackage(Ljava/lang/String;)Landroid/content/Intent;
+  
++     .line 614
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mContext:Landroid/content/Context;
+  
+      invoke-virtual {v4, v2, v1, v3}, Landroid/content/Context;->bindService(Landroid/content/Intent;Landroid/content/ServiceConnection;I)Z
+  
+      move-result v0
+  
++     .line 615
+      .local v0, bound:Z
+      if-nez v0, :cond_0
+  
++     .line 616
+      const-string v3, "TextToSpeech"
+  
+      new-instance v4, Ljava/lang/StringBuilder;
+***************
+*** 385,395 ****
+--- 424,437 ----
+  
+      invoke-static {v3, v4}, Landroid/util/Log;->e(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 617
+      const/4 v3, 0x0
+  
++     .line 620
+      :goto_0
+      return v3
+  
++     .line 619
+      :cond_0
+      const-string v4, "TextToSpeech"
+  
+***************
+*** 436,441 ****
+--- 478,484 ----
+      .end annotation
+  
+      .prologue
++     .line 1150
+      .local p2, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      invoke-virtual {p2, p3}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+  
+***************
+*** 443,448 ****
+--- 486,492 ----
+  
+      check-cast v1, Ljava/lang/String;
+  
++     .line 1151
+      .local v1, valueString:Ljava/lang/String;
+      invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+***************
+*** 450,470 ****
+--- 494,518 ----
+  
+      if-nez v2, :cond_0
+  
++     .line 1153
+      :try_start_0
+      invoke-static {v1}, Ljava/lang/Float;->parseFloat(Ljava/lang/String;)F
+  
+      move-result v0
+  
++     .line 1154
+      .local v0, value:F
+      invoke-virtual {p1, p3, v0}, Landroid/os/Bundle;->putFloat(Ljava/lang/String;F)V
+      :try_end_0
+      .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 1159
+      .end local v0           #value:F
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 1155
+      :catch_0
+      move-exception v2
+  
+***************
+*** 491,496 ****
+--- 539,545 ----
+      .end annotation
+  
+      .prologue
++     .line 1138
+      .local p2, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      invoke-virtual {p2, p3}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+  
+***************
+*** 498,503 ****
+--- 547,553 ----
+  
+      check-cast v1, Ljava/lang/String;
+  
++     .line 1139
+      .local v1, valueString:Ljava/lang/String;
+      invoke-static {v1}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+  
+***************
+*** 505,525 ****
+--- 555,579 ----
+  
+      if-nez v2, :cond_0
+  
++     .line 1141
+      :try_start_0
+      invoke-static {v1}, Ljava/lang/Integer;->parseInt(Ljava/lang/String;)I
+  
+      move-result v0
+  
++     .line 1142
+      .local v0, value:I
+      invoke-virtual {p1, p3, v0}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+      :try_end_0
+      .catch Ljava/lang/NumberFormatException; {:try_start_0 .. :try_end_0} :catch_0
+  
++     .line 1147
+      .end local v0           #value:I
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 1143
+      :catch_0
+      move-exception v2
+  
+***************
+*** 546,551 ****
+--- 600,606 ----
+      .end annotation
+  
+      .prologue
++     .line 1131
+      .local p2, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      invoke-virtual {p2, p3}, Ljava/util/HashMap;->get(Ljava/lang/Object;)Ljava/lang/Object;
+  
+***************
+*** 553,563 ****
+--- 608,621 ----
+  
+      check-cast v0, Ljava/lang/String;
+  
++     .line 1132
+      .local v0, value:Ljava/lang/String;
+      if-eqz v0, :cond_0
+  
++     .line 1133
+      invoke-virtual {p1, p3, v0}, Landroid/os/Bundle;->putString(Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 1135
+      :cond_0
+      return-void
+  .end method
+***************
+*** 567,594 ****
+--- 625,659 ----
+      .parameter "result"
+  
+      .prologue
++     .line 625
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 626
+      :try_start_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mInitListener:Landroid/speech/tts/TextToSpeech$OnInitListener;
+  
+      if-eqz v0, :cond_0
+  
++     .line 627
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mInitListener:Landroid/speech/tts/TextToSpeech$OnInitListener;
+  
+      invoke-interface {v0, p1}, Landroid/speech/tts/TextToSpeech$OnInitListener;->onInit(I)V
+  
++     .line 628
+      const/4 v0, 0x0
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mInitListener:Landroid/speech/tts/TextToSpeech$OnInitListener;
+  
++     .line 630
+      :cond_0
+      monitor-exit v1
+  
++     .line 631
+      return-void
+  
++     .line 630
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 603,608 ****
+--- 668,674 ----
+      .locals 1
+  
+      .prologue
++     .line 551
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mPackageName:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 624,629 ****
+--- 690,696 ----
+      .end annotation
+  
+      .prologue
++     .line 1101
+      .local p1, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      if-eqz p1, :cond_1
+  
+***************
+*** 633,669 ****
+  
+      if-nez v4, :cond_1
+  
+      new-instance v0, Landroid/os/Bundle;
+  
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+      invoke-direct {v0, v4}, Landroid/os/Bundle;-><init>(Landroid/os/Bundle;)V
+  
+      .local v0, bundle:Landroid/os/Bundle;
+!     const-string v4, "streamType"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyIntParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     const-string v4, "utteranceId"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyStringParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     const-string v4, "volume"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyFloatParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     const-string v4, "pan"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyFloatParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     const-string v4, "networkTts"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyStringParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+      const-string v4, "embeddedTts"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyStringParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
+      invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+--- 700,744 ----
+  
+      if-nez v4, :cond_1
+  
++     .line 1102
+      new-instance v0, Landroid/os/Bundle;
+  
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+      invoke-direct {v0, v4}, Landroid/os/Bundle;-><init>(Landroid/os/Bundle;)V
+  
++     .line 1103
+      .local v0, bundle:Landroid/os/Bundle;
+!     const-string/jumbo v4, "streamType"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyIntParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     .line 1104
+!     const-string/jumbo v4, "utteranceId"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyStringParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     .line 1105
+!     const-string/jumbo v4, "volume"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyFloatParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     .line 1106
+!     const-string/jumbo v4, "pan"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyFloatParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
+!     .line 1109
+!     const-string/jumbo v4, "networkTts"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyStringParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
++     .line 1110
+      const-string v4, "embeddedTts"
+  
+      invoke-direct {p0, v0, p1, v4}, Landroid/speech/tts/TextToSpeech;->copyStringParam(Landroid/os/Bundle;Ljava/util/HashMap;Ljava/lang/String;)V
+  
++     .line 1115
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
+      invoke-static {v4}, Landroid/text/TextUtils;->isEmpty(Ljava/lang/CharSequence;)Z
+***************
+*** 672,677 ****
+--- 747,753 ----
+  
+      if-nez v4, :cond_2
+  
++     .line 1116
+      invoke-virtual {p1}, Ljava/util/HashMap;->entrySet()Ljava/util/Set;
+  
+      move-result-object v4
+***************
+*** 695,700 ****
+--- 771,777 ----
+  
+      check-cast v1, Ljava/util/Map$Entry;
+  
++     .line 1117
+      .local v1, entry:Ljava/util/Map$Entry;,"Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;"
+      invoke-interface {v1}, Ljava/util/Map$Entry;->getKey()Ljava/lang/Object;
+  
+***************
+*** 702,707 ****
+--- 779,785 ----
+  
+      check-cast v3, Ljava/lang/String;
+  
++     .line 1118
+      .local v3, key:Ljava/lang/String;
+      if-eqz v3, :cond_0
+  
+***************
+*** 713,718 ****
+--- 791,797 ----
+  
+      if-eqz v4, :cond_0
+  
++     .line 1119
+      invoke-interface {v1}, Ljava/util/Map$Entry;->getValue()Ljava/lang/Object;
+  
+      move-result-object v4
+***************
+*** 723,728 ****
+--- 802,808 ----
+  
+      goto :goto_0
+  
++     .line 1126
+      .end local v0           #bundle:Landroid/os/Bundle;
+      .end local v1           #entry:Ljava/util/Map$Entry;,"Ljava/util/Map$Entry<Ljava/lang/String;Ljava/lang/String;>;"
+      .end local v2           #i$:Ljava/util/Iterator;
+***************
+*** 742,747 ****
+--- 822,828 ----
+  
+      const/4 v2, 0x0
+  
++     .line 574
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mRequestedEngine:Ljava/lang/String;
+  
+      if-eqz v4, :cond_0
+***************
+*** 756,761 ****
+--- 837,843 ----
+  
+      if-eqz v4, :cond_0
+  
++     .line 575
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mRequestedEngine:Ljava/lang/String;
+  
+      invoke-direct {p0, v4}, Landroid/speech/tts/TextToSpeech;->connectToEngine(Ljava/lang/String;)Z
+***************
+*** 764,781 ****
+--- 846,867 ----
+  
+      if-eqz v4, :cond_0
+  
++     .line 576
+      iget-object v3, p0, Landroid/speech/tts/TextToSpeech;->mRequestedEngine:Ljava/lang/String;
+  
+      iput-object v3, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
++     .line 607
+      :goto_0
+      return v2
+  
++     .line 582
+      :cond_0
+      invoke-virtual {p0}, Landroid/speech/tts/TextToSpeech;->getDefaultEngine()Ljava/lang/String;
+  
+      move-result-object v0
+  
++     .line 583
+      .local v0, defaultEngine:Ljava/lang/String;
+      if-eqz v0, :cond_1
+  
+***************
+*** 787,802 ****
+--- 873,891 ----
+  
+      if-nez v4, :cond_1
+  
++     .line 584
+      invoke-direct {p0, v0}, Landroid/speech/tts/TextToSpeech;->connectToEngine(Ljava/lang/String;)Z
+  
+      move-result v4
+  
+      if-eqz v4, :cond_1
+  
++     .line 585
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
+      goto :goto_0
+  
++     .line 592
+      :cond_1
+      iget-object v4, p0, Landroid/speech/tts/TextToSpeech;->mEnginesHelper:Landroid/speech/tts/TtsEngines;
+  
+***************
+*** 804,809 ****
+--- 893,899 ----
+  
+      move-result-object v1
+  
++     .line 593
+      .local v1, highestRanked:Ljava/lang/String;
+      if-eqz v1, :cond_2
+  
+***************
+*** 821,845 ****
+--- 911,940 ----
+  
+      if-nez v4, :cond_2
+  
++     .line 595
+      invoke-direct {p0, v1}, Landroid/speech/tts/TextToSpeech;->connectToEngine(Ljava/lang/String;)Z
+  
+      move-result v4
+  
+      if-eqz v4, :cond_2
+  
++     .line 596
+      iput-object v1, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
+      goto :goto_0
+  
++     .line 605
+      :cond_2
+      const/4 v2, 0x0
+  
+      iput-object v2, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
++     .line 606
+      invoke-direct {p0, v3}, Landroid/speech/tts/TextToSpeech;->dispatchOnInit(I)V
+  
+      move v2, v3
+  
++     .line 607
+      goto :goto_0
+  .end method
+  
+***************
+*** 849,854 ****
+--- 944,950 ----
+      .parameter "resourceId"
+  
+      .prologue
++     .line 771
+      new-instance v0, Landroid/net/Uri$Builder;
+  
+      invoke-direct {v0}, Landroid/net/Uri$Builder;-><init>()V
+***************
+*** 896,901 ****
+--- 992,998 ----
+      .end annotation
+  
+      .prologue
++     .line 559
+      .local p1, action:Landroid/speech/tts/TextToSpeech$Action;,"Landroid/speech/tts/TextToSpeech$Action<TR;>;"
+      .local p2, errorResult:Ljava/lang/Object;,"TR;"
+      const/4 v0, 0x1
+***************
+*** 926,942 ****
+--- 1023,1042 ----
+      .end annotation
+  
+      .prologue
++     .line 563
+      .local p1, action:Landroid/speech/tts/TextToSpeech$Action;,"Landroid/speech/tts/TextToSpeech$Action<TR;>;"
+      .local p2, errorResult:Ljava/lang/Object;,"TR;"
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 564
+      :try_start_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mServiceConnection:Landroid/speech/tts/TextToSpeech$Connection;
+  
+      if-nez v0, :cond_0
+  
++     .line 565
+      const-string v0, "TextToSpeech"
+  
+      new-instance v2, Ljava/lang/StringBuilder;
+***************
+*** 959,966 ****
+--- 1059,1068 ----
+  
+      invoke-static {v0, v2}, Landroid/util/Log;->w(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 566
+      monitor-exit v1
+  
++     .line 568
+      .end local p2           #errorResult:Ljava/lang/Object;,"TR;"
+      :goto_0
+      return-object p2
+***************
+*** 978,983 ****
+--- 1080,1086 ----
+  
+      goto :goto_0
+  
++     .line 569
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1006,1011 ****
+--- 1109,1115 ----
+      .end annotation
+  
+      .prologue
++     .line 555
+      .local p1, action:Landroid/speech/tts/TextToSpeech$Action;,"Landroid/speech/tts/TextToSpeech$Action<TR;>;"
+      .local p2, errorResult:Ljava/lang/Object;,"TR;"
+      const/4 v0, 0x0
+***************
+*** 1025,1034 ****
+--- 1129,1140 ----
+      .parameter "filename"
+  
+      .prologue
++     .line 764
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 765
+      :try_start_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEarcons:Ljava/util/Map;
+  
+***************
+*** 1038,1049 ****
+--- 1144,1157 ----
+  
+      invoke-interface {v0, p1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 766
+      const/4 v0, 0x0
+  
+      monitor-exit v1
+  
+      return v0
+  
++     .line 767
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1061,1070 ****
+--- 1169,1180 ----
+      .parameter "resourceId"
+  
+      .prologue
++     .line 742
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 743
+      :try_start_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEarcons:Ljava/util/Map;
+  
+***************
+*** 1074,1085 ****
+--- 1184,1197 ----
+  
+      invoke-interface {v0, p1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 744
+      const/4 v0, 0x0
+  
+      monitor-exit v1
+  
+      return v0
+  
++     .line 745
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1096,1105 ****
+--- 1208,1219 ----
+      .parameter "filename"
+  
+      .prologue
++     .line 709
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 710
+      :try_start_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mUtterances:Ljava/util/Map;
+  
+***************
+*** 1109,1120 ****
+--- 1223,1236 ----
+  
+      invoke-interface {v0, p1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 711
+      const/4 v0, 0x0
+  
+      monitor-exit v1
+  
+      return v0
+  
++     .line 712
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1132,1141 ****
+--- 1248,1259 ----
+      .parameter "resourceId"
+  
+      .prologue
++     .line 687
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v1
+  
++     .line 688
+      :try_start_0
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mUtterances:Ljava/util/Map;
+  
+***************
+*** 1145,1156 ****
+--- 1263,1276 ----
+  
+      invoke-interface {v0, p1, v2}, Ljava/util/Map;->put(Ljava/lang/Object;Ljava/lang/Object;)Ljava/lang/Object;
+  
++     .line 689
+      const/4 v0, 0x0
+  
+      monitor-exit v1
+  
+      return v0
+  
++     .line 690
+      :catchall_0
+      move-exception v0
+  
+***************
+*** 1165,1170 ****
+--- 1285,1291 ----
+      .locals 1
+  
+      .prologue
++     .line 1227
+      const/4 v0, 0x0
+  
+      return v0
+***************
+*** 1174,1179 ****
+--- 1295,1301 ----
+      .locals 1
+  
+      .prologue
++     .line 987
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mCurrentEngine:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 1183,1188 ****
+--- 1305,1311 ----
+      .locals 1
+  
+      .prologue
++     .line 1218
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEnginesHelper:Landroid/speech/tts/TtsEngines;
+  
+      invoke-virtual {v0}, Landroid/speech/tts/TtsEngines;->getDefaultEngine()Ljava/lang/String;
+***************
+*** 1205,1210 ****
+--- 1328,1334 ----
+      .end annotation
+  
+      .prologue
++     .line 1236
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeech;->mEnginesHelper:Landroid/speech/tts/TtsEngines;
+  
+      invoke-virtual {v0}, Landroid/speech/tts/TtsEngines;->getEngines()Ljava/util/List;
+***************
+*** 1230,1235 ****
+--- 1354,1360 ----
+      .end annotation
+  
+      .prologue
++     .line 887
+      new-instance v0, Landroid/speech/tts/TextToSpeech$5;
+  
+      invoke-direct {v0, p0, p1}, Landroid/speech/tts/TextToSpeech$5;-><init>(Landroid/speech/tts/TextToSpeech;Ljava/util/Locale;)V
+***************
+*** 1251,1256 ****
+--- 1376,1382 ----
+      .locals 3
+  
+      .prologue
++     .line 1042
+      new-instance v0, Landroid/speech/tts/TextToSpeech$9;
+  
+      invoke-direct {v0, p0}, Landroid/speech/tts/TextToSpeech$9;-><init>(Landroid/speech/tts/TextToSpeech;)V
+***************
+*** 1273,1278 ****
+--- 1399,1405 ----
+      .parameter "loc"
+  
+      .prologue
++     .line 1064
+      new-instance v0, Landroid/speech/tts/TextToSpeech$10;
+  
+      invoke-direct {v0, p0, p1}, Landroid/speech/tts/TextToSpeech$10;-><init>(Landroid/speech/tts/TextToSpeech;Ljava/util/Locale;)V
+***************
+*** 1302,1307 ****
+--- 1429,1435 ----
+      .locals 3
+  
+      .prologue
++     .line 911
+      new-instance v0, Landroid/speech/tts/TextToSpeech$6;
+  
+      invoke-direct {v0, p0}, Landroid/speech/tts/TextToSpeech$6;-><init>(Landroid/speech/tts/TextToSpeech;)V
+***************
+*** 1346,1351 ****
+--- 1474,1480 ----
+      .end annotation
+  
+      .prologue
++     .line 832
+      .local p3, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      new-instance v0, Landroid/speech/tts/TextToSpeech$3;
+  
+***************
+*** 1357,1363 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "playEarcon"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+--- 1486,1492 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "playEarcon"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+***************
+*** 1389,1394 ****
+--- 1518,1524 ----
+      .end annotation
+  
+      .prologue
++     .line 863
+      .local p4, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      new-instance v0, Landroid/speech/tts/TextToSpeech$4;
+  
+***************
+*** 1408,1414 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "playSilence"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+--- 1538,1544 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "playSilence"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+***************
+*** 1430,1437 ****
+--- 1560,1569 ----
+      .end annotation
+  
+      .prologue
++     .line 1207
+      iput-object p1, p0, Landroid/speech/tts/TextToSpeech;->mRequestedEngine:Ljava/lang/String;
+  
++     .line 1208
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeech;->initTts()I
+  
+      move-result v0
+***************
+*** 1444,1449 ****
+--- 1576,1582 ----
+      .parameter "loc"
+  
+      .prologue
++     .line 1004
+      new-instance v0, Landroid/speech/tts/TextToSpeech$8;
+  
+      invoke-direct {v0, p0, p1}, Landroid/speech/tts/TextToSpeech$8;-><init>(Landroid/speech/tts/TextToSpeech;Ljava/util/Locale;)V
+***************
+*** 1454,1460 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "setLanguage"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+--- 1587,1593 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "setLanguage"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+***************
+*** 1476,1487 ****
+--- 1609,1622 ----
+      .end annotation
+  
+      .prologue
++     .line 1173
+      invoke-static {p1}, Landroid/speech/tts/UtteranceProgressListener;->from(Landroid/speech/tts/TextToSpeech$OnUtteranceCompletedListener;)Landroid/speech/tts/UtteranceProgressListener;
+  
+      move-result-object v0
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeech;->mUtteranceProgressListener:Landroid/speech/tts/UtteranceProgressListener;
+  
++     .line 1174
+      const/4 v0, 0x0
+  
+      return v0
+***************
+*** 1492,1499 ****
+--- 1627,1636 ----
+      .parameter "listener"
+  
+      .prologue
++     .line 1188
+      iput-object p1, p0, Landroid/speech/tts/TextToSpeech;->mUtteranceProgressListener:Landroid/speech/tts/UtteranceProgressListener;
+  
++     .line 1189
+      const/4 v0, 0x0
+  
+      return v0
+***************
+*** 1504,1543 ****
+      .parameter "pitch"
+  
+      .prologue
+      const/4 v1, 0x0
+  
+      cmpl-float v1, p1, v1
+  
+      if-lez v1, :cond_0
+  
+      const/high16 v1, 0x42c8
+  
+      mul-float/2addr v1, p1
+  
+      float-to-int v0, v1
+  
+      .local v0, intPitch:I
+      if-lez v0, :cond_0
+  
+      iget-object v2, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
+      :try_start_0
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+!     const-string v3, "pitch"
+  
+      invoke-virtual {v1, v3, v0}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+  
+      monitor-exit v2
+  
+      const/4 v1, 0x0
+  
+      .end local v0           #intPitch:I
+      :goto_0
+      return v1
+  
+      .restart local v0       #intPitch:I
+      :catchall_0
+      move-exception v1
+--- 1641,1689 ----
+      .parameter "pitch"
+  
+      .prologue
++     .line 970
+      const/4 v1, 0x0
+  
+      cmpl-float v1, p1, v1
+  
+      if-lez v1, :cond_0
+  
++     .line 971
+      const/high16 v1, 0x42c8
+  
+      mul-float/2addr v1, p1
+  
+      float-to-int v0, v1
+  
++     .line 972
+      .local v0, intPitch:I
+      if-lez v0, :cond_0
+  
++     .line 973
+      iget-object v2, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
++     .line 974
+      :try_start_0
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+!     const-string/jumbo v3, "pitch"
+  
+      invoke-virtual {v1, v3, v0}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+  
++     .line 975
+      monitor-exit v2
+  
++     .line 976
+      const/4 v1, 0x0
+  
++     .line 979
+      .end local v0           #intPitch:I
+      :goto_0
+      return v1
+  
++     .line 975
+      .restart local v0       #intPitch:I
+      :catchall_0
+      move-exception v1
+***************
+*** 1548,1553 ****
+--- 1694,1700 ----
+  
+      throw v1
+  
++     .line 979
+      .end local v0           #intPitch:I
+      :cond_0
+      const/4 v1, -0x1
+***************
+*** 1560,1599 ****
+      .parameter "speechRate"
+  
+      .prologue
+      const/4 v1, 0x0
+  
+      cmpl-float v1, p1, v1
+  
+      if-lez v1, :cond_0
+  
+      const/high16 v1, 0x42c8
+  
+      mul-float/2addr v1, p1
+  
+      float-to-int v0, v1
+  
+      .local v0, intRate:I
+      if-lez v0, :cond_0
+  
+      iget-object v2, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
+      :try_start_0
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+!     const-string v3, "rate"
+  
+      invoke-virtual {v1, v3, v0}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+  
+      monitor-exit v2
+  
+      const/4 v1, 0x0
+  
+      .end local v0           #intRate:I
+      :goto_0
+      return v1
+  
+      .restart local v0       #intRate:I
+      :catchall_0
+      move-exception v1
+--- 1707,1755 ----
+      .parameter "speechRate"
+  
+      .prologue
++     .line 946
+      const/4 v1, 0x0
+  
+      cmpl-float v1, p1, v1
+  
+      if-lez v1, :cond_0
+  
++     .line 947
+      const/high16 v1, 0x42c8
+  
+      mul-float/2addr v1, p1
+  
+      float-to-int v0, v1
+  
++     .line 948
+      .local v0, intRate:I
+      if-lez v0, :cond_0
+  
++     .line 949
+      iget-object v2, p0, Landroid/speech/tts/TextToSpeech;->mStartLock:Ljava/lang/Object;
+  
+      monitor-enter v2
+  
++     .line 950
+      :try_start_0
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeech;->mParams:Landroid/os/Bundle;
+  
+!     const-string/jumbo v3, "rate"
+  
+      invoke-virtual {v1, v3, v0}, Landroid/os/Bundle;->putInt(Ljava/lang/String;I)V
+  
++     .line 951
+      monitor-exit v2
+  
++     .line 952
+      const/4 v1, 0x0
+  
++     .line 955
+      .end local v0           #intRate:I
+      :goto_0
+      return v1
+  
++     .line 951
+      .restart local v0       #intRate:I
+      :catchall_0
+      move-exception v1
+***************
+*** 1604,1609 ****
+--- 1760,1766 ----
+  
+      throw v1
+  
++     .line 955
+      .end local v0           #intRate:I
+      :cond_0
+      const/4 v1, -0x1
+***************
+*** 1615,1630 ****
+      .locals 3
+  
+      .prologue
+      new-instance v0, Landroid/speech/tts/TextToSpeech$1;
+  
+      invoke-direct {v0, p0}, Landroid/speech/tts/TextToSpeech$1;-><init>(Landroid/speech/tts/TextToSpeech;)V
+  
+      const/4 v1, 0x0
+  
+!     const-string v2, "shutdown"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runActionNoReconnect(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+      return-void
+  .end method
+  
+--- 1772,1789 ----
+      .locals 3
+  
+      .prologue
++     .line 639
+      new-instance v0, Landroid/speech/tts/TextToSpeech$1;
+  
+      invoke-direct {v0, p0}, Landroid/speech/tts/TextToSpeech$1;-><init>(Landroid/speech/tts/TextToSpeech;)V
+  
+      const/4 v1, 0x0
+  
+!     const-string/jumbo v2, "shutdown"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runActionNoReconnect(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
++     .line 657
+      return-void
+  .end method
+  
+***************
+*** 1647,1652 ****
+--- 1806,1812 ----
+      .end annotation
+  
+      .prologue
++     .line 798
+      .local p3, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      new-instance v0, Landroid/speech/tts/TextToSpeech$2;
+  
+***************
+*** 1658,1664 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "speak"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+--- 1818,1824 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "speak"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+***************
+*** 1677,1682 ****
+--- 1837,1843 ----
+      .locals 3
+  
+      .prologue
++     .line 926
+      new-instance v0, Landroid/speech/tts/TextToSpeech$7;
+  
+      invoke-direct {v0, p0}, Landroid/speech/tts/TextToSpeech$7;-><init>(Landroid/speech/tts/TextToSpeech;)V
+***************
+*** 1687,1693 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "stop"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+--- 1848,1854 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "stop"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+***************
+*** 1722,1727 ****
+--- 1883,1889 ----
+      .end annotation
+  
+      .prologue
++     .line 1091
+      .local p2, params:Ljava/util/HashMap;,"Ljava/util/HashMap<Ljava/lang/String;Ljava/lang/String;>;"
+      new-instance v0, Landroid/speech/tts/TextToSpeech$11;
+  
+***************
+*** 1733,1739 ****
+  
+      move-result-object v1
+  
+!     const-string v2, "synthesizeToFile"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  
+--- 1895,1901 ----
+  
+      move-result-object v1
+  
+!     const-string/jumbo v2, "synthesizeToFile"
+  
+      invoke-direct {p0, v0, v1, v2}, Landroid/speech/tts/TextToSpeech;->runAction(Landroid/speech/tts/TextToSpeech$Action;Ljava/lang/Object;Ljava/lang/String;)Ljava/lang/Object;
+  

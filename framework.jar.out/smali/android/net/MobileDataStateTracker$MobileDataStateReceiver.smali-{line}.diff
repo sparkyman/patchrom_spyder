@@ -1,0 +1,523 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/MobileDataStateTracker$MobileDataStateReceiver.smali	2012-03-23 19:36:54.258670390 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/net/MobileDataStateTracker$MobileDataStateReceiver.smali.original	2012-03-23 19:34:45.399320643 -0500
+***************
+*** 24,29 ****
+--- 24,30 ----
+      .parameter
+  
+      .prologue
++     .line 178
+      iput-object p1, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
+***************
+*** 37,42 ****
+--- 38,44 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 178
+      invoke-direct {p0, p1}, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;-><init>(Landroid/net/MobileDataStateTracker;)V
+  
+      return-void
+***************
+*** 52,57 ****
+--- 54,60 ----
+      .prologue
+      const/4 v7, 0x0
+  
++     .line 181
+      invoke-virtual {p2}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+  
+      move-result-object v6
+***************
+*** 64,75 ****
+--- 67,80 ----
+  
+      if-eqz v6, :cond_8
+  
++     .line 183
+      const-string v6, "apnType"
+  
+      invoke-virtual {p2, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+      move-result-object v2
+  
++     .line 189
+      .local v2, apnType:Ljava/lang/String;
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 84,94 ****
+--- 89,101 ----
+  
+      if-nez v6, :cond_1
+  
++     .line 292
+      .end local v2           #apnType:Ljava/lang/String;
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 192
+      .restart local v2       #apnType:Ljava/lang/String;
+      :cond_1
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+***************
+*** 116,124 ****
+  
+      invoke-virtual {v6, v8, v9}, Landroid/net/NetworkInfo;->setSubtype(ILjava/lang/String;)V
+  
+      const-class v6, Lcom/android/internal/telephony/Phone$DataState;
+  
+!     const-string v8, "state"
+  
+      invoke-virtual {p2, v8}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+--- 123,132 ----
+  
+      invoke-virtual {v6, v8, v9}, Landroid/net/NetworkInfo;->setSubtype(ILjava/lang/String;)V
+  
++     .line 194
+      const-class v6, Lcom/android/internal/telephony/Phone$DataState;
+  
+!     const-string/jumbo v8, "state"
+  
+      invoke-virtual {p2, v8}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+***************
+*** 130,142 ****
+  
+      check-cast v5, Lcom/android/internal/telephony/Phone$DataState;
+  
+      .local v5, state:Lcom/android/internal/telephony/Phone$DataState;
+!     const-string v6, "reason"
+  
+      invoke-virtual {p2, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+      move-result-object v4
+  
+      .local v4, reason:Ljava/lang/String;
+      const-string v6, "apn"
+  
+--- 138,152 ----
+  
+      check-cast v5, Lcom/android/internal/telephony/Phone$DataState;
+  
++     .line 196
+      .local v5, state:Lcom/android/internal/telephony/Phone$DataState;
+!     const-string/jumbo v6, "reason"
+  
+      invoke-virtual {p2, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+      move-result-object v4
+  
++     .line 197
+      .local v4, reason:Ljava/lang/String;
+      const-string v6, "apn"
+  
+***************
+*** 144,149 ****
+--- 154,160 ----
+  
+      move-result-object v1
+  
++     .line 198
+      .local v1, apnName:Ljava/lang/String;
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 152,158 ****
+  
+      move-result-object v6
+  
+!     const-string v8, "networkRoaming"
+  
+      invoke-virtual {p2, v8, v7}, Landroid/content/Intent;->getBooleanExtra(Ljava/lang/String;Z)Z
+  
+--- 163,169 ----
+  
+      move-result-object v6
+  
+!     const-string/jumbo v8, "networkRoaming"
+  
+      invoke-virtual {p2, v8, v7}, Landroid/content/Intent;->getBooleanExtra(Ljava/lang/String;Z)Z
+  
+***************
+*** 160,165 ****
+--- 171,177 ----
+  
+      invoke-virtual {v6, v8}, Landroid/net/NetworkInfo;->setRoaming(Z)V
+  
++     .line 204
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #getter for: Landroid/net/MobileDataStateTracker;->mNetworkInfo:Landroid/net/NetworkInfo;
+***************
+*** 167,173 ****
+  
+      move-result-object v8
+  
+!     const-string v6, "networkUnvailable"
+  
+      invoke-virtual {p2, v6, v7}, Landroid/content/Intent;->getBooleanExtra(Ljava/lang/String;Z)Z
+  
+--- 179,185 ----
+  
+      move-result-object v8
+  
+!     const-string/jumbo v6, "networkUnvailable"
+  
+      invoke-virtual {p2, v6, v7}, Landroid/content/Intent;->getBooleanExtra(Ljava/lang/String;Z)Z
+  
+***************
+*** 180,185 ****
+--- 192,198 ----
+      :goto_1
+      invoke-virtual {v8, v6}, Landroid/net/NetworkInfo;->setIsAvailable(Z)V
+  
++     .line 211
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #getter for: Landroid/net/MobileDataStateTracker;->mMobileDataState:Lcom/android/internal/telephony/Phone$DataState;
+***************
+*** 189,199 ****
+--- 202,214 ----
+  
+      if-eq v6, v5, :cond_6
+  
++     .line 212
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #setter for: Landroid/net/MobileDataStateTracker;->mMobileDataState:Lcom/android/internal/telephony/Phone$DataState;
+      invoke-static {v6, v5}, Landroid/net/MobileDataStateTracker;->access$402(Landroid/net/MobileDataStateTracker;Lcom/android/internal/telephony/Phone$DataState;)Lcom/android/internal/telephony/Phone$DataState;
+  
++     .line 213
+      sget-object v6, Landroid/net/MobileDataStateTracker$1;->$SwitchMap$com$android$internal$telephony$Phone$DataState:[I
+  
+      invoke-virtual {v5}, Lcom/android/internal/telephony/Phone$DataState;->ordinal()I
+***************
+*** 206,211 ****
+--- 221,227 ----
+  
+      goto :goto_0
+  
++     .line 215
+      :pswitch_0
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 215,224 ****
+--- 231,242 ----
+  
+      if-eqz v6, :cond_2
+  
++     .line 216
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      invoke-virtual {v6, v7}, Landroid/net/MobileDataStateTracker;->setTeardownRequested(Z)V
+  
++     .line 219
+      :cond_2
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 232,239 ****
+--- 250,259 ----
+      :cond_3
+      move v6, v7
+  
++     .line 204
+      goto :goto_1
+  
++     .line 228
+      :pswitch_1
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 244,249 ****
+--- 264,270 ----
+  
+      goto/16 :goto_0
+  
++     .line 231
+      :pswitch_2
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 254,259 ****
+--- 275,281 ----
+  
+      goto/16 :goto_0
+  
++     .line 234
+      :pswitch_3
+      iget-object v7, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 268,273 ****
+--- 290,296 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mLinkProperties:Landroid/net/LinkProperties;
+      invoke-static {v7, v6}, Landroid/net/MobileDataStateTracker;->access$602(Landroid/net/MobileDataStateTracker;Landroid/net/LinkProperties;)Landroid/net/LinkProperties;
+  
++     .line 236
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #getter for: Landroid/net/MobileDataStateTracker;->mLinkProperties:Landroid/net/LinkProperties;
+***************
+*** 277,282 ****
+--- 300,306 ----
+  
+      if-nez v6, :cond_4
+  
++     .line 237
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      const-string v7, "CONNECTED event did not supply link properties."
+***************
+*** 284,289 ****
+--- 308,314 ----
+      #calls: Landroid/net/MobileDataStateTracker;->loge(Ljava/lang/String;)V
+      invoke-static {v6, v7}, Landroid/net/MobileDataStateTracker;->access$700(Landroid/net/MobileDataStateTracker;Ljava/lang/String;)V
+  
++     .line 238
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      new-instance v7, Landroid/net/LinkProperties;
+***************
+*** 293,298 ****
+--- 318,324 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mLinkProperties:Landroid/net/LinkProperties;
+      invoke-static {v6, v7}, Landroid/net/MobileDataStateTracker;->access$602(Landroid/net/MobileDataStateTracker;Landroid/net/LinkProperties;)Landroid/net/LinkProperties;
+  
++     .line 240
+      :cond_4
+      iget-object v7, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 307,312 ****
+--- 333,339 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mLinkCapabilities:Landroid/net/LinkCapabilities;
+      invoke-static {v7, v6}, Landroid/net/MobileDataStateTracker;->access$802(Landroid/net/MobileDataStateTracker;Landroid/net/LinkCapabilities;)Landroid/net/LinkCapabilities;
+  
++     .line 242
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #getter for: Landroid/net/MobileDataStateTracker;->mLinkCapabilities:Landroid/net/LinkCapabilities;
+***************
+*** 316,321 ****
+--- 343,349 ----
+  
+      if-nez v6, :cond_5
+  
++     .line 243
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      const-string v7, "CONNECTED event did not supply link capabilities."
+***************
+*** 323,328 ****
+--- 351,357 ----
+      #calls: Landroid/net/MobileDataStateTracker;->loge(Ljava/lang/String;)V
+      invoke-static {v6, v7}, Landroid/net/MobileDataStateTracker;->access$700(Landroid/net/MobileDataStateTracker;Ljava/lang/String;)V
+  
++     .line 244
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      new-instance v7, Landroid/net/LinkCapabilities;
+***************
+*** 332,337 ****
+--- 361,367 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mLinkCapabilities:Landroid/net/LinkCapabilities;
+      invoke-static {v6, v7}, Landroid/net/MobileDataStateTracker;->access$802(Landroid/net/MobileDataStateTracker;Landroid/net/LinkCapabilities;)Landroid/net/LinkCapabilities;
+  
++     .line 246
+      :cond_5
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 342,347 ****
+--- 372,378 ----
+  
+      goto/16 :goto_0
+  
++     .line 251
+      :cond_6
+      const-string v6, "linkPropertiesChanged"
+  
+***************
+*** 351,356 ****
+--- 382,388 ----
+  
+      if-eqz v6, :cond_0
+  
++     .line 252
+      iget-object v7, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      const-string v6, "linkProperties"
+***************
+*** 364,369 ****
+--- 396,402 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mLinkProperties:Landroid/net/LinkProperties;
+      invoke-static {v7, v6}, Landroid/net/MobileDataStateTracker;->access$602(Landroid/net/MobileDataStateTracker;Landroid/net/LinkProperties;)Landroid/net/LinkProperties;
+  
++     .line 253
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #getter for: Landroid/net/MobileDataStateTracker;->mLinkProperties:Landroid/net/LinkProperties;
+***************
+*** 373,378 ****
+--- 406,412 ----
+  
+      if-nez v6, :cond_7
+  
++     .line 254
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      const-string v7, "No link property in LINK_PROPERTIES change event."
+***************
+*** 380,385 ****
+--- 414,420 ----
+      #calls: Landroid/net/MobileDataStateTracker;->loge(Ljava/lang/String;)V
+      invoke-static {v6, v7}, Landroid/net/MobileDataStateTracker;->access$700(Landroid/net/MobileDataStateTracker;Ljava/lang/String;)V
+  
++     .line 255
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      new-instance v7, Landroid/net/LinkProperties;
+***************
+*** 389,394 ****
+--- 424,430 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mLinkProperties:Landroid/net/LinkProperties;
+      invoke-static {v6, v7}, Landroid/net/MobileDataStateTracker;->access$602(Landroid/net/MobileDataStateTracker;Landroid/net/LinkProperties;)Landroid/net/LinkProperties;
+  
++     .line 258
+      :cond_7
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 421,426 ****
+--- 457,463 ----
+  
+      invoke-virtual {v6, v7, v4, v8}, Landroid/net/NetworkInfo;->setDetailedState(Landroid/net/NetworkInfo$DetailedState;Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 260
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      #getter for: Landroid/net/MobileDataStateTracker;->mTarget:Landroid/os/Handler;
+***************
+*** 441,451 ****
+--- 478,490 ----
+  
+      move-result-object v3
+  
++     .line 262
+      .local v3, msg:Landroid/os/Message;
+      invoke-virtual {v3}, Landroid/os/Message;->sendToTarget()V
+  
+      goto/16 :goto_0
+  
++     .line 265
+      .end local v1           #apnName:Ljava/lang/String;
+      .end local v2           #apnType:Ljava/lang/String;
+      .end local v3           #msg:Landroid/os/Message;
+***************
+*** 464,475 ****
+--- 503,516 ----
+  
+      if-eqz v6, :cond_9
+  
++     .line 267
+      const-string v6, "apnType"
+  
+      invoke-virtual {p2, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+      move-result-object v2
+  
++     .line 268
+      .restart local v2       #apnType:Ljava/lang/String;
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 484,495 ****
+  
+      if-eqz v6, :cond_0
+  
+!     const-string v6, "reason"
+  
+      invoke-virtual {p2, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+      move-result-object v4
+  
+      .restart local v4       #reason:Ljava/lang/String;
+      const-string v6, "apn"
+  
+--- 525,538 ----
+  
+      if-eqz v6, :cond_0
+  
+!     .line 276
+!     const-string/jumbo v6, "reason"
+  
+      invoke-virtual {p2, v6}, Landroid/content/Intent;->getStringExtra(Ljava/lang/String;)Ljava/lang/String;
+  
+      move-result-object v4
+  
++     .line 277
+      .restart local v4       #reason:Ljava/lang/String;
+      const-string v6, "apn"
+  
+***************
+*** 497,502 ****
+--- 540,546 ----
+  
+      move-result-object v1
+  
++     .line 282
+      .restart local v1       #apnName:Ljava/lang/String;
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 507,512 ****
+--- 551,557 ----
+  
+      goto/16 :goto_0
+  
++     .line 283
+      .end local v1           #apnName:Ljava/lang/String;
+      .end local v2           #apnType:Ljava/lang/String;
+      .end local v4           #reason:Ljava/lang/String;
+***************
+*** 523,528 ****
+--- 568,574 ----
+  
+      if-eqz v6, :cond_0
+  
++     .line 286
+      iget-object v7, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+      sget-object v6, Lcom/android/internal/telephony/DataConnectionTracker;->EXTRA_MESSENGER:Ljava/lang/String;
+***************
+*** 536,545 ****
+--- 582,593 ----
+      #setter for: Landroid/net/MobileDataStateTracker;->mMessenger:Landroid/os/Messenger;
+      invoke-static {v7, v6}, Landroid/net/MobileDataStateTracker;->access$1002(Landroid/net/MobileDataStateTracker;Landroid/os/Messenger;)Landroid/os/Messenger;
+  
++     .line 287
+      new-instance v0, Lcom/android/internal/util/AsyncChannel;
+  
+      invoke-direct {v0}, Lcom/android/internal/util/AsyncChannel;-><init>()V
+  
++     .line 288
+      .local v0, ac:Lcom/android/internal/util/AsyncChannel;
+      iget-object v6, p0, Landroid/net/MobileDataStateTracker$MobileDataStateReceiver;->this$0:Landroid/net/MobileDataStateTracker;
+  
+***************
+*** 566,571 ****
+--- 614,620 ----
+  
+      goto/16 :goto_0
+  
++     .line 213
+      :pswitch_data_0
+      .packed-switch 0x1
+          :pswitch_0

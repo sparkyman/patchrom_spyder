@@ -1,0 +1,368 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/BootReceiver.smali	2012-03-23 19:34:53.820474203 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/services.jar.out/smali/com/android/server/BootReceiver.smali.original	2012-03-23 19:34:46.862347323 -0500
+***************
+*** 22,27 ****
+--- 22,28 ----
+      .locals 2
+  
+      .prologue
++     .line 45
+      new-instance v0, Ljava/io/File;
+  
+      const-string v1, "/data/tombstones"
+***************
+*** 30,35 ****
+--- 31,37 ----
+  
+      sput-object v0, Lcom/android/server/BootReceiver;->TOMBSTONE_DIR:Ljava/io/File;
+  
++     .line 56
+      const/4 v0, 0x0
+  
+      sput-object v0, Lcom/android/server/BootReceiver;->sTombstoneObserver:Landroid/os/FileObserver;
+***************
+*** 41,46 ****
+--- 43,49 ----
+      .locals 0
+  
+      .prologue
++     .line 39
+      invoke-direct {p0}, Landroid/content/BroadcastReceiver;-><init>()V
+  
+      return-void
+***************
+*** 57,62 ****
+--- 60,66 ----
+      .end annotation
+  
+      .prologue
++     .line 39
+      invoke-direct {p0, p1}, Lcom/android/server/BootReceiver;->logBootEvents(Landroid/content/Context;)V
+  
+      return-void
+***************
+*** 68,73 ****
+--- 72,78 ----
+      .parameter "x1"
+  
+      .prologue
++     .line 39
+      invoke-direct {p0, p1}, Lcom/android/server/BootReceiver;->removeOldUpdatePackages(Landroid/content/Context;)V
+  
+      return-void
+***************
+*** 77,82 ****
+--- 82,88 ----
+      .locals 1
+  
+      .prologue
++     .line 39
+      sget-object v0, Lcom/android/server/BootReceiver;->TOMBSTONE_DIR:Ljava/io/File;
+  
+      return-object v0
+***************
+*** 97,102 ****
+--- 103,109 ----
+      .end annotation
+  
+      .prologue
++     .line 39
+      invoke-static/range {p0 .. p5}, Lcom/android/server/BootReceiver;->addFileToDropBox(Landroid/os/DropBoxManager;Landroid/content/SharedPreferences;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+  
+      return-void
+***************
+*** 119,124 ****
+--- 126,132 ----
+      .prologue
+      const-wide/16 v6, 0x0
+  
++     .line 146
+      if-eqz p0, :cond_0
+  
+      invoke-virtual {p0, p5}, Landroid/os/DropBoxManager;->isTagEnabled(Ljava/lang/String;)Z
+***************
+*** 127,162 ****
+--- 135,178 ----
+  
+      if-nez v5, :cond_1
+  
++     .line 162
+      :cond_0
+      :goto_0
+      return-void
+  
++     .line 148
+      :cond_1
+      new-instance v0, Ljava/io/File;
+  
+      invoke-direct {v0, p3}, Ljava/io/File;-><init>(Ljava/lang/String;)V
+  
++     .line 149
+      .local v0, file:Ljava/io/File;
+      invoke-virtual {v0}, Ljava/io/File;->lastModified()J
+  
+      move-result-wide v1
+  
++     .line 150
+      .local v1, fileTime:J
+      cmp-long v5, v1, v6
+  
+      if-lez v5, :cond_0
+  
++     .line 152
+      if-eqz p1, :cond_2
+  
++     .line 153
+      invoke-interface {p1, p3, v6, v7}, Landroid/content/SharedPreferences;->getLong(Ljava/lang/String;J)J
+  
+      move-result-wide v3
+  
++     .line 154
+      .local v3, lastTime:J
+      cmp-long v5, v3, v1
+  
+      if-eqz v5, :cond_0
+  
++     .line 157
+      invoke-interface {p1}, Landroid/content/SharedPreferences;->edit()Landroid/content/SharedPreferences$Editor;
+  
+      move-result-object v5
+***************
+*** 167,172 ****
+--- 183,189 ----
+  
+      invoke-interface {v5}, Landroid/content/SharedPreferences$Editor;->apply()V
+  
++     .line 160
+      .end local v3           #lastTime:J
+      :cond_2
+      const-string v5, "BootReceiver"
+***************
+*** 207,212 ****
+--- 224,230 ----
+  
+      invoke-static {v5, v6}, Landroid/util/Slog;->i(Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 161
+      new-instance v5, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v5}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 248,253 ****
+--- 266,272 ----
+  
+      const/high16 v4, -0x1
+  
++     .line 85
+      const-string v3, "dropbox"
+  
+      invoke-virtual {p1, v3}, Landroid/content/Context;->getSystemService(Ljava/lang/String;)Ljava/lang/Object;
+***************
+*** 256,261 ****
+--- 275,281 ----
+  
+      check-cast v0, Landroid/os/DropBoxManager;
+  
++     .line 86
+      .local v0, db:Landroid/os/DropBoxManager;
+      const-string v3, "log_files"
+  
+***************
+*** 265,270 ****
+--- 285,291 ----
+  
+      move-result-object v1
+  
++     .line 87
+      .local v1, prefs:Landroid/content/SharedPreferences;
+      new-instance v3, Ljava/lang/StringBuilder;
+  
+***************
+*** 378,393 ****
+--- 399,417 ----
+  
+      move-result-object v2
+  
++     .line 96
+      .local v2, headers:Ljava/lang/String;
+      invoke-static {}, Landroid/os/RecoverySystem;->handleAftermath()Ljava/lang/String;
+  
+      move-result-object v12
+  
++     .line 97
+      .local v12, recovery:Ljava/lang/String;
+      if-eqz v12, :cond_0
+  
+      if-eqz v0, :cond_0
+  
++     .line 98
+      const-string v3, "SYSTEM_RECOVERY_LOG"
+  
+      new-instance v5, Ljava/lang/StringBuilder;
+***************
+*** 408,413 ****
+--- 432,438 ----
+  
+      invoke-virtual {v0, v3, v5}, Landroid/os/DropBoxManager;->addText(Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 101
+      :cond_0
+      const-string v3, "ro.runtime.firstboot"
+  
+***************
+*** 419,424 ****
+--- 444,450 ----
+  
+      if-nez v3, :cond_3
+  
++     .line 102
+      invoke-static {}, Ljava/lang/System;->currentTimeMillis()J
+  
+      move-result-wide v5
+***************
+*** 427,443 ****
+--- 453,472 ----
+  
+      move-result-object v11
+  
++     .line 103
+      .local v11, now:Ljava/lang/String;
+      const-string v3, "ro.runtime.firstboot"
+  
+      invoke-static {v3, v11}, Landroid/os/SystemProperties;->set(Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 104
+      if-eqz v0, :cond_1
+  
+      const-string v3, "SYSTEM_BOOT"
+  
+      invoke-virtual {v0, v3, v2}, Landroid/os/DropBoxManager;->addText(Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 107
+      :cond_1
+      const-string v3, "/proc/last_kmsg"
+  
+***************
+*** 445,468 ****
+--- 474,501 ----
+  
+      invoke-static/range {v0 .. v5}, Lcom/android/server/BootReceiver;->addFileToDropBox(Landroid/os/DropBoxManager;Landroid/content/SharedPreferences;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 109
+      const-string v3, "/cache/recovery/log"
+  
+      const-string v5, "SYSTEM_RECOVERY_LOG"
+  
+      invoke-static/range {v0 .. v5}, Lcom/android/server/BootReceiver;->addFileToDropBox(Landroid/os/DropBoxManager;Landroid/content/SharedPreferences;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 111
+      const-string v3, "/data/dontpanic/apanic_console"
+  
+      const-string v5, "APANIC_CONSOLE"
+  
+      invoke-static/range {v0 .. v5}, Lcom/android/server/BootReceiver;->addFileToDropBox(Landroid/os/DropBoxManager;Landroid/content/SharedPreferences;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 113
+      const-string v3, "/data/dontpanic/apanic_threads"
+  
+      const-string v5, "APANIC_THREADS"
+  
+      invoke-static/range {v0 .. v5}, Lcom/android/server/BootReceiver;->addFileToDropBox(Landroid/os/DropBoxManager;Landroid/content/SharedPreferences;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 120
+      .end local v11           #now:Ljava/lang/String;
+      :cond_2
+      :goto_0
+***************
+*** 472,477 ****
+--- 505,511 ----
+  
+      move-result-object v13
+  
++     .line 121
+      .local v13, tombstoneFiles:[Ljava/io/File;
+      const/4 v10, 0x0
+  
+***************
+*** 483,488 ****
+--- 517,523 ----
+  
+      if-ge v10, v3, :cond_4
+  
++     .line 122
+      aget-object v3, v13, v10
+  
+      invoke-virtual {v3}, Ljava/io/File;->getPath()Ljava/lang/String;
+***************
+*** 495,504 ****
+--- 530,541 ----
+  
+      invoke-static/range {v0 .. v5}, Lcom/android/server/BootReceiver;->addFileToDropBox(Landroid/os/DropBoxManager;Landroid/content/SharedPreferences;Ljava/lang/String;Ljava/lang/String;ILjava/lang/String;)V
+  
++     .line 121
+      add-int/lit8 v10, v10, 0x1
+  
+      goto :goto_1
+  
++     .line 116
+      .end local v10           #i:I
+      .end local v13           #tombstoneFiles:[Ljava/io/File;
+      :cond_3
+***************
+*** 510,515 ****
+--- 547,553 ----
+  
+      goto :goto_0
+  
++     .line 128
+      .restart local v10       #i:I
+      .restart local v13       #tombstoneFiles:[Ljava/io/File;
+      :cond_4
+***************
+*** 535,544 ****
+--- 573,584 ----
+  
+      sput-object v3, Lcom/android/server/BootReceiver;->sTombstoneObserver:Landroid/os/FileObserver;
+  
++     .line 140
+      sget-object v3, Lcom/android/server/BootReceiver;->sTombstoneObserver:Landroid/os/FileObserver;
+  
+      invoke-virtual {v3}, Landroid/os/FileObserver;->startWatching()V
+  
++     .line 141
+      return-void
+  .end method
+  
+***************
+*** 547,558 ****
+--- 587,600 ----
+      .parameter "ctx"
+  
+      .prologue
++     .line 80
+      const-string v0, "com.google.android.systemupdater"
+  
+      const-string v1, "com.google.android.systemupdater.SystemUpdateReceiver"
+  
+      invoke-static {p1, v0, v1}, Landroid/net/Downloads$ByUri;->removeAllDownloadsByPackage(Landroid/content/Context;Ljava/lang/String;Ljava/lang/String;)V
+  
++     .line 82
+      return-void
+  .end method
+  
+***************
+*** 564,574 ****
+--- 606,618 ----
+      .parameter "intent"
+  
+      .prologue
++     .line 61
+      new-instance v0, Lcom/android/server/BootReceiver$1;
+  
+      invoke-direct {v0, p0, p1}, Lcom/android/server/BootReceiver$1;-><init>(Lcom/android/server/BootReceiver;Landroid/content/Context;)V
+  
+      invoke-virtual {v0}, Lcom/android/server/BootReceiver$1;->start()V
+  
++     .line 77
+      return-void
+  .end method

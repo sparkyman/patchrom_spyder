@@ -1,0 +1,163 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/internal/http/multipart/FilePartSource.smali	2012-03-23 19:37:52.935740364 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/com/android/internal/http/multipart/FilePartSource.smali.original	2012-03-23 19:34:46.390338714 -0500
+***************
+*** 25,46 ****
+--- 25,53 ----
+      .prologue
+      const/4 v0, 0x0
+  
++     .line 65
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
++     .line 52
+      iput-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->file:Ljava/io/File;
+  
++     .line 55
+      iput-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->fileName:Ljava/lang/String;
+  
++     .line 66
+      iput-object p1, p0, Lcom/android/internal/http/multipart/FilePartSource;->file:Ljava/io/File;
+  
++     .line 67
+      if-eqz p1, :cond_2
+  
++     .line 68
+      invoke-virtual {p1}, Ljava/io/File;->isFile()Z
+  
+      move-result v0
+  
+      if-nez v0, :cond_0
+  
++     .line 69
+      new-instance v0, Ljava/io/FileNotFoundException;
+  
+      const-string v1, "File is not a normal file."
+***************
+*** 49,54 ****
+--- 56,62 ----
+  
+      throw v0
+  
++     .line 71
+      :cond_0
+      invoke-virtual {p1}, Ljava/io/File;->canRead()Z
+  
+***************
+*** 56,61 ****
+--- 64,70 ----
+  
+      if-nez v0, :cond_1
+  
++     .line 72
+      new-instance v0, Ljava/io/FileNotFoundException;
+  
+      const-string v1, "File is not readable."
+***************
+*** 64,69 ****
+--- 73,79 ----
+  
+      throw v0
+  
++     .line 74
+      :cond_1
+      invoke-virtual {p1}, Ljava/io/File;->getName()Ljava/lang/String;
+  
+***************
+*** 71,76 ****
+--- 81,87 ----
+  
+      iput-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->fileName:Ljava/lang/String;
+  
++     .line 76
+      :cond_2
+      return-void
+  .end method
+***************
+*** 86,97 ****
+--- 97,112 ----
+      .end annotation
+  
+      .prologue
++     .line 89
+      invoke-direct {p0, p2}, Lcom/android/internal/http/multipart/FilePartSource;-><init>(Ljava/io/File;)V
+  
++     .line 90
+      if-eqz p1, :cond_0
+  
++     .line 91
+      iput-object p1, p0, Lcom/android/internal/http/multipart/FilePartSource;->fileName:Ljava/lang/String;
+  
++     .line 93
+      :cond_0
+      return-void
+  .end method
+***************
+*** 107,122 ****
+--- 122,140 ----
+      .end annotation
+  
+      .prologue
++     .line 124
+      iget-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->file:Ljava/io/File;
+  
+      if-eqz v0, :cond_0
+  
++     .line 125
+      new-instance v0, Ljava/io/FileInputStream;
+  
+      iget-object v1, p0, Lcom/android/internal/http/multipart/FilePartSource;->file:Ljava/io/File;
+  
+      invoke-direct {v0, v1}, Ljava/io/FileInputStream;-><init>(Ljava/io/File;)V
+  
++     .line 127
+      :goto_0
+      return-object v0
+  
+***************
+*** 136,146 ****
+      .locals 1
+  
+      .prologue
+      iget-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->fileName:Ljava/lang/String;
+  
+      if-nez v0, :cond_0
+  
+!     const-string v0, "noname"
+  
+      :goto_0
+      return-object v0
+--- 154,165 ----
+      .locals 1
+  
+      .prologue
++     .line 114
+      iget-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->fileName:Ljava/lang/String;
+  
+      if-nez v0, :cond_0
+  
+!     const-string/jumbo v0, "noname"
+  
+      :goto_0
+      return-object v0
+***************
+*** 155,170 ****
+--- 174,192 ----
+      .locals 2
+  
+      .prologue
++     .line 101
+      iget-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->file:Ljava/io/File;
+  
+      if-eqz v0, :cond_0
+  
++     .line 102
+      iget-object v0, p0, Lcom/android/internal/http/multipart/FilePartSource;->file:Ljava/io/File;
+  
+      invoke-virtual {v0}, Ljava/io/File;->length()J
+  
+      move-result-wide v0
+  
++     .line 104
+      :goto_0
+      return-wide v0
+  

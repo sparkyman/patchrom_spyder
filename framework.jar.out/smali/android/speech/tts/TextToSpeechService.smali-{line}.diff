@@ -1,0 +1,277 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/speech/tts/TextToSpeechService.smali	2012-03-23 19:36:32.692277126 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/speech/tts/TextToSpeechService.smali.original	2012-03-23 19:34:45.183316703 -0500
+***************
+*** 48,61 ****
+--- 48,64 ----
+      .locals 1
+  
+      .prologue
++     .line 71
+      invoke-direct {p0}, Landroid/app/Service;-><init>()V
+  
++     .line 749
+      new-instance v0, Landroid/speech/tts/TextToSpeechService$1;
+  
+      invoke-direct {v0, p0}, Landroid/speech/tts/TextToSpeechService$1;-><init>(Landroid/speech/tts/TextToSpeechService;)V
+  
+      iput-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mBinder:Landroid/speech/tts/ITextToSpeechService$Stub;
+  
++     .line 864
+      return-void
+  .end method
+  
+***************
+*** 64,69 ****
+--- 67,73 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mAudioPlaybackHandler:Landroid/speech/tts/AudioPlaybackHandler;
+  
+      return-object v0
+***************
+*** 74,79 ****
+--- 78,84 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mCallbacks:Landroid/speech/tts/TextToSpeechService$CallbackMap;
+  
+      return-object v0
+***************
+*** 84,89 ****
+--- 89,95 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeechService;->getSettingsLocale()[Ljava/lang/String;
+  
+      move-result-object v0
+***************
+*** 96,101 ****
+--- 102,108 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mPackageName:Ljava/lang/String;
+  
+      return-object v0
+***************
+*** 106,111 ****
+--- 113,119 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeechService;->getDefaultSpeechRate()I
+  
+      move-result v0
+***************
+*** 118,123 ****
+--- 126,132 ----
+      .parameter "x0"
+  
+      .prologue
++     .line 71
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mSynthHandler:Landroid/speech/tts/TextToSpeechService$SynthHandler;
+  
+      return-object v0
+***************
+*** 127,133 ****
+      .locals 2
+  
+      .prologue
+!     const-string v0, "tts_default_rate"
+  
+      const/16 v1, 0x64
+  
+--- 136,143 ----
+      .locals 2
+  
+      .prologue
+!     .line 212
+!     const-string/jumbo v0, "tts_default_rate"
+  
+      const/16 v1, 0x64
+  
+***************
+*** 144,149 ****
+--- 154,160 ----
+      .parameter "defaultValue"
+  
+      .prologue
++     .line 221
+      invoke-virtual {p0}, Landroid/speech/tts/TextToSpeechService;->getContentResolver()Landroid/content/ContentResolver;
+  
+      move-result-object v0
+***************
+*** 159,164 ****
+--- 170,176 ----
+      .locals 3
+  
+      .prologue
++     .line 216
+      iget-object v1, p0, Landroid/speech/tts/TextToSpeechService;->mEngineHelper:Landroid/speech/tts/TtsEngines;
+  
+      iget-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mPackageName:Ljava/lang/String;
+***************
+*** 167,172 ****
+--- 179,185 ----
+  
+      move-result-object v0
+  
++     .line 217
+      .local v0, locale:Ljava/lang/String;
+      invoke-static {v0}, Landroid/speech/tts/TtsEngines;->parseLocalePref(Ljava/lang/String;)[Ljava/lang/String;
+  
+***************
+*** 182,187 ****
+--- 195,201 ----
+      .parameter "intent"
+  
+      .prologue
++     .line 737
+      const-string v0, "android.intent.action.TTS_SERVICE"
+  
+      invoke-virtual {p1}, Landroid/content/Intent;->getAction()Ljava/lang/String;
+***************
+*** 194,201 ****
+--- 208,217 ----
+  
+      if-eqz v0, :cond_0
+  
++     .line 738
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mBinder:Landroid/speech/tts/ITextToSpeechService$Stub;
+  
++     .line 740
+      :goto_0
+      return-object v0
+  
+***************
+*** 209,223 ****
+--- 225,243 ----
+      .locals 5
+  
+      .prologue
++     .line 92
+      invoke-super {p0}, Landroid/app/Service;->onCreate()V
+  
++     .line 94
+      new-instance v1, Landroid/speech/tts/TextToSpeechService$SynthThread;
+  
+      invoke-direct {v1, p0}, Landroid/speech/tts/TextToSpeechService$SynthThread;-><init>(Landroid/speech/tts/TextToSpeechService;)V
+  
++     .line 95
+      .local v1, synthThread:Landroid/speech/tts/TextToSpeechService$SynthThread;
+      invoke-virtual {v1}, Landroid/speech/tts/TextToSpeechService$SynthThread;->start()V
+  
++     .line 96
+      new-instance v2, Landroid/speech/tts/TextToSpeechService$SynthHandler;
+  
+      invoke-virtual {v1}, Landroid/speech/tts/TextToSpeechService$SynthThread;->getLooper()Landroid/os/Looper;
+***************
+*** 228,249 ****
+--- 248,273 ----
+  
+      iput-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mSynthHandler:Landroid/speech/tts/TextToSpeechService$SynthHandler;
+  
++     .line 98
+      new-instance v2, Landroid/speech/tts/AudioPlaybackHandler;
+  
+      invoke-direct {v2}, Landroid/speech/tts/AudioPlaybackHandler;-><init>()V
+  
+      iput-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mAudioPlaybackHandler:Landroid/speech/tts/AudioPlaybackHandler;
+  
++     .line 99
+      iget-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mAudioPlaybackHandler:Landroid/speech/tts/AudioPlaybackHandler;
+  
+      invoke-virtual {v2}, Landroid/speech/tts/AudioPlaybackHandler;->start()V
+  
++     .line 101
+      new-instance v2, Landroid/speech/tts/TtsEngines;
+  
+      invoke-direct {v2, p0}, Landroid/speech/tts/TtsEngines;-><init>(Landroid/content/Context;)V
+  
+      iput-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mEngineHelper:Landroid/speech/tts/TtsEngines;
+  
++     .line 103
+      new-instance v2, Landroid/speech/tts/TextToSpeechService$CallbackMap;
+  
+      const/4 v3, 0x0
+***************
+*** 252,257 ****
+--- 276,282 ----
+  
+      iput-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mCallbacks:Landroid/speech/tts/TextToSpeechService$CallbackMap;
+  
++     .line 105
+      invoke-virtual {p0}, Landroid/speech/tts/TextToSpeechService;->getApplicationInfo()Landroid/content/pm/ApplicationInfo;
+  
+      move-result-object v2
+***************
+*** 260,269 ****
+--- 285,296 ----
+  
+      iput-object v2, p0, Landroid/speech/tts/TextToSpeechService;->mPackageName:Ljava/lang/String;
+  
++     .line 107
+      invoke-direct {p0}, Landroid/speech/tts/TextToSpeechService;->getSettingsLocale()[Ljava/lang/String;
+  
+      move-result-object v0
+  
++     .line 109
+      .local v0, defaultLocale:[Ljava/lang/String;
+      const/4 v2, 0x0
+  
+***************
+*** 279,284 ****
+--- 306,312 ----
+  
+      invoke-virtual {p0, v2, v3, v4}, Landroid/speech/tts/TextToSpeechService;->onLoadLanguage(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I
+  
++     .line 110
+      return-void
+  .end method
+  
+***************
+*** 286,305 ****
+--- 314,338 ----
+      .locals 1
+  
+      .prologue
++     .line 117
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mSynthHandler:Landroid/speech/tts/TextToSpeechService$SynthHandler;
+  
+      invoke-virtual {v0}, Landroid/speech/tts/TextToSpeechService$SynthHandler;->quit()V
+  
++     .line 119
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mAudioPlaybackHandler:Landroid/speech/tts/AudioPlaybackHandler;
+  
+      invoke-virtual {v0}, Landroid/speech/tts/AudioPlaybackHandler;->quit()V
+  
++     .line 121
+      iget-object v0, p0, Landroid/speech/tts/TextToSpeechService;->mCallbacks:Landroid/speech/tts/TextToSpeechService$CallbackMap;
+  
+      invoke-virtual {v0}, Landroid/speech/tts/TextToSpeechService$CallbackMap;->kill()V
+  
++     .line 123
+      invoke-super {p0}, Landroid/app/Service;->onDestroy()V
+  
++     .line 124
+      return-void
+  .end method
+  
+***************
+*** 323,328 ****
+--- 356,362 ----
+      .end annotation
+  
+      .prologue
++     .line 208
+      const/4 v0, 0x0
+  
+      return-object v0

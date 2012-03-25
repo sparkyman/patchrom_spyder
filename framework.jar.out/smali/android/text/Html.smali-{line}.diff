@@ -1,0 +1,1183 @@
+*** /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/text/Html.smali	2012-03-23 19:35:19.514942740 -0500
+--- /home/dhacker29/patchrom/spyder/temp/dst_smali_orig/framework.jar.out/smali/android/text/Html.smali.original	2012-03-23 19:34:44.484303957 -0500
+***************
+*** 18,23 ****
+--- 18,24 ----
+      .locals 0
+  
+      .prologue
++     .line 91
+      invoke-direct {p0}, Ljava/lang/Object;-><init>()V
+  
+      return-void
+***************
+*** 30,35 ****
+--- 31,37 ----
+      .prologue
+      const/4 v0, 0x0
+  
++     .line 102
+      invoke-static {p0, v0, v0}, Landroid/text/Html;->fromHtml(Ljava/lang/String;Landroid/text/Html$ImageGetter;Landroid/text/Html$TagHandler;)Landroid/text/Spanned;
+  
+      move-result-object v0
+***************
+*** 44,53 ****
+--- 46,57 ----
+      .parameter "tagHandler"
+  
+      .prologue
++     .line 125
+      new-instance v2, Lorg/ccil/cowan/tagsoup/Parser;
+  
+      invoke-direct {v2}, Lorg/ccil/cowan/tagsoup/Parser;-><init>()V
+  
++     .line 127
+      .local v2, parser:Lorg/ccil/cowan/tagsoup/Parser;
+      :try_start_0
+      const-string v3, "http://www.ccil.org/~cowan/tagsoup/properties/schema"
+***************
+*** 61,70 ****
+--- 65,76 ----
+      .catch Lorg/xml/sax/SAXNotRecognizedException; {:try_start_0 .. :try_end_0} :catch_0
+      .catch Lorg/xml/sax/SAXNotSupportedException; {:try_start_0 .. :try_end_0} :catch_1
+  
++     .line 136
+      new-instance v0, Landroid/text/HtmlToSpannedConverter;
+  
+      invoke-direct {v0, p0, p1, p2, v2}, Landroid/text/HtmlToSpannedConverter;-><init>(Ljava/lang/String;Landroid/text/Html$ImageGetter;Landroid/text/Html$TagHandler;Lorg/ccil/cowan/tagsoup/Parser;)V
+  
++     .line 139
+      .local v0, converter:Landroid/text/HtmlToSpannedConverter;
+      invoke-virtual {v0}, Landroid/text/HtmlToSpannedConverter;->convert()Landroid/text/Spanned;
+  
+***************
+*** 72,81 ****
+--- 78,89 ----
+  
+      return-object v3
+  
++     .line 128
+      .end local v0           #converter:Landroid/text/HtmlToSpannedConverter;
+      :catch_0
+      move-exception v1
+  
++     .line 130
+      .local v1, e:Lorg/xml/sax/SAXNotRecognizedException;
+      new-instance v3, Ljava/lang/RuntimeException;
+  
+***************
+*** 83,92 ****
+--- 91,102 ----
+  
+      throw v3
+  
++     .line 131
+      .end local v1           #e:Lorg/xml/sax/SAXNotRecognizedException;
+      :catch_1
+      move-exception v1
+  
++     .line 133
+      .local v1, e:Lorg/xml/sax/SAXNotSupportedException;
+      new-instance v3, Ljava/lang/RuntimeException;
+  
+***************
+*** 100,112 ****
+--- 110,125 ----
+      .parameter "text"
+  
+      .prologue
++     .line 146
+      new-instance v0, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v0}, Ljava/lang/StringBuilder;-><init>()V
+  
++     .line 147
+      .local v0, out:Ljava/lang/StringBuilder;
+      invoke-static {v0, p0}, Landroid/text/Html;->withinHtml(Ljava/lang/StringBuilder;Landroid/text/Spanned;)V
+  
++     .line 148
+      invoke-virtual {v0}, Ljava/lang/StringBuilder;->toString()Ljava/lang/String;
+  
+      move-result-object v1
+***************
+*** 124,151 ****
+--- 137,171 ----
+      .prologue
+      const/16 v7, 0xa
+  
++     .line 208
+      const-string v0, "<p>"
+  
+      invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 211
+      move v2, p2
+  
+      .local v2, i:I
+      :goto_0
+      if-ge v2, p3, :cond_3
+  
++     .line 212
+      invoke-static {p1, v7, v2, p3}, Landroid/text/TextUtils;->indexOf(Ljava/lang/CharSequence;CII)I
+  
+      move-result v6
+  
++     .line 213
+      .local v6, next:I
+      if-gez v6, :cond_0
+  
++     .line 214
+      move v6, p3
+  
++     .line 217
+      :cond_0
+      const/4 v4, 0x0
+  
++     .line 219
+      .local v4, nl:I
+      :goto_1
+      if-ge v6, p3, :cond_1
+***************
+*** 156,167 ****
+--- 176,190 ----
+  
+      if-ne v0, v7, :cond_1
+  
++     .line 220
+      add-int/lit8 v4, v4, 0x1
+  
++     .line 221
+      add-int/lit8 v6, v6, 0x1
+  
+      goto :goto_1
+  
++     .line 224
+      :cond_1
+      sub-int v3, v6, v4
+  
+***************
+*** 176,190 ****
+--- 199,216 ----
+  
+      invoke-static/range {v0 .. v5}, Landroid/text/Html;->withinParagraph(Ljava/lang/StringBuilder;Landroid/text/Spanned;IIIZ)V
+  
++     .line 211
+      move v2, v6
+  
+      goto :goto_0
+  
++     .line 224
+      :cond_2
+      const/4 v5, 0x0
+  
+      goto :goto_2
+  
++     .line 227
+      .end local v4           #nl:I
+      .end local v6           #next:I
+      :cond_3
+***************
+*** 192,197 ****
+--- 218,224 ----
+  
+      invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 228
+      return-void
+  .end method
+  
+***************
+*** 203,220 ****
+--- 230,250 ----
+      .parameter "end"
+  
+      .prologue
++     .line 190
+      move v1, p2
+  
+      .local v1, i:I
+      :goto_0
+      if-ge v1, p3, :cond_2
+  
++     .line 191
+      const-class v7, Landroid/text/style/QuoteSpan;
+  
+      invoke-interface {p1, v1, p3, v7}, Landroid/text/Spanned;->nextSpanTransition(IILjava/lang/Class;)I
+  
+      move-result v4
+  
++     .line 192
+      .local v4, next:I
+      const-class v7, Landroid/text/style/QuoteSpan;
+  
+***************
+*** 224,229 ****
+--- 254,260 ----
+  
+      check-cast v6, [Landroid/text/style/QuoteSpan;
+  
++     .line 194
+      .local v6, quotes:[Landroid/text/style/QuoteSpan;
+      move-object v0, v6
+  
+***************
+*** 239,257 ****
+--- 270,292 ----
+  
+      aget-object v5, v0, v2
+  
++     .line 195
+      .local v5, quote:Landroid/text/style/QuoteSpan;
+      const-string v7, "<blockquote>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 194
+      add-int/lit8 v2, v2, 0x1
+  
+      goto :goto_1
+  
++     .line 198
+      .end local v5           #quote:Landroid/text/style/QuoteSpan;
+      :cond_0
+      invoke-static {p0, p1, v1, v4}, Landroid/text/Html;->withinBlockquote(Ljava/lang/StringBuilder;Landroid/text/Spanned;II)V
+  
++     .line 200
+      move-object v0, v6
+  
+      array-length v3, v0
+***************
+*** 263,283 ****
+--- 298,322 ----
+  
+      aget-object v5, v0, v2
+  
++     .line 201
+      .restart local v5       #quote:Landroid/text/style/QuoteSpan;
+      const-string v7, "</blockquote>\n"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 200
+      add-int/lit8 v2, v2, 0x1
+  
+      goto :goto_2
+  
++     .line 190
+      .end local v5           #quote:Landroid/text/style/QuoteSpan;
+      :cond_1
+      move v1, v4
+  
+      goto :goto_0
+  
++     .line 204
+      .end local v0           #arr$:[Landroid/text/style/QuoteSpan;
+      .end local v2           #i$:I
+      .end local v3           #len$:I
+***************
+*** 293,302 ****
+--- 332,343 ----
+      .parameter "text"
+  
+      .prologue
++     .line 152
+      invoke-interface {p1}, Landroid/text/Spanned;->length()I
+  
+      move-result v4
+  
++     .line 155
+      .local v4, len:I
+      const/4 v2, 0x0
+  
+***************
+*** 308,319 ****
+--- 349,362 ----
+  
+      if-ge v2, v8, :cond_6
+  
++     .line 156
+      const-class v8, Landroid/text/style/ParagraphStyle;
+  
+      invoke-interface {p1, v2, v4, v8}, Landroid/text/Spanned;->nextSpanTransition(IILjava/lang/Class;)I
+  
+      move-result v6
+  
++     .line 157
+      .local v6, next:I
+      const-class v8, Landroid/text/style/ParagraphStyle;
+  
+***************
+*** 323,334 ****
+--- 366,380 ----
+  
+      check-cast v7, [Landroid/text/style/ParagraphStyle;
+  
++     .line 158
+      .local v7, style:[Landroid/text/style/ParagraphStyle;
+      const-string v1, " "
+  
++     .line 159
+      .local v1, elements:Ljava/lang/String;
+      const/4 v5, 0x0
+  
++     .line 161
+      .local v5, needDiv:Z
+      const/4 v3, 0x0
+  
+***************
+*** 338,349 ****
+--- 384,397 ----
+  
+      if-ge v3, v8, :cond_3
+  
++     .line 162
+      aget-object v8, v7, v3
+  
+      instance-of v8, v8, Landroid/text/style/AlignmentSpan;
+  
+      if-eqz v8, :cond_0
+  
++     .line 163
+      aget-object v8, v7, v3
+  
+      check-cast v8, Landroid/text/style/AlignmentSpan;
+***************
+*** 352,364 ****
+--- 400,415 ----
+  
+      move-result-object v0
+  
++     .line 165
+      .local v0, align:Landroid/text/Layout$Alignment;
+      const/4 v5, 0x1
+  
++     .line 166
+      sget-object v8, Landroid/text/Layout$Alignment;->ALIGN_CENTER:Landroid/text/Layout$Alignment;
+  
+      if-ne v0, v8, :cond_1
+  
++     .line 167
+      new-instance v8, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 377,382 ****
+--- 428,434 ----
+  
+      move-result-object v1
+  
++     .line 161
+      .end local v0           #align:Landroid/text/Layout$Alignment;
+      :cond_0
+      :goto_2
+***************
+*** 384,395 ****
+--- 436,449 ----
+  
+      goto :goto_1
+  
++     .line 168
+      .restart local v0       #align:Landroid/text/Layout$Alignment;
+      :cond_1
+      sget-object v8, Landroid/text/Layout$Alignment;->ALIGN_OPPOSITE:Landroid/text/Layout$Alignment;
+  
+      if-ne v0, v8, :cond_2
+  
++     .line 169
+      new-instance v8, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 410,415 ****
+--- 464,470 ----
+  
+      goto :goto_2
+  
++     .line 171
+      :cond_2
+      new-instance v8, Ljava/lang/StringBuilder;
+  
+***************
+*** 431,440 ****
+--- 486,497 ----
+  
+      goto :goto_2
+  
++     .line 175
+      .end local v0           #align:Landroid/text/Layout$Alignment;
+      :cond_3
+      if-eqz v5, :cond_4
+  
++     .line 176
+      new-instance v8, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v8}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 461,480 ****
+--- 518,542 ----
+  
+      invoke-virtual {p0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 179
+      :cond_4
+      invoke-static {p0, p1, v2, v6}, Landroid/text/Html;->withinDiv(Ljava/lang/StringBuilder;Landroid/text/Spanned;II)V
+  
++     .line 181
+      if-eqz v5, :cond_5
+  
++     .line 182
+      const-string v8, "</div>"
+  
+      invoke-virtual {p0, v8}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 155
+      :cond_5
+      move v2, v6
+  
+      goto/16 :goto_0
+  
++     .line 185
+      .end local v1           #elements:Ljava/lang/String;
+      .end local v3           #j:I
+      .end local v5           #needDiv:Z
+***************
+*** 494,511 ****
+--- 556,576 ----
+      .parameter "last"
+  
+      .prologue
++     .line 234
+      move v1, p2
+  
+      .local v1, i:I
+      :goto_0
+      if-ge v1, p3, :cond_18
+  
++     .line 235
+      const-class v7, Landroid/text/style/CharacterStyle;
+  
+      invoke-interface {p1, v1, p3, v7}, Landroid/text/Spanned;->nextSpanTransition(IILjava/lang/Class;)I
+  
+      move-result v3
+  
++     .line 236
+      .local v3, next:I
+      const-class v7, Landroid/text/style/CharacterStyle;
+  
+***************
+*** 515,520 ****
+--- 580,586 ----
+  
+      check-cast v6, [Landroid/text/style/CharacterStyle;
+  
++     .line 239
+      .local v6, style:[Landroid/text/style/CharacterStyle;
+      const/4 v2, 0x0
+  
+***************
+*** 524,535 ****
+--- 590,603 ----
+  
+      if-ge v2, v7, :cond_c
+  
++     .line 240
+      aget-object v7, v6, v2
+  
+      instance-of v7, v7, Landroid/text/style/StyleSpan;
+  
+      if-eqz v7, :cond_1
+  
++     .line 241
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/StyleSpan;
+***************
+*** 538,561 ****
+--- 606,634 ----
+  
+      move-result v5
+  
++     .line 243
+      .local v5, s:I
+      and-int/lit8 v7, v5, 0x1
+  
+      if-eqz v7, :cond_0
+  
++     .line 244
+      const-string v7, "<b>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 246
+      :cond_0
+      and-int/lit8 v7, v5, 0x2
+  
+      if-eqz v7, :cond_1
+  
++     .line 247
+      const-string v7, "<i>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 250
+      .end local v5           #s:I
+      :cond_1
+      aget-object v7, v6, v2
+***************
+*** 564,569 ****
+--- 637,643 ----
+  
+      if-eqz v7, :cond_2
+  
++     .line 251
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/TypefaceSpan;
+***************
+*** 572,579 ****
+  
+      move-result-object v5
+  
+      .local v5, s:Ljava/lang/String;
+!     const-string v7, "monospace"
+  
+      invoke-virtual {v5, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+--- 646,654 ----
+  
+      move-result-object v5
+  
++     .line 253
+      .local v5, s:Ljava/lang/String;
+!     const-string/jumbo v7, "monospace"
+  
+      invoke-virtual {v5, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+***************
+*** 581,590 ****
+--- 656,667 ----
+  
+      if-eqz v7, :cond_2
+  
++     .line 254
+      const-string v7, "<tt>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 257
+      .end local v5           #s:Ljava/lang/String;
+      :cond_2
+      aget-object v7, v6, v2
+***************
+*** 593,602 ****
+--- 670,681 ----
+  
+      if-eqz v7, :cond_3
+  
++     .line 258
+      const-string v7, "<sup>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 260
+      :cond_3
+      aget-object v7, v6, v2
+  
+***************
+*** 604,613 ****
+--- 683,694 ----
+  
+      if-eqz v7, :cond_4
+  
++     .line 261
+      const-string v7, "<sub>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 263
+      :cond_4
+      aget-object v7, v6, v2
+  
+***************
+*** 615,624 ****
+--- 696,707 ----
+  
+      if-eqz v7, :cond_5
+  
++     .line 264
+      const-string v7, "<u>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 266
+      :cond_5
+      aget-object v7, v6, v2
+  
+***************
+*** 626,635 ****
+--- 709,720 ----
+  
+      if-eqz v7, :cond_6
+  
++     .line 267
+      const-string v7, "<strike>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 269
+      :cond_6
+      aget-object v7, v6, v2
+  
+***************
+*** 637,646 ****
+--- 722,733 ----
+  
+      if-eqz v7, :cond_7
+  
++     .line 270
+      const-string v7, "<a href=\""
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 271
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/URLSpan;
+***************
+*** 651,660 ****
+--- 738,749 ----
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 272
+      const-string v7, "\">"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 274
+      :cond_7
+      aget-object v7, v6, v2
+  
+***************
+*** 662,671 ****
+--- 751,762 ----
+  
+      if-eqz v7, :cond_8
+  
++     .line 275
+      const-string v7, "<img src=\""
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 276
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/ImageSpan;
+***************
+*** 676,687 ****
+--- 767,781 ----
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 277
+      const-string v7, "\">"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 280
+      move v1, v3
+  
++     .line 282
+      :cond_8
+      aget-object v7, v6, v2
+  
+***************
+*** 689,698 ****
+--- 783,794 ----
+  
+      if-eqz v7, :cond_9
+  
++     .line 283
+      const-string v7, "<font size =\""
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 284
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/AbsoluteSizeSpan;
+***************
+*** 705,714 ****
+--- 801,812 ----
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(I)Ljava/lang/StringBuilder;
+  
++     .line 285
+      const-string v7, "\">"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 287
+      :cond_9
+      aget-object v7, v6, v2
+  
+***************
+*** 716,725 ****
+--- 814,825 ----
+  
+      if-eqz v7, :cond_b
+  
++     .line 288
+      const-string v7, "<font color =\"#"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 289
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/ForegroundColorSpan;
+***************
+*** 736,741 ****
+--- 836,842 ----
+  
+      move-result-object v0
+  
++     .line 291
+      .local v0, color:Ljava/lang/String;
+      :goto_2
+      invoke-virtual {v0}, Ljava/lang/String;->length()I
+***************
+*** 746,751 ****
+--- 847,853 ----
+  
+      if-ge v7, v8, :cond_a
+  
++     .line 292
+      new-instance v7, Ljava/lang/StringBuilder;
+  
+      invoke-direct {v7}, Ljava/lang/StringBuilder;-><init>()V
+***************
+*** 766,787 ****
+--- 868,894 ----
+  
+      goto :goto_2
+  
++     .line 294
+      :cond_a
+      invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 295
+      const-string v7, "\">"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 239
+      .end local v0           #color:Ljava/lang/String;
+      :cond_b
+      add-int/lit8 v2, v2, 0x1
+  
+      goto/16 :goto_1
+  
++     .line 299
+      :cond_c
+      invoke-static {p0, p1, v1, v3}, Landroid/text/Html;->withinStyle(Ljava/lang/StringBuilder;Landroid/text/Spanned;II)V
+  
++     .line 301
+      array-length v7, v6
+  
+      add-int/lit8 v2, v7, -0x1
+***************
+*** 789,804 ****
+--- 896,914 ----
+      :goto_3
+      if-ltz v2, :cond_17
+  
++     .line 302
+      aget-object v7, v6, v2
+  
+      instance-of v7, v7, Landroid/text/style/ForegroundColorSpan;
+  
+      if-eqz v7, :cond_d
+  
++     .line 303
+      const-string v7, "</font>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 305
+      :cond_d
+      aget-object v7, v6, v2
+  
+***************
+*** 806,815 ****
+--- 916,927 ----
+  
+      if-eqz v7, :cond_e
+  
++     .line 306
+      const-string v7, "</font>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 308
+      :cond_e
+      aget-object v7, v6, v2
+  
+***************
+*** 817,826 ****
+--- 929,940 ----
+  
+      if-eqz v7, :cond_f
+  
++     .line 309
+      const-string v7, "</a>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 311
+      :cond_f
+      aget-object v7, v6, v2
+  
+***************
+*** 828,837 ****
+--- 942,953 ----
+  
+      if-eqz v7, :cond_10
+  
++     .line 312
+      const-string v7, "</strike>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 314
+      :cond_10
+      aget-object v7, v6, v2
+  
+***************
+*** 839,848 ****
+--- 955,966 ----
+  
+      if-eqz v7, :cond_11
+  
++     .line 315
+      const-string v7, "</u>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 317
+      :cond_11
+      aget-object v7, v6, v2
+  
+***************
+*** 850,859 ****
+--- 968,979 ----
+  
+      if-eqz v7, :cond_12
+  
++     .line 318
+      const-string v7, "</sub>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 320
+      :cond_12
+      aget-object v7, v6, v2
+  
+***************
+*** 861,870 ****
+--- 981,992 ----
+  
+      if-eqz v7, :cond_13
+  
++     .line 321
+      const-string v7, "</sup>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 323
+      :cond_13
+      aget-object v7, v6, v2
+  
+***************
+*** 872,877 ****
+--- 994,1000 ----
+  
+      if-eqz v7, :cond_14
+  
++     .line 324
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/TypefaceSpan;
+***************
+*** 880,887 ****
+  
+      move-result-object v5
+  
+      .restart local v5       #s:Ljava/lang/String;
+!     const-string v7, "monospace"
+  
+      invoke-virtual {v5, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+--- 1003,1011 ----
+  
+      move-result-object v5
+  
++     .line 326
+      .restart local v5       #s:Ljava/lang/String;
+!     const-string/jumbo v7, "monospace"
+  
+      invoke-virtual {v5, v7}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
+  
+***************
+*** 889,898 ****
+--- 1013,1024 ----
+  
+      if-eqz v7, :cond_14
+  
++     .line 327
+      const-string v7, "</tt>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 330
+      .end local v5           #s:Ljava/lang/String;
+      :cond_14
+      aget-object v7, v6, v2
+***************
+*** 901,906 ****
+--- 1027,1033 ----
+  
+      if-eqz v7, :cond_16
+  
++     .line 331
+      aget-object v7, v6, v2
+  
+      check-cast v7, Landroid/text/style/StyleSpan;
+***************
+*** 909,943 ****
+--- 1036,1077 ----
+  
+      move-result v5
+  
++     .line 333
+      .local v5, s:I
+      and-int/lit8 v7, v5, 0x1
+  
+      if-eqz v7, :cond_15
+  
++     .line 334
+      const-string v7, "</b>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 336
+      :cond_15
+      and-int/lit8 v7, v5, 0x2
+  
+      if-eqz v7, :cond_16
+  
++     .line 337
+      const-string v7, "</i>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 301
+      .end local v5           #s:I
+      :cond_16
+      add-int/lit8 v2, v2, -0x1
+  
+      goto/16 :goto_3
+  
++     .line 234
+      :cond_17
+      move v1, v3
+  
+      goto/16 :goto_0
+  
++     .line 343
+      .end local v2           #j:I
+      .end local v3           #next:I
+      .end local v6           #style:[Landroid/text/style/CharacterStyle;
+***************
+*** 946,994 ****
+--- 1080,1138 ----
+  
+      const-string v4, ""
+  
++     .line 345
+      .local v4, p:Ljava/lang/String;
+      :goto_4
+      const/4 v7, 0x1
+  
+      if-ne p4, v7, :cond_1a
+  
++     .line 346
+      const-string v7, "<br>\n"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 356
+      :goto_5
+      return-void
+  
++     .line 343
+      .end local v4           #p:Ljava/lang/String;
+      :cond_19
+      const-string v4, "</p>\n<p>"
+  
+      goto :goto_4
+  
++     .line 347
+      .restart local v4       #p:Ljava/lang/String;
+      :cond_1a
+      const/4 v7, 0x2
+  
+      if-ne p4, v7, :cond_1b
+  
++     .line 348
+      invoke-virtual {p0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+      goto :goto_5
+  
++     .line 350
+      :cond_1b
+      const/4 v1, 0x2
+  
+      :goto_6
+      if-ge v1, p4, :cond_1c
+  
++     .line 351
+      const-string v7, "<br>"
+  
+      invoke-virtual {p0, v7}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 350
+      add-int/lit8 v1, v1, 0x1
+  
+      goto :goto_6
+  
++     .line 354
+      :cond_1c
+      invoke-virtual {p0, v4}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+***************
+*** 1005,1056 ****
+--- 1149,1210 ----
+      .prologue
+      const/16 v4, 0x20
+  
++     .line 360
+      move v1, p2
+  
+      .local v1, i:I
+      :goto_0
+      if-ge v1, p3, :cond_7
+  
++     .line 361
+      invoke-interface {p1, v1}, Landroid/text/Spanned;->charAt(I)C
+  
+      move-result v0
+  
++     .line 363
+      .local v0, c:C
+      const/16 v2, 0x3c
+  
+      if-ne v0, v2, :cond_0
+  
++     .line 364
+      const-string v2, "&lt;"
+  
+      invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 360
+      :goto_1
+      add-int/lit8 v1, v1, 0x1
+  
+      goto :goto_0
+  
++     .line 365
+      :cond_0
+      const/16 v2, 0x3e
+  
+      if-ne v0, v2, :cond_1
+  
++     .line 366
+      const-string v2, "&gt;"
+  
+      invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+      goto :goto_1
+  
++     .line 367
+      :cond_1
+      const/16 v2, 0x26
+  
+      if-ne v0, v2, :cond_2
+  
++     .line 368
+      const-string v2, "&amp;"
+  
+      invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
+      goto :goto_1
+  
++     .line 369
+      :cond_2
+      const/16 v2, 0x7e
+  
+***************
+*** 1058,1063 ****
+--- 1212,1218 ----
+  
+      if-ge v0, v4, :cond_4
+  
++     .line 370
+      :cond_3
+      new-instance v2, Ljava/lang/StringBuilder;
+  
+***************
+*** 1087,1095 ****
+--- 1242,1252 ----
+  
+      goto :goto_1
+  
++     .line 371
+      :cond_4
+      if-ne v0, v4, :cond_6
+  
++     .line 372
+      :goto_2
+      add-int/lit8 v2, v1, 0x1
+  
+***************
+*** 1103,1126 ****
+--- 1260,1288 ----
+  
+      if-ne v2, v4, :cond_5
+  
++     .line 373
+      const-string v2, "&nbsp;"
+  
+      invoke-virtual {p0, v2}, Ljava/lang/StringBuilder;->append(Ljava/lang/String;)Ljava/lang/StringBuilder;
+  
++     .line 374
+      add-int/lit8 v1, v1, 0x1
+  
+      goto :goto_2
+  
++     .line 377
+      :cond_5
+      invoke-virtual {p0, v4}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+  
+      goto :goto_1
+  
++     .line 379
+      :cond_6
+      invoke-virtual {p0, v0}, Ljava/lang/StringBuilder;->append(C)Ljava/lang/StringBuilder;
+  
+      goto :goto_1
+  
++     .line 382
+      .end local v0           #c:C
+      :cond_7
+      return-void
